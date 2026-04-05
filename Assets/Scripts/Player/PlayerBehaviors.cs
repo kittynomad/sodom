@@ -2,15 +2,22 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    [SerializeField] private float _playerWalkAcceleration;
+    [SerializeField] private float _playerJumpForce;
+    [SerializeField] private float _playerWalkSpeedLimit;
 
-    // Update is called once per frame
-    void Update()
+    private Rigidbody2D rb;
+    private PlayerController pc;
+
+    private void Start()
+    {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        pc = gameObject.GetComponent<PlayerController>();
+    }
+    public void FixedUpdate()
     {
         
+        if(Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+            rb.AddForce(pc.MovementDirection * _playerWalkAcceleration);
     }
 }

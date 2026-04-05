@@ -1,16 +1,14 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    private Vector2 movementDirection = Vector2.zero;
 
-    // Update is called once per frame
-    void Update()
+    public Vector2 MovementDirection { get => movementDirection; set => movementDirection = value; }
+
+    public void OnMove(InputValue iVal)
     {
-        
+        movementDirection = iVal.Get<Vector2>();
     }
 }
