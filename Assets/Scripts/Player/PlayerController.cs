@@ -23,4 +23,9 @@ public class PlayerController : MonoBehaviour
     {
         pb.JumpBehavior();
     }
+
+    public void OnAttack()
+    {
+        pb.AttackBehavior();
+    }
 }
