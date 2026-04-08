@@ -3,6 +3,8 @@ using UnityEngine;
 public class SwordController : MonoBehaviour
 {
     private PlayerBehaviors pb;
+    private GameObject attachedObject;
+    [SerializeField] private float detachSpeed = 2500f;
     private void Start()
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
@@ -15,6 +17,20 @@ public class SwordController : MonoBehaviour
             collision.gameObject.transform.localPosition = Vector2.zero;
             collision.rigidbody.bodyType = RigidbodyType2D.Kinematic;
             collision.rigidbody.excludeLayers = LayerMask.GetMask("Player");
+            attachedObject = collision.gameObject;
         }
+    }
+    public void DetachObject(Vector2 direction)
+    {
+        Debug.Log("gurg");
+        if(attachedObject != null)
+        {
+            Debug.Log("grug");
+            attachedObject.transform.parent = null;
+            attachedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
+            //attachedObject.GetComponent<Rigidbody2D>().excludeLayers = LayerMask.GetMask();
+            attachedObject.GetComponent<Rigidbody2D>().AddForce(direction * detachSpeed, ForceMode2D.Impulse);
+        }
+        attachedObject = null;
     }
 }

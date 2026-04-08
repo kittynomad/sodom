@@ -45,6 +45,12 @@ public class PlayerBehaviors : MonoBehaviour
         StartCoroutine(AttackCoroutine());
     }
 
+    public void InteractBehavior()
+    {
+        Debug.Log("interact behgavior");
+        sc.DetachObject(Vector2.up);
+    }
+
     public bool IsGrounded()
     {
         return true;

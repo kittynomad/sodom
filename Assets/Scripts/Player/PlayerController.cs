@@ -28,4 +28,10 @@ public class PlayerController : MonoBehaviour
     {
         pb.AttackBehavior();
     }
+
+    public void OnInteract()
+    {
+        Debug.Log("interact key");
+        pb.InteractBehavior();
+    }
 }
