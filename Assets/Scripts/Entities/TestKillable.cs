@@ -1,16 +1,30 @@
 using UnityEngine;
 
-public class TestKillable : MonoBehaviour
+public class TestKillable : MonoBehaviour, IKillable
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private float _maxHealth;
+    [SerializeField] private GameObject _corpseObject;
+
+    private float currentHealth;
+
+    private void Start()
     {
-        
+        currentHealth = _maxHealth;
     }
 
-    // Update is called once per frame
-    void Update()
+    public bool OnDamage(float damageAmount)
     {
-        
+        currentHealth -= damageAmount;
+        if (currentHealth <= 0f)
+            OnKill();
+
+        return currentHealth <= 0f;
     }
+
+    public void OnKill()
+    {
+        Instantiate(_corpseObject, transform.position, transform.rotation);
+        Destroy(gameObject);
+    }
+
 }

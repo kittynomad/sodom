@@ -145,7 +145,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::CorpseController
   _healthValue: 2
   _ammoValue: 2
-  _damageValue: 2
+  _damageValue: 5
   _destroyParticles: {fileID: 4839642909253531074, guid: 30974142583440d42aaf6a4c4f78aae8, type: 3}
 --- !u!50 &8797574843151571750
 Rigidbody2D:

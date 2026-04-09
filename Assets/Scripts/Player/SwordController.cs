@@ -19,6 +19,10 @@ public class SwordController : MonoBehaviour
             collision.rigidbody.excludeLayers = LayerMask.GetMask("Player");
             attachedObject = collision.gameObject;
         }
+        if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
+        {
+            ik.OnDamage(1f);
+        }
     }
     public void DetachObject(Vector2 direction)
     {
