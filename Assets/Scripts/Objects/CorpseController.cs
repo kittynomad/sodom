@@ -30,6 +30,10 @@ public class CorpseController : MonoBehaviour
     {
         if (Discarded)
         {
+            if(collision.gameObject.TryGetComponent(out IKillable ik))
+            {
+                ik.OnDamage(_damageValue);
+            }
             Instantiate(_destroyParticles, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
