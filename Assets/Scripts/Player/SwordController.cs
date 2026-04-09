@@ -4,7 +4,7 @@ public class SwordController : MonoBehaviour
 {
     private PlayerBehaviors pb;
     private GameObject attachedObject;
-    [SerializeField] private float detachSpeed = 2500f;
+    [SerializeField] private float detachSpeed = 5f;
     private void Start()
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
@@ -29,6 +29,7 @@ public class SwordController : MonoBehaviour
             attachedObject.transform.parent = null;
             attachedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             //attachedObject.GetComponent<Rigidbody2D>().excludeLayers = LayerMask.GetMask();
+            attachedObject.GetComponent<Rigidbody2D>().linearVelocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
             attachedObject.GetComponent<Rigidbody2D>().AddForce(direction * detachSpeed, ForceMode2D.Impulse);
         }
         attachedObject = null;

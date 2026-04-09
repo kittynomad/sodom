@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour
 {
+    [SerializeField] private int _maxHealth;
     [SerializeField] private float _playerWalkAcceleration;
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
@@ -10,18 +11,23 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private GameObject _hurtBox;
     private SwordController sc;
 
+    private int currentHealth;
     private bool isAttacking = false;
 
     private Rigidbody2D rb;
     private PlayerController pc;
 
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
+    public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
+    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
 
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
+
+        CurrentHealth = _maxHealth;
     }
     public void FixedUpdate()
     {
@@ -48,7 +54,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void InteractBehavior()
     {
         Debug.Log("interact behgavior");
-        sc.DetachObject(Vector2.up);
+        sc.DetachObject(pc.MovementDirection);
     }
 
     public bool IsGrounded()
@@ -61,7 +67,7 @@ public class PlayerBehaviors : MonoBehaviour
         _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
         IsAttacking = true;
         _hurtBox.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         //_hurtBox.SetActive(false);
         IsAttacking = false;
     }

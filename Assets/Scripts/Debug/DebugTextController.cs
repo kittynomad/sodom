@@ -24,7 +24,8 @@ public class DebugTextController : MonoBehaviour
 
     public void UpdateDebugText()
     {
-        string output = "velocity: " + rb.linearVelocity;
+        string output = "velocity: " + rb.linearVelocity + 
+            "\ncurrent health: " + pb.CurrentHealth + "/" + pb.MaxHealth;
 
         _debugUIText.text = output;
     }
