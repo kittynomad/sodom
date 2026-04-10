@@ -179,6 +179,7 @@ MonoBehaviour:
   _playerJumpForce: 5
   _playerWalkSpeedLimit: 5
   _hurtBox: {fileID: 3862160118748894185}
+  _sprite: {fileID: 3519555628608411484}
 --- !u!114 &1427404586909964195
 MonoBehaviour:
   m_ObjectHideFlags: 0

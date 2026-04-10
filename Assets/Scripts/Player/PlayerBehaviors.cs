@@ -9,6 +9,7 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkSpeedLimit;
 
     [SerializeField] private GameObject _hurtBox;
+    [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
 
     private int currentHealth;
@@ -38,6 +39,13 @@ public class PlayerBehaviors : MonoBehaviour
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
+
+        FlipSpriteForVelocity();
+    }
+
+    public void FlipSpriteForVelocity()
+    {
+        _sprite.flipX = rb.linearVelocityX < 0f;
     }
 
     public void JumpBehavior()
