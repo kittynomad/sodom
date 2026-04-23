@@ -76,13 +76,19 @@ public class PlayerBehaviors : MonoBehaviour
         if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
-        }
             sc.DetachObject(pc.MovementDirection, true);
+        }
+            
     }
 
     public void FireBehavior(Vector2 fireDirection)
     {
-        if(CanFire)
+        if (sc.HasCorpseAttached && currentAmmo < _maxAmmo)
+        {
+            currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
+            sc.DetachObject(pc.MovementDirection, true);
+        }
+        else if (CanFire)
         {
             GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
             temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
