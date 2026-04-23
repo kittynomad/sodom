@@ -67,6 +67,7 @@ public class PlayerBehaviors : MonoBehaviour
     {
         if(!IsAttacking)
         StartCoroutine(AttackCoroutine());
+        if(sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
     }
 
     public void InteractBehavior()

@@ -34,9 +34,14 @@ public class CorpseController : MonoBehaviour
             {
                 ik.OnDamage(_damageValue);
             }
-            Instantiate(_destroyParticles, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            DestroyCorpse();
         }
             
+    }
+
+    public void DestroyCorpse()
+    {
+        Instantiate(_destroyParticles, transform.position, Quaternion.identity);
+        Destroy(gameObject);
     }
 }

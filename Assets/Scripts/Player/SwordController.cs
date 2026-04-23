@@ -5,6 +5,9 @@ public class SwordController : MonoBehaviour
     private PlayerBehaviors pb;
     private GameObject attachedObject;
     [SerializeField] private float detachSpeed = 5f;
+
+    public bool HasCorpseAttached { get => attachedObject != null; }
+
     private void Start()
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
