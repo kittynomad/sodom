@@ -11,7 +11,7 @@ public class SwordController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(pb.IsAttacking && collision.gameObject.TryGetComponent(out CorpseController cc))
+        if(pb.IsAttacking && collision.gameObject.TryGetComponent(out CorpseController cc) && attachedObject == null)
         {
             collision.gameObject.transform.parent = gameObject.transform;
             collision.gameObject.transform.localPosition = Vector2.zero;

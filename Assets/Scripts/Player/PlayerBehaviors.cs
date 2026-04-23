@@ -29,6 +29,8 @@ public class PlayerBehaviors : MonoBehaviour
     public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
+    public bool CanFire { get => currentAmmo > 0; }
+
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -75,8 +77,13 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void FireBehavior(Vector2 fireDirection)
     {
-        GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
-        temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
+        if(CanFire)
+        {
+            GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
+            temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
+            currentAmmo--;
+        }
+        
     }
 
     public bool IsGrounded()
