@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors
   _maxHealth: 100
+  _maxAmmo: 5
   _playerWalkAcceleration: 25
   _playerJumpForce: 5
   _playerWalkSpeedLimit: 5

@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerBehaviors : MonoBehaviour
 {
     [SerializeField] private int _maxHealth;
+    [SerializeField] private int _maxAmmo;
     [SerializeField] private float _playerWalkAcceleration;
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
@@ -13,6 +14,7 @@ public class PlayerBehaviors : MonoBehaviour
     private SwordController sc;
 
     private int currentHealth;
+    private int currentAmmo;
     private bool isAttacking = false;
 
     private Rigidbody2D rb;
@@ -21,6 +23,8 @@ public class PlayerBehaviors : MonoBehaviour
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
+    public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
     private void Start()
     {
@@ -29,6 +33,7 @@ public class PlayerBehaviors : MonoBehaviour
         sc = _hurtBox.GetComponent<SwordController>();
 
         CurrentHealth = _maxHealth;
+        currentAmmo = MaxAmmo;
     }
     public void FixedUpdate()
     {

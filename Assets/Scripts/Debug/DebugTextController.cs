@@ -25,7 +25,8 @@ public class DebugTextController : MonoBehaviour
     public void UpdateDebugText()
     {
         string output = "velocity: " + rb.linearVelocity + 
-            "\ncurrent health: " + pb.CurrentHealth + "/" + pb.MaxHealth;
+            "\ncurrent health: " + pb.CurrentHealth + "/" + pb.MaxHealth + 
+            "\ncurrent ammo: " + pb.CurrentAmmo + "/" + pb.MaxAmmo;
 
         _debugUIText.text = output;
     }
