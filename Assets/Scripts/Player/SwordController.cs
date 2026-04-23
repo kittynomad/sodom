@@ -7,7 +7,7 @@ public class SwordController : MonoBehaviour
     [SerializeField] private float detachSpeed = 5f;
 
     public bool HasCorpseAttached { get => attachedObject != null; }
-
+    public GameObject AttachedObject { get => attachedObject; set => attachedObject = value; }
     private void Start()
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
@@ -27,7 +27,7 @@ public class SwordController : MonoBehaviour
             ik.OnDamage(1f);
         }
     }
-    public void DetachObject(Vector2 direction)
+    public void DetachObject(Vector2 direction, bool destroyImmediate = false)
     {
         Debug.Log("gurg");
         if(attachedObject != null)
@@ -39,6 +39,10 @@ public class SwordController : MonoBehaviour
             attachedObject.GetComponent<Rigidbody2D>().linearVelocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
             attachedObject.GetComponent<Rigidbody2D>().AddForce(direction * detachSpeed, ForceMode2D.Impulse);
             attachedObject.GetComponent<CorpseController>().Discarded = true;
+        }
+        if(destroyImmediate)
+        {
+            attachedObject.GetComponent<CorpseController>().DestroyCorpse();
         }
         attachedObject = null;
     }

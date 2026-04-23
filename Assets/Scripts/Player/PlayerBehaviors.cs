@@ -16,7 +16,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     [SerializeField] private GameObject _projectile;
 
-    private int currentHealth;
+    private float currentHealth;
     private int currentAmmo;
     private bool isAttacking = false;
 
@@ -25,7 +25,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
-    public int CurrentHealth { get => currentHealth; set => currentHealth = value; }
+    public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
@@ -37,7 +37,7 @@ public class PlayerBehaviors : MonoBehaviour
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
 
-        CurrentHealth = _maxHealth;
+        CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
     }
     public void FixedUpdate()
@@ -73,7 +73,11 @@ public class PlayerBehaviors : MonoBehaviour
     public void InteractBehavior()
     {
         Debug.Log("interact behgavior");
-        sc.DetachObject(pc.MovementDirection);
+        if (sc.HasCorpseAttached && currentHealth < _maxHealth)
+        {
+            currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
+        }
+            sc.DetachObject(pc.MovementDirection, true);
     }
 
     public void FireBehavior(Vector2 fireDirection)

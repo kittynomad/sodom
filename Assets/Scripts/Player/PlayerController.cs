@@ -25,7 +25,6 @@ public class PlayerController : MonoBehaviour
         Vector2 aimScreenPoint = iVal.Get<Vector2>();
         Vector2 aimWorldPoint = Camera.main.ScreenToWorldPoint(aimScreenPoint);
         aimDirection = (aimWorldPoint - (Vector2)transform.position).normalized;
-        Debug.Log(Camera.main.ScreenToWorldPoint(aimScreenPoint));
     }
 
     public void OnFire()
