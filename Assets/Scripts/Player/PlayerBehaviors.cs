@@ -8,10 +8,13 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkAcceleration;
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
+    [SerializeField] private float _projectileSpeed;
 
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
+
+    [SerializeField] private GameObject _projectile;
 
     private int currentHealth;
     private int currentAmmo;
@@ -68,6 +71,12 @@ public class PlayerBehaviors : MonoBehaviour
     {
         Debug.Log("interact behgavior");
         sc.DetachObject(pc.MovementDirection);
+    }
+
+    public void FireBehavior(Vector2 fireDirection)
+    {
+        GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
+        temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
     }
 
     public bool IsGrounded()
