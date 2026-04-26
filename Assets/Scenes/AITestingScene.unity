@@ -1041,6 +1041,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 909770961059078798, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7834520111281832998, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: -7.02

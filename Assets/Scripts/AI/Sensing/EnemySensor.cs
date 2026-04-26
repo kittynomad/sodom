@@ -78,7 +78,8 @@ public class EnemySensor : MonoBehaviour
                 RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
                 // If the player was detected, mark it as a found entity.
                 if (hit.collider != null
-                    && hit.collider.gameObject == monitoredObjects[i])
+                    && (hit.collider.gameObject == monitoredObjects[i] || 
+                    hit.collider.gameObject.transform.IsChildOf(monitoredObjects[i].transform)))
                 {
                     if (!sensedObjects.Contains(monitoredObjects[i]))
                     {
