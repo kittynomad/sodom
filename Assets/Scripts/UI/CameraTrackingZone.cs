@@ -18,7 +18,7 @@ public class CameraTrackingZone : MonoBehaviour
             pointToFollow.y = (gameObject.transform.position.y * (1f - _playerFollowStrengthY)) + (pointToFollow.y * _playerFollowStrengthY); //Camera.main.transform.position.y;
             //move towards the target point in a fairly smooth way
             Camera.main.transform.localPosition = Vector3.MoveTowards(startingPos, new Vector3(pointToFollow.x, pointToFollow.y, -10), 
-                ((Mathf.Abs(pointToFollow.x - startingPos.x) / 20) + (Mathf.Abs(pointToFollow.y - startingPos.y) / 20)));
+                ((Mathf.Abs(pointToFollow.x - startingPos.x) / 10) + (Mathf.Abs(pointToFollow.y - startingPos.y) / 10)));
         }
     }
 }
