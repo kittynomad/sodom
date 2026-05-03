@@ -14,7 +14,7 @@ public class PatrolState : EnemyBehavior
 {
     [SerializeField] private float patrolWait;
 
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
     {
         if (!enemy.TryGetComponent(out EnemyPatrolling patroller))
         {

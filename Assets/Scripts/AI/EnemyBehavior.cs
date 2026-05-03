@@ -6,20 +6,50 @@
 //
 // Brief Description : Controls a specific behavior of an enemy.
 *****************************************************************************/
+using System;
+using System.Diagnostics;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 [System.Serializable]
 public abstract class EnemyBehavior
 {
+    [SerializeField] private Color debugColor = Color.red;
     /// <summary>
     /// Main function that controls the enemy's behavior during this state.
     /// </summary>
     /// <remarks>Uses async because I need an easy way of handling cancellation.</remarks>
-    /// <param name="controller">The enemy that is being controlled.</param>
+    /// <param name="enemy">The enemy that is being controlled.</param>
     /// <param name="ct">The cancellation token for handling cancels on state change.</param>
     /// <returns></returns>
-    public abstract Awaitable Run(EnemyController controller, CancellationToken ct);
+    public async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    {
+        OnAIStart(enemy);
+
+        try
+        {
+            await RunAI(enemy, ct);
+            OnAIEnd(enemy);
+        }
+        catch (OperationCanceledException)
+        {
+            OnAIEnd(enemy);
+            throw new OperationCanceledException();
+        }
+    }
+
+    protected virtual void OnAIStart(EnemyController enemy)
+    {
+        enemy.GetComponent<SpriteRenderer>().color = debugColor;
+    }
+
+    protected virtual void OnAIEnd(EnemyController enemy)
+    {
+
+    }
+
+    protected abstract Awaitable RunAI(EnemyController controller, CancellationToken ct);
 
     #region Utilities
     /// <summary>

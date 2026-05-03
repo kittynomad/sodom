@@ -17,7 +17,7 @@ public class MoveToDistanceBehavior : EnemyBehavior
     [SerializeField] private bool hasMaxTime;
     [field: SerializeField] public float MaxTime { get; set; }
 
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
     {
         if (!enemy.TryGetComponent(out EnemyMovement movement))
         {

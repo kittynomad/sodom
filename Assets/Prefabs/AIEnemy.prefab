@@ -338,12 +338,16 @@ MonoBehaviour:
     - rid: 9210852502756393086
       type: {class: PatrolState, ns: , asm: Assembly-CSharp}
       data:
+        debugColor: {r: 1, g: 1, b: 1, a: 1}
         patrolWait: 1.5
     - rid: 9210852502756393093
       type: {class: TestCombatState, ns: , asm: Assembly-CSharp}
       data:
+        debugColor: {r: 1, g: 0, b: 0, a: 1}
         maintainDistance:
+          debugColor: {r: 1, g: 0, b: 0, a: 1}
           moveToDistance:
+            debugColor: {r: 1, g: 0, b: 0, a: 1}
             distanceRange: {x: 5, y: 7}
             hasMaxTime: 0
             <MaxTime>k__BackingField: 0
@@ -354,9 +358,11 @@ MonoBehaviour:
     - rid: 9210852502756393096
       type: {class: TestAttackBehavior, ns: , asm: Assembly-CSharp}
       data:
+        debugColor: {r: 0.4528302, g: 0, b: 0.1066164, a: 1}
         postAttackDelay: 1
         attackTime: 0.25
         moveToDistance:
+          debugColor: {r: 0.4509804, g: 0, b: 0.105882354, a: 1}
           distanceRange: {x: 0, y: 1.5}
           hasMaxTime: 0
           <MaxTime>k__BackingField: 0

@@ -15,7 +15,7 @@ public class TestAttackBehavior : AttackBehavior
     [SerializeField] private float attackTime;
     [SerializeField] private MoveToDistanceBehavior moveToDistance;
 
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
     {
         enemy.PointTowardsTarget();
         await moveToDistance.Run(enemy, ct);

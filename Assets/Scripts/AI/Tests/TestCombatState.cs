@@ -16,7 +16,7 @@ public class TestCombatState : EnemyBehavior
     [SerializeField] private MaintainDistanceBehavior maintainDistance;
     [SerializeReference, ClassDropdown(typeof(AttackBehavior))] private AttackBehavior[] attacks;
 
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
     {
         while (!ct.IsCancellationRequested)
         {

@@ -17,7 +17,7 @@ public class MaintainDistanceBehavior : EnemyBehavior
     [SerializeField] private float maintainTime;
     [SerializeField] private float updatePeriod;
 
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
     {
         int numUpdates = (int)(maintainTime / updatePeriod);
 
