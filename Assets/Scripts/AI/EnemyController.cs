@@ -23,6 +23,10 @@ public class EnemyController : MonoBehaviour
     // AI data that will probably be move to a blackboard later.
     public GameObject Target {  get; set; }
 
+    #region properties
+    public Vector2 ToTarget => Target.transform.position - transform.position;
+    #endregion
+
     // Set tot he first state by default.
     private void Start()
     {

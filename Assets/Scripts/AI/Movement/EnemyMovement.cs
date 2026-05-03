@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
 
     private int targetDirection;
 
+    public Rigidbody2D RB => rb;
+
     /// <summary>
     /// Sets the enemy's direction.
     /// </summary>
