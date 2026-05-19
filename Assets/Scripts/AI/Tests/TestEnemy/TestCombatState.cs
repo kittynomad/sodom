@@ -16,7 +16,7 @@ namespace Sodom.Enemies.AI.Tests
     public class TestCombatState : EnemyBehavior
     {
         [SerializeField] private Color debugColor;
-        [SerializeField] private MaintainDistanceBehavior maintainDistance;
+        [SerializeField] private BackdashBehavior backdash;
         [SerializeReference, ClassDropdown(typeof(AttackBehavior))] private AttackBehavior[] attacks;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
@@ -27,8 +27,8 @@ namespace Sodom.Enemies.AI.Tests
             }
             while (!ct.IsCancellationRequested)
             {
-                // Continually maintain a distance from the player.
-                await maintainDistance.Run(enemy, ct);
+                // Make the enemy dash back.
+                await backdash.Run(enemy, ct);
 
                 // Point towards the target.
                 enemy.PointTowardsTarget();

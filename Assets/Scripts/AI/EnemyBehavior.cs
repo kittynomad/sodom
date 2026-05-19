@@ -43,7 +43,7 @@ namespace Sodom.Enemies.AI
 
         protected virtual void OnAIEnd(EnemyController enemy) { }
 
-        protected abstract Awaitable RunAI(EnemyController controller, CancellationToken ct);
+        protected abstract Awaitable RunAI(EnemyController enemy, CancellationToken ct);
 
         #region Utilities
         /// <summary>

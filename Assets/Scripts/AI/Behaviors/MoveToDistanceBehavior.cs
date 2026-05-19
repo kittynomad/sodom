@@ -16,6 +16,8 @@ namespace Sodom.Enemies.AI
     [System.Serializable]
     public class MoveToDistanceBehavior : EnemyBehavior
     {
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float acceleration;
         [SerializeField, VectorLabels("Min", "Max")] private Vector2 distanceRange;
         [SerializeField] private bool hasMaxTime;
         [field: SerializeField] public float MaxTime { get; set; }
@@ -27,13 +29,20 @@ namespace Sodom.Enemies.AI
                 throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
             }
 
+            Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
+            float timer = MaxTime;
+            float originalSpeed = movement.MoveSpeed;
+            float originalAcceleration = movement.Acceleration;
+
             void CleanUp()
             {
                 movement.SetDirection(0);
+                movement.MoveSpeed = originalSpeed;
+                movement.Acceleration = originalAcceleration;
             }
 
-            Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
-            float timer = MaxTime;
+            movement.MoveSpeed = moveSpeed;
+            movement.Acceleration = acceleration;
             // Continually move to keep the ideal distance until the next update.
             try
             {

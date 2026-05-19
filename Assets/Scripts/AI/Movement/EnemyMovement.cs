@@ -23,6 +23,8 @@ namespace Sodom.Enemies
         private int targetDirection;
 
         public Rigidbody2D Rigidbody => rb;
+        public float MoveSpeed { get => walkSpeed; set => walkSpeed = value; }
+        public float Acceleration { get => acceleration; set => acceleration = value; }
 
         private void Reset()
         {
