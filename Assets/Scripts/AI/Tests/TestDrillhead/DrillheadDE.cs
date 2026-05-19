@@ -8,12 +8,20 @@
 *****************************************************************************/
 using UnityEngine;
 
-[System.Serializable]
-public class DrillheadDE : DecisionEngine
+namespace Sodom.Enemies.AI.Tests
 {
-    public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy)
+    [System.Serializable]
+    public class DrillheadDE : DecisionEngine
     {
-        // Should always be in the combat state by default.
-        return enemy.GetState<TestCombatState>();
+        public override void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller)
+        {
+
+        }
+        public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        {
+            // Should always be in the combat state by default.
+            return ai.GetState<TestCombatState>();
+        }
     }
+
 }

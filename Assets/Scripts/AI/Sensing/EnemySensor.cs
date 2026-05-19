@@ -11,123 +11,149 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent (typeof(Collider2D))]
-public class EnemySensor : MonoBehaviour
+namespace Sodom.Enemies.AI
 {
-    #region CONSTS
-    // Need to implement other forms of aggression later.
-    private const string PLAYER_TAG = "Player";
-    #endregion
-
-    [SerializeField] private SenseType senseType;
-    [SerializeField] private bool requireLOS;
-    [SerializeField] private LayerMask detectionMask;
-
-    private readonly List<GameObject> monitoredObjects = new();
-    private readonly List<GameObject> sensedObjects = new();
-
-    private bool isMonitoring;
-
-    #region Events
-    public event Action<GameObject, SenseType> EntitySensedEvent;
-    public event Action<GameObject, SenseType> EntityLostEvent;
-    #endregion
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    [RequireComponent(typeof(Collider2D))]
+    public class EnemySensor : MonoBehaviour
     {
-        if (IsSensable(collision.gameObject))
+        #region CONSTS
+        // Need to implement other forms of aggression later.
+        private const string PLAYER_TAG = "Player";
+        #endregion
+
+        [SerializeField] private SenseType senseType;
+        [SerializeField] private float senseExpireTime;
+        [SerializeField] private bool requireLOS;
+        [SerializeField] private LayerMask detectionMask;
+
+        private readonly List<GameObject> monitoredObjects = new();
+        private readonly List<GameObject> sensedObjects = new();
+        private readonly Dictionary<GameObject, Coroutine> expiringSenses = new();
+
+        private bool isMonitoring;
+
+        #region Events
+        public event Action<GameObject, SenseType, bool> EntitySenseEvent;
+        #endregion
+
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (requireLOS)
+            if (IsSensable(collision.gameObject))
             {
-                monitoredObjects.Add(collision.gameObject);
-                if (monitoredObjects.Count == 1 && !isMonitoring)
+                if (requireLOS)
                 {
-                    isMonitoring = true;
-                    StartCoroutine(MonitorObjectsRoutine());
-                }
-            }
-            else
-            {
-                SenseObject(collision.gameObject);
-            }
-        }
-
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (IsSensable(collision.gameObject))
-        {
-            monitoredObjects.Remove(collision.gameObject);
-            if (sensedObjects.Contains(collision.gameObject))
-            {
-                LoseObject(collision.gameObject);
-            }
-        }
-    }
-
-    private IEnumerator MonitorObjectsRoutine()
-    {
-        while (monitoredObjects.Count > 0)
-        {
-            for (int i = 0; i < monitoredObjects.Count; i++)
-            {
-                
-                // Raycast to the monitored object.
-                Vector2 toObj = monitoredObjects[i].transform.position - transform.position;
-                RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
-                // If the player was detected, mark it as a found entity.
-                if (hit.collider != null
-                    && (hit.collider.gameObject == monitoredObjects[i] || 
-                    hit.collider.gameObject.transform.IsChildOf(monitoredObjects[i].transform)))
-                {
-                    if (!sensedObjects.Contains(monitoredObjects[i]))
+                    monitoredObjects.Add(collision.gameObject);
+                    if (monitoredObjects.Count == 1 && !isMonitoring)
                     {
-                        SenseObject(monitoredObjects[i]);
+                        isMonitoring = true;
+                        StartCoroutine(MonitorObjectsRoutine());
                     }
                 }
                 else
                 {
-                    LoseObject(monitoredObjects[i]);
+                    SenseObject(collision.gameObject);
                 }
             }
 
-            yield return new WaitForFixedUpdate();
         }
-        isMonitoring = false;
-    }
 
-    private void SenseObject(GameObject obj)
-    {
-        EntitySensedEvent?.Invoke(obj, senseType);
-        sensedObjects.Add(obj);
-    }
-
-    private void LoseObject(GameObject obj)
-    {
-        sensedObjects.Remove(obj);
-        EntityLostEvent?.Invoke(obj, senseType);
-    }
-
-    // Checks if a collided GO is sensable.
-    private bool IsSensable(GameObject obj)
-    {
-        return obj.CompareTag(PLAYER_TAG);
-    }
-
-    // Gizmo for visualizing what entities the enemy can see.
-    private void OnDrawGizmos()
-    {
-        Vector3[] points = new Vector3[sensedObjects.Count * 2];
-        for (int i = 0; i < sensedObjects.Count; i++)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            points[i * 2] = transform.position;
-            points[(i * 2) + 1] = sensedObjects[i].transform.position;
+            if (IsSensable(collision.gameObject))
+            {
+                monitoredObjects.Remove(collision.gameObject);
+                if (sensedObjects.Contains(collision.gameObject))
+                {
+                    StopSensingObject(collision.gameObject);
+                }
+            }
         }
 
-        foreach (GameObject obj in sensedObjects)
+        private IEnumerator MonitorObjectsRoutine()
         {
-            Gizmos.DrawLineList(points);
+            while (monitoredObjects.Count > 0)
+            {
+                for (int i = 0; i < monitoredObjects.Count; i++)
+                {
+                    // Raycast to the monitored object.
+                    Vector2 toObj = monitoredObjects[i].transform.position - transform.position;
+                    RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
+                    // If the player was detected, mark it as a found entity.
+                    if (hit.collider != null
+                        && (hit.collider.gameObject == monitoredObjects[i] ||
+                        hit.collider.gameObject.transform.IsChildOf(monitoredObjects[i].transform)))
+                    {
+                        SenseObject(monitoredObjects[i]);
+
+                    }
+                    else
+                    {
+                        StopSensingObject(monitoredObjects[i]);
+                    }
+                }
+
+                yield return new WaitForFixedUpdate();
+            }
+            isMonitoring = false;
+        }
+
+        private void SenseObject(GameObject obj)
+        {
+            if (!sensedObjects.Contains(obj))
+            {
+                EntitySenseEvent?.Invoke(obj, senseType, true);
+                sensedObjects.Add(obj);
+            }
+            // Refresh an expiring sense.
+            else if (expiringSenses.ContainsKey(obj))
+            {
+                StopCoroutine(expiringSenses[obj]);
+                expiringSenses.Remove(obj);
+            }
+
+        }
+
+        private void StopSensingObject(GameObject obj)
+        {
+            // Starts a coroutine to delay losing the object
+            expiringSenses.Add(obj, StartCoroutine(SenseExpireRoutine(obj, senseExpireTime)));
+        }
+
+        private IEnumerator SenseExpireRoutine(GameObject obj, float time)
+        {
+            yield return new WaitForSeconds(time);
+            LoseObject(obj);
+
+            // Check if the enemy is still not sensed.
+        }
+
+        private void LoseObject(GameObject obj)
+        {
+            sensedObjects.Remove(obj);
+            EntitySenseEvent?.Invoke(obj, senseType, false);
+        }
+
+        // Checks if a collided GO is sensable.
+        private bool IsSensable(GameObject obj)
+        {
+            return obj.CompareTag(PLAYER_TAG);
+        }
+
+        // Gizmo for visualizing what entities the enemy can see.
+        private void OnDrawGizmos()
+        {
+            Vector3[] points = new Vector3[sensedObjects.Count * 2];
+            for (int i = 0; i < sensedObjects.Count; i++)
+            {
+                points[i * 2] = transform.position;
+                points[(i * 2) + 1] = sensedObjects[i].transform.position;
+            }
+
+            foreach (GameObject obj in sensedObjects)
+            {
+                Gizmos.DrawLineList(points);
+            }
         }
     }
+
 }

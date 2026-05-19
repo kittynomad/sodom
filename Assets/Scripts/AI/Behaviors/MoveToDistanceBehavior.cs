@@ -6,65 +6,73 @@
 //
 // Brief Description : Moves the enemy to be within a certain distance range of it's target.
 *****************************************************************************/
+using CustomAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
 
-[System.Serializable]
-public class MoveToDistanceBehavior : EnemyBehavior
+namespace Sodom.Enemies.AI
 {
-    [SerializeField, Tooltip("X is min, Y is max.")] private Vector2 distanceRange;
-    [SerializeField] private bool hasMaxTime;
-    [field: SerializeField] public float MaxTime { get; set; }
-
-    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+    [System.Serializable]
+    public class MoveToDistanceBehavior : EnemyBehavior
     {
-        if (!enemy.TryGetComponent(out EnemyMovement movement))
-        {
-            throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
-        }
+        [SerializeField, VectorLabels("Min", "Max")] private Vector2 distanceRange;
+        [SerializeField] private bool hasMaxTime;
+        [field: SerializeField] public float MaxTime { get; set; }
 
-        void CleanUp()
+        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            movement.SetDirection(0);
-        }
-
-        Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
-        float timer = MaxTime;
-        // Continually move to keep the ideal distance until the next update.
-        try
-        {
-            while (!IsWithinRange(toTarget.magnitude) && (timer > 0 || !hasMaxTime))
+            if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
-                ct.ThrowIfCancellationRequested();
-                toTarget = enemy.Target.transform.position - enemy.transform.position;
-                // Enemy too close
-                if (toTarget.magnitude < distanceRange.x)
-                {
-                    //Debug.Log("Too Close");
-                    movement.SetDirection(-(int)Mathf.Sign(toTarget.x));
-                }
-                // Enemy too far.
-                else
-                {
-                    //Debug.Log("Too Far");
-                    movement.SetDirection((int)Mathf.Sign(toTarget.x));
-                }
-                timer -= Time.fixedDeltaTime;
-                await Awaitable.FixedUpdateAsync(ct);
+                throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
             }
-        }
-        catch (OperationCanceledException)
-        {
+
+            void CleanUp()
+            {
+                movement.SetDirection(0);
+            }
+
+            Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
+            float timer = MaxTime;
+            // Continually move to keep the ideal distance until the next update.
+            try
+            {
+                while (!IsWithinRange(toTarget.magnitude) && (timer > 0 || !hasMaxTime))
+                {
+                    ct.ThrowIfCancellationRequested();
+                    toTarget = enemy.Target.transform.position - enemy.transform.position;
+                    // Enemy too close
+                    if (toTarget.magnitude < distanceRange.x)
+                    {
+                        movement.SetDirection(-(int)Mathf.Sign(toTarget.x));
+                    }
+                    // Enemy too far.
+                    else
+                    {
+                        movement.SetDirection((int)Mathf.Sign(toTarget.x));
+                    }
+                    timer -= Time.fixedDeltaTime;
+                    await Awaitable.FixedUpdateAsync(ct);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                CleanUp();
+                throw new OperationCanceledException();
+            }
+
             CleanUp();
-            throw new OperationCanceledException();
         }
 
-        CleanUp();
+        /// <summary>
+        /// Checks if the distance from from the target is within the acceptable range.
+        /// </summary>
+        /// <param name="distance">The distance from the target.</param>
+        /// <returns>True if the distance is within range, false if otherwise.</returns>
+        public bool IsWithinRange(float distance)
+        {
+            return distance < distanceRange.y && distance > distanceRange.x;
+        }
     }
 
-    public bool IsWithinRange(float distance)
-    {
-        return distance < distanceRange.y && distance > distanceRange.x;
-    }
 }

@@ -8,24 +8,28 @@
 *****************************************************************************/
 using UnityEngine;
 
-public class GroundDetector : MonoBehaviour
+namespace Sodom.Enemies.AI.Tests
 {
-    [field: SerializeField] public bool InGround { get; private set; }
-    private void OnTriggerEnter2D(Collider2D collision)
+    public class GroundDetector : MonoBehaviour
     {
-        // 7 is the ground layer.
-        if (collision.gameObject.layer == 7)
+        [field: SerializeField] public bool InGround { get; private set; }
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            InGround = true;
+            // 7 is the ground layer.
+            if (collision.gameObject.layer == 7)
+            {
+                InGround = true;
+            }
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            // 7 is the ground layer.
+            if (collision.gameObject.layer == 7)
+            {
+                InGround = false;
+            }
         }
     }
 
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // 7 is the ground layer.
-        if (collision.gameObject.layer == 7)
-        {
-            InGround = false;
-        }
-    }
 }

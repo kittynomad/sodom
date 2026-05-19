@@ -11,62 +11,66 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-[System.Serializable]
-public class ChargeAttackBehavior : AttackBehavior
+namespace Sodom.Enemies.AI.Tests
 {
-    [SerializeField] private float chargeForce;
-    [SerializeField] private float preChargeDelay;
-    [SerializeField] private float followThroughDelay;
-    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+    [System.Serializable]
+    public class ChargeAttackBehavior : AttackBehavior
     {
-        // Get components
-        if (!enemy.TryGetComponent(out EnemyMovement movement))
+        [SerializeField] private float chargeForce;
+        [SerializeField] private float preChargeDelay;
+        [SerializeField] private float followThroughDelay;
+        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
-        }
-
-        // Clean up function.
-        void CleanUp()
-        {
-            
-        }
-
-        try
-        {
-            // Body
-            enemy.PointTowardsTarget();
-            await Awaitable.WaitForSecondsAsync(preChargeDelay, ct);
-
-            // Show the hitbox.
-            Transform hitbox = enemy.transform.GetChild(1);
-            hitbox.gameObject.SetActive(true);
-
-            enemy.PointTowardsTarget();
-            // Continually chage while the direction to the target is the same.
-            int direction = (int)Mathf.Sign(enemy.ToTarget.x);
-            while (direction == (int)Mathf.Sign(enemy.ToTarget.x))
+            // Get components
+            if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
-                movement.RB.AddForce(direction * chargeForce * Vector2.right);
-                await Awaitable.FixedUpdateAsync(ct);
+                throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
             }
 
-            float timer = followThroughDelay;
-            while(timer > 0)
+            // Clean up function.
+            void CleanUp()
             {
-                timer -= Time.fixedDeltaTime;
-                await Awaitable.FixedUpdateAsync(ct);
+
             }
 
-            hitbox.gameObject.SetActive(false);
+            try
+            {
+                // Body
+                enemy.PointTowardsTarget();
+                await Awaitable.WaitForSecondsAsync(preChargeDelay, ct);
 
-            await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
+                // Show the hitbox.
+                Transform hitbox = enemy.transform.GetChild(1);
+                hitbox.gameObject.SetActive(true);
 
-            CleanUp();
-        }
-        catch (OperationCanceledException e)
-        {
-            CleanUp();
-            throw e;
+                enemy.PointTowardsTarget();
+                // Continually chage while the direction to the target is the same.
+                int direction = (int)Mathf.Sign(enemy.ToTarget.x);
+                while (direction == (int)Mathf.Sign(enemy.ToTarget.x))
+                {
+                    movement.Rigidbody.AddForce(direction * chargeForce * Vector2.right);
+                    await Awaitable.FixedUpdateAsync(ct);
+                }
+
+                float timer = followThroughDelay;
+                while (timer > 0)
+                {
+                    timer -= Time.fixedDeltaTime;
+                    await Awaitable.FixedUpdateAsync(ct);
+                }
+
+                hitbox.gameObject.SetActive(false);
+
+                await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
+
+                CleanUp();
+            }
+            catch (OperationCanceledException e)
+            {
+                CleanUp();
+                throw e;
+            }
         }
     }
+
 }

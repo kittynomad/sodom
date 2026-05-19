@@ -8,8 +8,12 @@
 *****************************************************************************/
 using UnityEngine;
 
-public enum SenseType
+namespace Sodom.Enemies.AI
 {
-    Aggro,
-    Danger
+    public enum SenseType
+    {
+        Aggro,
+        LoseAggro,
+        Danger
+    }
 }

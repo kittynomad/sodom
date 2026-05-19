@@ -10,49 +10,54 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-[System.Serializable]
-public class MaintainDistanceBehavior : EnemyBehavior
+namespace Sodom.Enemies.AI
 {
-    [SerializeField] private MoveToDistanceBehavior moveToDistance; // Sub-behavior so that they can be reused.
-    [SerializeField] private float maintainTime;
-    [SerializeField] private float updatePeriod;
-
-    protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+    [System.Serializable]
+    public class MaintainDistanceBehavior : EnemyBehavior
     {
-        int numUpdates = (int)(maintainTime / updatePeriod);
+        [SerializeField] private MoveToDistanceBehavior moveToDistance; // Sub-behavior so that they can be reused.
+        [SerializeField] private float maintainTime;
+        [SerializeField] private float updatePeriod;
 
-        CancellationTokenSource subCts = new CancellationTokenSource();
-
-        void CleanUp()
+        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            subCts.Cancel();
-        }
+            int numUpdates = (int)(maintainTime / updatePeriod);
 
-        Awaitable moveAwaitable = null;
-        try
-        {
-            for (int i = 0; i < numUpdates && !ct.IsCancellationRequested; i++)
+            CancellationTokenSource subCts = new CancellationTokenSource();
+
+            void CleanUp()
             {
-                Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
-
-                // Update rotation.
-                enemy.SetRotation(toTarget.x < 0);
-
-                // Control movement.
-                if (!moveToDistance.IsWithinRange(toTarget.magnitude) &&
-                    (moveAwaitable == null || moveAwaitable.IsCompleted))
-                {
-                    moveAwaitable = moveToDistance.Run(enemy, subCts.Token);
-                }
-
-                await Awaitable.WaitForSecondsAsync(updatePeriod, ct);
+                subCts.Cancel();
             }
-        }
-        catch (OperationCanceledException)
-        {
+
+            Awaitable moveAwaitable = null;
+            try
+            {
+                for (int i = 0; i < numUpdates && !ct.IsCancellationRequested; i++)
+                {
+                    if (enemy.Target == null) { continue; }
+                    Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
+
+                    // Update rotation.
+                    enemy.SetRotation(toTarget.x < 0);
+
+                    // Control movement.
+                    if (!moveToDistance.IsWithinRange(toTarget.magnitude) &&
+                        (moveAwaitable == null || moveAwaitable.IsCompleted))
+                    {
+                        moveAwaitable = moveToDistance.Run(enemy, subCts.Token);
+                    }
+
+                    await Awaitable.WaitForSecondsAsync(updatePeriod, ct);
+                }
+            }
+            catch (OperationCanceledException)
+            {
+                CleanUp();
+                throw new OperationCanceledException();
+            }
             CleanUp();
-            throw new OperationCanceledException();
         }
-        CleanUp();
     }
+
 }

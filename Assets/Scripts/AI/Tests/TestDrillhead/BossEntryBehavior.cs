@@ -9,12 +9,16 @@
 using System.Threading;
 using UnityEngine;
 
-[System.Serializable]
-public class BossEntryBehavior : EnemyBehavior
+namespace Sodom.Enemies.AI.Tests
 {
-    protected override Awaitable RunAI(EnemyController controller, CancellationToken ct)
+    [System.Serializable]
+    public class BossEntryBehavior : EnemyBehavior
     {
-        controller.Target = GameObject.FindGameObjectWithTag("Player");
-        return Awaitable.NextFrameAsync();
+        protected override Awaitable RunAI(EnemyController controller, CancellationToken ct)
+        {
+            controller.Target = GameObject.FindGameObjectWithTag("Player");
+            return Awaitable.NextFrameAsync();
+        }
     }
+
 }

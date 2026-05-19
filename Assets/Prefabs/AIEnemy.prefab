@@ -206,7 +206,7 @@ CircleCollider2D:
   m_CompositeOperation: 0
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
-  m_Radius: 3
+  m_Radius: 5
 --- !u!114 &2706083333531976147
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,6 +220,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySensor
   senseType: 0
+  senseExpireTime: 5
   requireLOS: 1
   detectionMask:
     serializedVersion: 2
@@ -246,11 +247,11 @@ PrefabInstance:
       objectReference: {fileID: 6200000, guid: 4c0d61690be753243a0d0595dc25e1fc, type: 2}
     - target: {fileID: 8543494262690008998, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.63
+      value: -4.248491
       objectReference: {fileID: 0}
     - target: {fileID: 8543494262690008998, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.35
+      value: -2.274485
       objectReference: {fileID: 0}
     - target: {fileID: 8543494262690008998, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -302,9 +303,6 @@ PrefabInstance:
       addedObject: {fileID: 6622860109534119418}
     - targetCorrespondingSourceObject: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7483144085107352881}
-    - targetCorrespondingSourceObject: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 8149546322595399679}
   m_SourcePrefab: {fileID: 100100000, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
 --- !u!1 &909770961059078798 stripped
@@ -324,48 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4acf2aff95ff2dc49aca30e4ea10eb9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyController
-  decisionEngine:
-    rid: 9210852502756393084
-  stateMachine:
-  - rid: 9210852502756393086
-  - rid: 9210852502756393093
-  references:
-    version: 2
-    RefIds:
-    - rid: 9210852502756393084
-      type: {class: TestEnemyDE, ns: , asm: Assembly-CSharp}
-      data: 
-    - rid: 9210852502756393086
-      type: {class: PatrolState, ns: , asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 1, g: 1, b: 1, a: 1}
-        patrolWait: 1.5
-    - rid: 9210852502756393093
-      type: {class: TestCombatState, ns: , asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 1, g: 0, b: 0, a: 1}
-        maintainDistance:
-          debugColor: {r: 1, g: 0, b: 0, a: 1}
-          moveToDistance:
-            debugColor: {r: 1, g: 0, b: 0, a: 1}
-            distanceRange: {x: 5, y: 7}
-            hasMaxTime: 0
-            <MaxTime>k__BackingField: 0
-          maintainTime: 3
-          updatePeriod: 0.5
-        attacks:
-        - rid: 9210852502756393096
-    - rid: 9210852502756393096
-      type: {class: TestAttackBehavior, ns: , asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 0.4528302, g: 0, b: 0.1066164, a: 1}
-        postAttackDelay: 1
-        attackTime: 0.25
-        moveToDistance:
-          debugColor: {r: 0.4509804, g: 0, b: 0.105882354, a: 1}
-          distanceRange: {x: 0, y: 1.5}
-          hasMaxTime: 0
-          <MaxTime>k__BackingField: 0
+  ai: {fileID: 11400000, guid: 745efac0ac0e84e4e97918560ba92dfe, type: 2}
 --- !u!114 &6622860109534119418
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,22 +335,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6867847053cd6624a88bfad1910549be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
-  rb: {fileID: 5631124460466104264}
   walkSpeed: 2
   acceleration: 15
---- !u!114 &7483144085107352881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 909770961059078798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44edcc7093ecf6543bbcd4a8996cf78d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySensing
-  controller: {fileID: 8549533487210170591}
+  rb: {fileID: 5631124460466104264}
 --- !u!114 &8149546322595399679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,8 +350,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69e6a7d104c2e614fbdb40d3b896e051, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolling
-  movement: {fileID: 6622860109534119418}
   patrolArea: 6
+  movement: {fileID: 6622860109534119418}
 --- !u!50 &5631124460466104264 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6056388843504544840, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
