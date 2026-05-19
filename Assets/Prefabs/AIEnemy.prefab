@@ -304,6 +304,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8149546322595399679}
+    - targetCorrespondingSourceObject: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7602039157678133168}
   m_SourcePrefab: {fileID: 100100000, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
 --- !u!1 &909770961059078798 stripped
 GameObject:
@@ -352,6 +355,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyPatrolling
   patrolArea: 6
   movement: {fileID: 6622860109534119418}
+--- !u!114 &7602039157678133168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 909770961059078798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bfcbd6e5dc7817a42bd439d878473ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyAttacker
+  hitbox: {fileID: 5025184963648662340}
 --- !u!50 &5631124460466104264 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6056388843504544840, guid: 6080791b43f016a429f577f705ec96bd, type: 3}

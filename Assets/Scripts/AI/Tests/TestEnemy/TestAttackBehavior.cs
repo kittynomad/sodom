@@ -19,17 +19,18 @@ namespace Sodom.Enemies.AI.Tests
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
+            if(!enemy.TryGetComponent(out EnemyAttacker attacker))
+            {
+                Debug.LogError("The enemy does not have an EnemyAttacker component.");
+            }
+
             enemy.PointTowardsTarget();
             await moveToDistance.Run(enemy, ct);
 
             // Perform the attack.
             enemy.PointTowardsTarget();
-            Transform hitbox = enemy.transform.GetChild(1);
-            hitbox.gameObject.SetActive(true);
-            await Awaitable.WaitForSecondsAsync(attackTime, ct);
-            hitbox.gameObject.SetActive(false);
-
-
+            await attacker.PerformAttack(attackTime, ct);
+            
             await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
         }
     }
