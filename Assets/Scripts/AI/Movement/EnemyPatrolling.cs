@@ -29,7 +29,23 @@ namespace Sodom.Enemies
 
         private void Awake()
         {
+            
+            movement.OnGroundEvent += SetStartPos;
+        }
+
+        private void OnDestroy()
+        {
+            movement.OnGroundEvent -= SetStartPos;
+        }
+
+        /// <summary>
+        /// Sets the start position of the enemy's patrol when they hit the ground for the first time.
+        /// </summary>
+        /// <param name="onGround"></param>
+        private void SetStartPos(bool onGround)
+        {
             startPos = transform.position;
+            movement.OnGroundEvent -= SetStartPos;
         }
 
         /// <summary>
@@ -38,6 +54,7 @@ namespace Sodom.Enemies
         /// <returns></returns>
         public async Awaitable MoveToPatrolPoint(bool isLeft, CancellationToken ct)
         {
+
             // Get the position of our destination.
             Vector2 destination = GetDestination(isLeft);
 
@@ -46,13 +63,14 @@ namespace Sodom.Enemies
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Worry about pathfinding later.
                 // Stop patrolling once the point has been reached.
-                if (Mathf.Abs(toDest.x) < 0.5f)
+                if (Mathf.Abs(toDest.x) < 0.5f || CheckDestinationObscured(isLeft, movement.Edges))
                 {
                     break;
                 }
                 else
                 {
-                    movement.SetDirection((int)Mathf.Sign(toDest.x));
+                    //movement.SetDirection((int)Mathf.Sign(toDest.x));
+                    movement.SetDirection(isLeft ? -1 : 1);
                 }
                 await Awaitable.FixedUpdateAsync();
             }
@@ -64,6 +82,11 @@ namespace Sodom.Enemies
         private Vector2 GetDestination(bool isLeft)
         {
             return (Vector2)startPos + (Vector2.right * patrolArea / 2) * (isLeft ? -1 : 1);
+        }
+
+        private bool CheckDestinationObscured(bool isLeft, EnemyMovement.DetectedEdges edges)
+        {
+            return isLeft ? EnemyMovement.CheckLeft(edges) : EnemyMovement.CheckRight(edges);
         }
 
         private void OnDrawGizmosSelected()

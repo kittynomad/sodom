@@ -116,7 +116,10 @@ namespace Sodom.Enemies.AI
         private void StopSensingObject(GameObject obj)
         {
             // Starts a coroutine to delay losing the object
-            expiringSenses.Add(obj, StartCoroutine(SenseExpireRoutine(obj, senseExpireTime)));
+            if (!expiringSenses.ContainsKey(obj))
+            {
+                expiringSenses.Add(obj, StartCoroutine(SenseExpireRoutine(obj, senseExpireTime)));
+            }
         }
 
         private IEnumerator SenseExpireRoutine(GameObject obj, float time)
