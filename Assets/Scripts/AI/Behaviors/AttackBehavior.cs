@@ -2,14 +2,17 @@
 // File Name : AttackBehavior.cs
 // Author : Arcadia Koederitz
 // Creation Date : 4/26/2026
-// Last Modified : 4/26/2026
+// Last Modified : 5/19/2026
 //
-// Brief Description : Base class for attack based enemy behaviors.
+// Brief Description : Base class for enemy attacks.
 *****************************************************************************/
 using UnityEngine;
 
-[System.Serializable]
-public abstract class AttackBehavior : EnemyBehavior
+namespace Sodom.Enemies.AI
 {
-    [SerializeField] protected float postAttackDelay;
+    [System.Serializable]
+    public abstract class AttackBehavior : EnemyBehavior
+    {
+        [SerializeField] protected float postAttackDelay;
+    }
 }

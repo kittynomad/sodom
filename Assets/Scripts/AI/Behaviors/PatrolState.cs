@@ -9,29 +9,40 @@
 using System.Threading;
 using UnityEngine;
 
-[System.Serializable]
-public class PatrolState : EnemyBehavior
+namespace Sodom.Enemies.AI
 {
-    [SerializeField] private float patrolWait;
-
-    public override async Awaitable Run(EnemyController enemy, CancellationToken ct)
+    [System.Serializable]
+    public class PatrolState : EnemyBehavior
     {
-        if (!enemy.TryGetComponent(out EnemyPatrolling patroller))
-        {
-            throw new System.NullReferenceException($"Enemy {enemy} has no EnemyPatroller component, but " +
-                $"it uses a PatrolBehaviour.");
-        }
-        while (!ct.IsCancellationRequested)
-        {
-            // Right
-            enemy.SetRotation(false);
-            await patroller.MoveToPatrolPoint(false, ct);
-            await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+        [SerializeField] private Color debugColor;
+        [SerializeField] private float patrolWait;
 
-            // Left
-            enemy.SetRotation(true);
-            await patroller.MoveToPatrolPoint(true, ct);
-            await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        {
+            if (enemy.TryGetComponent(out SpriteRenderer rend))
+            {
+                rend.color = debugColor;
+            }
+            if (!enemy.TryGetComponent(out EnemyPatrolling patroller))
+            {
+                throw new System.NullReferenceException($"Enemy {enemy} has no EnemyPatroller component, but " +
+                    $"it uses a PatrolBehaviour.");
+            }
+            while (!ct.IsCancellationRequested)
+            {
+                // TODO: Update so it stops at edges.
+
+                // Right
+                enemy.SetRotation(false);
+                await patroller.MoveToPatrolPoint(false, ct);
+                await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+
+                // Left
+                enemy.SetRotation(true);
+                await patroller.MoveToPatrolPoint(true, ct);
+                await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+            }
         }
     }
+
 }

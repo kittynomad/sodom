@@ -1,6 +1,6 @@
 /*****************************************************************************
 // File Name : VectorLabelsAttribute.cs
-// Author : Brandon Koederitz
+// Author : Arcadia Koederitz
 // Creation Date : 1/28/2026
 // Last Modified : 1/28/2026
 //
