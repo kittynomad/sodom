@@ -157,7 +157,7 @@ namespace CustomAttributes.Editor
                 // type is in.
                 foreach (Type type in Assembly.GetAssembly(baseType).GetTypes())
                 {
-                    if (!type.IsSubclassOf(baseType) || type.IsAbstract)
+                    if (!(type.IsSubclassOf(baseType) || type == baseType) || type.IsAbstract)
                     {
                         continue;
                     }
@@ -182,7 +182,7 @@ namespace CustomAttributes.Editor
                     foreach (Type type in asmb.GetTypes())
                     {
                         // Skip classes that aren't subclasses of the base class and abstract classes.
-                        if (!type.IsSubclassOf(baseType) || type.IsAbstract)
+                        if (!(type.IsSubclassOf(baseType) || type == baseType) || type.IsAbstract)
                         {
                             continue;
                         }

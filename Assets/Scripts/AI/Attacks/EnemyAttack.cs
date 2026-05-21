@@ -1,0 +1,23 @@
+/*****************************************************************************
+// File Name : EnemyAttack.cs
+// Author : Arcadia Koederitz
+// Creation Date : 5/19/2026
+// Last Modified : 5/21/2026
+//
+// Brief Description : Script that represents a specific attack an enemy can use.
+*****************************************************************************/
+using System.Threading;
+using UnityEngine;
+
+namespace Sodom.Enemies
+{
+    [System.Serializable]
+    public abstract class EnemyAttack
+    {
+        [SerializeField] private string attackName;
+
+        public string Name => attackName;
+
+        public abstract Awaitable PerformAttack(GameObject target, CancellationToken ct);
+    }
+}
