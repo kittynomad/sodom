@@ -11,6 +11,7 @@ using UnityEngine;
 
 namespace Sodom.Enemies.AI
 {
+    [System.Serializable]
     public class WalkUpAttackBehavior : AttackBehavior
     {
         [SerializeField] private MoveToDistanceBehavior moveToDistance;
