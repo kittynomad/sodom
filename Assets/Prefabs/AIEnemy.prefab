@@ -338,9 +338,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6867847053cd6624a88bfad1910549be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyMovement
+  physicsCollider: {fileID: 6339890963280239523}
   walkSpeed: 2
   acceleration: 15
   rb: {fileID: 5631124460466104264}
+  onGround: 0
+  edges: 0
 --- !u!114 &8149546322595399679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -371,6 +374,11 @@ MonoBehaviour:
 --- !u!50 &5631124460466104264 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6056388843504544840, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
+  m_PrefabInstance: {fileID: 1885135002583321472}
+  m_PrefabAsset: {fileID: 0}
+--- !u!70 &6339890963280239523 stripped
+CapsuleCollider2D:
+  m_CorrespondingSourceObject: {fileID: 5607695607333736483, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
   m_PrefabInstance: {fileID: 1885135002583321472}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &7834520111281832998 stripped

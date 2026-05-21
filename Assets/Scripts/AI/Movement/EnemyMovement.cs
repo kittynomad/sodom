@@ -26,6 +26,7 @@ namespace Sodom.Enemies
 
         [SerializeField, Tooltip("The collider used to determine the location of wall, edge, and ground checks.")]
         private Collider2D physicsCollider;
+        [Header("Settings")]
         [SerializeField] private float walkSpeed;
         [SerializeField] private float acceleration;
 

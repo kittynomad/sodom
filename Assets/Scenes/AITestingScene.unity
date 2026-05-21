@@ -644,10 +644,6 @@ PrefabInstance:
       propertyPath: edges
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6622860109534119418, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: physicsCollider
-      value: 
-      objectReference: {fileID: 782564492}
     - target: {fileID: 7834520111281832998, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 7.45
@@ -693,11 +689,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
---- !u!70 &782564492 stripped
-CapsuleCollider2D:
-  m_CorrespondingSourceObject: {fileID: 6339890963280239523, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-  m_PrefabInstance: {fileID: 782564491}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &837854207
 PrefabInstance:
   m_ObjectHideFlags: 0
