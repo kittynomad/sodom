@@ -22,6 +22,7 @@ public class PlayerBehaviors : MonoBehaviour
     private int currentAmmo;
     private bool isAttacking = false;
     private bool doubleJumpReady = true;
+    private bool anchored = false;
 
     private Rigidbody2D rb;
     private PlayerController pc;
@@ -48,7 +49,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void FixedUpdate()
     {
         
-        if(Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        if(!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
@@ -65,6 +66,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void JumpBehavior()
     {
+        anchored = false;
         if (IsGrounded())
         {
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
@@ -108,6 +110,11 @@ public class PlayerBehaviors : MonoBehaviour
             currentAmmo--;
         }
         
+    }
+
+    public void PoundBehavior()
+    {
+
     }
 
     public bool IsGrounded()
