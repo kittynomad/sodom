@@ -25,6 +25,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     private Rigidbody2D rb;
     private PlayerController pc;
+    private PlayerLoadout pl;
 
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
@@ -39,6 +40,7 @@ public class PlayerBehaviors : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody2D>();
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
+        pl = gameObject.GetComponent<PlayerLoadout>();
 
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
@@ -63,12 +65,11 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void JumpBehavior()
     {
-        if(IsGrounded())
+        if (IsGrounded())
         {
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
         }
-            
-        else if(doubleJumpReady)
+        else if(pl.DoubleJumpUnlocked && doubleJumpReady)
         {
             doubleJumpReady = false;
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
