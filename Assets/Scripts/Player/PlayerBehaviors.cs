@@ -21,6 +21,7 @@ public class PlayerBehaviors : MonoBehaviour
     private float currentHealth;
     private int currentAmmo;
     private bool isAttacking = false;
+    private bool doubleJumpReady = true;
 
     private Rigidbody2D rb;
     private PlayerController pc;
@@ -63,7 +64,15 @@ public class PlayerBehaviors : MonoBehaviour
     public void JumpBehavior()
     {
         if(IsGrounded())
+        {
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
+            
+        else if(doubleJumpReady)
+        {
+            doubleJumpReady = false;
+            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
     }
 
     public void AttackBehavior()
@@ -103,9 +112,10 @@ public class PlayerBehaviors : MonoBehaviour
     public bool IsGrounded()
     {
         Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
-        RaycastHit2D hitWall = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
 
-        return hitWall;
+        if (hitGround) doubleJumpReady = true;
+        return hitGround;
     }
 
     public IEnumerator AttackCoroutine()
