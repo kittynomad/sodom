@@ -10,6 +10,8 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
 
+    [SerializeField] private LayerMask _solidLayer;
+
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
@@ -19,6 +21,7 @@ public class PlayerBehaviors : MonoBehaviour
     private float currentHealth;
     private int currentAmmo;
     private bool isAttacking = false;
+    private bool doubleJumpReady = true;
 
     private Rigidbody2D rb;
     private PlayerController pc;
@@ -60,7 +63,16 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void JumpBehavior()
     {
-        rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        if(IsGrounded())
+        {
+            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
+            
+        else if(doubleJumpReady)
+        {
+            doubleJumpReady = false;
+            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
     }
 
     public void AttackBehavior()
@@ -99,7 +111,11 @@ public class PlayerBehaviors : MonoBehaviour
 
     public bool IsGrounded()
     {
-        return true;
+        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+
+        if (hitGround) doubleJumpReady = true;
+        return hitGround;
     }
 
     public IEnumerator AttackCoroutine()
