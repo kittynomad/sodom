@@ -194,6 +194,7 @@ MonoBehaviour:
   _playerJumpForce: 5
   _playerWalkSpeedLimit: 5
   _projectileSpeed: 25
+  _poundStrength: 15
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128

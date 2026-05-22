@@ -42,6 +42,11 @@ public class PlayerController : MonoBehaviour
         pb.AttackBehavior();
     }
 
+    public void OnPound()
+    {
+        pb.PoundBehavior();
+    }
+
     public void OnInteract()
     {
         Debug.Log("interact key");

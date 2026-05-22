@@ -120,7 +120,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void PoundBehavior()
     {
         pounding = true;
-
+        rb.linearVelocity = Vector2.down * _poundStrength;
     }
 
     public bool IsGrounded()
