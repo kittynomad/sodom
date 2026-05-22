@@ -114,7 +114,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 1.5
   m_Material: {fileID: 6200000, guid: b2e302678893fdd459577bc67b9ab4f9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -175,7 +175,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17bc9a2701a47ed468e08ab2353190a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLoadout
-  doubleJumpUnlocked: 1
+  _doubleJumpUnlocked: 1
+  _poundUnlocked: 1
 --- !u!114 &2037644245168623204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +195,7 @@ MonoBehaviour:
   _playerJumpForce: 5
   _playerWalkSpeedLimit: 5
   _projectileSpeed: 25
+  _poundStrength: 20
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128

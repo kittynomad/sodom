@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour
 {
+    [Header("General stats")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxAmmo;
     [SerializeField] private float _playerWalkAcceleration;
@@ -10,8 +11,11 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
 
-    [SerializeField] private LayerMask _solidLayer;
+    [Header("Ability stats")]
+    [SerializeField] private float _poundStrength;
 
+    [Header("References")]
+    [SerializeField] private LayerMask _solidLayer;
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
@@ -22,6 +26,8 @@ public class PlayerBehaviors : MonoBehaviour
     private int currentAmmo;
     private bool isAttacking = false;
     private bool doubleJumpReady = true;
+    private bool anchored = false;
+    private bool pounding = false;
 
     private Rigidbody2D rb;
     private PlayerController pc;
@@ -48,13 +54,13 @@ public class PlayerBehaviors : MonoBehaviour
     public void FixedUpdate()
     {
         
-        if(Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        if(!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
-
+        if (pounding && PoundHitCheck()) PoundConnectBehavior();
         FlipSpriteForVelocity();
     }
 
@@ -65,6 +71,8 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void JumpBehavior()
     {
+        anchored = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (IsGrounded())
         {
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
@@ -108,6 +116,31 @@ public class PlayerBehaviors : MonoBehaviour
             currentAmmo--;
         }
         
+    }
+
+    public void PoundBehavior()
+    {
+        if(pl.PoundUnlocked)
+        {
+            pounding = true;
+            rb.linearVelocity = Vector2.down * _poundStrength;
+        }
+        
+    }
+
+    public void PoundConnectBehavior()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        transform.position += (Vector3)Vector2.down * 0.5f;
+        pounding = false;
+        anchored = true;
+    }
+
+    public bool PoundHitCheck()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+        return hitGround;
     }
 
     public bool IsGrounded()
