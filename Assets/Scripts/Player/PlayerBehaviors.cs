@@ -60,7 +60,7 @@ public class PlayerBehaviors : MonoBehaviour
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
-
+        if (pounding && PoundHitCheck()) PoundConnectBehavior();
         FlipSpriteForVelocity();
     }
 
@@ -72,6 +72,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void JumpBehavior()
     {
         anchored = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         if (IsGrounded())
         {
             rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
@@ -121,6 +122,21 @@ public class PlayerBehaviors : MonoBehaviour
     {
         pounding = true;
         rb.linearVelocity = Vector2.down * _poundStrength;
+    }
+
+    public void PoundConnectBehavior()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        transform.position += (Vector3)Vector2.down * 0.5f;
+        pounding = false;
+        anchored = true;
+    }
+
+    public bool PoundHitCheck()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+        return hitGround;
     }
 
     public bool IsGrounded()
