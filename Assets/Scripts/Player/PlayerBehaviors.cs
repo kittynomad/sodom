@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour
 {
+    [Header("General stats")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxAmmo;
     [SerializeField] private float _playerWalkAcceleration;
@@ -10,8 +11,11 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
 
-    [SerializeField] private LayerMask _solidLayer;
+    [Header("Ability stats")]
+    [SerializeField] private float _poundStrength;
 
+    [Header("References")]
+    [SerializeField] private LayerMask _solidLayer;
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
@@ -23,6 +27,7 @@ public class PlayerBehaviors : MonoBehaviour
     private bool isAttacking = false;
     private bool doubleJumpReady = true;
     private bool anchored = false;
+    private bool pounding = false;
 
     private Rigidbody2D rb;
     private PlayerController pc;
@@ -114,6 +119,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void PoundBehavior()
     {
+        pounding = true;
 
     }
 
