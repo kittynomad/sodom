@@ -256,6 +256,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62148836}
   m_CullTransparentMesh: 1
+--- !u!95 &72305937 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 6515553039800913211, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+  m_PrefabInstance: {fileID: 783852898481227457}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &103628441
 GameObject:
   m_ObjectHideFlags: 0
@@ -9899,6 +9904,45 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+--- !u!1 &1010273952 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2582139638990630898, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+  m_PrefabInstance: {fileID: 783852898481227457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1010273955 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+  m_PrefabInstance: {fileID: 783852898481227457}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010273952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5fbcdecff638c41aec93f6f885792b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors
+--- !u!50 &1010273958 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 4048464291530945123, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+  m_PrefabInstance: {fileID: 783852898481227457}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1010273961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1010273952}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cb4ff91949c30418e033ba1900e5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEMPORARYPlayerAnims
+  _playerRB2D: {fileID: 1010273958}
+  _isGrounded: 0
+  _isMoving: 0
+  _ySpeed: 0
+  _pB: {fileID: 1010273955}
+  _anim: {fileID: 72305937}
 --- !u!1 &1082674549
 GameObject:
   m_ObjectHideFlags: 0
@@ -10815,6 +10859,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: _playerJumpForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: _playerWalkSpeedLimit
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: _playerWalkAcceleration
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 2582139638990630898, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_Name
       value: Player
@@ -10859,10 +10915,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3519555628608411484, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 2168322458102931083, guid: d69e8fd0e5837cb4185d7ef2b8ec76ab, type: 3}
+    - target: {fileID: 7668041285061911429, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7668041285061911429, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2582139638990630898, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1010273961}
   m_SourcePrefab: {fileID: 100100000, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
 --- !u!1001 &2429680874246925249
 PrefabInstance:
