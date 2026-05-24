@@ -32,7 +32,7 @@ public class CorpseController : MonoBehaviour
         {
             if(collision.gameObject.TryGetComponent(out IKillable ik))
             {
-                ik.OnDamage(_damageValue);
+                ik.OnDamage(_damageValue, gameObject);
             }
             DestroyCorpse();
         }
