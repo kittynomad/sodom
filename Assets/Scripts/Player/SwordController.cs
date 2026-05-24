@@ -24,7 +24,7 @@ public class SwordController : MonoBehaviour
         }
         if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
         {
-            ik.OnDamage(1f);
+            ik.OnDamage(1f, gameObject);
         }
     }
     public void DetachObject(Vector2 direction, bool destroyImmediate = false)
