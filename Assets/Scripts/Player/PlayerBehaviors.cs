@@ -13,6 +13,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
+    [SerializeField] private float _dashStrength;
 
     [Header("References")]
     [SerializeField] private LayerMask _solidLayer;
@@ -40,7 +41,7 @@ public class PlayerBehaviors : MonoBehaviour
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
     public bool CanFire { get => currentAmmo > 0; }
-
+    public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
@@ -66,7 +67,8 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void FlipSpriteForVelocity()
     {
-        _sprite.flipX = rb.linearVelocityX == 0 ? _sprite.flipX : rb.linearVelocityX < 0f;
+        //_sprite.flipX = rb.linearVelocityX == 0 ? _sprite.flipX : rb.linearVelocityX < 0f;
+        _sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
     }
 
     public void JumpBehavior()
@@ -120,10 +122,21 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void PoundBehavior()
     {
-        if(pl.PoundUnlocked)
+        if(pl.PoundUnlocked && !IsGrounded())
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
+        }
+        else if(pl.DashUnlocked && IsGrounded())
+        {
+            if(pc.MovementDirection.x != 0)
+            {
+                rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(Vector2.left * (_sprite.flipX ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
         }
         
     }

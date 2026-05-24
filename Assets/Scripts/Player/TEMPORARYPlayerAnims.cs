@@ -27,6 +27,7 @@ public class TEMPORARYPlayerAnims : MonoBehaviour
         _anim.SetBool("IsMoving", _isMoving);
         _ySpeed = _playerRB2D.linearVelocityY;
         _anim.SetFloat("YSpeed", _ySpeed);
+        _anim.SetFloat("XSpeed", _playerRB2D.linearVelocityX / _pB.PlayerWalkSpeedLimit);
     }
 
 }

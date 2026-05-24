@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2037644245168623204}
   - component: {fileID: 1427404586909964195}
   - component: {fileID: 2035363376810601464}
+  - component: {fileID: 7215141912619364077}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -110,8 +111,8 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
+  m_UseAutoMass: 1
+  m_Mass: 1.7853982
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1.5
@@ -177,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLoadout
   _doubleJumpUnlocked: 1
   _poundUnlocked: 1
+  _dashUnlocked: 1
 --- !u!114 &2037644245168623204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,11 +193,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors
   _maxHealth: 100
   _maxAmmo: 5
-  _playerWalkAcceleration: 25
-  _playerJumpForce: 5
-  _playerWalkSpeedLimit: 5
+  _playerWalkAcceleration: 150
+  _playerJumpForce: 15
+  _playerWalkSpeedLimit: 7
   _projectileSpeed: 25
   _poundStrength: 20
+  _dashStrength: 30
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -244,6 +247,24 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &7215141912619364077
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582139638990630898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67cb4ff91949c30418e033ba1900e5b7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TEMPORARYPlayerAnims
+  _playerRB2D: {fileID: 4048464291530945123}
+  _isGrounded: 0
+  _isMoving: 0
+  _ySpeed: 0
+  _pB: {fileID: 2037644245168623204}
+  _anim: {fileID: 6515553039800913211}
 --- !u!1 &2647097481341889447
 GameObject:
   m_ObjectHideFlags: 0
@@ -326,7 +347,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_MaskInteraction: 0
-  m_Sprite: {fileID: 6010957669050242568, guid: 490e8f20a88e21d45a20984c952d06f4, type: 3}
+  m_Sprite: {fileID: 2168322458102931083, guid: d69e8fd0e5837cb4185d7ef2b8ec76ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -467,7 +488,7 @@ BoxCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
