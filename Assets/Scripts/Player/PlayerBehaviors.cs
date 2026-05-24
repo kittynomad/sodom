@@ -40,7 +40,7 @@ public class PlayerBehaviors : MonoBehaviour
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
     public bool CanFire { get => currentAmmo > 0; }
-
+    public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
