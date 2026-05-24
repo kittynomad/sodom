@@ -66,7 +66,8 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void FlipSpriteForVelocity()
     {
-        _sprite.flipX = rb.linearVelocityX == 0 ? _sprite.flipX : rb.linearVelocityX < 0f;
+        //_sprite.flipX = rb.linearVelocityX == 0 ? _sprite.flipX : rb.linearVelocityX < 0f;
+        _sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
     }
 
     public void JumpBehavior()
