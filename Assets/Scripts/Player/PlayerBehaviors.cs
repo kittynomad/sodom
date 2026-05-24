@@ -13,6 +13,7 @@ public class PlayerBehaviors : MonoBehaviour
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
+    [SerializeField] private float _dashStrength;
 
     [Header("References")]
     [SerializeField] private LayerMask _solidLayer;
@@ -121,10 +122,21 @@ public class PlayerBehaviors : MonoBehaviour
 
     public void PoundBehavior()
     {
-        if(pl.PoundUnlocked)
+        if(pl.PoundUnlocked && !IsGrounded())
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
+        }
+        else if(pl.DashUnlocked && IsGrounded())
+        {
+            if(pc.MovementDirection.x != 0)
+            {
+                rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(Vector2.left * (_sprite.flipX ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
         }
         
     }

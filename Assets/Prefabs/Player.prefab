@@ -178,6 +178,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerLoadout
   _doubleJumpUnlocked: 1
   _poundUnlocked: 1
+  _dashUnlocked: 1
 --- !u!114 &2037644245168623204
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -197,6 +198,7 @@ MonoBehaviour:
   _playerWalkSpeedLimit: 7
   _projectileSpeed: 25
   _poundStrength: 20
+  _dashStrength: 30
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128
