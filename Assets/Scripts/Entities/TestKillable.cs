@@ -12,16 +12,16 @@ public class TestKillable : MonoBehaviour, IKillable
         currentHealth = _maxHealth;
     }
 
-    public bool OnDamage(float damageAmount)
+    public bool OnDamage(float damageAmount, GameObject damageSource = null)
     {
         currentHealth -= damageAmount;
         if (currentHealth <= 0f)
-            OnKill();
+            OnKill(damageSource);
 
         return currentHealth <= 0f;
     }
 
-    public void OnKill()
+    public void OnKill(GameObject damageSource = null)
     {
         Instantiate(_corpseObject, transform.position, transform.rotation);
         Destroy(gameObject);
