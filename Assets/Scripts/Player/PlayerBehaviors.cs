@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerBehaviors : MonoBehaviour
 {
+    [Header("General stats")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxAmmo;
     [SerializeField] private float _playerWalkAcceleration;
@@ -10,6 +11,12 @@ public class PlayerBehaviors : MonoBehaviour
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
 
+    [Header("Ability stats")]
+    [SerializeField] private float _poundStrength;
+    [SerializeField] private float _dashStrength;
+
+    [Header("References")]
+    [SerializeField] private LayerMask _solidLayer;
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
     private SwordController sc;
@@ -19,9 +26,13 @@ public class PlayerBehaviors : MonoBehaviour
     private float currentHealth;
     private int currentAmmo;
     private bool isAttacking = false;
+    private bool doubleJumpReady = true;
+    private bool anchored = false;
+    private bool pounding = false;
 
     private Rigidbody2D rb;
     private PlayerController pc;
+    private PlayerLoadout pl;
 
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
@@ -30,12 +41,13 @@ public class PlayerBehaviors : MonoBehaviour
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
 
     public bool CanFire { get => currentAmmo > 0; }
-
+    public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
     private void Start()
     {
         rb = gameObject.GetComponent<Rigidbody2D>();
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
+        pl = gameObject.GetComponent<PlayerLoadout>();
 
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
@@ -43,24 +55,35 @@ public class PlayerBehaviors : MonoBehaviour
     public void FixedUpdate()
     {
         
-        if(Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        if(!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
-
+        if (pounding && PoundHitCheck()) PoundConnectBehavior();
         FlipSpriteForVelocity();
     }
 
     public void FlipSpriteForVelocity()
     {
-        _sprite.flipX = rb.linearVelocityX < 0f;
+        //_sprite.flipX = rb.linearVelocityX == 0 ? _sprite.flipX : rb.linearVelocityX < 0f;
+        _sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
     }
 
     public void JumpBehavior()
     {
-        rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        anchored = false;
+        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        if (IsGrounded())
+        {
+            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
+        else if(pl.DoubleJumpUnlocked && doubleJumpReady)
+        {
+            doubleJumpReady = false;
+            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+        }
     }
 
     public void AttackBehavior()
@@ -97,9 +120,49 @@ public class PlayerBehaviors : MonoBehaviour
         
     }
 
+    public void PoundBehavior()
+    {
+        if(pl.PoundUnlocked && !IsGrounded())
+        {
+            pounding = true;
+            rb.linearVelocity = Vector2.down * _poundStrength;
+        }
+        else if(pl.DashUnlocked && IsGrounded())
+        {
+            if(pc.MovementDirection.x != 0)
+            {
+                rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
+            else
+            {
+                rb.AddForce(Vector2.left * (_sprite.flipX ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+            }
+        }
+        
+    }
+
+    public void PoundConnectBehavior()
+    {
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        transform.position += (Vector3)Vector2.down * 0.5f;
+        pounding = false;
+        anchored = true;
+    }
+
+    public bool PoundHitCheck()
+    {
+        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+        return hitGround;
+    }
+
     public bool IsGrounded()
     {
-        return true;
+        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+
+        if (hitGround) doubleJumpReady = true;
+        return hitGround;
     }
 
     public IEnumerator AttackCoroutine()
