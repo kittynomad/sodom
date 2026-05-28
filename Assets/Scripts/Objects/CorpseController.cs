@@ -14,17 +14,6 @@ public class CorpseController : InteractableEntity
     public float DamageValue { get => _damageValue; set => _damageValue = value; }
     public bool Discarded { get => discarded; set => discarded = value; }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
@@ -37,6 +26,19 @@ public class CorpseController : InteractableEntity
             DestroyCorpse();
         }
             
+    }
+
+    public override void OnInteract(PlayerBehaviors pb)
+    {
+        base.OnInteract(pb);
+        try
+        {
+            FindAnyObjectByType<SwordController>().TryAttachCorpse(gameObject);
+        }
+        catch
+        {
+            Debug.LogWarning("unable to attach corpse, sword may not exist");
+        }
     }
 
     public void DestroyCorpse()

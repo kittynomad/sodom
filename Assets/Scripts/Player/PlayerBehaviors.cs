@@ -98,8 +98,11 @@ public class PlayerBehaviors : MonoBehaviour
     public void InteractBehavior()
     {
         Debug.Log("interact behgavior");
-        interactAction?.Invoke(this);
-        if (sc.HasCorpseAttached && currentHealth < _maxHealth)
+        if(interactAction != null)
+        {
+            interactAction?.Invoke(this);
+        }
+        else if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
             sc.DetachObject(pc.MovementDirection, true);
