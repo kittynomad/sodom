@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerBehaviors : MonoBehaviour
+public class PlayerBehaviors : MonoBehaviour, IKillable
 {
     [Header("General stats")]
     [SerializeField] private int _maxHealth;
@@ -14,6 +14,8 @@ public class PlayerBehaviors : MonoBehaviour
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
+    [SerializeField] private float _poundDamage;
+    [SerializeField] private float _poundPushStrength;
     [SerializeField] private float _dashStrength;
 
     [Header("References")]
@@ -58,14 +60,16 @@ public class PlayerBehaviors : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        
-        if(!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        if (pounding) rb.linearVelocity = new Vector2(rb.linearVelocityX, -1 * _poundStrength);
+        if (pounding && PoundHitCheck()) PoundConnectBehavior();
+
+        if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
-        if (pounding && PoundHitCheck()) PoundConnectBehavior();
+        
         FlipSpriteForVelocity();
     }
 
@@ -173,6 +177,28 @@ public class PlayerBehaviors : MonoBehaviour
         return hg;
     }
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(pounding)
+        {
+            if(collision.gameObject.TryGetComponent<IKillable>(out IKillable ik))
+            {
+                ik.OnDamage(_poundDamage, gameObject);
+            }
+            if(collision.transform.position.x > transform.position.x)
+            {
+                collision.transform.position = collision.transform.position + (Vector3)Vector2.right * coll.bounds.size.x;
+                collision.rigidbody.AddForceX(_poundPushStrength, ForceMode2D.Impulse);
+            }
+            else
+            {
+                collision.transform.position = collision.transform.position - (Vector3)Vector2.right * coll.bounds.size.x;
+                collision.rigidbody.AddForceX(_poundPushStrength * -1, ForceMode2D.Impulse);
+            }
+                
+        }
+    }
+
     public IEnumerator AttackCoroutine()
     {
         _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
@@ -181,5 +207,18 @@ public class PlayerBehaviors : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //_hurtBox.SetActive(false);
         IsAttacking = false;
+    }
+
+    public bool OnDamage(float damageAmount, GameObject damageSource = null)
+    {
+        currentHealth -= damageAmount;
+        Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
+        rb.linearVelocity = damageDir * 5f;
+        return false;
+    }
+
+    public void OnKill(GameObject damageSource = null)
+    {
+        throw new NotImplementedException();
     }
 }

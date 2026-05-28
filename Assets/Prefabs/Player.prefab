@@ -198,6 +198,8 @@ MonoBehaviour:
   _playerWalkSpeedLimit: 7
   _projectileSpeed: 25
   _poundStrength: 20
+  _poundDamage: 1
+  _poundPushStrength: 15
   _dashStrength: 30
   _solidLayer:
     serializedVersion: 2
