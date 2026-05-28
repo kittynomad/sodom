@@ -32,6 +32,7 @@ public class PlayerBehaviors : MonoBehaviour
     private bool pounding = false;
 
     private Rigidbody2D rb;
+    private Collider2D coll;
     private PlayerController pc;
     private PlayerLoadout pl;
 
@@ -50,6 +51,7 @@ public class PlayerBehaviors : MonoBehaviour
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
         pl = gameObject.GetComponent<PlayerLoadout>();
+        coll = gameObject.GetComponent<Collider2D>();
 
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
@@ -164,11 +166,11 @@ public class PlayerBehaviors : MonoBehaviour
 
     public bool IsGrounded()
     {
-        Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
-        RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
-
-        if (hitGround) doubleJumpReady = true;
-        return hitGround;
+        //Debug.DrawRay(transform.position, Vector2.down * 1.1f, Color.red, 1f);
+        //RaycastHit2D hitGround = Physics2D.Raycast(transform.position, Vector2.down, 1.1f, _solidLayer);
+        bool hg = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, _solidLayer);
+        if (hg) doubleJumpReady = true;
+        return hg;
     }
 
     public IEnumerator AttackCoroutine()
