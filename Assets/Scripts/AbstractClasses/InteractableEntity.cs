@@ -12,10 +12,10 @@ public abstract class InteractableEntity : MonoBehaviour
         TryUnsubscribeInteraction(collision);
     }
 
-    private void OnDestroy()
+    /*private void OnDestroy()
     {
         FindAnyObjectByType<PlayerBehaviors>().interactAction -= OnInteract;
-    }
+    }*/
 
     public virtual void TrySubscribeInteraction(Collider2D collision)
     {
@@ -35,6 +35,6 @@ public abstract class InteractableEntity : MonoBehaviour
 
     public virtual void OnInteract()
     {
-
+        Debug.Log("object " + gameObject.name + " interacted smile");
     }
 }

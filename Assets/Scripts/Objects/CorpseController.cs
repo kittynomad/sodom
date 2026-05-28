@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class CorpseController : MonoBehaviour
+public class CorpseController : InteractableEntity
 {
     [SerializeField] private float _healthValue;
     [SerializeField] private int _ammoValue;
