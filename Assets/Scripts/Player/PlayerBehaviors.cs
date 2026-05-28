@@ -14,6 +14,8 @@ public class PlayerBehaviors : MonoBehaviour
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
+    [SerializeField] private float _poundDamage;
+    [SerializeField] private float _poundPushStrength;
     [SerializeField] private float _dashStrength;
 
     [Header("References")]
@@ -65,6 +67,7 @@ public class PlayerBehaviors : MonoBehaviour
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
+        if(pounding) rb.linearVelocity = Vector2.down * _poundStrength;
         if (pounding && PoundHitCheck()) PoundConnectBehavior();
         FlipSpriteForVelocity();
     }
@@ -171,6 +174,28 @@ public class PlayerBehaviors : MonoBehaviour
         bool hg = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, _solidLayer);
         if (hg) doubleJumpReady = true;
         return hg;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(pounding)
+        {
+            if(collision.gameObject.TryGetComponent<IKillable>(out IKillable ik))
+            {
+
+            }
+            if(collision.transform.position.x > transform.position.x)
+            {
+                collision.transform.position = collision.transform.position + (Vector3)Vector2.right * coll.bounds.size.x;
+                collision.rigidbody.AddForceX(_poundPushStrength, ForceMode2D.Impulse);
+            }
+            else
+            {
+                collision.transform.position = collision.transform.position - (Vector3)Vector2.right * coll.bounds.size.x;
+                collision.rigidbody.AddForceX(_poundPushStrength * -1, ForceMode2D.Impulse);
+            }
+                
+        }
     }
 
     public IEnumerator AttackCoroutine()
