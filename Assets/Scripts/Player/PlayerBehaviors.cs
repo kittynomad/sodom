@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class PlayerBehaviors : MonoBehaviour
+public class PlayerBehaviors : MonoBehaviour, IKillable
 {
     [Header("General stats")]
     [SerializeField] private int _maxHealth;
@@ -207,5 +207,17 @@ public class PlayerBehaviors : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         //_hurtBox.SetActive(false);
         IsAttacking = false;
+    }
+
+    public bool OnDamage(float damageAmount, GameObject damageSource = null)
+    {
+        Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
+        rb.linearVelocity = damageDir * 5f;
+        return false;
+    }
+
+    public void OnKill(GameObject damageSource = null)
+    {
+        throw new NotImplementedException();
     }
 }
