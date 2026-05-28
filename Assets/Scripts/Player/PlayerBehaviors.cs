@@ -73,6 +73,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //_hurtBox.transform.localRotation = Quaternion.
         
         FlipSpriteForVelocity();
+
+        UpdateAnimator();
     }
 
     public void FlipSpriteForVelocity()

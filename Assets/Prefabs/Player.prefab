@@ -16,7 +16,6 @@ GameObject:
   - component: {fileID: 2037644245168623204}
   - component: {fileID: 1427404586909964195}
   - component: {fileID: 2035363376810601464}
-  - component: {fileID: 7215141912619364077}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -206,6 +205,7 @@ MonoBehaviour:
     m_Bits: 128
   _hurtBox: {fileID: 3862160118748894185}
   _sprite: {fileID: 3519555628608411484}
+  _anim: {fileID: 6515553039800913211}
   _projectile: {fileID: 984829486225534601, guid: 075c897b006af2841ac2281675014832, type: 3}
 --- !u!114 &1427404586909964195
 MonoBehaviour:
@@ -249,24 +249,6 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!114 &7215141912619364077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2582139638990630898}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67cb4ff91949c30418e033ba1900e5b7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TEMPORARYPlayerAnims
-  _playerRB2D: {fileID: 4048464291530945123}
-  _isGrounded: 0
-  _isMoving: 0
-  _ySpeed: 0
-  _pB: {fileID: 2037644245168623204}
-  _anim: {fileID: 6515553039800913211}
 --- !u!1 &2647097481341889447
 GameObject:
   m_ObjectHideFlags: 0
