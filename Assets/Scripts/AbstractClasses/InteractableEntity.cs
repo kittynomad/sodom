@@ -33,7 +33,7 @@ public abstract class InteractableEntity : MonoBehaviour
         }
     }
 
-    public virtual void OnInteract()
+    public virtual void OnInteract(PlayerBehaviors pb)
     {
         Debug.Log("object " + gameObject.name + " interacted smile");
     }

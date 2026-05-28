@@ -35,7 +35,7 @@ public class PlayerBehaviors : MonoBehaviour
     private PlayerController pc;
     private PlayerLoadout pl;
 
-    public Action interactAction;
+    public Action<PlayerBehaviors> interactAction;
 
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
@@ -98,7 +98,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void InteractBehavior()
     {
         Debug.Log("interact behgavior");
-        interactAction?.Invoke();
+        interactAction?.Invoke(this);
         if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
