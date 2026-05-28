@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -34,12 +35,13 @@ public class PlayerBehaviors : MonoBehaviour
     private PlayerController pc;
     private PlayerLoadout pl;
 
+    public Action interactAction;
+
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
     public float CurrentHealth { get => currentHealth; set => currentHealth = value; }
     public int CurrentAmmo { get => currentAmmo; set => currentAmmo = value; }
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
-
     public bool CanFire { get => currentAmmo > 0; }
     public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
     private void Start()
@@ -96,6 +98,7 @@ public class PlayerBehaviors : MonoBehaviour
     public void InteractBehavior()
     {
         Debug.Log("interact behgavior");
+        interactAction?.Invoke();
         if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
