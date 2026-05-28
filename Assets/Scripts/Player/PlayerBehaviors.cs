@@ -22,6 +22,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private LayerMask _solidLayer;
     [SerializeField] private GameObject _hurtBox;
     [SerializeField] private SpriteRenderer _sprite;
+    [SerializeField] private Animator _anim;
     private SwordController sc;
 
     [SerializeField] private GameObject _projectile;
@@ -37,6 +38,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private Collider2D coll;
     private PlayerController pc;
     private PlayerLoadout pl;
+    
 
     public Action<PlayerBehaviors> interactAction;
 
@@ -220,5 +222,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void OnKill(GameObject damageSource = null)
     {
         throw new NotImplementedException();
+    }
+
+    public void UpdateAnimator()
+    {
+        _anim.SetBool("IsGrounded", IsGrounded());
+        _anim.SetBool("IsMoving", rb.linearVelocityX != 0f);
+        _anim.SetFloat("YSpeed", rb.linearVelocityY);
+        _anim.SetFloat("XSpeed", rb.linearVelocityX / _playerWalkSpeedLimit);
     }
 }
