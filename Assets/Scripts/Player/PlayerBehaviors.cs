@@ -211,6 +211,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public bool OnDamage(float damageAmount, GameObject damageSource = null)
     {
+        currentHealth -= damageAmount;
         Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
         rb.linearVelocity = damageDir * 5f;
         return false;
