@@ -60,15 +60,16 @@ public class PlayerBehaviors : MonoBehaviour
     }
     public void FixedUpdate()
     {
-        
-        if(!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        if (pounding) rb.linearVelocity = new Vector2(rb.linearVelocityX, -1 * _poundStrength);
+        if (pounding && PoundHitCheck()) PoundConnectBehavior();
+
+        if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localPosition = isAttacking ? pc.MovementDirection : pc.MovementDirection * 0.5f;
         //_hurtBox.transform.localRotation = Quaternion.
-        if(pounding) rb.linearVelocity = Vector2.down * _poundStrength;
-        if (pounding && PoundHitCheck()) PoundConnectBehavior();
+        
         FlipSpriteForVelocity();
     }
 
@@ -182,7 +183,7 @@ public class PlayerBehaviors : MonoBehaviour
         {
             if(collision.gameObject.TryGetComponent<IKillable>(out IKillable ik))
             {
-
+                ik.OnDamage(_poundDamage, gameObject);
             }
             if(collision.transform.position.x > transform.position.x)
             {
