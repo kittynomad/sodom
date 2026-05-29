@@ -47,6 +47,7 @@ namespace Sodom.Enemies
         public float Acceleration { get => acceleration; set => acceleration = value; }
         public DetectedEdges Edges => edges;
         private Bounds enemyBounds => physicsCollider.bounds;
+        public int TargetDirection => targetDirection;
 
         private LayerMask GroundMask => LayerMask.GetMask("Ground");
         public bool OnGround
@@ -217,6 +218,17 @@ namespace Sodom.Enemies
         {
             // If no right edges are present in the edges flag, then the value will be 0.
             return (edges & RIGHT_EDGES) != 0;
+        }
+
+        /// <summary>
+        /// Checks if the enemy ran into an edge in a specific direction.
+        /// </summary>
+        /// <param name="isLeft">Whether to check for left or right.</param>
+        /// <param name="edges">The edges the enemy has encountered.</param>
+        /// <returns></returns>
+        public static bool CheckDestinationObscured(bool isLeft, EnemyMovement.DetectedEdges edges)
+        {
+            return isLeft ? EnemyMovement.CheckLeft(edges) : EnemyMovement.CheckRight(edges);
         }
         #endregion
 

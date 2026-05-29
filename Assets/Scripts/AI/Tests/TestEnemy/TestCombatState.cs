@@ -16,7 +16,14 @@ namespace Sodom.Enemies.AI.Tests
     public class TestCombatState : EnemyBehavior
     {
         [SerializeField] private Color debugColor;
+        [SerializeField] private float preActDelay;
+        [Header("Backdash")]
+        [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
+        private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
+        [SerializeField, Tooltip("How long the enemy should wait before performing it's next attack if it " +
+            "doesn't backdash.")] 
+        private float backdashFailDelay;
         [SerializeReference, ClassDropdown(typeof(AttackBehavior))] private AttackBehavior[] attacks;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
@@ -25,10 +32,18 @@ namespace Sodom.Enemies.AI.Tests
             {
                 rend.color = debugColor;
             }
+            await Awaitable.WaitForSecondsAsync(preActDelay, ct);
             while (!ct.IsCancellationRequested)
             {
                 // Make the enemy dash back.
-                await backdash.Run(enemy, ct);
+                if (enemy.ToTarget.magnitude < backdashThreshold)
+                {
+                    await backdash.Run(enemy, ct);
+                }
+                else
+                {
+                    await Awaitable.WaitForSecondsAsync(backdashFailDelay);
+                }
 
                 // Point towards the target.
                 enemy.PointTowardsTarget();

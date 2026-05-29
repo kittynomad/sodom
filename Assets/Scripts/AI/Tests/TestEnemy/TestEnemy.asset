@@ -32,10 +32,13 @@ MonoBehaviour:
       type: {class: TestCombatState, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
+        preActDelay: 0.5
+        backdashThreshold: 3
         backdash:
-          dashForce: 5
+          dashForce: 7
           dashJump: 2
           postDashDelay: 1.5
+        backdashFailDelay: 0.75
         attacks:
         - rid: 7292672991980683375
         - rid: 7292672991980683370
@@ -55,5 +58,6 @@ MonoBehaviour:
           moveSpeed: 5
           acceleration: 25
           distanceRange: {x: 0, y: 1.5}
+          stopAtEdge: 1
           hasMaxTime: 0
           <MaxTime>k__BackingField: 0
