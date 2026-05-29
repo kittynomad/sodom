@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6056388843504544840}
   - component: {fileID: 5607695607333736483}
   - component: {fileID: 1978690861715300240}
+  - component: {fileID: 1235153401640694356}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -172,3 +173,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestKillable
   _maxHealth: 3
   _corpseObject: {fileID: 981806431881458497, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+  _corpseFlingStrength: 5
+--- !u!114 &1235153401640694356
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623969407670036750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f114829a9c60124680f827ace0e353e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DamagingObject
+  damageAmount: 1
