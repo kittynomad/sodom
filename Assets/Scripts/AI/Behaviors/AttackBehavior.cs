@@ -19,6 +19,8 @@ namespace Sodom.Enemies.AI
         [SerializeField] private float idealDistance; // Going to make this more modular later.
         [SerializeField] protected float postAttackDelay;
 
+        public float IdealDistance => idealDistance;
+
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             enemy.PointTowardsTarget();

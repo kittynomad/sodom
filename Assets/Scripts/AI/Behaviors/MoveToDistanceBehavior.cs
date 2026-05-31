@@ -29,6 +29,7 @@ namespace Sodom.Enemies.AI
             {
                 throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
             }
+            ct.ThrowIfCancellationRequested();
 
             Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
             float timer = MaxTime;

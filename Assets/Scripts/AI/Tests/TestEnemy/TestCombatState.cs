@@ -17,6 +17,7 @@ namespace Sodom.Enemies.AI.Tests
     {
         [SerializeField] private Color debugColor;
         [SerializeField] private float preActDelay;
+        [SerializeField] private MoveToDistanceBehavior stayInRange;
         [Header("Backdash")]
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
@@ -45,15 +46,29 @@ namespace Sodom.Enemies.AI.Tests
                     await Awaitable.WaitForSecondsAsync(backdashFailDelay);
                 }
 
+                // Move the enemy to stay within aggro range of the player.
+                await stayInRange.Run(enemy, ct);
+
+                ct.ThrowIfCancellationRequested();
+
                 // Point towards the target.
                 enemy.PointTowardsTarget();
 
-                // Chose a random attack to perform.
-                AttackBehavior chosenAttack = attacks[Random.Range(0, attacks.Length)];
-                if (chosenAttack != null)
+                // Chose an attack to perform based on distance from their ideal distance.
+                int chosenAttackIndex = 0;
+                float closestDistance = Mathf.Abs(attacks[0].IdealDistance - enemy.ToTarget.magnitude);
+                for(int i = 1; i < attacks.Length; i++)
                 {
-                    await chosenAttack.Run(enemy, ct);
+                    float distanceToIdeal = Mathf.Abs(attacks[i].IdealDistance - enemy.ToTarget.magnitude);
+                    // If the enemy is closer to this attack's ideal distance from it's target, this is now the 
+                    // most ideal attack.
+                    if (distanceToIdeal < closestDistance)
+                    {
+                        chosenAttackIndex = i;
+                        closestDistance = distanceToIdeal;
+                    }
                 }
+                await attacks[chosenAttackIndex].Run(enemy, ct);
             }
         }
     }

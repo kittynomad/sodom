@@ -6,6 +6,7 @@
 //
 // Brief Description : Test melee attack script that just spawns a hitbox for a certain duration.
 *****************************************************************************/
+using System;
 using System.Threading;
 using UnityEngine;
 
@@ -25,9 +26,17 @@ namespace Sodom.Enemies
         /// <returns></returns>
         public override async Awaitable PerformAttack(GameObject target, CancellationToken ct)
         {
-            hitbox.SetActive(true);
-            await Awaitable.WaitForSecondsAsync(attackTime, ct);
-            hitbox.SetActive(false);
+            try
+            {
+                hitbox.SetActive(true);
+                await Awaitable.WaitForSecondsAsync(attackTime, ct);
+                hitbox.SetActive(false);
+            }
+            catch (OperationCanceledException oce)
+            {
+                hitbox.SetActive(false);
+                throw oce;
+            }
         }
     }
 
