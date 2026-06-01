@@ -4,25 +4,23 @@
 // Creation Date : 5/19/2026
 // Last Modified : 5/19/2026
 //
-// Brief Description : Component script that controls enemy attacks.
+// Brief Description : Component script that controls all the attacks an enemy can use and any parameters/references
+// they have.
 *****************************************************************************/
+using CustomAttributes;
+using System;
 using System.Threading;
 using UnityEngine;
 
-public class EnemyAttacker : MonoBehaviour
+namespace Sodom.Enemies
 {
-    [SerializeField] private GameObject hitbox;
-
-    /// <summary>
-    /// Performs a basic spawn hitbox attack with a given timing.
-    /// </summary>
-    /// <param name="attackTime">The amount of time for the attack.</param>
-    /// <param name="ct">The cancellation token for the enemy behavior.</param>
-    /// <returns></returns>
-    public async Awaitable PerformAttack(float attackTime, CancellationToken ct)
+    public class EnemyAttacker : MonoBehaviour
     {
-        hitbox.SetActive(true);
-        await Awaitable.WaitForSecondsAsync(attackTime, ct);
-        hitbox.SetActive(false);
+        [SerializeReference, ClassDropdown(typeof(EnemyAttack))] private EnemyAttack[] attacks;
+
+        public EnemyAttack GetAttack(string name)
+        {
+            return Array.Find(attacks, x => x.Name == name);
+        }
     }
 }

@@ -63,7 +63,7 @@ namespace Sodom.Enemies
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Worry about pathfinding later.
                 // Stop patrolling once the point has been reached.
-                if (Mathf.Abs(toDest.x) < 0.5f || CheckDestinationObscured(isLeft, movement.Edges))
+                if (Mathf.Abs(toDest.x) < 0.5f || EnemyMovement.CheckDestinationObscured(isLeft, movement.Edges))
                 {
                     break;
                 }
@@ -82,11 +82,6 @@ namespace Sodom.Enemies
         private Vector2 GetDestination(bool isLeft)
         {
             return (Vector2)startPos + (Vector2.right * patrolArea / 2) * (isLeft ? -1 : 1);
-        }
-
-        private bool CheckDestinationObscured(bool isLeft, EnemyMovement.DetectedEdges edges)
-        {
-            return isLeft ? EnemyMovement.CheckLeft(edges) : EnemyMovement.CheckRight(edges);
         }
 
         private void OnDrawGizmosSelected()

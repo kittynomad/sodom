@@ -32,20 +32,42 @@ MonoBehaviour:
       type: {class: TestCombatState, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
+        preActDelay: 0.5
+        stayInRange:
+          moveToDistance:
+            moveSpeed: 5
+            acceleration: 25
+            distanceRange: {x: 4, y: 6}
+            stopAtEdge: 1
+            hasMaxTime: 0
+            <MaxTime>k__BackingField: 0
+          maintainTime: 1.5
+          updatePeriod: 0.5
+        backdashThreshold: 4
         backdash:
-          dashForce: 5
+          dashForce: 7
           dashJump: 2
           postDashDelay: 1.5
+        backdashFailDelay: 0.75
         attacks:
-        - rid: 7292672944035594362
-    - rid: 7292672944035594362
-      type: {class: TestAttackBehavior, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
+        - rid: 7292672991980683375
+        - rid: 7292672991980683370
+    - rid: 7292672991980683370
+      type: {class: AttackBehavior, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
       data:
-        postAttackDelay: 1
-        attackTime: 0.25
+        attackName: ProjectileAttack
+        idealDistance: 6
+        postAttackDelay: 0.75
+    - rid: 7292672991980683375
+      type: {class: WalkUpAttackBehavior, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: MeleeAttack
+        idealDistance: 4
+        postAttackDelay: 0.75
         moveToDistance:
           moveSpeed: 5
           acceleration: 25
           distanceRange: {x: 0, y: 1.5}
+          stopAtEdge: 1
           hasMaxTime: 0
           <MaxTime>k__BackingField: 0
