@@ -17,7 +17,7 @@ namespace Sodom.Enemies.AI.Tests
     {
         [SerializeField] private Color debugColor;
         [SerializeField] private float preActDelay;
-        [SerializeField] private MoveToDistanceBehavior stayInRange;
+        [SerializeField] private MaintainDistanceBehavior stayInRange;
         [Header("Backdash")]
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
@@ -43,11 +43,11 @@ namespace Sodom.Enemies.AI.Tests
                 }
                 else
                 {
-                    await Awaitable.WaitForSecondsAsync(backdashFailDelay);
+                    // Move the enemy to stay within aggro range of the player.
+                    await stayInRange.Run(enemy, ct);
                 }
 
-                // Move the enemy to stay within aggro range of the player.
-                await stayInRange.Run(enemy, ct);
+                
 
                 ct.ThrowIfCancellationRequested();
 
