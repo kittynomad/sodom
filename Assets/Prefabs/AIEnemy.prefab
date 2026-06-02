@@ -221,6 +221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySensor
   senseType: 0
   senseExpireTime: 5
+  maxHeightDiff: 3.5
   requireLOS: 1
   detectionMask:
     serializedVersion: 2
