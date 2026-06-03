@@ -52,7 +52,12 @@ public class GateController : MonoBehaviour
             rb.linearVelocity = Vector2.Lerp(direction * _gateMinSpeed, direction * _gateMoveSpeed, speed);
             yield return new WaitForFixedUpdate();
         }
-        rb.linearVelocity = Vector2.zero;
+        while(rb.linearVelocity.magnitude > 0f)
+        {
+            rb.linearVelocity = rb.linearVelocity / 2;
+            yield return new WaitForFixedUpdate();
+        }
+        
     }
 
     
