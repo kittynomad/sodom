@@ -10,12 +10,15 @@ public class GateController : MonoBehaviour
     [SerializeField] private LineRenderer _lineRenderer;
     //[SerializeField] private AudioSource movingGate;
 
+    private Rigidbody2D rb;
     private int gatePositionIndex = 0;
     // Start is called before the first frame update
     void Start()
     {
+        rb = _gate.GetComponent<Rigidbody2D>();
         _lineRenderer.gameObject.SetActive(true);
-        _gate.transform.position = _gatePositions[gatePositionIndex].transform.position;
+        rb.MovePosition(_gatePositions[gatePositionIndex].transform.position);
+        //_gate.transform.position = _gatePositions[gatePositionIndex].transform.position;
         if (_lineRenderer != null)
         {
             for (int i = 0; i < _gatePositions.Length; i++)
@@ -40,15 +43,26 @@ public class GateController : MonoBehaviour
         float elapsedTime = 0f;
         while (_gate.transform.position != _gatePositions[gatePositionIndex].transform.position)
         {
-            _gate.transform.position = Vector3.Lerp(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime);
+            rb.MovePosition(Vector2.Lerp(rb.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime));
+            //_gate.transform.position = Vector3.Lerp(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime);
             elapsedTime += ((Time.deltaTime * _gateMoveSpeed) / 100f);
             yield return null;
         }
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.TryGetComponent<PlayerBehaviors>(out PlayerBehaviors pb))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
 
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.gameObject.TryGetComponent<PlayerBehaviors>(out PlayerBehaviors pb))
+        {
+            collision.transform.SetParent(null);
+        }
     }
 }
