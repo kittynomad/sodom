@@ -12263,7 +12263,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3625c1e29e8ed794aa70ec4131f1764c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GateController
-  _gateMoveSpeed: 1
+  _moveLinear: 1
+  _gateMoveSpeed: 10
+  _gateMinSpeed: 0.1
   _gate: {fileID: 1913678263}
   _gatePositions:
   - {fileID: 1581823836}
