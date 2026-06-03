@@ -5,6 +5,7 @@ using UnityEngine;
 public class GateController : MonoBehaviour
 {
     [SerializeField] private float _gateMoveSpeed;
+    [SerializeField] private float _gateMinSpeed;
     [SerializeField] private GameObject _gate;
     [SerializeField] private GameObject[] _gatePositions;
     [SerializeField] private LineRenderer _lineRenderer;
@@ -40,14 +41,18 @@ public class GateController : MonoBehaviour
 
     public IEnumerator MoveGate()
     {
-        float elapsedTime = 0f;
-        while (_gate.transform.position != _gatePositions[gatePositionIndex].transform.position)
+        float startDistance = Vector2.Distance(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position);
+        while (Mathf.Abs(Vector2.Distance(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position)) > 0.1f)
         {
-            rb.MovePosition(Vector2.Lerp(rb.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime));
-            //_gate.transform.position = Vector3.Lerp(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime);
-            elapsedTime += ((Time.deltaTime * _gateMoveSpeed) / 100f);
-            yield return null;
+            Vector2 direction = Vector2.Normalize(_gatePositions[gatePositionIndex].transform.position - _gate.transform.position);
+            float distance = Vector2.Distance(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position);
+            //thank you desmos
+            float speed = -Mathf.Pow((2 * (1 - (distance / startDistance)) - 1), 2) + 1;
+
+            rb.linearVelocity = Vector2.Lerp(direction * _gateMinSpeed, direction * _gateMoveSpeed, speed);
+            yield return new WaitForFixedUpdate();
         }
+        rb.linearVelocity = Vector2.zero;
     }
 
     

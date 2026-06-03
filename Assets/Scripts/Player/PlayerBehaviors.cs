@@ -250,9 +250,16 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void UpdateAnimator()
     {
+        Vector2 relativeVelocity;
+        if ((transform.parent != null && transform.parent.TryGetComponent(out Rigidbody2D prb)))
+        {
+            //Debug.Log(prb.linearVelocity);
+            relativeVelocity = rb.linearVelocity - prb.linearVelocity;
+        }
+        else relativeVelocity = rb.linearVelocity;
         _anim.SetBool("IsGrounded", IsGrounded());
-        _anim.SetBool("IsMoving", rb.linearVelocityX != 0f);
-        _anim.SetFloat("YSpeed", rb.linearVelocityY);
-        _anim.SetFloat("XSpeed", rb.linearVelocityX / _playerWalkSpeedLimit);
+        _anim.SetBool("IsMoving", Mathf.Abs(relativeVelocity.x) >= 0.5f);
+        _anim.SetFloat("YSpeed", relativeVelocity.y);
+        _anim.SetFloat("XSpeed", relativeVelocity.x / _playerWalkSpeedLimit);
     }
 }

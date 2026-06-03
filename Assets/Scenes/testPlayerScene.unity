@@ -11325,12 +11325,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1005205251}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.17, y: -2.02, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 2.6800003, y: 1.78, z: 0}
   m_LocalScale: {x: 0.43432, y: 0.43432, z: 0.43432}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1913678267}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1005205256
 MonoBehaviour:
@@ -12263,7 +12263,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3625c1e29e8ed794aa70ec4131f1764c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GateController
-  _gateMoveSpeed: 0.1
+  _gateMoveSpeed: 1
   _gate: {fileID: 1913678263}
   _gatePositions:
   - {fileID: 1581823836}
@@ -12437,7 +12437,8 @@ GameObject:
   - component: {fileID: 1913678266}
   - component: {fileID: 1913678265}
   - component: {fileID: 1913678264}
-  m_Layer: 0
+  - component: {fileID: 1913678268}
+  m_Layer: 7
   m_Name: Platform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -12467,7 +12468,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -12588,9 +12589,22 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1005205254}
   m_Father: {fileID: 1773713797}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1913678268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1913678263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 14fa308de7c9d3848aaacc6f32594698, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerParentingObject
 --- !u!1 &1947352471
 GameObject:
   m_ObjectHideFlags: 0
@@ -13552,5 +13566,4 @@ SceneRoots:
   - {fileID: 1397636667}
   - {fileID: 772663511}
   - {fileID: 442116838}
-  - {fileID: 1005205254}
   - {fileID: 1773713797}
