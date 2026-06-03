@@ -14,14 +14,7 @@ public class SwordController : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        /*if(pb.IsAttacking && collision.gameObject.TryGetComponent(out CorpseController cc) && attachedObject == null)
-        {
-            collision.gameObject.transform.parent = gameObject.transform;
-            collision.gameObject.transform.localPosition = Vector2.zero;
-            collision.rigidbody.bodyType = RigidbodyType2D.Kinematic;
-            collision.rigidbody.excludeLayers = LayerMask.GetMask("Player");
-            attachedObject = collision.gameObject;
-        }*/
+        //deal damage while attacking
         if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
         {
             ik.OnDamage(1f, gameObject);
@@ -30,6 +23,7 @@ public class SwordController : MonoBehaviour
 
     public bool TryAttachCorpse(GameObject corpse)
     {
+        //attach corpse if nothing is already attached
         if (corpse.TryGetComponent(out CorpseController cc) && attachedObject == null)
         {
             corpse.transform.parent = gameObject.transform;
@@ -43,10 +37,10 @@ public class SwordController : MonoBehaviour
     }
     public void DetachObject(Vector2 direction, bool destroyImmediate = false)
     {
-        Debug.Log("gurg");
+        
         if(attachedObject != null)
         {
-            Debug.Log("grug");
+            
             attachedObject.transform.parent = null;
             attachedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             //attachedObject.GetComponent<Rigidbody2D>().excludeLayers = LayerMask.GetMask();
