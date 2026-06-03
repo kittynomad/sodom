@@ -8,7 +8,7 @@ public class GateController : MonoBehaviour
     [SerializeField] private GameObject _gate;
     [SerializeField] private GameObject[] _gatePositions;
     [SerializeField] private LineRenderer _lineRenderer;
-    [SerializeField] private AudioSource movingGate;
+    //[SerializeField] private AudioSource movingGate;
 
     private int gatePositionIndex = 0;
     // Start is called before the first frame update
@@ -32,7 +32,7 @@ public class GateController : MonoBehaviour
         //_gate.transform.position = _gatePositions[gatePositionIndex].transform.position;
         gatePositionIndex = (gatePositionIndex + 1) >= _gatePositions.Length ? 0 : gatePositionIndex + 1;
         StartCoroutine(MoveGate());
-        movingGate.Play();
+        //movingGate.Play();
     }
 
     public IEnumerator MoveGate()
