@@ -47,7 +47,7 @@ public class GateController : MonoBehaviour
             Vector2 direction = Vector2.Normalize(_gatePositions[gatePositionIndex].transform.position - _gate.transform.position);
             float distance = Vector2.Distance(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position);
             //thank you desmos
-            float speed = -Mathf.Pow((2 * (1 - (distance / startDistance)) - 1), 2) + 1;
+            float speed = -Mathf.Pow((2 * (1 - (distance / startDistance)) - 1), 4) + 1;
 
             rb.linearVelocity = Vector2.Lerp(direction * _gateMinSpeed, direction * _gateMoveSpeed, speed);
             yield return new WaitForFixedUpdate();
