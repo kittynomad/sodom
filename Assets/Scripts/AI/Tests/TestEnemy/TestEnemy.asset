@@ -34,16 +34,11 @@ MonoBehaviour:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         debugNoticeColor: {r: 1, g: 0.9134723, b: 0.028301716, a: 1}
         preActDelay: 0.5
-        stayInRange:
-          moveToDistance:
-            moveSpeed: 5
-            acceleration: 25
-            distanceRange: {x: 3, y: 6}
-            stopAtEdge: 1
-            hasMaxTime: 0
-            <MaxTime>k__BackingField: 0
-          maintainTime: 1.5
-          updatePeriod: 0.5
+        moveInRange:
+          moveSpeed: 5
+          acceleration: 25
+          distanceRange: {x: 3, y: 6}
+          stopAtEdge: 1
         randomMovement:
           moveSpeed: 2
           acceleration: 15
@@ -74,5 +69,3 @@ MonoBehaviour:
           acceleration: 25
           distanceRange: {x: 0, y: 1.5}
           stopAtEdge: 1
-          hasMaxTime: 0
-          <MaxTime>k__BackingField: 0
