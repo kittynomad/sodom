@@ -20,8 +20,8 @@ namespace Sodom.Enemies.AI
         [SerializeField] private float acceleration;
         [SerializeField, VectorLabels("Min", "Max")] private Vector2 distanceRange;
         [SerializeField] private bool stopAtEdge;
-        [SerializeField] private bool hasMaxTime;
-        [field: SerializeField] public float MaxTime { get; set; }
+        //[SerializeField] private bool hasMaxTime;
+        //[field: SerializeField] public float MaxTime { get; set; }
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
@@ -32,7 +32,7 @@ namespace Sodom.Enemies.AI
             ct.ThrowIfCancellationRequested();
 
             Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
-            float timer = MaxTime;
+            //float timer = MaxTime;
             float originalSpeed = movement.MoveSpeed;
             float originalAcceleration = movement.Acceleration;
 
@@ -48,8 +48,8 @@ namespace Sodom.Enemies.AI
             // Continually move to keep the ideal distance until the next update.
             try
             {
-                while (!IsWithinRange(toTarget.magnitude) 
-                    && (timer > 0 || !hasMaxTime))
+                while (!IsWithinRange(toTarget.magnitude))
+                    //&& (timer > 0 || !hasMaxTime))
                 {
                     ct.ThrowIfCancellationRequested();
                     toTarget = enemy.Target.transform.position - enemy.transform.position;
@@ -70,7 +70,7 @@ namespace Sodom.Enemies.AI
                         movement.Rigidbody.linearVelocity = new Vector2(0, movement.Rigidbody.linearVelocityY);
                         break;
                     }
-                    timer -= Time.fixedDeltaTime;
+                    //timer -= Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync(ct);
                 }
                 CleanUp();

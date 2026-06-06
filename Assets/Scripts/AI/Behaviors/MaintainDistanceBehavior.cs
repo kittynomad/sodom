@@ -58,6 +58,15 @@ namespace Sodom.Enemies.AI
             }
             CleanUp();
         }
+
+        /// <summary>
+        /// Checks if the enemy is currently within range of their target.
+        /// </summary>
+        /// <param name="distance"></param>
+        public bool IsWithinRange(float distance)
+        {
+            return moveToDistance.IsWithinRange(distance);
+        }
     }
 
 }
