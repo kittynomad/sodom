@@ -37,7 +37,7 @@ MonoBehaviour:
           moveToDistance:
             moveSpeed: 5
             acceleration: 25
-            distanceRange: {x: 4, y: 6}
+            distanceRange: {x: 3, y: 6}
             stopAtEdge: 1
             hasMaxTime: 0
             <MaxTime>k__BackingField: 0

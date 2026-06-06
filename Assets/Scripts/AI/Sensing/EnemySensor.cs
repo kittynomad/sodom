@@ -23,6 +23,8 @@ namespace Sodom.Enemies.AI
 
         [SerializeField] private SenseType senseType;
         [SerializeField] private float senseExpireTime;
+        [SerializeField, Tooltip("The maximum height that the enemy can see.  Set 0 for no max height.")] 
+        private float maxHeightDiff;
         [SerializeField] private bool requireLOS;
         [SerializeField] private LayerMask detectionMask;
 
@@ -40,7 +42,7 @@ namespace Sodom.Enemies.AI
         {
             if (IsSensable(collision.gameObject))
             {
-                if (requireLOS)
+                if (requireLOS || maxHeightDiff > 0)
                 {
                     monitoredObjects.Add(collision.gameObject);
                     if (monitoredObjects.Count == 1 && !isMonitoring)
@@ -75,16 +77,25 @@ namespace Sodom.Enemies.AI
             {
                 for (int i = 0; i < monitoredObjects.Count; i++)
                 {
-                    // Raycast to the monitored object.
-                    Vector2 toObj = monitoredObjects[i].transform.position - transform.position;
-                    RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
-                    // If the player was detected, mark it as a found entity.
-                    if (hit.collider != null
-                        && (hit.collider.gameObject == monitoredObjects[i] ||
-                        hit.collider.gameObject.transform.IsChildOf(monitoredObjects[i].transform)))
+                    bool breakSense = false;
+                    
+                    if (maxHeightDiff > 0)
+                    {
+                        // Check difference in height.
+                        breakSense |= !CheckHeightDiff(i);
+                    }
+
+                    if (requireLOS)
+                    {
+                        // Raycast to the monitored object.
+                        breakSense |= !CheckLOS(i);
+                    }
+                    
+
+                    // If all sense factors return true, set the object as sensed.
+                    if (!breakSense)
                     {
                         SenseObject(monitoredObjects[i]);
-
                     }
                     else
                     {
@@ -95,6 +106,23 @@ namespace Sodom.Enemies.AI
                 yield return new WaitForFixedUpdate();
             }
             isMonitoring = false;
+        }
+
+        private bool CheckLOS(int monitoredObjIndex)
+        {
+            Vector2 toObj = monitoredObjects[monitoredObjIndex].transform.position - transform.position;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
+            // If the player was detected, mark it as a found entity.
+            return hit.collider != null
+                && (hit.collider.gameObject == monitoredObjects[monitoredObjIndex] ||
+                hit.collider.gameObject.transform.IsChildOf(monitoredObjects[monitoredObjIndex].transform));
+        }
+
+        private bool CheckHeightDiff(int monitoredObjIndex)
+        {
+            // Check the difference in max height.
+            float heightDiff = monitoredObjects[monitoredObjIndex].transform.position.y - transform.position.y;
+            return Mathf.Abs(heightDiff) < maxHeightDiff;
         }
 
         private void SenseObject(GameObject obj)
