@@ -6,6 +6,7 @@
 //
 // Brief Description : Utilizes trigger colliders to detect the player and/or other targets.
 *****************************************************************************/
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -21,11 +22,17 @@ namespace Sodom.Enemies.AI
         private const string PLAYER_TAG = "Player";
         #endregion
 
-        [SerializeField] private SenseType senseType;
-        [SerializeField] private float senseExpireTime;
+        [SerializeField, Tooltip("What type of sense this is.  Used to differentiate between different sensors " +
+            "in the DecisionEngine.")] 
+        private SenseType senseType;
+        [SerializeField, Tooltip("How long the target has to be undetectable by this sense before the enemy " +
+            "loses track of it.")] 
+        private float senseExpireTime;
         [SerializeField, Tooltip("The maximum height that the enemy can see.  Set 0 for no max height.")] 
         private float maxHeightDiff;
-        [SerializeField] private bool requireLOS;
+        [SerializeField, Tooltip("Whether the enemy requires line fo sight to detect an objecct with this sense.")] 
+        private bool requireLOS;
+        [SerializeField, ShowIf(nameof(requireLOS))] private bool debugLOS;
         [SerializeField] private LayerMask detectionMask;
 
         private readonly List<GameObject> monitoredObjects = new();
@@ -113,9 +120,26 @@ namespace Sodom.Enemies.AI
             Vector2 toObj = monitoredObjects[monitoredObjIndex].transform.position - transform.position;
             RaycastHit2D hit = Physics2D.Raycast(transform.position, toObj.normalized, Mathf.Infinity, detectionMask);
             // If the player was detected, mark it as a found entity.
-            return hit.collider != null
+
+            bool seesTarget = hit.collider != null
                 && (hit.collider.gameObject == monitoredObjects[monitoredObjIndex] ||
                 hit.collider.gameObject.transform.IsChildOf(monitoredObjects[monitoredObjIndex].transform));
+
+            if (debugLOS)
+            {
+                if (seesTarget)
+                {
+                    Debug.DrawLine(transform.position, monitoredObjects[monitoredObjIndex].transform.position, Color.green);
+                }
+                else
+                {
+                    Debug.DrawLine(transform.position, monitoredObjects[monitoredObjIndex].transform.position, Color.red);
+                    Debug.DrawLine(transform.position, hit.point, Color.green);
+                }
+                
+            }
+
+            return seesTarget;
         }
 
         private bool CheckHeightDiff(int monitoredObjIndex)
@@ -168,22 +192,6 @@ namespace Sodom.Enemies.AI
         private bool IsSensable(GameObject obj)
         {
             return obj.CompareTag(PLAYER_TAG);
-        }
-
-        // Gizmo for visualizing what entities the enemy can see.
-        private void OnDrawGizmos()
-        {
-            Vector3[] points = new Vector3[sensedObjects.Count * 2];
-            for (int i = 0; i < sensedObjects.Count; i++)
-            {
-                points[i * 2] = transform.position;
-                points[(i * 2) + 1] = sensedObjects[i].transform.position;
-            }
-
-            foreach (GameObject obj in sensedObjects)
-            {
-                Gizmos.DrawLineList(points);
-            }
         }
     }
 

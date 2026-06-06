@@ -16,8 +16,10 @@ namespace Sodom.Enemies.AI.Tests
     public class TestCombatState : EnemyBehavior
     {
         [SerializeField] private Color debugColor;
+        [SerializeField] private Color debugNoticeColor;
         [SerializeField] private float preActDelay;
-        [SerializeField] private MaintainDistanceBehavior stayInRange;
+        [SerializeField] private MoveToDistanceBehavior moveInRange;
+        [SerializeField] private RandomMovementBehavior randomMovement;
         [Header("Backdash")]
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
@@ -31,9 +33,10 @@ namespace Sodom.Enemies.AI.Tests
         {
             if (enemy.TryGetComponent(out SpriteRenderer rend))
             {
-                rend.color = debugColor;
+                rend.color = debugNoticeColor;
             }
             await Awaitable.WaitForSecondsAsync(preActDelay, ct);
+            rend.color = debugColor;
             while (!ct.IsCancellationRequested)
             {
                 // Make the enemy dash back.
@@ -41,10 +44,14 @@ namespace Sodom.Enemies.AI.Tests
                 {
                     await backdash.Run(enemy, ct);
                 }
-                else
+                else if (!moveInRange.IsWithinRange(enemy.ToTarget.magnitude))
                 {
                     // Move the enemy to stay within aggro range of the player.
-                    await stayInRange.Run(enemy, ct);
+                    await moveInRange.Run(enemy, ct);
+                }
+                else
+                {
+                    await randomMovement.Run(enemy, ct);
                 }
 
                 
