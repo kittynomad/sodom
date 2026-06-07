@@ -23,25 +23,10 @@ namespace Sodom.Enemies.AI
         /// <param name="enemy">The enemy that is being controlled.</param>
         /// <param name="ct">The cancellation token for handling cancels on state change.</param>
         /// <returns></returns>
-        public async Awaitable Run(EnemyController enemy, CancellationToken ct)
+        public virtual async Awaitable Run(EnemyController enemy, CancellationToken ct)
         {
-            OnAIStart(enemy);
-
-            try
-            {
-                await RunAI(enemy, ct);
-                OnAIEnd(enemy);
-            }
-            catch (OperationCanceledException)
-            {
-                OnAIEnd(enemy);
-                throw new OperationCanceledException();
-            }
+            await RunAI(enemy, ct);
         }
-
-        protected virtual void OnAIStart(EnemyController enemy) { }
-
-        protected virtual void OnAIEnd(EnemyController enemy) { }
 
         protected abstract Awaitable RunAI(EnemyController enemy, CancellationToken ct);
 

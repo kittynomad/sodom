@@ -16,10 +16,16 @@ MonoBehaviour:
     rid: 7292672944035594356
   stateMachine:
   - rid: 7292672944035594357
+  - rid: 3144939879309508717
   - rid: 7292672944035594358
   references:
     version: 2
     RefIds:
+    - rid: 3144939879309508717
+      type: {class: EnterCombatState, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0.9400917, b: 0, a: 1}
+        enterCombatDelay: 0.5
     - rid: 7292672944035594356
       type: {class: TestEnemyDE, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
       data: 
@@ -32,23 +38,21 @@ MonoBehaviour:
       type: {class: TestCombatState, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
-        debugNoticeColor: {r: 1, g: 0.9134723, b: 0.028301716, a: 1}
-        preActDelay: 0.5
         moveInRange:
           moveSpeed: 5
           acceleration: 25
-          distanceRange: {x: 3, y: 6}
           stopAtEdge: 1
+          distanceRange: {x: 3, y: 6}
         randomMovement:
           moveSpeed: 2
           acceleration: 15
+          stopAtEdge: 1
           wanderTime: 0.5
         backdashThreshold: 4
         backdash:
           dashForce: 7
           dashJump: 2
           postDashDelay: 1.5
-        backdashFailDelay: 0.75
         attacks:
         - rid: 7292672991980683375
         - rid: 7292672991980683370
@@ -67,5 +71,5 @@ MonoBehaviour:
         moveToDistance:
           moveSpeed: 5
           acceleration: 25
-          distanceRange: {x: 0, y: 1.5}
           stopAtEdge: 1
+          distanceRange: {x: 0, y: 1.5}

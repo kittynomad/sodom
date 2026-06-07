@@ -13,11 +13,11 @@ namespace Sodom.Enemies.AI.Tests
     [System.Serializable]
     public class DrillheadDE : DecisionEngine
     {
-        public override void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller)
+        public override EnemyState OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller, EnemyAI ai)
         {
-
+            return null;
         }
-        public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        public override EnemyState Decide(EnemyState currentState, EnemyController enemy, EnemyAI ai)
         {
             // Should always be in the combat state by default.
             return ai.GetState<TestCombatState>();

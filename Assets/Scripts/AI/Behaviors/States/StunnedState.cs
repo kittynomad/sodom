@@ -1,29 +1,29 @@
 /*****************************************************************************
-// File Name : BackdashBehavior.cs
+// File Name : StunnedState.cs
 // Author : Arcadia Koederitz
-// Creation Date : 5/19/2026
-// Last Modified : 5/19/2026
+// Creation Date : 6/7/2026
+// Last Modified : 6/7/2026
 //
-// Brief Description : Behavior for enemies to backdash away from the player.
+// Brief Description : State for enemies being stunned by player attacks.
 *****************************************************************************/
-using System;
-using System.Threading;
-using Unity.VisualScripting;
-using UnityEditor.U2D.Aseprite;
 using UnityEngine;
+using System.Threading;
+using System;
 
 namespace Sodom.Enemies.AI
 {
-    [Serializable]
-    public class BackdashBehavior : EnemyBehavior
+    [System.Serializable]
+    public class StunnedState : EnemyState
     {
-        [SerializeField] private float dashForce;
-        [SerializeField] private float dashJump;
-        [SerializeField] private float postDashDelay;
+        [SerializeField] private float stunTime;
 
+        public override bool IsCancellable => false;
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
+            await base.RunAI(enemy, ct);
             ct.ThrowIfCancellationRequested();
+
+            // Get Components
             if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
                 throw new System.NullReferenceException($"Enemy {enemy} does not have a EnemyMovement component.");
@@ -31,17 +31,15 @@ namespace Sodom.Enemies.AI
 
             void CleanUp()
             {
-                
+                // Reset back to defaults.
             }
-
+    
             try
             {
-                enemy.PointTowardsTarget();
-
-                Vector2 jumpBackForce = new Vector2(-Mathf.Sign(enemy.ToTarget.x) * dashForce, dashJump);
-                movement.Rigidbody.AddForce(jumpBackForce, ForceMode2D.Impulse);
-
-                await Awaitable.WaitForSecondsAsync(postDashDelay, ct);
+                // Stop any enemy movement.
+                movement.SetDirection(0);
+                // Delay until stun expires.  The enemy shouldn't be doing anything during this time.
+                await Awaitable.WaitForSecondsAsync(stunTime);
                 CleanUp();
             }
             catch (OperationCanceledException oce)
@@ -49,8 +47,6 @@ namespace Sodom.Enemies.AI
                 CleanUp();
                 throw oce;
             }
-
         }
     }
-
 }

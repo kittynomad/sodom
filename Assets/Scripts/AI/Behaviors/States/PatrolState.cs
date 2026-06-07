@@ -6,42 +6,53 @@
 //
 // Brief Description : Controls the enemy while patrolling.
 *****************************************************************************/
+using System;
 using System.Threading;
 using UnityEngine;
 
 namespace Sodom.Enemies.AI
 {
     [System.Serializable]
-    public class PatrolState : EnemyBehavior
+    public class PatrolState : EnemyState
     {
-        [SerializeField] private Color debugColor;
         [SerializeField] private float patrolWait;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            if (enemy.TryGetComponent(out SpriteRenderer rend))
-            {
-                rend.color = debugColor;
-            }
+            await base.RunAI(enemy, ct);
             if (!enemy.TryGetComponent(out EnemyPatrolling patroller))
             {
                 throw new System.NullReferenceException($"Enemy {enemy} has no EnemyPatroller component, but " +
                     $"it uses a PatrolBehaviour.");
             }
-            while (!ct.IsCancellationRequested)
+            
+            void CleanUp()
             {
-                // TODO: Update so it stops at edges.
 
-                // Right
-                enemy.SetRotation(false);
-                await patroller.MoveToPatrolPoint(false, ct);
-                await Awaitable.WaitForSecondsAsync(patrolWait, ct);
-
-                // Left
-                enemy.SetRotation(true);
-                await patroller.MoveToPatrolPoint(true, ct);
-                await Awaitable.WaitForSecondsAsync(patrolWait, ct);
             }
+
+            try
+            {
+                while (!ct.IsCancellationRequested)
+                {
+                    // Right
+                    enemy.SetRotation(false);
+                    await patroller.MoveToPatrolPoint(false, ct);
+                    await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+
+                    // Left
+                    enemy.SetRotation(true);
+                    await patroller.MoveToPatrolPoint(true, ct);
+                    await Awaitable.WaitForSecondsAsync(patrolWait, ct);
+                }
+                CleanUp();
+            }
+            catch (OperationCanceledException oce)
+            {
+                CleanUp();
+                throw oce;
+            }
+            
         }
     }
 
