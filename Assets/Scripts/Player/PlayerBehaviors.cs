@@ -11,6 +11,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
+    [SerializeField] private float _hurtRecoveryPeriod;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -39,6 +40,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool doubleJumpReady = true;
     private bool anchored = false;
     private bool pounding = false;
+    private bool recovering = false;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -234,13 +236,26 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         IsAttacking = false;
     }
 
+    public IEnumerator HurtRecoveryCoroutine()
+    {
+        recovering = true;
+        yield return new WaitForSeconds(_hurtRecoveryPeriod);
+        recovering = false;
+    }
+
     public bool OnDamage(float damageAmount, GameObject damageSource = null)
     {
-        currentHealth -= damageAmount;
-        //bounce away from damage source
-        Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
-        rb.linearVelocity = damageDir * 5f;
+        if(!recovering)
+        {
+            currentHealth -= damageAmount;
+            //bounce away from damage source
+            Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
+            rb.linearVelocity = damageDir * 5f;
+            StartCoroutine(HurtRecoveryCoroutine());
+        }
+
         return false;
+
     }
 
     public void OnKill(GameObject damageSource = null)

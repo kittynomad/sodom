@@ -196,6 +196,7 @@ MonoBehaviour:
   _playerJumpForce: 15
   _playerWalkSpeedLimit: 7
   _projectileSpeed: 25
+  _hurtRecoveryPeriod: 1
   _poundStrength: 20
   _poundDamage: 1
   _poundPushStrength: 15
