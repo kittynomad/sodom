@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using NaughtyAttributes;
 
 public class GroundSaver : MonoBehaviour
 {
@@ -24,8 +25,8 @@ public class GroundSaver : MonoBehaviour
             if(IsSafelyGrounded())
             {
                 _lastSafePosition = transform.position;
-                yield return new WaitForSeconds(_safeCheckDuration);
             }
+            yield return new WaitForSeconds(_safeCheckDuration);
         }
     }
 
@@ -35,5 +36,11 @@ public class GroundSaver : MonoBehaviour
         //check if grounded (duh)
         bool hg = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, _safeLayers);
         return hg;
+    }
+
+    [Button]
+    public void TestSafeReturn()
+    {
+        transform.position = _lastSafePosition;
     }
 }
