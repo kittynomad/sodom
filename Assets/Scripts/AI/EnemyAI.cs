@@ -18,14 +18,14 @@ namespace Sodom.Enemies.AI
     public class EnemyAI : ScriptableObject
     {
         [SerializeReference, ClassDropdown(typeof(DecisionEngine))] private DecisionEngine decisionEngine;
-        [SerializeReference, ClassDropdown(typeof(EnemyBehavior))] private EnemyBehavior[] stateMachine;
+        [SerializeReference, ClassDropdown(typeof(EnemyState))] private EnemyState[] stateMachine;
 
         /// <summary>
         /// Gets a state by type.
         /// </summary>
         /// <typeparam name="T">The type of state to get</typeparam>
         /// <returns>The found state from the state machine,.</returns>
-        public T GetState<T>() where T : EnemyBehavior
+        public T GetState<T>() where T : EnemyState
         {
             T state = (T)Array.Find(stateMachine, item => item.GetType() == typeof(T));
             return state;
@@ -35,7 +35,7 @@ namespace Sodom.Enemies.AI
         /// </summary>
         /// <param name="index">The index of the state to get.</param>
         /// <returns>The found state from the state machine,.</returns>
-        public EnemyBehavior GetState(int index)
+        public EnemyState GetState(int index)
         {
             return stateMachine[index];
         }
@@ -46,7 +46,7 @@ namespace Sodom.Enemies.AI
         /// <param name="currentState">The current state the enemy is in.</param>
         /// <param name="enemy">The enemy to get a new state for.</param>
         /// <returns>The new state decided by the DecisionEngine.</returns>
-        public EnemyBehavior QueryDecisionEngine(EnemyBehavior currentState, EnemyController enemy)
+        public EnemyState QueryDecisionEngine(EnemyState currentState, EnemyController enemy)
         {
             return decisionEngine.Decide(currentState, enemy, this);
         }
@@ -58,10 +58,10 @@ namespace Sodom.Enemies.AI
         /// <param name="type">The type of sense that was triggered.</param>
         /// <param name="isSensed">If the sense is active or lost.</param>
         /// <param name="enemy">The enemy that sensed the object.</param>
-        public void OnSense(GameObject sensedObj, SenseType type, bool isSensed, EnemyController enemy)
+        public EnemyState OnSense(GameObject sensedObj, SenseType type, bool isSensed, EnemyController enemy)
         {
             // Notify the decision engine that a sense has been triggered.
-            decisionEngine.OnSense(sensedObj, type, isSensed, enemy);
+            return decisionEngine.OnSense(sensedObj, type, isSensed, enemy, this);
         }
     }
 

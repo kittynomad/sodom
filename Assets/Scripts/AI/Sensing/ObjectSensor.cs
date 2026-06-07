@@ -15,7 +15,7 @@ using UnityEngine;
 namespace Sodom.Enemies.AI
 {
     [RequireComponent(typeof(Collider2D))]
-    public class EnemySensor : MonoBehaviour
+    public class ObjectSensor : MonoBehaviour, IEnemySensor
     {
         #region CONSTS
         // Need to implement other forms of aggression later.

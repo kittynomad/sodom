@@ -25,7 +25,7 @@ namespace Sodom.Enemies.AI
         {
             enemy.PointTowardsTarget();
             await PerformAttack(GetAttacker(enemy), enemy.Target, ct);
-            await Awaitable.WaitForSecondsAsync(postAttackDelay);
+            await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
         }
 
         protected EnemyAttacker GetAttacker(EnemyController enemy)

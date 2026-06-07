@@ -1,5 +1,3 @@
-using Sodom.Enemies.AI;
-using Sodom.Enemies.AI.Tests;
 using UnityEngine;
 
 namespace Sodom.Enemies.AI.Tests
@@ -7,7 +5,7 @@ namespace Sodom.Enemies.AI.Tests
     [System.Serializable]
     public class TestEnemyDE : DecisionEngine
     {
-        public override void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller)
+        public override EnemyState OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController enemy, EnemyAI ai)
         {
             // By default, set the aggro target when we recieve an aggro sense.
             switch (type)
@@ -16,21 +14,19 @@ namespace Sodom.Enemies.AI.Tests
                 case SenseType.Aggro:
                     if (isSensed)
                     {
-                        controller.Target = sensedObject;
+                        enemy.Target = sensedObject;
                     }
-                    else if (controller.Target == sensedObject)
+                    else if (enemy.Target == sensedObject)
                     {
                         // Lose target when they exit the sense range.
-                        controller.Target = null;
+                        enemy.Target = null;
                     }
-
-                    break;
-                case SenseType.LoseAggro:
 
                     break;
             }
+            return null;
         }
-        public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        public override EnemyState Decide(EnemyState currentState, EnemyController enemy, EnemyAI ai)
         {
             switch (currentState)
             {
@@ -39,6 +35,12 @@ namespace Sodom.Enemies.AI.Tests
                     if (enemy.Target != null)
                     {
                         Debug.Log("Sensed enemy.  Me Angy");
+                        return ai.GetState<EnterCombatState>();
+                    }
+                    break;
+                case EnterCombatState:
+                    if (enemy.Target != null)
+                    {
                         return ai.GetState<TestCombatState>();
                     }
                     break;
@@ -49,6 +51,15 @@ namespace Sodom.Enemies.AI.Tests
                         return ai.GetState<PatrolState>();
                     }
                     break;
+                default:
+                    if (enemy.Target == null)
+                    {
+                        return ai.GetState<PatrolState>();
+                    }
+                    else
+                    {
+                        return ai.GetState<TestCombatState>();
+                    }
             }
             return null;
         }

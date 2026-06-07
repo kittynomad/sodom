@@ -7,6 +7,7 @@
 // Brief Description : Middleman script to handle routing senses to the enemy controller.
 *****************************************************************************/
 using CustomAttributes;
+using NaughtyAttributes;
 using System;
 using UnityEngine;
 
@@ -35,8 +36,8 @@ namespace Sodom.Enemies
 
         private int targetDirection;
 
-        [SerializeField, ReadOnly] private bool onGround;
-        [SerializeField, ReadOnly] private DetectedEdges edges;
+        [ShowNonSerializedField, NaughtyAttributes.ReadOnly] private bool onGround;
+        [ShowNonSerializedField, NaughtyAttributes.ReadOnly] private DetectedEdges edges;
 
         public event Action<DetectedEdges> DetectEdgeEvent;
         public event Action<bool> OnGroundEvent;

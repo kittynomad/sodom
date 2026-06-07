@@ -14,6 +14,8 @@ namespace Sodom.Enemies.AI
     {
         Aggro,
         LoseAggro,
-        Danger
+        Danger,
+        Blocked,
+        Damage
     }
 }

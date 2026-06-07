@@ -1,0 +1,46 @@
+/*****************************************************************************
+// File Name : #SCRIPTNAME#.cs
+// Author : 
+// Creation Date : 
+// Last Modified : 
+//
+// Brief Description : 
+*****************************************************************************/
+using UnityEngine;
+using System.Threading;
+using System;
+
+namespace Sodom.Enemies.AI
+{
+    [System.Serializable]
+    public class #SCRIPTNAME# : EnemyState
+    {
+        #NOTRIM#
+        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        {
+            await base.RunAI(enemy, ct);
+            ct.ThrowIfCancellationRequested();
+            
+            // Get Components
+    
+            void CleanUp()
+            {
+                // Reset back to defaults.
+            }
+    
+            try
+            {
+                while (!ct.IsCancellationRequested)
+                {
+                    // State logic
+                }
+                CleanUp();
+            }
+            catch (OperationCanceledException oce)
+            {
+                CleanUp();
+                throw oce;
+            }
+        }
+    }
+}

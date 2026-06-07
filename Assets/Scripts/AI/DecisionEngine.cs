@@ -22,7 +22,9 @@ namespace Sodom.Enemies.AI
         /// <param name="type">The type of sense the object triggered.</param>
         /// <param name="isSensed">Whether the enemy is currently sensed or is no longer sensed.</param>
         /// <param name="enemyController">The enemy that this</param>
-        public abstract void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController enemyController);
+        /// <param name="ai">The ai controller of the enemy.</param>
+        /// <returns>A new state to transition to based on the sense.</returns>
+        public abstract EnemyState OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController enemyController, EnemyAI ai);
 
         /// <summary>
         /// Makes a decision on the next enemy state that the enemy should move to based on it's properties.
@@ -30,7 +32,7 @@ namespace Sodom.Enemies.AI
         /// <param name="currentState">the current state of the enemy.</param>
         /// <param name="enemyController">The enemy that is facing the decision.</param>
         /// <param name="ai">The AI controller for this enemy.</param>
-        public abstract EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemyController, EnemyAI ai);
+        public abstract EnemyState Decide(EnemyState currentState, EnemyController enemyController, EnemyAI ai);
     }
 
 }

@@ -13,30 +13,19 @@ using UnityEngine;
 namespace Sodom.Enemies.AI.Tests
 {
     [System.Serializable]
-    public class TestCombatState : EnemyBehavior
+    public class TestCombatState : EnemyState
     {
-        [SerializeField] private Color debugColor;
-        [SerializeField] private Color debugNoticeColor;
-        [SerializeField] private float preActDelay;
         [SerializeField] private MoveToDistanceBehavior moveInRange;
         [SerializeField] private RandomMovementBehavior randomMovement;
         [Header("Backdash")]
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
-        [SerializeField, Tooltip("How long the enemy should wait before performing it's next attack if it " +
-            "doesn't backdash.")] 
-        private float backdashFailDelay;
         [SerializeReference, ClassDropdown(typeof(AttackBehavior))] private AttackBehavior[] attacks;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            if (enemy.TryGetComponent(out SpriteRenderer rend))
-            {
-                rend.color = debugNoticeColor;
-            }
-            await Awaitable.WaitForSecondsAsync(preActDelay, ct);
-            rend.color = debugColor;
+            await base.RunAI(enemy, ct);
             while (!ct.IsCancellationRequested)
             {
                 // Make the enemy dash back.
@@ -53,8 +42,6 @@ namespace Sodom.Enemies.AI.Tests
                 {
                     await randomMovement.Run(enemy, ct);
                 }
-
-                
 
                 ct.ThrowIfCancellationRequested();
 

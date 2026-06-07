@@ -17,9 +17,9 @@ namespace Sodom.Enemies.AI
         // Serialized Fields
         [SerializeField] private EnemyAI ai;
 
-        private EnemyBehavior currentState;
+        private EnemyState currentState;
         private CancellationTokenSource stateCanceller;
-        private EnemySensor[] sensors;
+        private IEnemySensor[] sensors;
 
         // AI Fields
         public GameObject Target { get; set; }
@@ -30,8 +30,8 @@ namespace Sodom.Enemies.AI
 
         private void Awake()
         {
-            sensors = GetComponentsInChildren<EnemySensor>();
-            foreach (EnemySensor sensor in sensors)
+            sensors = GetComponentsInChildren<IEnemySensor>();
+            foreach (IEnemySensor sensor in sensors)
             {
                 if (sensor != null)
                 {
@@ -48,7 +48,7 @@ namespace Sodom.Enemies.AI
 
         private void OnDestroy()
         {
-            foreach (EnemySensor sensor in sensors)
+            foreach (IEnemySensor sensor in sensors)
             {
                 if (sensor != null)
                 {
@@ -71,12 +71,12 @@ namespace Sodom.Enemies.AI
         /// <summary>
         /// Updates the enemy state based on the results of the decision engine.
         /// </summary>
-        public void QueryDecisionEngine()
+        public void QueryDecisionEngine(bool isCancel)
         {
-            EnemyBehavior nextState = ai.QueryDecisionEngine(currentState, this);
+            EnemyState nextState = ai.QueryDecisionEngine(currentState, this);
             if (nextState != null)
             {
-                SetState(nextState);
+                SetStateInternal(nextState, isCancel);
             }
         }
 
@@ -88,10 +88,19 @@ namespace Sodom.Enemies.AI
         /// <param name="isSensed"></param>
         public void OnSense(GameObject sensedObject, SenseType type, bool isSensed)
         {
-            ai.OnSense(sensedObject, type, isSensed, this);
+            EnemyState newState = ai.OnSense(sensedObject, type, isSensed, this);
+            // If the sense did not prompt a new state, then query the decision engine for any changes to state.
+            if (newState != null)
+            {
+                SetState(newState);
+            }
+            else
+            {
+                // Query the decision engine.
+                QueryDecisionEngine(true);
+            }
 
-            // Query the decision engine.
-            QueryDecisionEngine();
+            
         }
         #endregion
 
@@ -100,9 +109,16 @@ namespace Sodom.Enemies.AI
         /// Sets the current state.
         /// </summary>
         /// <param name="state">The state to set.</param>
-        public void SetState(EnemyBehavior state)
+        public bool SetState(EnemyState state)
         {
-            if (state == currentState) { return; }
+            return SetStateInternal(state, true);
+        }
+
+        private bool SetStateInternal(EnemyState state, bool isCancel)
+        {
+            if (state == currentState) { return false; }
+            // Prevents uncancellable states (like stagger) from being interrupted.
+            if (currentState != null && !currentState.IsCancellable && isCancel) { return false; }
             if (currentState != null)
             {
                 if (stateCanceller != null)
@@ -118,6 +134,7 @@ namespace Sodom.Enemies.AI
                 stateCanceller = new CancellationTokenSource();
                 StateRoutine();
             }
+            return true;
         }
 
         private async void StateRoutine()
@@ -128,7 +145,8 @@ namespace Sodom.Enemies.AI
                 await currentState.Run(this, stateCanceller.Token);
                 if (!stateCanceller.Token.IsCancellationRequested)
                 {
-                    QueryDecisionEngine();
+                    // The only non-cancel query or state set is if the state finishes naturally.
+                    QueryDecisionEngine(false);
                 }
             }
             catch (Exception e)
@@ -149,7 +167,7 @@ namespace Sodom.Enemies.AI
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
-        public T SetState<T>() where T : EnemyBehavior
+        public T SetState<T>() where T : EnemyState
         {
             T state = ai.GetState<T>();
             SetState(state);

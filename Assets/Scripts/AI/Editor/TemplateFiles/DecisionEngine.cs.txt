@@ -1,0 +1,47 @@
+/*****************************************************************************
+// File Name : #SCRIPTNAME#.cs
+// Author : 
+// Creation Date : 
+// Last Modified : 
+//
+// Brief Description : 
+*****************************************************************************/
+using UnityEngine;
+
+namespace Sodom.Enemies.AI
+{
+    [System.Serializable]
+    public class #SCRIPTNAME# : DecisionEngine
+    {
+        #NOTRIM#
+        public override void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller)
+        {
+            
+            switch (type)
+            {
+                case SenseType.Aggro:
+                    if (isSensed)
+                    {
+                        controller.Target = sensedObject;
+                    }
+                    else if (controller.Target == sensedObject)
+                    {
+                        // Lose target when they exit the sense range.
+                        controller.Target = null;
+                    }
+    
+                    break;
+                case SenseType.LoseAggro:
+                    break;
+            }
+        }
+        public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        {
+            switch (currentState)
+            {
+                
+            }
+            return null;
+        }
+    }
+}
