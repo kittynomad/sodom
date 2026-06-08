@@ -6,7 +6,7 @@ public class SpawnPointHolder : MonoBehaviour
 {
     public static SpawnPointHolder instance;
 
-    private Dictionary<string, Vector2> sceneSpawnPoints;
+    private Dictionary<string, Vector2> sceneSpawnPoints = new Dictionary<string, Vector2>();
 
     public Dictionary<string, Vector2> SceneSpawnPoints { get => sceneSpawnPoints; set => sceneSpawnPoints = value; }
 
