@@ -42,5 +42,9 @@ public class GroundSaver : MonoBehaviour
     public void SafeReturn()
     {
         transform.position = _lastSafePosition;
+        if(gameObject.TryGetComponent(out Rigidbody2D rb))
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
     }
 }
