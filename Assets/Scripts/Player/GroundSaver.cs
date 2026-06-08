@@ -39,7 +39,7 @@ public class GroundSaver : MonoBehaviour
     }
 
     [Button]
-    public void TestSafeReturn()
+    public void SafeReturn()
     {
         transform.position = _lastSafePosition;
     }
