@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using NaughtyAttributes;
+using UnityEngine.SceneManagement;
 
 public class DebugFunctions : MonoBehaviour
 {
@@ -22,5 +24,11 @@ public class DebugFunctions : MonoBehaviour
     public void ToggleDash()
     {
         pl.DashUnlocked = !pl.DashUnlocked;
+    }
+
+    [Button]
+    public void ReloadScene()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }

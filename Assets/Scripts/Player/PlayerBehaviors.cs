@@ -66,6 +66,11 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //set health and ammo
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
+
+        if(SpawnPointHolder.instance != null && SpawnPointHolder.instance.GetRelevantSpawnPoint(out Vector2 pos))
+        {
+            transform.position = pos;
+        }
     }
     public void FixedUpdate()
     {
