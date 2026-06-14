@@ -10,7 +10,7 @@ using CustomAttributes;
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [RequireComponent(typeof(EnemyMovement))]
     public class EnemyPatrolling : MonoBehaviour

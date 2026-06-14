@@ -12,7 +12,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     public class EnemyAttacker : MonoBehaviour
     {

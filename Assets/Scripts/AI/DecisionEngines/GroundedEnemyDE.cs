@@ -1,9 +1,17 @@
+/*****************************************************************************
+// File Name : DecisionEngine.cs
+// Author : Arcadia Koederitz
+// Creation Date : 4/26/2026
+// Last Modified : 5/19/2026
+//
+// Brief Description : Standard decision engine for grounded enemies.
+*****************************************************************************/
 using UnityEngine;
 
-namespace Sodom.Enemies.AI.Tests
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    public class TestEnemyDE : DecisionEngine
+    public class GroundedEnemyDE : DecisionEngine
     {
         public override EnemyState OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController enemy, EnemyAI ai)
         {
@@ -41,10 +49,10 @@ namespace Sodom.Enemies.AI.Tests
                 case EnterCombatState:
                     if (enemy.Target != null)
                     {
-                        return ai.GetState<TestCombatState>();
+                        return ai.GetState<CombatState>();
                     }
                     break;
-                case TestCombatState:
+                case CombatState:
                     if (enemy.Target == null)
                     {
                         Debug.Log("Lost Enemy.");
@@ -58,7 +66,7 @@ namespace Sodom.Enemies.AI.Tests
                     }
                     else
                     {
-                        return ai.GetState<TestCombatState>();
+                        return ai.GetState<TestEnemyCombatState>();
                     }
             }
             return null;

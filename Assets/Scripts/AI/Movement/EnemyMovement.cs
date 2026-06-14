@@ -11,7 +11,7 @@ using NaughtyAttributes;
 using System;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class EnemyMovement : MonoBehaviour

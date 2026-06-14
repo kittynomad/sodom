@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEditor;
 
-namespace Sodom.Enemies.AI.Editor
+namespace TFOOL.Enemies.AI.Editor
 {
     public static class TemplateCreator
     {

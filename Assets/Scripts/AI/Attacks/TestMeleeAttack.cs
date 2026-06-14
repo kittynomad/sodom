@@ -10,7 +10,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [System.Serializable]
     public class TestMeleeAttack : EnemyAttack

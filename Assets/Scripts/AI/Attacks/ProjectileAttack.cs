@@ -11,7 +11,7 @@ using System.Threading;
 using UnityEditor.Search;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [System.Serializable]
     [DropdownGroup("Projectiles")]

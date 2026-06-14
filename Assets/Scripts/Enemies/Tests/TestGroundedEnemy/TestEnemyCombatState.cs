@@ -1,19 +1,19 @@
 /*****************************************************************************
-// File Name : TestCombatState.cs
+// File Name : GroundedCombatState.cs
 // Author : Arcadia Koederitz
 // Creation Date : 4/26/2026
-// Last Modified : 4/26/2026
+// Last Modified : 6/14/2026
 //
-// Brief Description : Test combat behavior to show intended functionality.
+// Brief Description : Base combat state logic for grounded enemies.
 *****************************************************************************/
 using CustomAttributes;
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI.Tests
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    public class TestCombatState : EnemyState
+    public class TestEnemyCombatState : CombatState
     {
         [SerializeField] private MoveToDistanceBehavior moveInRange;
         [SerializeField] private RandomMovementBehavior randomMovement;
@@ -21,7 +21,6 @@ namespace Sodom.Enemies.AI.Tests
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
-        [SerializeReference, ClassDropdown(typeof(AttackBehavior))] private AttackBehavior[] attacks;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {

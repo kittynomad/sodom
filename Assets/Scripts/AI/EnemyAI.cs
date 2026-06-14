@@ -12,7 +12,7 @@ using CustomAttributes;
 using System;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [CreateAssetMenu(fileName = "EnemyAI", menuName = "Scriptable Objects/Enemy AI")]
     public class EnemyAI : ScriptableObject

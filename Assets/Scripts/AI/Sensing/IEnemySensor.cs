@@ -6,7 +6,7 @@
 //
 // Brief Description : Interface for any script that acts as a sense for the enemy.
 *****************************************************************************/
-using Sodom.Enemies.AI;
+using TFOOL.Enemies.AI;
 using System;
 using UnityEngine;
 

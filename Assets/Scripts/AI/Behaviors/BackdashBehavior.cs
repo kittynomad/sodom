@@ -12,7 +12,7 @@ using Unity.VisualScripting;
 using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [Serializable]
     public class BackdashBehavior : EnemyBehavior
