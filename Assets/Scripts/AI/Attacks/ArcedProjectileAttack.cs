@@ -21,13 +21,8 @@ namespace TFOOL.Enemies
         {
             ct.ThrowIfCancellationRequested();
 
-            Vector2 toTarget = target.transform.position - shotPoint.transform.position;
-
-            Rigidbody2D projInst = GameObject.Instantiate(projectilePrefab,
-                shotPoint.transform.position, Quaternion.identity);
-
-            projInst.AddForce(GetArcedShotVector2(projectileSpeed, 
-                target.transform.position, shotPoint.transform.position, projInst.gravityScale), ForceMode2D.Impulse);
+            ShootProjectile(GetArcedShotVector2(projectileSpeed,
+                target.transform.position, shotPoint.transform.position, projectilePrefab.Rigidbody.gravityScale));
 
             return Awaitable.NextFrameAsync(ct);
         }

@@ -1,0 +1,62 @@
+/*****************************************************************************
+// File Name : EnemyProjectile.cs
+// Author : Arcadia Koederitz
+// Creation Date : 4/26/2026
+// Last Modified : 6/14/2026
+//
+// Brief Description : Base class for enemy projectiles.
+*****************************************************************************/
+using CustomAttributes;
+using NaughtyAttributes;
+using System.Collections;
+using UnityEngine;
+
+namespace TFOOL.Enemies
+{
+    [RequireComponent(typeof(Rigidbody2D))]
+    public class EnemyProjectile : MonoBehaviour
+    {
+        [SerializeField] private float maxLifetime;
+        [SerializeField, Tooltip("The amount of time the projectile will fly straight before gravity takes effect. " +
+            " Set to 0 to ignore.")] 
+        private float falloffTime;
+
+        [SerializeField, ShowIfNull] private Rigidbody2D rb;
+
+        public Rigidbody2D Rigidbody => rb;
+
+        private void Reset()
+        {
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        public void Launch(Vector2 launchVector)
+        {
+            rb.AddForce(launchVector, ForceMode2D.Impulse);
+        }
+
+        private IEnumerator LifetimeRoutine()
+        {
+            float baseGravityScale = -1;
+            if (falloffTime > 0)
+            {
+                baseGravityScale = rb.gravityScale;
+                rb.gravityScale = 0;
+            }
+
+            float timer = 0;
+            while(timer < maxLifetime)
+            {
+                if (timer > falloffTime && baseGravityScale > 0)
+                {
+                    rb.gravityScale = baseGravityScale;
+                    baseGravityScale = -1;
+                }
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+        }
+    }
+
+}
