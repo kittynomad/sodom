@@ -1,36 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1780923032453323582
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5039983913760247280}
-  m_Layer: 9
-  m_Name: ShootPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5039983913760247280
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1780923032453323582}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0.5, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7834520111281832998}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5025184963648662340
 GameObject:
   m_ObjectHideFlags: 0
@@ -362,9 +331,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8543494262690008998, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3450645299944032208}
-    - targetCorrespondingSourceObject: {fileID: 8543494262690008998, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5039983913760247280}
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       insertIndex: 4
@@ -437,8 +403,6 @@ MonoBehaviour:
   walkSpeed: 2
   acceleration: 15
   rb: {fileID: 5631124460466104264}
-  onGround: 0
-  edges: 0
 --- !u!114 &8149546322595399679
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -466,24 +430,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyAttacker
   attacks:
-  - rid: 7292672991980683352
-  - rid: 7292672991980683369
+  - rid: 3144940042581966939
+  - rid: 3144940042581966940
   references:
     version: 2
     RefIds:
-    - rid: 7292672991980683352
-      type: {class: TestMeleeAttack, ns: Sodom.Enemies, asm: Assembly-CSharp}
+    - rid: 3144940042581966939
+      type: {class: ArcedProjectileAttack, ns: TFOOL.Enemies, asm: Assembly-CSharp}
       data:
-        attackName: MeleeAttack
-        hitbox: {fileID: 5025184963648662340}
-        attackTime: 0.75
-    - rid: 7292672991980683369
-      type: {class: ArcedProjectileAttack, ns: Sodom.Enemies, asm: Assembly-CSharp}
-      data:
-        attackName: ProjectileAttack
-        shotPoint: {fileID: 5039983913760247280}
+        attackName: TestProjectile
+        shotPoint: {fileID: 3450645299944032208}
         projectilePrefab: {fileID: 1234941232326185434, guid: f4bf4c99524db054caf2c532d581fdb1, type: 3}
         projectileSpeed: 7
+    - rid: 3144940042581966940
+      type: {class: TestMeleeAttack, ns: TFOOL.Enemies, asm: Assembly-CSharp}
+      data:
+        attackName: TestAttack
+        hitbox: {fileID: 5025184963648662340}
+        attackTime: 1
 --- !u!50 &5631124460466104264 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 6056388843504544840, guid: 6080791b43f016a429f577f705ec96bd, type: 3}

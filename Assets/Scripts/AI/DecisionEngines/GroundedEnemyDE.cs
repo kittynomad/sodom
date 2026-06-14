@@ -38,7 +38,7 @@ namespace TFOOL.Enemies.AI
         {
             switch (currentState)
             {
-                case PatrolState:
+                case GroundedPatrolState:
                     // Move to combat if the enemy has a target.
                     if (enemy.Target != null)
                     {
@@ -56,17 +56,17 @@ namespace TFOOL.Enemies.AI
                     if (enemy.Target == null)
                     {
                         Debug.Log("Lost Enemy.");
-                        return ai.GetState<PatrolState>();
+                        return ai.GetState<GroundedPatrolState>();
                     }
                     break;
                 default:
                     if (enemy.Target == null)
                     {
-                        return ai.GetState<PatrolState>();
+                        return ai.GetState<GroundedPatrolState>();
                     }
                     else
                     {
-                        return ai.GetState<TestEnemyCombatState>();
+                        return ai.GetState<CombatState>();
                     }
             }
             return null;

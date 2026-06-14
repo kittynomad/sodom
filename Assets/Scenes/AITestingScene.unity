@@ -445,50 +445,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: AIEnemy
       objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: 'attacks.Array.data[0]'
-      value: 3144940042581966936
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: 'attacks.Array.data[1]'
-      value: 3144940042581966937
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: 'managedReferences[3144940042581966936]'
-      value: Assembly-CSharp TFOOL.Enemies.TestMeleeAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: 'managedReferences[3144940042581966937]'
-      value: Assembly-CSharp TFOOL.Enemies.ArcedProjectileAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966936].hitbox
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966937].shotPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966936].attackName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966936].attackTime
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966937].attackName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966937].projectileSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7602039157678133168, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
-      propertyPath: managedReferences[3144940042581966937].projectilePrefab
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 7834520111281832998, guid: bf589259da69c8b4f8af9c1b7f1f20ff, type: 3}
       propertyPath: m_LocalPosition.x
       value: 12.38

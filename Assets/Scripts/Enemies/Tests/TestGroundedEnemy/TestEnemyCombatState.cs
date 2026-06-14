@@ -13,6 +13,7 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
+    [DropdownGroup("Tests/TestGroundedEnemy")]
     public class TestEnemyCombatState : CombatState
     {
         [SerializeField] private MoveToDistanceBehavior moveInRange;

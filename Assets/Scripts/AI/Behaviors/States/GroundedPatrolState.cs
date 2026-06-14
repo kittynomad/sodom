@@ -13,7 +13,7 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    public class PatrolState : EnemyState
+    public class GroundedPatrolState : EnemyState
     {
         [SerializeField] private float patrolWait;
 

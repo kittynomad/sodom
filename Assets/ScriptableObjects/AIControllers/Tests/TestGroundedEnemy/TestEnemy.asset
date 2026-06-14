@@ -11,65 +11,65 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59e3ae87bf60ff94aa4bbeeb62bbaa2e, type: 3}
   m_Name: TestEnemy
-  m_EditorClassIdentifier: Assembly-CSharp::Sodom.Enemies.AI.EnemyAI
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyAI
   decisionEngine:
-    rid: 7292672944035594356
+    rid: 3144940043314135121
   stateMachine:
-  - rid: 7292672944035594357
-  - rid: 3144939879309508717
-  - rid: 7292672944035594358
+  - rid: 3144940043314135122
+  - rid: 3144940043314135123
+  - rid: 3144940043314135124
   references:
     version: 2
     RefIds:
-    - rid: 3144939879309508717
-      type: {class: EnterCombatState, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 1, g: 0.9400917, b: 0, a: 1}
-        enterCombatDelay: 0.5
-    - rid: 7292672944035594356
-      type: {class: TestEnemyDE, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
+    - rid: 3144940043314135121
+      type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 
-    - rid: 7292672944035594357
-      type: {class: PatrolState, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
+    - rid: 3144940043314135122
+      type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 1, b: 1, a: 1}
-        patrolWait: 1.5
-    - rid: 7292672944035594358
-      type: {class: TestCombatState, ns: Sodom.Enemies.AI.Tests, asm: Assembly-CSharp}
+        patrolWait: 1
+    - rid: 3144940043314135123
+      type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0.95907193, b: 0, a: 1}
+        enterCombatDelay: 1
+    - rid: 3144940043314135124
+      type: {class: TestEnemyCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
+        attacks:
+        - rid: 3144940043314135125
+        - rid: 3144940043314135126
         moveInRange:
-          moveSpeed: 5
+          moveSpeed: 4
           acceleration: 25
-          stopAtEdge: 1
-          distanceRange: {x: 3, y: 6}
+          stopAtEdge: 0
+          distanceRange: {x: 0, y: 6}
         randomMovement:
           moveSpeed: 2
           acceleration: 15
           stopAtEdge: 1
-          wanderTime: 0.5
-        backdashThreshold: 4
+          wanderTime: 1
+        backdashThreshold: 3
         backdash:
           dashForce: 7
-          dashJump: 2
-          postDashDelay: 1.5
-        attacks:
-        - rid: 7292672991980683375
-        - rid: 7292672991980683370
-    - rid: 7292672991980683370
-      type: {class: AttackBehavior, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
+          dashJump: 4
+          postDashDelay: 1
+    - rid: 3144940043314135125
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: ProjectileAttack
-        idealDistance: 6
-        postAttackDelay: 0.75
-    - rid: 7292672991980683375
-      type: {class: WalkUpAttackBehavior, ns: Sodom.Enemies.AI, asm: Assembly-CSharp}
+        attackName: TestProjectile
+        idealDistance: 7
+        postAttackDelay: 1
+    - rid: 3144940043314135126
+      type: {class: WalkUpAttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: MeleeAttack
+        attackName: TestAttack
         idealDistance: 4
-        postAttackDelay: 0.75
+        postAttackDelay: 1
         moveToDistance:
-          moveSpeed: 5
+          moveSpeed: 4
           acceleration: 25
-          stopAtEdge: 1
+          stopAtEdge: 0
           distanceRange: {x: 0, y: 1.5}
