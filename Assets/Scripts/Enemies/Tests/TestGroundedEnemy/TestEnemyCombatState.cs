@@ -48,21 +48,7 @@ namespace TFOOL.Enemies.AI
                 // Point towards the target.
                 enemy.PointTowardsTarget();
 
-                // Chose an attack to perform based on distance from their ideal distance.
-                int chosenAttackIndex = 0;
-                float closestDistance = Mathf.Abs(attacks[0].IdealDistance - enemy.ToTarget.magnitude);
-                for(int i = 1; i < attacks.Length; i++)
-                {
-                    float distanceToIdeal = Mathf.Abs(attacks[i].IdealDistance - enemy.ToTarget.magnitude);
-                    // If the enemy is closer to this attack's ideal distance from it's target, this is now the 
-                    // most ideal attack.
-                    if (distanceToIdeal < closestDistance)
-                    {
-                        chosenAttackIndex = i;
-                        closestDistance = distanceToIdeal;
-                    }
-                }
-                await attacks[chosenAttackIndex].Run(enemy, ct);
+                await GetAttackByDistance(enemy.ToTarget.magnitude).Run(enemy, ct);
             }
         }
     }

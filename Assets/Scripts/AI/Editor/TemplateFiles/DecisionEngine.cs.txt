@@ -8,13 +8,13 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
     public class #SCRIPTNAME# : DecisionEngine
     {
         #NOTRIM#
-        public override void OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller)
+        public override EnemyState OnSense(GameObject sensedObject, SenseType type, bool isSensed, EnemyController controller, EnemyAI ai)
         {
             
             switch (type)
@@ -35,7 +35,7 @@ namespace Sodom.Enemies.AI
                     break;
             }
         }
-        public override EnemyBehavior Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        public override EnemyState Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
         {
             switch (currentState)
             {

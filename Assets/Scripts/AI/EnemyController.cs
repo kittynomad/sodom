@@ -9,6 +9,7 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TFOOL.Enemies.AI
 {
@@ -26,6 +27,7 @@ namespace TFOOL.Enemies.AI
 
         #region Properties
         public Vector2 ToTarget => Target.transform.position - transform.position;
+        public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);
         #endregion
 
         private void Awake()

@@ -8,6 +8,7 @@
 *****************************************************************************/
 using System;
 using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -24,7 +25,7 @@ namespace TFOOL.Enemies
         /// <param name="attackTime">The amount of time for the attack.</param>
         /// <param name="ct">The cancellation token for the enemy behavior.</param>
         /// <returns></returns>
-        public override async Awaitable PerformAttack(GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
         {
             try
             {
@@ -39,5 +40,4 @@ namespace TFOOL.Enemies
             }
         }
     }
-
 }

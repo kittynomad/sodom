@@ -8,6 +8,7 @@
 *****************************************************************************/
 using CustomAttributes;
 using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -16,7 +17,7 @@ namespace TFOOL.Enemies
     [DropdownGroup("Projectiles")]
     public class ArcedProjectileAttack : ProjectileAttack
     {
-        public override Awaitable PerformAttack(GameObject target, CancellationToken ct)
+        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 

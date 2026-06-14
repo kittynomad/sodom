@@ -24,7 +24,7 @@ namespace TFOOL.Enemies.AI
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             enemy.PointTowardsTarget();
-            await PerformAttack(GetAttacker(enemy), enemy.Target, ct);
+            await PerformAttack(enemy, GetAttacker(enemy), enemy.Target, ct);
             await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
         }
 
@@ -37,10 +37,10 @@ namespace TFOOL.Enemies.AI
             return attacker;
         }
 
-        protected async Awaitable PerformAttack(EnemyAttacker attacker, GameObject target, CancellationToken ct)
+        protected async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, GameObject target, CancellationToken ct)
         { 
             EnemyAttack toPerform = attacker.GetAttack(attackName);
-            await toPerform.PerformAttack(target, ct);
+            await toPerform.PerformAttack(enemy, target, ct);
         }
     }
 }

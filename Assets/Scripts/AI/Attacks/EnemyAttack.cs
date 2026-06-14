@@ -7,6 +7,7 @@
 // Brief Description : Script that represents a specific attack an enemy can use.
 *****************************************************************************/
 using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -18,6 +19,6 @@ namespace TFOOL.Enemies
 
         public string Name => attackName;
 
-        public abstract Awaitable PerformAttack(GameObject target, CancellationToken ct);
+        public abstract Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct);
     }
 }

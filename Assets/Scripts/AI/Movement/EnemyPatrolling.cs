@@ -16,6 +16,7 @@ namespace TFOOL.Enemies
     public class EnemyPatrolling : MonoBehaviour
     {
         [SerializeField] private float patrolArea;
+        [SerializeField] private bool immediateBrake;
 
         // Components
         [SerializeField, ShowIfNull] private EnemyMovement movement;
@@ -63,8 +64,16 @@ namespace TFOOL.Enemies
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Worry about pathfinding later.
                 // Stop patrolling once the point has been reached.
-                if (Mathf.Abs(toDest.x) < 0.5f || EnemyMovement.CheckDestinationObscured(isLeft, movement.Edges))
+                if (Mathf.Abs(toDest.x) < 0.5f)
                 {
+                    break;
+                }
+                else if (EnemyMovement.CheckDestinationObscured(isLeft, movement.Edges))
+                {
+                    if (immediateBrake)
+                    {
+                        movement.Rigidbody.linearVelocity = Vector2.zero;
+                    }
                     break;
                 }
                 else
