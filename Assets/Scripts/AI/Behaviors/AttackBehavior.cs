@@ -20,6 +20,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] protected float postAttackDelay;
 
         public float IdealDistance => idealDistance;
+        public string AttackName => attackName;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {

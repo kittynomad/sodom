@@ -7,6 +7,8 @@
 // Brief Description : Base combat state to allow for easier selection.
 *****************************************************************************/
 using CustomAttributes;
+using System;
+using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -34,6 +36,11 @@ namespace TFOOL.Enemies.AI
             }
 
             return attacks[chosenAttackIndex];
+        }
+
+        protected AttackBehavior GetAttackByName(string name)
+        {
+            return Array.Find(attacks, x => x.AttackName == name);
         }
     }
 }

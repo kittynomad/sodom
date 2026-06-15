@@ -15,8 +15,8 @@ TagManager:
   - Ground
   - Corpse
   - Enemy
-  - 
-  - 
+  - EnemyHitbox
+  - PlayerHitbox
   - 
   - 
   - 

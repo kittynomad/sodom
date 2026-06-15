@@ -33,6 +33,7 @@ namespace TFOOL.Enemies
         public void Launch(Vector2 launchVector)
         {
             rb.AddForce(launchVector, ForceMode2D.Impulse);
+            StartCoroutine(LifetimeRoutine());
         }
 
         private IEnumerator LifetimeRoutine()
@@ -56,6 +57,8 @@ namespace TFOOL.Enemies
                 timer += Time.deltaTime;
                 yield return null;
             }
+
+            Destroy(gameObject);
         }
     }
 

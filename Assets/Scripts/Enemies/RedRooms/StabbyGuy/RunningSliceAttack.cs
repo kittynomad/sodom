@@ -58,6 +58,7 @@ namespace TFOOL.Enemies.AI
                 // Move towards the player until within range.
                 while(enemy.ToTarget.magnitude > attackRange)
                 {
+                    ct.ThrowIfCancellationRequested();
                     movement.SetDirection(enemy.DirectionToTarget);
                     await Awaitable.FixedUpdateAsync();
                 }

@@ -22,6 +22,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
+        [SerializeField] private string throwAttackName;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
@@ -43,10 +44,16 @@ namespace TFOOL.Enemies.AI
                     if (enemy.ToTarget.magnitude < backdashThreshold)
                     {
                         await backdash.Run(enemy, ct);
+                        // If the enemy backdashes, always use the throw attack.
+                        ct.ThrowIfCancellationRequested();
+                        enemy.PointTowardsTarget();
+                        await GetAttackByName(throwAttackName).Run(enemy, ct);
+                        continue;
                     }
                     else
                     {
                         await randomMovement.Run(enemy, ct);
+                        
                     }
 
                     ct.ThrowIfCancellationRequested();

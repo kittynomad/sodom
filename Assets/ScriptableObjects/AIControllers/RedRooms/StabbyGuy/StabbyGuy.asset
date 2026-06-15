@@ -38,14 +38,36 @@ MonoBehaviour:
       type: {class: StabbyGuyCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
-        attacks: []
+        attacks:
+        - rid: 3144940061986914382
+        - rid: 3144940061986914383
+        - rid: 3144940061986914384
         randomMovement:
           moveSpeed: 2
           acceleration: 30
           stopAtEdge: 1
           wanderTime: 0.5
-        backdashThreshold: 5
+        backdashThreshold: 4
         backdash:
-          dashForce: 10
-          dashJump: 3
+          dashForce: 7
+          dashJump: 2
           postDashDelay: 1
+        throwAttackName: KnifeThrow
+    - rid: 3144940061986914382
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: KnifeThrow
+        idealDistance: 0
+        postAttackDelay: 0.5
+    - rid: 3144940061986914383
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: TeleportStab
+        idealDistance: 9
+        postAttackDelay: 2
+    - rid: 3144940061986914384
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: RunningSlice
+        idealDistance: 5
+        postAttackDelay: 1
