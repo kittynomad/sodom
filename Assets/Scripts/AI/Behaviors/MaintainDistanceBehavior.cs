@@ -10,7 +10,7 @@ using System;
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
     public class MaintainDistanceBehavior : EnemyBehavior

@@ -1,0 +1,75 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e3ae87bf60ff94aa4bbeeb62bbaa2e, type: 3}
+  m_Name: TestEnemy
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyAI
+  decisionEngine:
+    rid: 3144940043314135121
+  stateMachine:
+  - rid: 3144940043314135122
+  - rid: 3144940043314135123
+  - rid: 3144940043314135124
+  references:
+    version: 2
+    RefIds:
+    - rid: 3144940043314135121
+      type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 3144940043314135122
+      type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 1, b: 1, a: 1}
+        patrolWait: 1
+    - rid: 3144940043314135123
+      type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0.95907193, b: 0, a: 1}
+        enterCombatDelay: 1
+    - rid: 3144940043314135124
+      type: {class: TestEnemyCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0, b: 0, a: 1}
+        attacks:
+        - rid: 3144940043314135125
+        - rid: 3144940043314135126
+        moveInRange:
+          moveSpeed: 4
+          acceleration: 25
+          stopAtEdge: 0
+          distanceRange: {x: 0, y: 6}
+        randomMovement:
+          moveSpeed: 2
+          acceleration: 15
+          stopAtEdge: 1
+          wanderTime: 1
+        backdashThreshold: 3
+        backdash:
+          dashForce: 7
+          dashJump: 4
+          postDashDelay: 1
+    - rid: 3144940043314135125
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: TestProjectile
+        idealDistance: 7
+        postAttackDelay: 1
+    - rid: 3144940043314135126
+      type: {class: WalkUpAttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: TestAttack
+        idealDistance: 4
+        postAttackDelay: 1
+        moveToDistance:
+          moveSpeed: 4
+          acceleration: 25
+          stopAtEdge: 0
+          distanceRange: {x: 0, y: 1.5}

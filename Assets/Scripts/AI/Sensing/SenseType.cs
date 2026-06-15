@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     public enum SenseType
     {

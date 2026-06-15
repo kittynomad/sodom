@@ -11,7 +11,7 @@ using NaughtyAttributes;
 using System;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
     public class EnemyMovement : MonoBehaviour
@@ -238,19 +238,23 @@ namespace Sodom.Enemies
         /// </summary>
         private void OnDrawGizmosSelected()
         {
-            Gizmos.color = Color.green;
-            // Draw Wall Check.
-            for(int i = -1; i <= 1; i += 2)
+            if (physicsCollider != null)
             {
-                Bounds wallCheckBounds = GetWallCheckBounds(i);
-                Gizmos.DrawWireCube(wallCheckBounds.center, wallCheckBounds.size);
+                Gizmos.color = Color.green;
+                // Draw Wall Check.
+                for (int i = -1; i <= 1; i += 2)
+                {
+                    Bounds wallCheckBounds = GetWallCheckBounds(i);
+                    Gizmos.DrawWireCube(wallCheckBounds.center, wallCheckBounds.size);
+                }
+                // Draw Ground/Edge Check.
+                for (int i = -1; i <= 1; i += 2)
+                {
+                    Vector2 groundCheckVector = GetEdgeVectorMin(i, GROUND_CHECK_HEIGHT);
+                    Gizmos.DrawLine(groundCheckVector, groundCheckVector + Vector2.down * GROUND_CHECK_LENGTH);
+                }
             }
-            // Draw Ground/Edge Check.
-            for (int i = -1; i <= 1; i += 2)
-            {
-                Vector2 groundCheckVector = GetEdgeVectorMin(i, GROUND_CHECK_HEIGHT);
-                Gizmos.DrawLine(groundCheckVector, groundCheckVector + Vector2.down * GROUND_CHECK_LENGTH);
-            }
+            
         }
     }
 

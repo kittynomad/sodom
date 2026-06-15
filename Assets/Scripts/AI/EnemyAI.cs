@@ -12,7 +12,7 @@ using CustomAttributes;
 using System;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [CreateAssetMenu(fileName = "EnemyAI", menuName = "Scriptable Objects/Enemy AI")]
     public class EnemyAI : ScriptableObject
@@ -25,9 +25,9 @@ namespace Sodom.Enemies.AI
         /// </summary>
         /// <typeparam name="T">The type of state to get</typeparam>
         /// <returns>The found state from the state machine,.</returns>
-        public T GetState<T>() where T : EnemyState
+        public T GetState<T>(bool includeSubclasses = true) where T : EnemyState
         {
-            T state = (T)Array.Find(stateMachine, item => item.GetType() == typeof(T));
+            T state = (T)Array.Find(stateMachine, item => item.GetType() == typeof(T) || (includeSubclasses && item.GetType().IsSubclassOf(typeof(T))));
             return state;
         }
         /// <summary>

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59e3ae87bf60ff94aa4bbeeb62bbaa2e, type: 3}
+  m_Name: StabbyGuy
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyAI
+  decisionEngine:
+    rid: 3144940043314135134
+  stateMachine:
+  - rid: 3144940043314135135
+  - rid: 3144940043314135136
+  - rid: 3144940043314135146
+  references:
+    version: 2
+    RefIds:
+    - rid: 3144940043314135134
+      type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 3144940043314135135
+      type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 1, b: 1, a: 1}
+        patrolWait: 1
+    - rid: 3144940043314135136
+      type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0.99804246, b: 0, a: 1}
+        enterCombatDelay: 0.75
+    - rid: 3144940043314135146
+      type: {class: StabbyGuyCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0, b: 0, a: 1}
+        attacks:
+        - rid: 3144940061986914382
+        - rid: 3144940061986914383
+        - rid: 3144940061986914384
+        randomMovement:
+          moveSpeed: 2
+          acceleration: 30
+          stopAtEdge: 1
+          wanderTime: 0.5
+        backdashThreshold: 4
+        backdash:
+          dashForce: 7
+          dashJump: 2
+          postDashDelay: 1
+        throwAttackName: KnifeThrow
+    - rid: 3144940061986914382
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: KnifeThrow
+        idealDistance: 0
+        postAttackDelay: 0.5
+    - rid: 3144940061986914383
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: TeleportStab
+        idealDistance: 9
+        postAttackDelay: 2
+    - rid: 3144940061986914384
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: RunningSlice
+        idealDistance: 5
+        postAttackDelay: 1

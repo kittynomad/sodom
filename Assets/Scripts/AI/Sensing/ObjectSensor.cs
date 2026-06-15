@@ -12,7 +12,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [RequireComponent(typeof(Collider2D))]
     public class ObjectSensor : MonoBehaviour, IEnemySensor

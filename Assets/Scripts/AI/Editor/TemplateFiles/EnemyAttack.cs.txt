@@ -1,0 +1,42 @@
+/*****************************************************************************
+// File Name : #SCRIPTNAME#.cs
+// Author : 
+// Creation Date : 
+// Last Modified : 
+//
+// Brief Description : 
+*****************************************************************************/
+using UnityEngine;
+using System.Threading;
+using System;
+
+namespace TFOOL.Enemies.AI
+{
+    [System.Serializable]
+    public class #SCRIPTNAME# : EnemyAttack
+    {
+        #NOTRIM#
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        {
+            ct.ThrowIfCancellationRequested();
+            // Get Components
+    
+            void CleanUp()
+            {
+                // Reset to defaults
+            }
+    
+            try
+            {
+                // Behavior Logic.
+                CleanUp();
+            }
+            catch (OperationCanceledException oce)
+            {
+                CleanUp();
+                throw oce;
+            }
+    
+        }
+    }
+}

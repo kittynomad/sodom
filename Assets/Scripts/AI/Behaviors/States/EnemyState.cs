@@ -10,7 +10,7 @@ using System.Threading;
 using UnityEditor.Search;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
     public abstract class EnemyState : EnemyBehavior

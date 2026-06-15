@@ -8,7 +8,7 @@
 *****************************************************************************/
 using UnityEditor;
 
-namespace Sodom.Enemies.AI.Editor
+namespace TFOOL.Enemies.AI.Editor
 {
     public static class TemplateCreator
     {
@@ -16,6 +16,7 @@ namespace Sodom.Enemies.AI.Editor
         private const string ENEMYBEHAVIOR_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyBehavior.cs.txt";
         private const string ENEMYSTATE_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyState.cs.txt";
         private const string DECISIONENGINE_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/DecisionEngine.cs.txt";
+        private const string ATTACK_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyAttack.cs.txt";
         #endregion
 
         /// <summary>
@@ -35,6 +36,11 @@ namespace Sodom.Enemies.AI.Editor
         public static void CreateDecisionEngine()
         {
             ProjectWindowUtil.CreateScriptAssetFromTemplateFile(DECISIONENGINE_PATH, "NewDecisionEngine.cs");
+        }
+        [MenuItem("Assets/Create/Scripting/AI/Attack")]
+        public static void CreateAttack()
+        {
+            ProjectWindowUtil.CreateScriptAssetFromTemplateFile(ATTACK_PATH, "NewEnemyAttack.cs");
         }
     }
 }

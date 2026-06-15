@@ -11,7 +11,7 @@ using UnityEngine;
 using System.Threading;
 using System;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
     public abstract class TraversalBehavior : EnemyBehavior

@@ -8,25 +8,21 @@
 *****************************************************************************/
 using CustomAttributes;
 using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [System.Serializable]
     [DropdownGroup("Projectiles")]
     public class ArcedProjectileAttack : ProjectileAttack
     {
-        public override Awaitable PerformAttack(GameObject target, CancellationToken ct)
+        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
-            Vector2 toTarget = target.transform.position - shotPoint.transform.position;
-
-            Rigidbody2D projInst = GameObject.Instantiate(projectilePrefab,
-                shotPoint.transform.position, Quaternion.identity);
-
-            projInst.AddForce(GetArcedShotVector2(projectileSpeed, 
-                target.transform.position, shotPoint.transform.position, projInst.gravityScale), ForceMode2D.Impulse);
+            ShootProjectile(GetArcedShotVector2(projectileSpeed,
+                target.transform.position, shotPoint.transform.position, projectilePrefab.Rigidbody.gravityScale));
 
             return Awaitable.NextFrameAsync(ct);
         }

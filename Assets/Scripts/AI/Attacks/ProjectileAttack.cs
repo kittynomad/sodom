@@ -8,26 +8,33 @@
 *****************************************************************************/
 using CustomAttributes;
 using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEditor.Search;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
-namespace Sodom.Enemies
+namespace TFOOL.Enemies
 {
     [System.Serializable]
     [DropdownGroup("Projectiles")]
     public class ProjectileAttack : EnemyAttack
     {
         [SerializeField] protected Transform shotPoint;
-        [SerializeField] protected Rigidbody2D projectilePrefab;
+        [SerializeField] protected EnemyProjectile projectilePrefab;
         [SerializeField] protected float projectileSpeed;
 
-        public override Awaitable PerformAttack(GameObject target, CancellationToken ct)
+        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
         {
             Vector2 toTarget = target.transform.position - shotPoint.transform.position;
-            Rigidbody2D projInst = GameObject.Instantiate(projectilePrefab, 
-                shotPoint.transform.position, Quaternion.identity);
-            projInst.AddForce(toTarget.normalized * projectileSpeed, ForceMode2D.Impulse);
+            ShootProjectile(toTarget.normalized * projectileSpeed);
             return Awaitable.NextFrameAsync(ct);
+        }
+
+        protected void ShootProjectile(Vector2 launchVector)
+        {
+            EnemyProjectile projInst = GameObject.Instantiate(projectilePrefab,
+                shotPoint.transform.position, Quaternion.identity);
+            projInst.Launch(launchVector);
         }
     }
 }

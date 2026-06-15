@@ -10,7 +10,7 @@
 using System.Threading;
 using UnityEngine;
 
-namespace Sodom.Enemies.AI
+namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
     public class AttackBehavior : EnemyBehavior
@@ -20,11 +20,12 @@ namespace Sodom.Enemies.AI
         [SerializeField] protected float postAttackDelay;
 
         public float IdealDistance => idealDistance;
+        public string AttackName => attackName;
 
         protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             enemy.PointTowardsTarget();
-            await PerformAttack(GetAttacker(enemy), enemy.Target, ct);
+            await PerformAttack(enemy, GetAttacker(enemy), enemy.Target, ct);
             await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
         }
 
@@ -37,10 +38,10 @@ namespace Sodom.Enemies.AI
             return attacker;
         }
 
-        protected async Awaitable PerformAttack(EnemyAttacker attacker, GameObject target, CancellationToken ct)
+        protected async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, GameObject target, CancellationToken ct)
         { 
             EnemyAttack toPerform = attacker.GetAttack(attackName);
-            await toPerform.PerformAttack(target, ct);
+            await toPerform.PerformAttack(enemy, target, ct);
         }
     }
 }
