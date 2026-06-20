@@ -35,6 +35,7 @@ namespace TFOOL.Enemies.AI
             {
                 // Reset to defaults
                 movement.Rigidbody.gravityScale = originalGravity;
+                hitbox.SetActive(false);
             }
     
             try

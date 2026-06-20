@@ -22,6 +22,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float attackTime;
         [SerializeField, Tooltip("Controls how close the enemy has to be to the player before it spawns the hitbox.")]
         private float attackRange;
+        [SerializeField] private float maxChargeTime;
         [Header("Movement")]
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float acceleration;
@@ -56,17 +57,23 @@ namespace TFOOL.Enemies.AI
                 movement.Acceleration = acceleration;
 
                 // Move towards the player until within range.
-                while(enemy.ToTarget.magnitude > attackRange)
+                float timer = maxChargeTime;
+                while(!ct.IsCancellationRequested && enemy.ToTarget.magnitude > attackRange && (maxChargeTime <= 0 || timer > 0))
                 {
                     ct.ThrowIfCancellationRequested();
                     movement.SetDirection(enemy.DirectionToTarget);
+                    timer -= Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();
                 }
 
-                // Perform the attack.
-                hitbox.SetActive(true);
-                await Awaitable.WaitForSecondsAsync(attackTime, ct);
-                hitbox.SetActive(false);
+                ct.ThrowIfCancellationRequested();
+                if (enemy.ToTarget.magnitude <= attackRange)
+                {
+                    // Perform the attack.
+                    hitbox.SetActive(true);
+                    await Awaitable.WaitForSecondsAsync(attackTime, ct);
+                    hitbox.SetActive(false);
+                }
 
                 // Enemy keeps moving.
                 await Awaitable.WaitForSecondsAsync(overshootTime, ct);
