@@ -21,7 +21,7 @@ namespace TFOOL.Enemies
         // Components
         [SerializeField, ShowIfNull] private EnemyMovement movement;
 
-        private Vector2 startPos;
+        private Vector2? startPos;
 
         private void Reset()
         {
@@ -30,7 +30,6 @@ namespace TFOOL.Enemies
 
         private void Awake()
         {
-            
             movement.OnGroundEvent += SetStartPos;
         }
 
@@ -72,7 +71,7 @@ namespace TFOOL.Enemies
                 {
                     if (immediateBrake)
                     {
-                        movement.Rigidbody.linearVelocity = Vector2.zero;
+                        movement.StopVelocity();
                     }
                     break;
                 }
@@ -90,6 +89,7 @@ namespace TFOOL.Enemies
 
         private Vector2 GetDestination(bool isLeft)
         {
+            if (startPos == null) {  return Vector2.zero; }
             return (Vector2)startPos + (Vector2.right * patrolArea / 2) * (isLeft ? -1 : 1);
         }
 
@@ -97,7 +97,14 @@ namespace TFOOL.Enemies
         {
             Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
             Gizmos.color = Color.blue;
-            Gizmos.DrawLine(transform.position - patrolOffset, transform.position + patrolOffset);
+            if (startPos == null)
+            {
+                Gizmos.DrawLine(transform.position - patrolOffset, transform.position + patrolOffset);
+            }
+            else
+            {
+                Gizmos.DrawLine((Vector3)startPos - patrolOffset, (Vector3)startPos + patrolOffset);
+            }
         }
     }
 

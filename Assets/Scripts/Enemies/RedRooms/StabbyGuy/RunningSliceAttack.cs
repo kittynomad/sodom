@@ -1,10 +1,10 @@
 /*****************************************************************************
 // File Name : RunningSliceAttack.cs
-// Author : 
-// Creation Date : 
-// Last Modified : 
+// Author : Arcadia Koederitz
+// Creation Date : 6/20/2026
+// Last Modified : 6/20/2026
 //
-// Brief Description : 
+// Brief Description : Controls the running slice attack of the red rooms stabby guy.
 *****************************************************************************/
 using UnityEngine;
 using System.Threading;
@@ -62,6 +62,7 @@ namespace TFOOL.Enemies.AI
                 {
                     ct.ThrowIfCancellationRequested();
                     movement.SetDirection(enemy.DirectionToTarget);
+
                     timer -= Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();
                 }

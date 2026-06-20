@@ -49,9 +49,10 @@ MonoBehaviour:
           wanderTime: 0.5
         backdashThreshold: 4
         backdash:
-          dashForce: 7
-          dashJump: 2
+          dashForce: 9
+          dashJump: 3
           postDashDelay: 1
+          pointTowardsTarget: 1
         throwAttackName: KnifeThrow
     - rid: 3144940061986914382
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
@@ -77,6 +78,7 @@ MonoBehaviour:
     - rid: 3144940177937399910
       type: {class: BackdashBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        dashForce: 7
-        dashJump: 2
+        dashForce: 9
+        dashJump: 3
         postDashDelay: 1
+        pointTowardsTarget: 0

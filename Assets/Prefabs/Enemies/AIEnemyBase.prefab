@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5326134010054762622}
   - component: {fileID: 4357434196423807264}
   - component: {fileID: 4133258564688358529}
-  m_Layer: 10
+  m_Layer: 12
   m_Name: AggroSensor
   m_TagString: Untagged
   m_Icon: {fileID: 0}

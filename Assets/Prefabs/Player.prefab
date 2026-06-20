@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 1427404586909964195}
   - component: {fileID: 2035363376810601464}
   - component: {fileID: 6618611127525529591}
+  - component: {fileID: 1890051588499674418}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -268,6 +269,19 @@ MonoBehaviour:
   _safeLayers:
     serializedVersion: 2
     m_Bits: 128
+--- !u!114 &1890051588499674418
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2582139638990630898}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a88f058f35f0f2449835533fc7a36348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.EnemyOverlap
+  debugSpriteRenderer: {fileID: 3519555628608411484}
 --- !u!1 &2647097481341889447
 GameObject:
   m_ObjectHideFlags: 0
