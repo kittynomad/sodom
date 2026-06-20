@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 8554216081745425180}
   - component: {fileID: 7549142934413486401}
   - component: {fileID: 4024369721363070276}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: StabbyGuyKnife
   m_TagString: Untagged
   m_Icon: {fileID: 0}
