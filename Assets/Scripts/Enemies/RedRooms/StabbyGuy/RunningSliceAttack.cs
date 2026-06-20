@@ -26,7 +26,7 @@ namespace TFOOL.Enemies.AI
         [Header("Movement")]
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float acceleration;
-        [SerializeField] private float overshootTime;
+        //[SerializeField] private float overshootTime;
         
         public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
         {
@@ -76,7 +76,7 @@ namespace TFOOL.Enemies.AI
                 }
 
                 // Enemy keeps moving.
-                await Awaitable.WaitForSecondsAsync(overshootTime, ct);
+                //await Awaitable.WaitForSecondsAsync(overshootTime, ct);
 
                 CleanUp();
             }

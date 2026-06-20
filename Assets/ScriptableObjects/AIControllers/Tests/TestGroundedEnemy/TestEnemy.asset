@@ -40,7 +40,6 @@ MonoBehaviour:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
         - rid: 3144940043314135125
-        - rid: 3144940043314135126
         moveInRange:
           moveSpeed: 4
           acceleration: 25
@@ -62,14 +61,3 @@ MonoBehaviour:
         attackName: TestProjectile
         idealDistance: 7
         postAttackDelay: 1
-    - rid: 3144940043314135126
-      type: {class: WalkUpAttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        attackName: TestAttack
-        idealDistance: 4
-        postAttackDelay: 1
-        moveToDistance:
-          moveSpeed: 4
-          acceleration: 25
-          stopAtEdge: 0
-          distanceRange: {x: 0, y: 1.5}

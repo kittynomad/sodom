@@ -14,8 +14,11 @@ namespace CustomAttributes
     [AttributeUsage(AttributeTargets.Field)]
     public class ClassDropdownAttribute : PropertyAttribute
     {
-        public Type BaseType { get; }
-        public bool RestrictAssemblies { get; }
+        public Type BaseType { get; set; }
+        public bool RestrictAssemblies { get; set; }
+        public string[] TagFilters { get; set; }
+        public Type[] AllowedTypes { get; set; }
+        public Type[] ExcludedTypes { get; set; }
 
         public ClassDropdownAttribute(Type baseType) : this(baseType, true)
         {

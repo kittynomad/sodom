@@ -27,7 +27,7 @@ namespace TFOOL.Enemies.AI
         /// <param name="ct"></param>
         /// <returns></returns>
         /// <exception cref="System.NullReferenceException"></exception>
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
             if (!enemy.TryGetComponent(out EnemyMovement movement))

@@ -23,7 +23,7 @@ namespace TFOOL.Enemies.AI
         private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
             while (!ct.IsCancellationRequested)
@@ -31,16 +31,16 @@ namespace TFOOL.Enemies.AI
                 // Make the enemy dash back.
                 if (enemy.ToTarget.magnitude < backdashThreshold)
                 {
-                    await backdash.Run(enemy, ct);
+                    await backdash.RunAI(enemy, ct);
                 }
                 else if (!moveInRange.IsWithinRange(enemy.ToTarget.magnitude))
                 {
                     // Move the enemy to stay within aggro range of the player.
-                    await moveInRange.Run(enemy, ct);
+                    await moveInRange.RunAI(enemy, ct);
                 }
                 else
                 {
-                    await randomMovement.Run(enemy, ct);
+                    await randomMovement.RunAI(enemy, ct);
                 }
 
                 ct.ThrowIfCancellationRequested();
@@ -48,7 +48,7 @@ namespace TFOOL.Enemies.AI
                 // Point towards the target.
                 enemy.PointTowardsTarget();
 
-                await GetAttackByDistance(enemy.ToTarget.magnitude).Run(enemy, ct);
+                await GetAttackByDistance(enemy.ToTarget.magnitude).RunAI(enemy, ct);
             }
         }
     }

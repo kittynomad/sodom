@@ -21,7 +21,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float dashJump;
         [SerializeField] private float postDashDelay;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
             if (!enemy.TryGetComponent(out EnemyMovement movement))

@@ -17,7 +17,7 @@ namespace TFOOL.Enemies.AI
     {
         [SerializeField] private float patrolWait;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
             if (!enemy.TryGetComponent(out EnemyPatrolling patroller))

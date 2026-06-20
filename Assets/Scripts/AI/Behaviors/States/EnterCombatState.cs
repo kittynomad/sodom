@@ -16,7 +16,7 @@ namespace TFOOL.Enemies.AI
     public class EnterCombatState : EnemyState
     {
         [SerializeField] private float enterCombatDelay;
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
             ct.ThrowIfCancellationRequested();

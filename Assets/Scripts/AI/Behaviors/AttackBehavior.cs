@@ -22,7 +22,7 @@ namespace TFOOL.Enemies.AI
         public float IdealDistance => idealDistance;
         public string AttackName => attackName;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             enemy.PointTowardsTarget();
             await PerformAttack(enemy, GetAttacker(enemy), enemy.Target, ct);

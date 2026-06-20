@@ -144,7 +144,7 @@ namespace TFOOL.Enemies.AI
             // Wrapper to catch async errors.
             try
             {
-                await currentState.Run(this, stateCanceller.Token);
+                await currentState.RunAI(this, stateCanceller.Token);
                 if (!stateCanceller.Token.IsCancellationRequested)
                 {
                     // The only non-cancel query or state set is if the state finishes naturally.
