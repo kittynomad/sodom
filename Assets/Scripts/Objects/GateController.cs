@@ -20,7 +20,7 @@ public class GateController : MonoBehaviour
         rb = _gate.GetComponent<Rigidbody2D>();
         _lineRenderer.gameObject.SetActive(true);
         rb.MovePosition(_gatePositions[gatePositionIndex].transform.position);
-        //_gate.transform.position = _gatePositions[gatePositionIndex].transform.position;
+        _gate.transform.position = _gatePositions[gatePositionIndex].transform.position;
         if (_lineRenderer != null)
         {
             for (int i = 0; i < _gatePositions.Length; i++)
@@ -42,7 +42,14 @@ public class GateController : MonoBehaviour
 
     public IEnumerator MoveGate()
     {
-        if(_moveLinear)
+        float elapsedTime = 0f;
+        while (_gate.transform.position != _gatePositions[gatePositionIndex].transform.position)
+        {
+            _gate.transform.position = Vector3.Lerp(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position, elapsedTime);
+            elapsedTime += ((Time.deltaTime * _gateMoveSpeed) / 100f);
+            yield return null;
+        }
+        /*if(_moveLinear)
         {
             while(Vector2.Distance(_gate.transform.position, _gatePositions[gatePositionIndex].transform.position) > 0.1f)
             {
@@ -66,7 +73,7 @@ public class GateController : MonoBehaviour
                 /*float speed;
                 if (distance / startDistance < 0.1f) speed = 10 * (distance / startDistance);
                 else if (distance / startDistance < 0.9f) speed = 1f;
-                else speed = (-10 * (distance / startDistance)) + 10;*/
+                else speed = (-10 * (distance / startDistance)) + 10;//end ml comment here
                 rb.linearVelocity = Vector2.Lerp(direction * _gateMinSpeed, direction * _gateMoveSpeed, speed);
                 yield return new WaitForFixedUpdate();
             }
@@ -74,8 +81,8 @@ public class GateController : MonoBehaviour
             {
                 rb.linearVelocity = rb.linearVelocity / 2;
                 yield return new WaitForFixedUpdate();
-            }
-        }
+            }*/
+    //}
         
         
     }
