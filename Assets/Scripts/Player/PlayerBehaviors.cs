@@ -12,6 +12,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _hurtRecoveryPeriod;
+    [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -74,11 +75,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     }
     public void FixedUpdate()
     {
+        if (pc.MovementDirection.x == 0 && rb.linearVelocityX != 0)
+            rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
         //player walks in input direction IF not past max speed and not anchored
-        if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration;
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
-
+        
             //set hurtBox pos while not attacking
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
 

@@ -195,9 +195,10 @@ MonoBehaviour:
   _maxAmmo: 5
   _playerWalkAcceleration: 7
   _playerJumpForce: 15
-  _playerWalkSpeedLimit: 7
+  _playerWalkSpeedLimit: 8
   _projectileSpeed: 25
   _hurtRecoveryPeriod: 1
+  _customVelocityFalloffRate: 0.175
   _poundStrength: 20
   _poundDamage: 1
   _poundPushStrength: 15
