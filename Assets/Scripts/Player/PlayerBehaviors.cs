@@ -76,9 +76,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     {
         //player walks in input direction IF not past max speed and not anchored
         if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
-            rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
+            rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration;
+            //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
 
-        //set hurtBox pos while not attacking
+            //set hurtBox pos while not attacking
         if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
 
         //ensure player keeps consistent y velocity while mid ground pound
