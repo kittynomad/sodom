@@ -18,7 +18,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float stunTime;
 
         public override bool IsCancellable => false;
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
             ct.ThrowIfCancellationRequested();

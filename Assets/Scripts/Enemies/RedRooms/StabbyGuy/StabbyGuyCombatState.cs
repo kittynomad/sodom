@@ -24,7 +24,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private BackdashBehavior backdash;
         [SerializeField] private string throwAttackName;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
             ct.ThrowIfCancellationRequested();
@@ -43,16 +43,16 @@ namespace TFOOL.Enemies.AI
                     // Make the enemy dash back.
                     if (enemy.ToTarget.magnitude < backdashThreshold)
                     {
-                        await backdash.Run(enemy, ct);
+                        await backdash.RunAI(enemy, ct);
                         // If the enemy backdashes, always use the throw attack.
                         ct.ThrowIfCancellationRequested();
                         enemy.PointTowardsTarget();
-                        await GetAttackByName(throwAttackName).Run(enemy, ct);
+                        await GetAttackByName(throwAttackName).RunAI(enemy, ct);
                         continue;
                     }
                     else
                     {
-                        await randomMovement.Run(enemy, ct);
+                        await randomMovement.RunAI(enemy, ct);
                         
                     }
 
@@ -61,7 +61,7 @@ namespace TFOOL.Enemies.AI
                     // Point towards the target.
                     enemy.PointTowardsTarget();
 
-                    await GetAttackByDistance(enemy.ToTarget.magnitude).Run(enemy, ct);
+                    await GetAttackByDistance(enemy.ToTarget.magnitude).RunAI(enemy, ct);
                 }
                 CleanUp();
             }

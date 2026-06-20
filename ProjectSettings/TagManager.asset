@@ -17,7 +17,7 @@ TagManager:
   - Enemy
   - EnemyHitbox
   - PlayerHitbox
-  - 
+  - EnemySensor
   - 
   - 
   - 

@@ -9,18 +9,19 @@
 using CustomAttributes;
 using NaughtyAttributes;
 using System;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
 namespace TFOOL.Enemies
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(Collider2D), typeof(EnemyController))]
     public class EnemyMovement : MonoBehaviour
     {
         private const float WALL_CHECK_BOTTOM_MARGIN = 0.1f;
         private const float WALL_CHECK_TOP_MARGIN = -0.1f;
-        private const float WALL_CHECK_LENGTH = 0.5f;
+        private const float WALL_CHECK_LENGTH = 0.8f;
         private const float GROUND_CHECK_HEIGHT = 0.1f;
-        private const float GROUND_CHECK_LENGTH = 0.5f;
+        private const float GROUND_CHECK_LENGTH = 0.15f;
 
         private const DetectedEdges LEFT_EDGES = DetectedEdges.LeftEdge | DetectedEdges.LeftWall;
         private const DetectedEdges RIGHT_EDGES = DetectedEdges.RightEdge | DetectedEdges.RightWall;
@@ -28,11 +29,14 @@ namespace TFOOL.Enemies
         [SerializeField, Tooltip("The collider used to determine the location of wall, edge, and ground checks.")]
         private Collider2D physicsCollider;
         [Header("Settings")]
+        [SerializeField] private DirectionUpdateMode directionUpdateMode;
         [SerializeField] private float walkSpeed;
-        [SerializeField] private float acceleration;
+        [SerializeField] private float groundAcceleration;
+        [SerializeField] private float airAcceleration;
 
         // Components
         [SerializeField, ShowIfNull] private Rigidbody2D rb;
+        [SerializeField, ShowIfNull] private EnemyController controller;
 
         private int targetDirection;
 
@@ -45,7 +49,7 @@ namespace TFOOL.Enemies
         #region Properties
         public Rigidbody2D Rigidbody => rb;
         public float MoveSpeed { get => walkSpeed; set => walkSpeed = value; }
-        public float Acceleration { get => acceleration; set => acceleration = value; }
+        public float Acceleration { get => groundAcceleration; set => groundAcceleration = value; }
         public DetectedEdges Edges => edges;
         private Bounds enemyBounds => physicsCollider.bounds;
         public int TargetDirection => targetDirection;
@@ -81,6 +85,7 @@ namespace TFOOL.Enemies
         {
             // Get components automatically on reset.
             rb = GetComponent<Rigidbody2D>();
+            controller = GetComponent<EnemyController>();
         }
 
         /// <summary>
@@ -95,21 +100,36 @@ namespace TFOOL.Enemies
                 targetDirection = direction;
                 // Invert speed so that the enemy is moving the other direction.
                 //rb.linearVelocity = new Vector2(-rb.linearVelocity.x, rb.linearVelocity.y);
+                if (controller != null && directionUpdateMode == DirectionUpdateMode.TargetDirection)
+                {
+                    controller.FacingDirection = direction;
+                }
             }
         }
 
         private void FixedUpdate()
         {
             // Move towards the desired velocity.
-            //float horizontalSpeed = rb.linearVelocity.x;
-            //horizontalSpeed = Mathf.MoveTowards(horizontalSpeed, walkSpeed * targetDirection, acceleration * Time.fixedDeltaTime);
-            //rb.linearVelocity = new Vector2(horizontalSpeed, rb.linearVelocity.y);
+            float horizontalSpeed = rb.linearVelocity.x;
+            float acceleration = onGround ? groundAcceleration : airAcceleration;
+            horizontalSpeed = Mathf.MoveTowards(horizontalSpeed, walkSpeed * targetDirection, acceleration * Time.fixedDeltaTime);
+            rb.linearVelocity = new Vector2(horizontalSpeed, rb.linearVelocity.y);
 
-            // Using the same code as player for consistency.
-            if (Mathf.Abs(rb.linearVelocityX) < walkSpeed)
-                rb.AddForce(new Vector2(targetDirection * acceleration, 0f));
+            if (directionUpdateMode == DirectionUpdateMode.Velocity)
+            {
+                controller.FacingDirection = (int)Mathf.Sign(horizontalSpeed);
+            }
+            else if (directionUpdateMode == DirectionUpdateMode.ToTarget)
+            {
+                controller.PointTowardsTarget();
+            }
 
             CheckEdges();
+        }
+
+        public void StopVelocity()
+        {
+            Rigidbody.linearVelocity = Vector2.zero;
         }
 
         /// <summary>

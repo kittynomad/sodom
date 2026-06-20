@@ -20,8 +20,9 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float dashForce;
         [SerializeField] private float dashJump;
         [SerializeField] private float postDashDelay;
+        [SerializeField] private bool pointTowardsTarget;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
             if (!enemy.TryGetComponent(out EnemyMovement movement))
@@ -36,10 +37,15 @@ namespace TFOOL.Enemies.AI
 
             try
             {
-                enemy.PointTowardsTarget();
+                if (pointTowardsTarget)
+                {
+                    enemy.PointTowardsTarget();
+                }
 
-                Vector2 jumpBackForce = new Vector2(-Mathf.Sign(enemy.ToTarget.x) * dashForce, dashJump);
-                movement.Rigidbody.AddForce(jumpBackForce, ForceMode2D.Impulse);
+                Vector2 jumpBackForce = new Vector2(-Mathf.Sign(enemy.FacingDirection) * dashForce, dashJump);
+
+                // TODO: Switch this to linearVelocity
+                movement.Rigidbody.linearVelocity = jumpBackForce;
 
                 await Awaitable.WaitForSecondsAsync(postDashDelay, ct);
                 CleanUp();

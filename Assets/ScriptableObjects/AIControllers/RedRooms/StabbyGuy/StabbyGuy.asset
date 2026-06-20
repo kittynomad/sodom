@@ -41,7 +41,7 @@ MonoBehaviour:
         attacks:
         - rid: 3144940061986914382
         - rid: 3144940061986914383
-        - rid: 3144940061986914384
+        - rid: 3144940177937399909
         randomMovement:
           moveSpeed: 2
           acceleration: 30
@@ -49,9 +49,10 @@ MonoBehaviour:
           wanderTime: 0.5
         backdashThreshold: 4
         backdash:
-          dashForce: 7
-          dashJump: 2
+          dashForce: 9
+          dashJump: 3
           postDashDelay: 1
+          pointTowardsTarget: 1
         throwAttackName: KnifeThrow
     - rid: 3144940061986914382
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
@@ -65,9 +66,19 @@ MonoBehaviour:
         attackName: TeleportStab
         idealDistance: 9
         postAttackDelay: 2
-    - rid: 3144940061986914384
-      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+    - rid: 3144940177937399909
+      type: {class: SequenceAttack, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: RunningSlice
         idealDistance: 5
         postAttackDelay: 1
+        preBehaviors: []
+        postBehaviors:
+        - rid: 3144940177937399910
+    - rid: 3144940177937399910
+      type: {class: BackdashBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        dashForce: 9
+        dashJump: 3
+        postDashDelay: 1
+        pointTowardsTarget: 0

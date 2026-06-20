@@ -33,6 +33,8 @@ namespace TFOOL.Enemies.AI
             {
                 ct.ThrowIfCancellationRequested();
 
+                enemy.PointTowardsTarget();
+
                 if (StopAtEdge(movement))
                 {
                     break;

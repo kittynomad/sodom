@@ -9,7 +9,6 @@
 using System;
 using System.Threading;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TFOOL.Enemies.AI
 {
@@ -25,9 +24,21 @@ namespace TFOOL.Enemies.AI
         // AI Fields
         public GameObject Target { get; set; }
 
+        private int facingDirection = 1;
+
         #region Properties
         public Vector2 ToTarget => Target.transform.position - transform.position;
         public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);
+        public int FacingDirection
+        { 
+            get { return facingDirection; }
+            set
+            {
+                if (value == 0) { return; }
+                facingDirection = Mathf.Clamp(value, -1, 1);
+                SetRotation(value < 0);
+            }
+        }
         #endregion
 
         private void Awake()
@@ -144,7 +155,7 @@ namespace TFOOL.Enemies.AI
             // Wrapper to catch async errors.
             try
             {
-                await currentState.Run(this, stateCanceller.Token);
+                await currentState.RunAI(this, stateCanceller.Token);
                 if (!stateCanceller.Token.IsCancellationRequested)
                 {
                     // The only non-cancel query or state set is if the state finishes naturally.
@@ -184,8 +195,7 @@ namespace TFOOL.Enemies.AI
         public void PointTowardsTarget()
         {
             if (Target == null) { return; }
-            Vector2 toTarget = Target.transform.position - transform.position;
-            SetRotation(toTarget.x < 0);
+            FacingDirection = DirectionToTarget;
         }
 
         /// <summary>

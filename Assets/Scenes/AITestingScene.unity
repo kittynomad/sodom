@@ -9450,6 +9450,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4051863757025737960, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1573691252}
+    - target: {fileID: 4051863757025737960, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: acceleration
       value: 25
       objectReference: {fileID: 0}
@@ -9457,15 +9461,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: StabbyGuy
       objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[3144940044914524242].attackTime
-      value: 0.25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+--- !u!114 &1573691252 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 493431829271473971, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+  m_PrefabInstance: {fileID: 1573691251}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf2aff95ff2dc49aca30e4ea10eb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!1 &1821519710
 GameObject:
   m_ObjectHideFlags: 0
@@ -9864,7 +9875,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4048464291530945123, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_Mass
-      value: 2.7853982
+      value: 1.7853982
+      objectReference: {fileID: 0}
+    - target: {fileID: 7497974442560162974, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7668041285061911429, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_LocalPosition.x

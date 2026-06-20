@@ -23,12 +23,7 @@ namespace TFOOL.Enemies.AI
         /// <param name="enemy">The enemy that is being controlled.</param>
         /// <param name="ct">The cancellation token for handling cancels on state change.</param>
         /// <returns></returns>
-        public virtual async Awaitable Run(EnemyController enemy, CancellationToken ct)
-        {
-            await RunAI(enemy, ct);
-        }
-
-        protected abstract Awaitable RunAI(EnemyController enemy, CancellationToken ct);
+        public abstract Awaitable RunAI(EnemyController enemy, CancellationToken ct);
 
         #region Utilities
         /// <summary>

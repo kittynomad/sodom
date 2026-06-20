@@ -9,6 +9,7 @@
 *****************************************************************************/
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using UnityEditor;
 using UnityEngine;
@@ -155,43 +156,28 @@ namespace CustomAttributes.Editor
             {
                 // If RestrictAssemblies is true, only search the assembly that the base
                 // type is in.
-                foreach (Type type in Assembly.GetAssembly(baseType).GetTypes())
-                {
-                    if (!(type.IsSubclassOf(baseType) || type == baseType) || type.IsAbstract)
-                    {
-                        continue;
-                    }
-
-                    // Store the type and the type's name for use in the dropdown.
-                    selectionTypes.Add(type);
-                    string displayName = type.Name;
-
-                    // Attempt to put the type into a given group in the dropdown.
-                    if (Attribute.GetCustomAttribute(type, typeof(DropdownGroupAttribute)) is DropdownGroupAttribute dga)
-                    {
-                        displayName = dga.GroupName + "/" + displayName;
-                    }
-                    tempSelections.Add(displayName);
-                }
+                AddAttributes(baseType, ref tempSelections, Assembly.GetAssembly(baseType), dda);
             }
             else
             {
                 // Loop through all types in all assemblies (More generic impmenentation).
                 foreach (Assembly asmb in AppDomain.CurrentDomain.GetAssemblies())
                 {
-                    foreach (Type type in asmb.GetTypes())
-                    {
-                        // Skip classes that aren't subclasses of the base class and abstract classes.
-                        if (!(type.IsSubclassOf(baseType) || type == baseType) || type.IsAbstract)
-                        {
-                            continue;
-                        }
+                    //foreach (Type type in asmb.GetTypes())
+                    //{
+                    //    // Skip classes that aren't subclasses of the base class and abstract classes.
+                    //    if (!(type.IsSubclassOf(baseType) || type == baseType) || type.IsAbstract)
+                    //    {
+                    //        continue;
+                    //    }
 
-                        // Store the type and the type's name for use in the dropdown.
-                        selectionTypes.Add(type);
-                        string displayName = type.Name;
-                        tempSelections.Add(displayName);
-                    }
+                    //    // Store the type and the type's name for use in the dropdown.
+                    //    selectionTypes.Add(type);
+                    //    string displayName = type.Name;
+                    //    tempSelections.Add(displayName);
+                    //}
+
+                    AddAttributes(baseType, ref tempSelections, asmb, dda);
                 }
             }
 
@@ -201,6 +187,94 @@ namespace CustomAttributes.Editor
             UpdateSelectionIndex(property);
 
             isInitialized = true;
+        }
+
+        private void AddAttributes(Type baseType, ref List<string> tempSelections, Assembly assembly, ClassDropdownAttribute dda)
+        {
+            foreach (Type type in assembly.GetTypes())
+            {
+                if (!IsClassOrSubclass(baseType, type) || type.IsAbstract)
+                {
+                    continue;
+                }
+
+                // Filter by allowed and excluded types.
+                if (dda.ExcludedTypes != null)
+                {
+                    bool isExcluded = false;
+                    foreach(Type et in dda.ExcludedTypes)
+                    {
+                        if (IsClassOrSubclass(et, type))
+                        {
+                            isExcluded = true;
+                            break;
+                        }
+                    }
+                    if (isExcluded)
+                    {
+                        continue;
+                    }
+                }
+                if (dda.AllowedTypes != null)
+                {
+                    bool isAllowed = false;
+                    foreach (Type at in dda.AllowedTypes)
+                    {
+                        if (IsClassOrSubclass(at, type))
+                        {
+                            isAllowed = true;
+                            break;
+                        }
+                    }
+                    if (!isAllowed)
+                    {
+                        continue;
+                    }
+                }
+
+                // Skip types that are filtered out.
+                //if (tagFilters != null 
+                //    && Attribute.GetCustomAttribute(type, typeof(DropdownTagAttribute)) is DropdownTagAttribute dta
+                //    && !tagFilters.Contains(dta.Tag))
+                //{
+                //    bool isAllowed = false;
+
+                //    foreach(string tag in tagFilters)
+                //    {
+                //        if (tag.StartsWith('-'))
+                //        {
+                //            string tagName = tag.Substring(1);
+
+                //        }
+                //        else
+                //        {
+
+                //        }
+
+                //    }
+
+                //    if (!isAllowed)
+                //    {
+                //        continue;
+                //    }
+                //}
+
+                // Store the type and the type's name for use in the dropdown.
+                selectionTypes.Add(type);
+                string displayName = type.Name;
+
+                // Attempt to put the type into a given group in the dropdown.
+                if (Attribute.GetCustomAttribute(type, typeof(DropdownGroupAttribute)) is DropdownGroupAttribute dga)
+                {
+                    displayName = dga.GroupName + "/" + displayName;
+                }
+                tempSelections.Add(displayName);
+            }
+        }
+
+        private static bool IsClassOrSubclass(Type baseType, Type type)
+        {
+            return (type.IsSubclassOf(baseType) || type == baseType);
         }
 
         /// <summary>

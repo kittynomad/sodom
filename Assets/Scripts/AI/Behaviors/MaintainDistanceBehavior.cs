@@ -19,7 +19,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float maintainTime;
         [SerializeField] private float updatePeriod;
 
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             int numUpdates = (int)(maintainTime / updatePeriod);
 
@@ -45,7 +45,7 @@ namespace TFOOL.Enemies.AI
                     if (!moveToDistance.IsWithinRange(toTarget.magnitude) &&
                         (moveAwaitable == null || moveAwaitable.IsCompleted))
                     {
-                        moveAwaitable = moveToDistance.Run(enemy, subCts.Token);
+                        moveAwaitable = moveToDistance.RunAI(enemy, subCts.Token);
                     }
 
                     await Awaitable.WaitForSecondsAsync(updatePeriod, ct);

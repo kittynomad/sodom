@@ -1,10 +1,10 @@
 /*****************************************************************************
 // File Name : TeleportStabAttack.cs
-// Author : 
-// Creation Date : 
-// Last Modified : 
+// Author : Arcadia Koederitz
+// Creation Date : 6/20/2026
+// Last Modified : 6/20/2026
 //
-// Brief Description : 
+// Brief Description : Teleport attack for the red rooms stabby guy.
 *****************************************************************************/
 using System;
 using System.Threading;
@@ -35,23 +35,25 @@ namespace TFOOL.Enemies.AI
             {
                 // Reset to defaults
                 movement.Rigidbody.gravityScale = originalGravity;
+                hitbox.SetActive(false);
             }
     
             try
             {
                 // Teleport behind the player.
                 movement.Rigidbody.gravityScale = 0;
-
                 movement.Rigidbody.position = (Vector2)target.transform.position + new Vector2(-GetPlayerFacingDirection(target) * teleportOffset.x, teleportOffset.y);
                 movement.Rigidbody.linearVelocity = Vector2.zero;
                 // Leap at the target and attack.
+                await Awaitable.FixedUpdateAsync(ct);
                 enemy.PointTowardsTarget();
                 await Awaitable.WaitForSecondsAsync(postTeleportDelay, ct);
 
                 // Leap at the target and attack.
                 enemy.PointTowardsTarget();
                 movement.Rigidbody.gravityScale = originalGravity;
-                movement.Rigidbody.AddForce((target.transform.position - enemy.transform.position).normalized * stabbingLeapForce, ForceMode2D.Impulse);
+                // TODO: Switch this to linearVelocity.
+                movement.Rigidbody.linearVelocity = (target.transform.position - enemy.transform.position).normalized * stabbingLeapForce;
                 hitbox.SetActive(true);
                 await Awaitable.WaitForSecondsAsync(attackTime, ct);
                 hitbox.SetActive(false);

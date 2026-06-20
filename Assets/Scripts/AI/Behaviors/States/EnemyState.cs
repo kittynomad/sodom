@@ -18,7 +18,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private Color debugColor;
         public virtual bool IsCancellable => true;
 
-        protected override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             if (enemy.TryGetComponent(out SpriteRenderer rend))
             {
