@@ -7,7 +7,7 @@ public class ProjectileController : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out IKillable ik))
         {
             ik.OnDamage(1f, gameObject);
-            Destroy(gameObject);
         }
+        Destroy(gameObject);
     }
 }
