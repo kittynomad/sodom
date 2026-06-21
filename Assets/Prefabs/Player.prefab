@@ -197,7 +197,7 @@ MonoBehaviour:
   _playerWalkAcceleration: 7
   _playerJumpForce: 15
   _playerWalkSpeedLimit: 8
-  _projectileSpeed: 25
+  _projectileSpeed: 45
   _hurtRecoveryPeriod: 1
   _customVelocityFalloffRate: 0.175
   _poundStrength: 20
@@ -547,4 +547,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a8294f54450254681503ab9b9c73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordController
-  detachSpeed: 5
+  detachSpeed: 15
