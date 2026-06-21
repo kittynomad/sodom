@@ -61,13 +61,12 @@ namespace TFOOL.Enemies
             while (!ct.IsCancellationRequested)
             {
                 Vector2 toDest = destination - (Vector2)transform.position;
-                // Worry about pathfinding later.
-                // Stop patrolling once the point has been reached.
-                if (Mathf.Abs(toDest.x) < 0.5f)
+                // Stop patrolling once the point has been passed.
+                if (Mathf.Abs(toDest.y) < 0.5f && toDest.x * (isLeft ? -1 : 1) < 0)
                 {
                     break;
                 }
-                else if (EnemyMovement.CheckDestinationObscured(isLeft, movement.Edges))
+                else if (await movement.IsObscuredTryJump(ct))
                 {
                     if (immediateBrake)
                     {

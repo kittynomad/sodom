@@ -38,10 +38,12 @@ namespace TFOOL.Enemies.AI
                     movement.SetDirection((int)Mathf.Sign(toTarget.x));
                 }
 
-                if (StopAtEdge(movement))
+                // Stopping at edge handling.
+                if (await CheckBlockedJump(movement, ct))
                 {
                     break;
                 }
+
                 //timer -= Time.fixedDeltaTime;
                 await Awaitable.FixedUpdateAsync(ct);
             }
