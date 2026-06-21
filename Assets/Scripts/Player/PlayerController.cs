@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name : PlayerController.cs
+// Author : Pierce
+// Creation Date : -
+// Last Modified : 6/21/2026
+//
+// Brief Description : Reads and reacts to player input.
+*****************************************************************************/
 using UnityEngine;
 using UnityEngine.InputSystem;
 

@@ -1,9 +1,18 @@
+/*****************************************************************************
+// File Name : GroundSaver.cs
+// Author : Pierce
+// Creation Date : 6/7/2026
+// Last Modified : 6/21/2026
+//
+// Brief Description : Stores 'safe' positions, to return to at select points.
+*****************************************************************************/
 using UnityEngine;
 using System.Collections;
 using NaughtyAttributes;
 
 public class GroundSaver : MonoBehaviour
 {
+    //how often the script checks if the player is in a safe position
     [SerializeField] private float _safeCheckDuration;
     [SerializeField] private LayerMask _safeLayers;
 
