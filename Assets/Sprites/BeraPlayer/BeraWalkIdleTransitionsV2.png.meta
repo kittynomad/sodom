@@ -1,22 +1,22 @@
 fileFormatVersion: 2
-guid: 490e8f20a88e21d45a20984c952d06f4
+guid: 9893172b69e5ec342bfca661a50c44e9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6010957669050242568
-    second: BeraIdle 1_0
+      213: -3756854045132315596
+    second: BeraWalkIdleTransitionsV2_0
   - first:
-      213: -2036484451004156592
-    second: BeraIdle 1_1
+      213: -4276437758001949209
+    second: BeraWalkIdleTransitionsV2_1
   - first:
-      213: 129986293520459138
-    second: BeraIdle 1_2
+      213: 6363388895299050475
+    second: BeraWalkIdleTransitionsV2_2
   - first:
-      213: -6219707104119357801
-    second: BeraIdle 1_3
+      213: 8648396947407183022
+    second: BeraWalkIdleTransitionsV2_3
   - first:
-      213: -7556910493729182234
-    second: BeraIdle 1_4
+      213: -2041221948963063369
+    second: BeraWalkIdleTransitionsV2_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -112,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeraIdle 1_0
+      name: BeraWalkIdleTransitionsV2_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 80656af07263b6350800000000000000
-      internalID: 6010957669050242568
+      spriteID: 43426ee8629fcdbc0800000000000000
+      internalID: -3756854045132315596
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdle 1_1
+      name: BeraWalkIdleTransitionsV2_1
       rect:
         serializedVersion: 2
         x: 64
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0557a4b7e24fcb3e0800000000000000
-      internalID: -2036484451004156592
+      spriteID: 7e5d932448a07a4c0800000000000000
+      internalID: -4276437758001949209
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdle 1_2
+      name: BeraWalkIdleTransitionsV2_2
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 285e4f268ddcdc100800000000000000
-      internalID: 129986293520459138
+      spriteID: beb17ff4c7c4f4850800000000000000
+      internalID: 6363388895299050475
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdle 1_3
+      name: BeraWalkIdleTransitionsV2_3
       rect:
         serializedVersion: 2
         x: 192
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 79efdfb97592fa9a0800000000000000
-      internalID: -6219707104119357801
+      spriteID: eac17c6d337450870800000000000000
+      internalID: 8648396947407183022
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdle 1_4
+      name: BeraWalkIdleTransitionsV2_4
       rect:
         serializedVersion: 2
         x: 256
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 6eda9d5b1f5702790800000000000000
-      internalID: -7556910493729182234
+      spriteID: 7b97358c37f1ca3e0800000000000000
+      internalID: -2041221948963063369
       vertices: []
       indices: 
       edges: []
@@ -225,23 +225,25 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: f5ab52dfdb727ba4e8d3e0e293b68694
+    spriteID: ffeffc32e4eaaf446aa369d596df37dc
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 4b3caebfe8d3b094c9ffad7fc71bb3fe, type: 3}
+      name: _NormalMap
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BeraIdle 1_0: 6010957669050242568
-      BeraIdle 1_1: -2036484451004156592
-      BeraIdle 1_2: 129986293520459138
-      BeraIdle 1_3: -6219707104119357801
-      BeraIdle 1_4: -7556910493729182234
+      BeraWalkIdleTransitionsV2_0: -3756854045132315596
+      BeraWalkIdleTransitionsV2_1: -4276437758001949209
+      BeraWalkIdleTransitionsV2_2: 6363388895299050475
+      BeraWalkIdleTransitionsV2_3: 8648396947407183022
+      BeraWalkIdleTransitionsV2_4: -2041221948963063369
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

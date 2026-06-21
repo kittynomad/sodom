@@ -1,28 +1,25 @@
 fileFormatVersion: 2
-guid: 169f570062055ee48806579de9bab437
+guid: 78283245cddbefb4aa6c903d6aad2daf
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -5781775029663987557
-    second: BeraJumpTest2_0
+      213: -8716929213003920376
+    second: BeraWalkTest_0
   - first:
-      213: -3590699115667636481
-    second: BeraJumpTest2_1
+      213: 4428779110917815428
+    second: BeraWalkTest_1
   - first:
-      213: -6362847469695694348
-    second: BeraJumpTest2_2
+      213: -6970287123204133188
+    second: BeraWalkTest_2
   - first:
-      213: 9179233700164028021
-    second: BeraJumpTest2_3
+      213: -3505614109273949708
+    second: BeraWalkTest_3
   - first:
-      213: -3847485234342716787
-    second: BeraJumpTest2_4
+      213: 1250265806069870803
+    second: BeraWalkTest_4
   - first:
-      213: -7229925837269999426
-    second: BeraJumpTest2_5
-  - first:
-      213: 6063862294949450143
-    second: BeraJumpTest2_6
+      213: -8175748217834098153
+    second: BeraWalkTest_5
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -118,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeraJumpTest2_0
+      name: BeraWalkTest_0
       rect:
         serializedVersion: 2
         x: 0
@@ -133,14 +130,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b9887a16e3203cfa0800000000000000
-      internalID: -5781775029663987557
+      spriteID: 80c0da6a01f370780800000000000000
+      internalID: -8716929213003920376
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraJumpTest2_1
+      name: BeraWalkTest_1
       rect:
         serializedVersion: 2
         x: 64
@@ -155,14 +152,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: ffe325bbd264b2ec0800000000000000
-      internalID: -3590699115667636481
+      spriteID: 48c3deef22f267d30800000000000000
+      internalID: 4428779110917815428
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraJumpTest2_2
+      name: BeraWalkTest_2
       rect:
         serializedVersion: 2
         x: 128
@@ -177,14 +174,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4f98bc820ff92b7a0800000000000000
-      internalID: -6362847469695694348
+      spriteID: cbe20f6aac0944f90800000000000000
+      internalID: -6970287123204133188
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraJumpTest2_3
+      name: BeraWalkTest_3
       rect:
         serializedVersion: 2
         x: 192
@@ -199,14 +196,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 5764298aa60336f70800000000000000
-      internalID: 9179233700164028021
+      spriteID: 4f9f0298a8e895fc0800000000000000
+      internalID: -3505614109273949708
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraJumpTest2_4
+      name: BeraWalkTest_4
       rect:
         serializedVersion: 2
         x: 256
@@ -221,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: d8a1170709cfa9ac0800000000000000
-      internalID: -3847485234342716787
+      spriteID: 3d0bc9d5026d95110800000000000000
+      internalID: 1250265806069870803
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraJumpTest2_5
+      name: BeraWalkTest_5
       rect:
         serializedVersion: 2
         x: 320
@@ -243,30 +240,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: eb06a1db1c42aab90800000000000000
-      internalID: -7229925837269999426
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: BeraJumpTest2_6
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 0
-        width: 64
-        height: 96
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: f91d85921aa272450800000000000000
-      internalID: 6063862294949450143
+      spriteID: 71237f61058e98e80800000000000000
+      internalID: -8175748217834098153
       vertices: []
       indices: 
       edges: []
@@ -275,25 +250,26 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 209573b6e58056940a6f3c5970aff43f
+    spriteID: bce3917f30086ac48919762251ba0e52
     internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: b7f1a4789fff0c64ab89a86111bf4dc5, type: 3}
+      name: _NormalMap
     spriteCustomMetadata:
       entries:
       - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":7.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":6.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BeraJumpTest2_0: -5781775029663987557
-      BeraJumpTest2_1: -3590699115667636481
-      BeraJumpTest2_2: -6362847469695694348
-      BeraJumpTest2_3: 9179233700164028021
-      BeraJumpTest2_4: -3847485234342716787
-      BeraJumpTest2_5: -7229925837269999426
-      BeraJumpTest2_6: 6063862294949450143
+      BeraWalkTest_0: -8716929213003920376
+      BeraWalkTest_1: 4428779110917815428
+      BeraWalkTest_2: -6970287123204133188
+      BeraWalkTest_3: -3505614109273949708
+      BeraWalkTest_4: 1250265806069870803
+      BeraWalkTest_5: -8175748217834098153
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

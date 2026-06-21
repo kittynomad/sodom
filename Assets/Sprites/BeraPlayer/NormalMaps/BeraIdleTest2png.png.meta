@@ -1,28 +1,28 @@
 fileFormatVersion: 2
-guid: d69e8fd0e5837cb4185d7ef2b8ec76ab
+guid: 20a17077c25046c4f9e9827b8741ade7
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 2168322458102931083
-    second: BeraIdleTest2_0
+      213: -6383908678961786701
+    second: BeraIdleTest2png_0
   - first:
-      213: -3433845518707000441
-    second: BeraIdleTest2_1
+      213: 1843628527848180868
+    second: BeraIdleTest2png_1
   - first:
-      213: 2113125587065834245
-    second: BeraIdleTest2_2
+      213: -6817182987433841049
+    second: BeraIdleTest2png_2
   - first:
-      213: 1340422728045543165
-    second: BeraIdleTest2_3
+      213: 8263371390489477126
+    second: BeraIdleTest2png_3
   - first:
-      213: 2294325883391216824
-    second: BeraIdleTest2_4
+      213: -5140791211010677378
+    second: BeraIdleTest2png_4
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
     mipMapMode: 0
-    enableMipMap: 0
-    sRGBTexture: 1
+    enableMipMap: 1
+    sRGBTexture: 0
     linearTexture: 0
     fadeOut: 0
     borderMipMap: 0
@@ -67,9 +67,9 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
-  alphaIsTransparency: 1
+  alphaIsTransparency: 0
   spriteTessellationDetail: -1
-  textureType: 8
+  textureType: 1
   textureShape: 1
   singleChannelComponent: 0
   flipbookRows: 1
@@ -84,7 +84,7 @@ TextureImporter:
   platformSettings:
   - serializedVersion: 4
     buildTarget: DefaultTexturePlatform
-    maxTextureSize: 2048
+    maxTextureSize: 4096
     resizeAlgorithm: 0
     textureFormat: -1
     textureCompression: 0
@@ -112,7 +112,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BeraIdleTest2_0
+      name: BeraIdleTest2png_0
       rect:
         serializedVersion: 2
         x: 0
@@ -127,14 +127,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b8e1ab199cd671e10800000000000000
-      internalID: 2168322458102931083
+      spriteID: 3b013ff31ecc767a0800000000000000
+      internalID: -6383908678961786701
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdleTest2_1
+      name: BeraIdleTest2png_1
       rect:
         serializedVersion: 2
         x: 64
@@ -149,14 +149,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 78bf6eba1b78850d0800000000000000
-      internalID: -3433845518707000441
+      spriteID: 48cca2cc062e59910800000000000000
+      internalID: 1843628527848180868
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdleTest2_2
+      name: BeraIdleTest2png_2
       rect:
         serializedVersion: 2
         x: 128
@@ -171,14 +171,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 50b09de8684535d10800000000000000
-      internalID: 2113125587065834245
+      spriteID: 76e6b2121308461a0800000000000000
+      internalID: -6817182987433841049
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdleTest2_3
+      name: BeraIdleTest2png_3
       rect:
         serializedVersion: 2
         x: 192
@@ -193,14 +193,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: dfeb30a8e532a9210800000000000000
-      internalID: 1340422728045543165
+      spriteID: 60040499f746da270800000000000000
+      internalID: 8263371390489477126
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: BeraIdleTest2_4
+      name: BeraIdleTest2png_4
       rect:
         serializedVersion: 2
         x: 256
@@ -215,8 +215,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 8bc848e2c3517df10800000000000000
-      internalID: 2294325883391216824
+      spriteID: e75224371ad38a8b0800000000000000
+      internalID: -5140791211010677378
       vertices: []
       indices: 
       edges: []
@@ -225,7 +225,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 8641dbe400bb5ec45bc384bbfe769cb3
+    spriteID: 6df7e8b6ad2046d489998ba5835a0d4c
     internalID: 0
     vertices: []
     indices: 
@@ -237,11 +237,11 @@ TextureImporter:
       - key: SpriteEditor.SliceSettings
         value: '{"sliceOnImport":false,"gridCellCount":{"x":5.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":96.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
-      BeraIdleTest2_0: 2168322458102931083
-      BeraIdleTest2_1: -3433845518707000441
-      BeraIdleTest2_2: 2113125587065834245
-      BeraIdleTest2_3: 1340422728045543165
-      BeraIdleTest2_4: 2294325883391216824
+      BeraIdleTest2png_0: -6383908678961786701
+      BeraIdleTest2png_1: 1843628527848180868
+      BeraIdleTest2png_2: -6817182987433841049
+      BeraIdleTest2png_3: 8263371390489477126
+      BeraIdleTest2png_4: -5140791211010677378
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
