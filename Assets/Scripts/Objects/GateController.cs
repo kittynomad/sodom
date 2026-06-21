@@ -25,8 +25,8 @@ public class GateController : MonoBehaviour
         {
             for (int i = 0; i < _gatePositions.Length; i++)
             {
-                Debug.Log("draw");
-                _lineRenderer.SetPosition(i, _gatePositions[i].transform.position);
+                //Debug.Log("draw");
+                //_lineRenderer.SetPosition(i, _gatePositions[i].transform.position);
             }
         }
     }
