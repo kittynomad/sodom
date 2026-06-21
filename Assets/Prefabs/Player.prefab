@@ -547,4 +547,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44a8294f54450254681503ab9b9c73f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordController
-  detachSpeed: 5
+  detachSpeed: 15
