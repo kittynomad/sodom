@@ -146,7 +146,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             
     }
 
-    public void FireBehavior(Vector2 fireDirection)
+    public float FacingDirection()
+    {
+        return _sprite.flipX ? -1f : 1f;   
+    }
+
+    public void FireBehavior(Vector2 fireDirection, bool mouseAim = false)
     {
         //turn attached corpse into ammo if below max ammo
         if (sc.HasCorpseAttached && currentAmmo < _maxAmmo)
@@ -158,7 +163,24 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         else if (CanFire)
         {
             GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
-            temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
+            if (mouseAim)
+            {
+                temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
+            }
+            else
+            {
+                Vector2 fd;
+                if(pc.MovementDirection.y == 0)
+                {
+                    fd = FacingDirection() * Vector2.right;
+                }
+                else
+                {
+                    fd =  new Vector2(0.7f * FacingDirection(), 0.7f * pc.MovementDirection.y);
+                }
+                temp.GetComponent<Rigidbody2D>().AddForce(fd * _projectileSpeed);
+            }
+            
             currentAmmo--;
         }
         
