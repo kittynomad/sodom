@@ -42,6 +42,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool anchored = false;
     private bool pounding = false;
     private bool recovering = false;
+    private float moveModifier = 1f;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -54,6 +55,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public int MaxAmmo { get => _maxAmmo; set => _maxAmmo = value; }
     public bool CanFire { get => currentAmmo > 0; }
     public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
+    public float MoveModifier { get => moveModifier; set => moveModifier = value; }
 
     private void Start()
     {
@@ -79,7 +81,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
-            rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration;
+            rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
         
             //set hurtBox pos while not attacking
