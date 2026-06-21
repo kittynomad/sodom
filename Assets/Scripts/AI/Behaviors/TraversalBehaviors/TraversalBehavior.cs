@@ -10,6 +10,8 @@
 using UnityEngine;
 using System.Threading;
 using System;
+using Unity.VisualScripting;
+using NaughtyAttributes;
 
 namespace TFOOL.Enemies.AI
 {
@@ -19,6 +21,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float moveSpeed;
         [SerializeField] private float acceleration;
         [SerializeField] protected bool stopAtEdge;
+        [SerializeField, ShowIf(nameof(stopAtEdge)), AllowNesting] protected bool tryJump;
 
         /// <summary>
         /// Use Run as the wrapper function for setting and resetting speed so that any derived behaviors can use RunAI like normal.
@@ -26,7 +29,6 @@ namespace TFOOL.Enemies.AI
         /// <param name="enemy"></param>
         /// <param name="ct"></param>
         /// <returns></returns>
-        /// <exception cref="System.NullReferenceException"></exception>
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
@@ -76,14 +78,31 @@ namespace TFOOL.Enemies.AI
         /// </summary>
         /// <param name="movement">The movement component on the enemy.</param>
         /// <returns>True if th eenemy has reached an edge.  Use for breaking loops.</returns>
-        protected bool StopAtEdge(EnemyMovement movement)
+        protected bool StopWhenBlocked(EnemyMovement movement)
         {
-            if (stopAtEdge && EnemyMovement.CheckDestinationObscured(movement.TargetDirection < 0, movement.Edges))
+            if (stopAtEdge && movement.IsDestinationObscured())
             {
-                // Immediately stop enemy velocity to stop.
-                movement.Rigidbody.linearVelocity = new Vector2(0, movement.Rigidbody.linearVelocityY);
+                movement.StopHorizontalVelocty();
                 return true;
             }
+            return false;
+        }
+
+        protected async Awaitable<bool> CheckBlockedJump(EnemyMovement movement, CancellationToken ct)
+        {
+            if (tryJump)
+            {
+                if (stopAtEdge && await movement.IsObscuredTryJump(ct))
+                {
+                    movement.StopHorizontalVelocty();
+                    return true;
+                }
+            }
+            else
+            {
+                return StopWhenBlocked(movement);
+            }
+            
             return false;
         }
     }

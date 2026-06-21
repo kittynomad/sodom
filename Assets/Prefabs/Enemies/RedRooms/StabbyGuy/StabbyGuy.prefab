@@ -385,8 +385,36 @@ PrefabInstance:
       value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 493431829271473971}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: jumpLagTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: acceleration
       value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: jumpOverGaps
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: jumpUpLedges
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: maxJumpHeight
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: jumpWindupTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: maxJumpDistance
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: groundAcceleration
@@ -457,6 +485,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 6663221974757413229}
   m_SourcePrefab: {fileID: 100100000, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+--- !u!114 &493431829271473971 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7677886506025874442, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+  m_PrefabInstance: {fileID: 7805952820141038393}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4618707026506411012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf2aff95ff2dc49aca30e4ea10eb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
 --- !u!4 &545312049681075227 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}

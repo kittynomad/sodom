@@ -35,7 +35,7 @@ namespace TFOOL.Enemies.AI
 
                 enemy.PointTowardsTarget();
 
-                if (StopAtEdge(movement))
+                if (await CheckBlockedJump(movement, ct))
                 {
                     break;
                 }

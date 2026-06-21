@@ -28,6 +28,7 @@ namespace TFOOL.Enemies.AI
 
         #region Properties
         public Vector2 ToTarget => Target.transform.position - transform.position;
+        public CancellationToken StateCancelToken => stateCanceller.Token;
         public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);
         public int FacingDirection
         { 
