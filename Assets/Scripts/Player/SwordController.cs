@@ -1,9 +1,18 @@
+/*****************************************************************************
+// File Name : SwordController.cs
+// Author : Pierce
+// Creation Date : -
+// Last Modified : 6/21/2026
+//
+// Brief Description : Handles functions related to the player's sword.
+*****************************************************************************/
 using UnityEngine;
 
 public class SwordController : MonoBehaviour
 {
     private PlayerBehaviors pb;
     private GameObject attachedObject;
+    //speed which corpses are jettisoned when detached
     [SerializeField] private float detachSpeed = 5f;
 
     public bool HasCorpseAttached { get => attachedObject != null; }

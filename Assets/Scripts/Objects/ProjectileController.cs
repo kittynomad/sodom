@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name : ProjectileController.cs
+// Author : Pierce
+// Creation Date : -
+// Last Modified : 6/21/2026
+//
+// Brief Description : Basic projectile behavior script.
+*****************************************************************************/
 using UnityEngine;
 
 public class ProjectileController : MonoBehaviour

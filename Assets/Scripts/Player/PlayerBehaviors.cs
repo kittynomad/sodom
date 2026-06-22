@@ -1,3 +1,11 @@
+/*****************************************************************************
+// File Name : PlayerBehaviors.cs
+// Author : Pierce
+// Creation Date : -
+// Last Modified : 6/21/2026
+//
+// Brief Description : Handles most player-centric functions.
+*****************************************************************************/
 using System;
 using System.Collections;
 using UnityEngine;
@@ -163,10 +171,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         else if (CanFire)
         {
             GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
+            //fire towards mouse pos if mouseAim set to true
             if (mouseAim)
             {
                 temp.GetComponent<Rigidbody2D>().AddForce(fireDirection * _projectileSpeed);
             }
+            //fire in input direction otherwise
             else
             {
                 Vector2 fd;
