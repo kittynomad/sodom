@@ -9753,9 +9753,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4051863757025737960, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: acceleration
-      value: 25
+    - target: {fileID: 1191771646200384032, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Name
+      value: SliceHitbox
       objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Name

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 8554216081745425180}
   - component: {fileID: 7549142934413486401}
   - component: {fileID: 4024369721363070276}
+  - component: {fileID: 2472271054887092906}
   m_Layer: 10
   m_Name: StabbyGuyKnife
   m_TagString: Untagged
@@ -172,3 +173,17 @@ MonoBehaviour:
   maxLifetime: 5
   falloffTime: 0.75
   rb: {fileID: 7549142934413486401}
+  hitbox: {fileID: 2472271054887092906}
+--- !u!114 &2472271054887092906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7599547234624051869}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7e405ed0feb274ab7569004bb64bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
+  damageAmount: 5

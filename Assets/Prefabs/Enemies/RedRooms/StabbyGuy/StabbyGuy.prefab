@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 7052769220409780245}
   - component: {fileID: 7003154860790012721}
   - component: {fileID: 4229990087354229521}
-  m_Layer: 9
+  - component: {fileID: 3760480622963894396}
+  m_Layer: 10
   m_Name: StabHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -138,6 +139,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &3760480622963894396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191771646200384032}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7e405ed0feb274ab7569004bb64bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
+  damageAmount: 9
 --- !u!1 &3755187400726792049
 GameObject:
   m_ObjectHideFlags: 0
@@ -426,7 +440,7 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0dfd3d61fa453c044bd8679512cb3169, type: 2}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.3
+      value: 18.47
       objectReference: {fileID: 0}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.y
@@ -484,6 +498,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6663221974757413229}
+    - targetCorrespondingSourceObject: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 926979867679935688}
   m_SourcePrefab: {fileID: 100100000, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
 --- !u!114 &493431829271473971 stripped
 MonoBehaviour:
@@ -537,3 +554,16 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
   m_PrefabInstance: {fileID: 7805952820141038393}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &926979867679935688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4821645334647248261}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f7e405ed0feb274ab7569004bb64bca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
+  damageAmount: 5

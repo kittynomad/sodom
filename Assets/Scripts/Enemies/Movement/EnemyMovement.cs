@@ -77,7 +77,7 @@ namespace TFOOL.Enemies
         private Bounds EnemyBounds => physicsCollider.bounds;
         public int TargetDirection => targetDirection;
 
-        private LayerMask GroundMask => LayerMask.GetMask("Ground");
+        private LayerMask GroundMask => 1 << (int)CollisionLayer.Ground; // Bit shift for layer mask.
         public bool OnGround
         {
             get => onGround;

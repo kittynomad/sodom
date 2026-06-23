@@ -240,7 +240,6 @@ GameObject:
   - component: {fileID: 8385949405120728227}
   - component: {fileID: 29003965345087154}
   - component: {fileID: 1796742566688072690}
-  - component: {fileID: 8128021630530041118}
   - component: {fileID: 4367419085721358166}
   - component: {fileID: 4733860627642189765}
   - component: {fileID: 6658013349989873397}
@@ -412,19 +411,6 @@ MonoBehaviour:
     debugColor: {r: 1, g: 0.5282031, b: 0, a: 1}
     stunTime: 1
   enemyController: {fileID: 4367419085721358166}
---- !u!114 &8128021630530041118
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8817419937492880481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f114829a9c60124680f827ace0e353e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::DamagingObject
-  damageAmount: 1
 --- !u!114 &4367419085721358166
 MonoBehaviour:
   m_ObjectHideFlags: 0

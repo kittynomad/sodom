@@ -16,20 +16,20 @@ namespace TFOOL.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyProjectile : MonoBehaviour
     {
-        private const string PLAYER_HITBOX_LAYER = "PlayerHitbox";
-
         [SerializeField] private float maxLifetime;
         [SerializeField, Tooltip("The amount of time the projectile will fly straight before gravity takes effect. " +
             " Set to 0 to ignore.")] 
         private float falloffTime;
 
         [SerializeField, ShowIfNull] private Rigidbody2D rb;
+        [SerializeField, ShowIfNull] private EnemyHitbox hitbox;
 
         public Rigidbody2D Rigidbody => rb;
 
         private void Reset()
         {
             rb = GetComponent<Rigidbody2D>();
+            hitbox = GetComponent<EnemyHitbox>();
         }
 
         /// <summary>
@@ -38,10 +38,11 @@ namespace TFOOL.Enemies
         /// <param name="collision"></param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // If colliding with a player hitbox, destroy this projectile.
-            if (collision.gameObject.layer == LayerMask.NameToLayer(PLAYER_HITBOX_LAYER))
+            switch ((CollisionLayer)collision.gameObject.layer)
             {
-                DestroyProjectile();
+                case CollisionLayer.PlayerHitbox:
+                    DestroyProjectile();
+                    break;
             }
         }
 
@@ -52,6 +53,7 @@ namespace TFOOL.Enemies
         /// <param name="launchVector"></param>
         public void Launch(Vector2 launchVector)
         {
+            hitbox.OnHitEvent += HandleOnHit;
             rb.AddForce(launchVector, ForceMode2D.Impulse);
             StartCoroutine(LifetimeRoutine());
         }
@@ -82,10 +84,20 @@ namespace TFOOL.Enemies
         }
 
         /// <summary>
+        /// Destroy this projectile when it hits the player.
+        /// </summary>
+        /// <param name="obj"></param>
+        private void HandleOnHit(PlayerBehaviors obj)
+        {
+            DestroyProjectile();
+        }
+
+        /// <summary>
         /// Handles correctly destroying this projectile.  Might need to do object pooling & such later.
         /// </summary>
         private void DestroyProjectile()
         {
+            hitbox.OnHitEvent -= HandleOnHit;
             Destroy(gameObject);
         }
     }
