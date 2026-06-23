@@ -169,6 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 179e0177b8fc1414898ceb2ae7e58750, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyProjectile
+  damageAmount: 5
   maxLifetime: 5
   falloffTime: 0.75
   rb: {fileID: 7549142934413486401}

@@ -16,8 +16,7 @@ namespace TFOOL.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyProjectile : MonoBehaviour
     {
-        private const string PLAYER_HITBOX_LAYER = "PlayerHitbox";
-
+        [SerializeField] private float damageAmount;
         [SerializeField] private float maxLifetime;
         [SerializeField, Tooltip("The amount of time the projectile will fly straight before gravity takes effect. " +
             " Set to 0 to ignore.")] 
@@ -38,10 +37,18 @@ namespace TFOOL.Enemies
         /// <param name="collision"></param>
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            // If colliding with a player hitbox, destroy this projectile.
-            if (collision.gameObject.layer == LayerMask.NameToLayer(PLAYER_HITBOX_LAYER))
+            switch ((CollisionLayer)collision.gameObject.layer)
             {
-                DestroyProjectile();
+                case CollisionLayer.Player:
+                    if (collision.TryGetComponent(out PlayerBehaviors pb))
+                    {
+                        pb.OnDamage(damageAmount, gameObject);
+                    }
+                    DestroyProjectile();
+                    break;
+                case CollisionLayer.PlayerHitbox:
+                    DestroyProjectile();
+                    break;
             }
         }
 

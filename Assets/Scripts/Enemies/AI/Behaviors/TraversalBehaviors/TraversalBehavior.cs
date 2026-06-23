@@ -7,11 +7,10 @@
 // Brief Description : Base class for any enemy behavior that controls the enemy's grounded movement, such as 
 // walking/running up to the player.
 *****************************************************************************/
-using UnityEngine;
-using System.Threading;
-using System;
-using Unity.VisualScripting;
 using NaughtyAttributes;
+using System;
+using System.Threading;
+using UnityEngine;
 
 namespace TFOOL.Enemies.AI
 {
