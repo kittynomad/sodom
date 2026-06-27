@@ -392,11 +392,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].stabbingLeapForce
-      value: 7
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].decideDirectionDelay
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940044914524242].manualTeleportPoints.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 2481911175174928383, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_GravityScale

@@ -40,7 +40,7 @@ namespace TFOOL.Enemies.AI
             float originalAcceleration = movement.Acceleration;
             void CleanUp()
             {
-                movement.SetDirection(0);
+                movement.SetMoveDirection(0);
                 movement.MoveSpeed = originalSpeed;
                 movement.Acceleration = originalAcceleration;
             }

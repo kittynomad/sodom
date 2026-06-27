@@ -119,7 +119,7 @@ namespace TFOOL.Enemies
         /// Sets the enemy's direction.
         /// </summary>
         /// <param name="direction"></param>
-        public void SetDirection(int direction)
+        public void SetMoveDirection(int direction)
         {
             direction = Mathf.Clamp(direction, -1, 1);
             if (direction != targetDirection)
@@ -367,25 +367,28 @@ namespace TFOOL.Enemies
             {
                 try
                 {
-                    SetDirection(0);
+                    SetMoveDirection(0);
 
                     // If the enemy is hugging a wall, make them back up a bit.
                     if (ContainsWall(blockers))
                     {
                         Vector2 backUpPos = Rigidbody.position - new Vector2(jumpDirection, 0);
-                        SetDirection(-jumpDirection);
-                        while(Vector2.Distance(backUpPos, Rigidbody.position) > 0.1f)
+                        while (Vector2.Distance(backUpPos, Rigidbody.position) > 0.1f)
                         {
+                            controller.FacingDirection = jumpDirection;
+                            SetMoveDirection(-jumpDirection);
                             await Awaitable.FixedUpdateAsync(ct);
                         }
-                        SetDirection(0);
+                        SetMoveDirection(0);
                     }
 
                     await Awaitable.WaitForSecondsAsync(jumpWindupTime, ct);
 
+                    ct.ThrowIfCancellationRequested();
                     // While jumping, the enemy is not blocked.
                     OnGround = false;
                     blockers = 0;
+                    controller.FacingDirection = jumpDirection;
                     // Calculate the correct velocity to jump at to reach the jump point.
                     Vector2 jumpVelocity = GetJumpVelocity(GetFeetPosition(), jumpPoint);
                     Rigidbody.linearVelocity = jumpVelocity;
@@ -398,7 +401,7 @@ namespace TFOOL.Enemies
 
                     await Awaitable.WaitForSecondsAsync(jumpLagTime, ct);
 
-                    SetDirection(jumpDirection);
+                    SetMoveDirection(jumpDirection);
 
                     return true;
                 }
@@ -459,7 +462,6 @@ namespace TFOOL.Enemies
             float verticalVelocity = Mathf.Sqrt(2 * Mathf.Abs(gravity) * (Mathf.Max(deltaPosition.y + JUMP_LEEWAY, JUMP_LEEWAY)));
             // Calc horizontal velocity using the formula vx = dx / ((-vy / g) + sqrt(2l/g))
             float horizontalVelocity = deltaPosition.x / ((-verticalVelocity / gravity) + Mathf.Sqrt(2 * JUMP_LEEWAY / Mathf.Abs(gravity)));
-            Debug.Log(deltaPosition.y);
             return new Vector2(horizontalVelocity, verticalVelocity);
 
         }

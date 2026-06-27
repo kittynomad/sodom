@@ -46,7 +46,7 @@ namespace TFOOL.Enemies.AI
                 // Reset to defaults
                 movement.MoveSpeed = startingSpeed;
                 movement.Acceleration = startingAcceleration;
-                movement.SetDirection(0);
+                movement.SetMoveDirection(0);
                 hitbox.SetActive(false);
             }
     
@@ -61,7 +61,8 @@ namespace TFOOL.Enemies.AI
                 while(!ct.IsCancellationRequested && enemy.ToTarget.magnitude > attackRange && (maxChargeTime <= 0 || timer > 0))
                 {
                     ct.ThrowIfCancellationRequested();
-                    movement.SetDirection(enemy.DirectionToTarget);
+                    movement.SetMoveDirection(enemy.DirectionToTarget);
+                    enemy.PointTowardsTarget();
 
                     timer -= Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();

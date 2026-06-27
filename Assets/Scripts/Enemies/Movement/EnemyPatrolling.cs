@@ -77,12 +77,12 @@ namespace TFOOL.Enemies
                 else
                 {
                     //movement.SetDirection((int)Mathf.Sign(toDest.x));
-                    movement.SetDirection(isLeft ? -1 : 1);
+                    movement.SetMoveDirection(isLeft ? -1 : 1);
                 }
                 await Awaitable.FixedUpdateAsync();
             }
 
-            movement.SetDirection(0);
+            movement.SetMoveDirection(0);
             ct.ThrowIfCancellationRequested();
         }
 
