@@ -20,6 +20,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float hitboxOffset;
         [SerializeField] private float attackTime;
         [SerializeField] private float stabbingLeapForce;
+        [SerializeField] private float stabYVelocity;
         [Header("Timing")]
         [SerializeField] private float decideDirectionDelay;
         [SerializeField] private float leapDelay;
@@ -67,11 +68,11 @@ namespace TFOOL.Enemies.AI
                 // Leap at the target and attack.
                 enemy.PointTowardsTarget();
                 hitbox.transform.position = enemy.transform.position + (Vector3)(stabVector * hitboxOffset);
-                movement.Rigidbody.gravityScale = originalGravity;
                 movement.Rigidbody.linearVelocity = stabVector * stabbingLeapForce;
                 hitbox.SetActive(true);
                 await Awaitable.WaitForSecondsAsync(attackTime, ct);
                 hitbox.SetActive(false);
+                movement.Rigidbody.gravityScale = originalGravity;
 
                 // Wait until the enemy hits the ground.
                 while (!movement.OnGround)

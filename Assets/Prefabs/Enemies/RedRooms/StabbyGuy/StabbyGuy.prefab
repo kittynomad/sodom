@@ -371,6 +371,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940044914524242].stabYVelocity
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135147].projectileSpeed
       value: 10
       objectReference: {fileID: 0}

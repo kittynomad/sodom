@@ -39,7 +39,7 @@ namespace TFOOL.Enemies.AI
                     Vector2 toTarget = enemy.Target.transform.position - enemy.transform.position;
 
                     // Update rotation.
-                    enemy.SetRotation(toTarget.x < 0);
+                    enemy.PointTowardsTarget();
 
                     // Control movement.
                     if (!moveToDistance.IsWithinRange(toTarget.magnitude) &&
