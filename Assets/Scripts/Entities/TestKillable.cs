@@ -5,6 +5,7 @@ public class TestKillable : MonoBehaviour, IKillable
     [SerializeField] private float _maxHealth;
     [SerializeField] private GameObject _corpseObject;
     [SerializeField] private float _corpseFlingStrength = 5f;
+    [SerializeField] private ParticleSystem _bloodParticleSystem;
 
     private float currentHealth;
 
@@ -16,6 +17,10 @@ public class TestKillable : MonoBehaviour, IKillable
     public bool OnDamage(float damageAmount, GameObject damageSource = null)
     {
         currentHealth -= damageAmount;
+        if (_bloodParticleSystem != null)
+        {
+            _bloodParticleSystem.Play();
+        }
         if (currentHealth <= 0f)
             OnKill(damageSource);
 
