@@ -38,7 +38,8 @@ namespace TFOOL.Enemies.AI
                 if (value == 0) { return; }
                 int direction = Mathf.Clamp(value, -1, 1);
                 facingDirection = direction;
-                SetRotation(value < 0);
+                transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, value < 0 ? 180 : 0,
+                transform.localEulerAngles.z);
             }
         }
         #endregion
@@ -198,16 +199,6 @@ namespace TFOOL.Enemies.AI
         {
             if (Target == null) { return; }
             FacingDirection = DirectionToTarget;
-        }
-
-        /// <summary>
-        /// Sets the rotation of the enemy.
-        /// </summary>
-        /// <param name="facingLeft">True if the enemy is facing left, false if otherwise.</param>
-        public void SetRotation(bool facingLeft)
-        {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, facingLeft ? 180 : 0,
-                transform.localEulerAngles.z);
         }
         #endregion
     }

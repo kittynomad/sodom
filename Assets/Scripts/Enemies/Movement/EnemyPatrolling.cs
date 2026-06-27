@@ -52,21 +52,29 @@ namespace TFOOL.Enemies
         /// Asyncronously moves the enemy to the next point in it's patrol route.
         /// </summary>
         /// <returns></returns>
-        public async Awaitable MoveToPatrolPoint(bool isLeft, CancellationToken ct)
+        public async Awaitable MoveToPatrolPoint(int direction, CancellationToken ct)
         {
+            // Wait until a start point has been set.
+            while (startPos == null)
+            {
+                await Awaitable.FixedUpdateAsync(ct);
+            }
+
+            direction = Mathf.Clamp(direction, -1, 1);
 
             // Get the position of our destination.
-            Vector2 destination = GetDestination(isLeft);
+            Vector2 destination = GetDestination(direction);
 
             while (!ct.IsCancellationRequested)
             {
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Stop patrolling once the point has been passed.
-                if (Mathf.Abs(toDest.y) < 0.5f && toDest.x * (isLeft ? -1 : 1) < 0)
+                Debug.Log(toDest.x);
+                if (Mathf.Abs(toDest.y) < 0.5f && toDest.x * (direction) < 0)
                 {
                     break;
                 }
-                else if (await movement.IsObscuredTryJump(ct))
+                else if (movement.IsDestinationObscured())
                 {
                     if (immediateBrake)
                     {
@@ -77,7 +85,7 @@ namespace TFOOL.Enemies
                 else
                 {
                     //movement.SetDirection((int)Mathf.Sign(toDest.x));
-                    movement.SetMoveDirection(isLeft ? -1 : 1);
+                    movement.SetMoveDirection(direction);
                 }
                 await Awaitable.FixedUpdateAsync();
             }
@@ -86,10 +94,10 @@ namespace TFOOL.Enemies
             ct.ThrowIfCancellationRequested();
         }
 
-        private Vector2 GetDestination(bool isLeft)
+        private Vector2 GetDestination(int direction)
         {
             if (startPos == null) {  return Vector2.zero; }
-            return (Vector2)startPos + (Vector2.right * patrolArea / 2) * (isLeft ? -1 : 1);
+            return (Vector2)startPos + (Vector2.right * patrolArea / 2) * direction;
         }
 
         private void OnDrawGizmosSelected()

@@ -36,13 +36,13 @@ namespace TFOOL.Enemies.AI
                 while (!ct.IsCancellationRequested)
                 {
                     // Right
-                    enemy.SetRotation(false);
-                    await patroller.MoveToPatrolPoint(false, ct);
+                    enemy.FacingDirection = 1;
+                    await patroller.MoveToPatrolPoint(1, ct);
                     await Awaitable.WaitForSecondsAsync(patrolWait, ct);
 
                     // Left
-                    enemy.SetRotation(true);
-                    await patroller.MoveToPatrolPoint(true, ct);
+                    enemy.FacingDirection = -1;
+                    await patroller.MoveToPatrolPoint(-1, ct);
                     await Awaitable.WaitForSecondsAsync(patrolWait, ct);
                 }
                 CleanUp();
