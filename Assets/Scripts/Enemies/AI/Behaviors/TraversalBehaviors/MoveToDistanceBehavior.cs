@@ -30,12 +30,12 @@ namespace TFOOL.Enemies.AI
                 // Enemy too close
                 if (toTarget.magnitude < distanceRange.x)
                 {
-                    movement.SetDirection(-(int)Mathf.Sign(toTarget.x));
+                    movement.SetMoveDirection(-(int)Mathf.Sign(toTarget.x));
                 }
                 // Enemy too far.
                 else
                 {
-                    movement.SetDirection((int)Mathf.Sign(toTarget.x));
+                    movement.SetMoveDirection((int)Mathf.Sign(toTarget.x));
                 }
 
                 // Stopping at edge handling.

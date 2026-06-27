@@ -36,7 +36,8 @@ namespace TFOOL.Enemies.AI
             set
             {
                 if (value == 0) { return; }
-                facingDirection = Mathf.Clamp(value, -1, 1);
+                int direction = Mathf.Clamp(value, -1, 1);
+                facingDirection = direction;
                 SetRotation(value < 0);
             }
         }

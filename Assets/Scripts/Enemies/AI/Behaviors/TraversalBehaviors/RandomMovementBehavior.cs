@@ -28,7 +28,7 @@ namespace TFOOL.Enemies.AI
             int direction = (UnityEngine.Random.Range(0, 2) * 2) - 1;
 
             float timer = wanderTime;
-            movement.SetDirection(direction);
+            movement.SetMoveDirection(direction);
             while (timer > 0)
             {
                 ct.ThrowIfCancellationRequested();

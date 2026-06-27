@@ -37,7 +37,7 @@ namespace TFOOL.Enemies.AI
             try
             {
                 // Stop any enemy movement.
-                movement.SetDirection(0);
+                movement.SetMoveDirection(0);
                 // Delay until stun expires.  The enemy shouldn't be doing anything during this time.
                 await Awaitable.WaitForSecondsAsync(stunTime);
                 CleanUp();
