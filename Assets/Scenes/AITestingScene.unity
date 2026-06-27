@@ -9761,11 +9761,93 @@ PrefabInstance:
       propertyPath: m_Name
       value: StabbyGuy
       objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].setPointTeleport
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].stabbingLeapForce
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].manualTeleportPoints.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
+      value: 
+      objectReference: {fileID: 1680091615}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1705448743}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+--- !u!1 &1680091614
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1680091615}
+  m_Layer: 0
+  m_Name: TestTeleportPoint1
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1680091615
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1680091614}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 7.98, y: 5.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1705448742
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1705448743}
+  m_Layer: 0
+  m_Name: TestTeleportPoint2
+  m_TagString: Untagged
+  m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1705448743
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1705448742}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 24.23, y: 5.86, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1821519710
 GameObject:
   m_ObjectHideFlags: 0
@@ -10208,3 +10290,5 @@ SceneRoots:
   - {fileID: 1296650128}
   - {fileID: 814943200}
   - {fileID: 1573691251}
+  - {fileID: 1680091615}
+  - {fileID: 1705448743}

@@ -323,6 +323,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3437468876232838646}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940044914524242].leapDelay
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135147].attackName
       value: KnifeThrow
       objectReference: {fileID: 0}
@@ -355,6 +359,10 @@ PrefabInstance:
       value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940044914524242].hitboxOffset
+      value: 1.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135156].maxChargeTime
       value: 3
       objectReference: {fileID: 0}
@@ -372,11 +380,11 @@ PrefabInstance:
       objectReference: {fileID: 4024369721363070276, guid: 45ccafc73b257114e9254d394a67e8b9, type: 3}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].teleportOffset.x
-      value: 2
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].teleportOffset.y
-      value: 0.2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].postTeleportDelay
@@ -384,7 +392,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].stabbingLeapForce
-      value: 15
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940044914524242].decideDirectionDelay
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2481911175174928383, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_GravityScale
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_Name

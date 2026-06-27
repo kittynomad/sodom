@@ -376,7 +376,6 @@ namespace TFOOL.Enemies
                         SetDirection(-jumpDirection);
                         while(Vector2.Distance(backUpPos, Rigidbody.position) > 0.1f)
                         {
-                            Debug.Log(Vector2.Distance(backUpPos, Rigidbody.position));
                             await Awaitable.FixedUpdateAsync(ct);
                         }
                         SetDirection(0);
