@@ -199,7 +199,7 @@ MonoBehaviour:
   _playerWalkSpeedLimit: 8
   _projectileSpeed: 45
   _hurtRecoveryPeriod: 1
-  _customVelocityFalloffRate: 0.175
+  _customVelocityFalloffRate: 0.096
   _poundStrength: 20
   _poundDamage: 1
   _poundPushStrength: 15

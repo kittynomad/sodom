@@ -271,12 +271,45 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public IEnumerator AttackCoroutine()
     {
-        _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-        IsAttacking = true;
-        _hurtBox.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
+        //Currently only the static idle melee animation is incorporated. 
+        //The yield for .45 seconds is to line up the attack hitbox coming out with the animation
+        if (IsGrounded())
+        {
+            if (pc.MovementDirection.x != 0)
+            {
+                _anim.Play("PlayerMeleeWalking");
+                yield return new WaitForSeconds(0.22f);
+            }
+            else
+            {
+                _anim.Play("PlayerMeleeStatic");
+                yield return new WaitForSeconds(0.45f);
+            }
+            float lookDirection;
+            if (_sprite.flipX) { lookDirection = -1f; }
+            else {  lookDirection = 1f; }
+            _hurtBox.transform.localPosition = new Vector2(lookDirection, pc.MovementDirection.y) * 1.5f;
+            IsAttacking = true;
+            _hurtBox.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            //_hurtBox.SetActive(false);
+            IsAttacking = false;
+        }
+        else
+        {
+            _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
+            IsAttacking = true;
+            _hurtBox.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            //_hurtBox.SetActive(false);
+            IsAttacking = false;
+        }
+        //_hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
+        //IsAttacking = true;
+        //_hurtBox.SetActive(true);
+        //yield return new WaitForSeconds(0.5f);
         //_hurtBox.SetActive(false);
-        IsAttacking = false;
+        //IsAttacking = false;
     }
 
     public IEnumerator HurtRecoveryCoroutine()
@@ -316,8 +349,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
         else relativeVelocity = rb.linearVelocity;
         _anim.SetBool("IsGrounded", IsGrounded());
-        _anim.SetBool("IsMoving", Mathf.Abs(relativeVelocity.x) >= 0.5f);
+        _anim.SetBool("IsMoving", (pc.MovementDirection.x != 0));
         _anim.SetFloat("YSpeed", relativeVelocity.y);
-        _anim.SetFloat("XSpeed", relativeVelocity.x / _playerWalkSpeedLimit);
+        _anim.SetFloat("XSpeed", relativeVelocity.x);
     }
 }
