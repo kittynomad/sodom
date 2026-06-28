@@ -107,12 +107,16 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void FlipSpriteForVelocity()
     {
         //_sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
-        transform.localScale = new Vector3(pc.MovementDirection.x == 0 ? -1f : 1f, 1f, 1f);
+        if(pc.MovementDirection.x != 0)
+        {
+            transform.localScale = new Vector3(pc.MovementDirection.x < 0f ? -1f : 1f, 1f, 1f);
+        }
+        
     }
 
     private bool IsFacingRight()
     {
-        return transform.localScale.x == 1f;
+        return transform.localScale.x >= 0f;
     }
 
     public void JumpBehavior()
