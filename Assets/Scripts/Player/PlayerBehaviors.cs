@@ -106,7 +106,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void FlipSpriteForVelocity()
     {
-        _sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
+        //_sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
+        transform.localScale = new Vector3(pc.MovementDirection.x == 0 ? -1f : 1f, 1f, 1f);
+    }
+
+    private bool IsFacingRight()
+    {
+        return transform.localScale.x == 1f;
     }
 
     public void JumpBehavior()
@@ -156,7 +162,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public float FacingDirection()
     {
-        return _sprite.flipX ? -1f : 1f;   
+        return IsFacingRight() ? -1f : 1f;   
     }
 
     public void FireBehavior(Vector2 fireDirection, bool mouseAim = false)
@@ -215,7 +221,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             //if no directional input, dash in direction player is facing
             else
             {
-                rb.AddForce(Vector2.left * (_sprite.flipX ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                rb.AddForce(Vector2.left * (IsFacingRight() ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
             }
         }
         
@@ -286,7 +292,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 yield return new WaitForSeconds(0.45f);
             }
             float lookDirection;
-            if (_sprite.flipX) { lookDirection = -1f; }
+            if (IsFacingRight()) { lookDirection = -1f; }
             else {  lookDirection = 1f; }
             //_hurtBox.transform.localPosition = new Vector2(lookDirection, pc.MovementDirection.y) * 1.5f;
             IsAttacking = true;
