@@ -15,7 +15,8 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class EnterCombatState : EnemyState
     {
-        [SerializeField] private float enterCombatDelay;
+        [SerializeField, Tooltip("The amount of time to wait on this state before mocing to combat.")] 
+        private float enterCombatDelay;
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);

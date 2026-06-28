@@ -13,6 +13,7 @@ using System;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
+    [DropdownGroup("/")]
     public class #SCRIPTNAME# : EnemyAttack
     {
         #NOTRIM#

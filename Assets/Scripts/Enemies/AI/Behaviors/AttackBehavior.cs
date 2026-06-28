@@ -15,9 +15,12 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class AttackBehavior : EnemyBehavior
     {
-        [SerializeField] private string attackName;
-        [SerializeField] private float idealDistance; // Going to make this more modular later.
-        [SerializeField] protected float postAttackDelay;
+        [SerializeField, Tooltip("Name of the attack on the enemy's EnemyAttacker component to use.")] 
+        private string attackName;
+        [SerializeField, Tooltip("The ideal distance for this attack.  Attacks are chosen based on which " +
+            "attack's ideal distance is closes to the distance between the enemy and the target.")] 
+        private float idealDistance;
+        [SerializeField, Tooltip("How long to wait after performing the attack.")] protected float postAttackDelay;
 
         public float IdealDistance => idealDistance;
         public string AttackName => attackName;

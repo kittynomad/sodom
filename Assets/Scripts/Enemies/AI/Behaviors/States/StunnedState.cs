@@ -15,7 +15,7 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class StunnedState : EnemyState
     {
-        [SerializeField] private float stunTime;
+        [SerializeField, Tooltip("How long the enemy should remain stunned for.")] private float stunTime;
 
         public override bool IsCancellable => false;
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)

@@ -17,10 +17,14 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public abstract class TraversalBehavior : EnemyBehavior
     {
-        [SerializeField] private float moveSpeed;
-        [SerializeField] private float acceleration;
-        [SerializeField] protected bool stopAtEdge;
-        [SerializeField, ShowIf(nameof(stopAtEdge)), AllowNesting] protected bool tryJump;
+        [SerializeField, Tooltip("Move speed of the enemy during this behavior only.")] private float moveSpeed;
+        [SerializeField, Tooltip("Ground acceleration of the enemy during this behavior only.")] private float acceleration;
+        [SerializeField, Tooltip("If true, the enemy will look for walls/edges while moving and will stop when " +
+            "it reaches one.")] 
+        protected bool stopAtEdge;
+        [SerializeField, ShowIf(nameof(stopAtEdge)), AllowNesting, Tooltip("If true, the enemy will attempt to " +
+            "jump if it encounters a wall/edge")]
+        protected bool tryJump;
 
         /// <summary>
         /// Use Run as the wrapper function for setting and resetting speed so that any derived behaviors can use RunAI like normal.

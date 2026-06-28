@@ -15,7 +15,8 @@ namespace TFOOL.Enemies
     [System.Serializable]
     public abstract class EnemyAttack
     {
-        [SerializeField] private string attackName;
+        [SerializeField, Tooltip("Name that is used by the EnemyAI to perform this attack from an AttackBehavior.")] 
+        private string attackName;
 
         public string Name => attackName;
 

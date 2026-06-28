@@ -19,7 +19,8 @@ namespace TFOOL.Enemies
     [DropdownGroup("Projectiles")]
     public class ProjectileAttack : EnemyAttack
     {
-        [SerializeField] protected Transform shotPoint;
+        [SerializeField, Tooltip("Where the projectile should be spawned at and launched from.")] 
+        protected Transform shotPoint;
         [SerializeField] protected EnemyProjectile projectilePrefab;
         [SerializeField] protected float projectileSpeed;
 

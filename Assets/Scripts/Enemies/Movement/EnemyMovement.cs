@@ -36,7 +36,9 @@ namespace TFOOL.Enemies
 
         [SerializeField, Tooltip("The collider used to determine the location of wall, edge, and ground checks.")]
         private Collider2D physicsCollider;
-        [SerializeField] private DirectionUpdateMode directionUpdateMode;
+        [SerializeField, Tooltip("Sets if the enemy automatically aligns the direction it's facing to the direct " +
+            "it's moving.")] 
+        private DirectionUpdateMode directionUpdateMode;
         [Header("Movement")]
         [SerializeField] private float walkSpeed;
         [SerializeField] private float groundAcceleration;
@@ -46,8 +48,9 @@ namespace TFOOL.Enemies
         [SerializeField] private bool jumpUpLedges;
         [SerializeField] private int maxJumpDistance;
         [SerializeField] private int maxJumpHeight;
-        [SerializeField] private float jumpWindupTime;
-        [SerializeField] private float jumpLagTime;
+        [SerializeField, Tooltip("How much time to delay before the enemy jumps over a gap/up a ledge.")] 
+        private float jumpWindupTime;
+        [SerializeField, Tooltip("How much time to delay after the enemy lands a jump.")] private float jumpLagTime;
 
         // Components
         [SerializeField, ShowIfNull] private Rigidbody2D rb;
@@ -216,9 +219,14 @@ namespace TFOOL.Enemies
             return new Vector2(EnemyBounds.center.x + (EnemyBounds.size.x / 2 * sign), EnemyBounds.center.y);
         }
 
-        private Vector2 GetFeetPosition()
+        public Vector2 GetFeetPosition()
         {
-            return Rigidbody.position + new Vector2(0, EnemyBounds.min.y);
+            return Rigidbody.position + GetFeetOffset();
+        }
+
+        public Vector2 GetFeetOffset()
+        {
+            return new Vector2(0, -EnemyBounds.min.y);
         }
         #endregion
 

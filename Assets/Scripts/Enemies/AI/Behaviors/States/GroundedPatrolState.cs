@@ -15,7 +15,8 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class GroundedPatrolState : EnemyState
     {
-        [SerializeField] private float patrolWait;
+        [SerializeField, Tooltip("How long to wait at each end of the enemy's patrol range before turning around.")]
+        private float patrolWait;
 
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
