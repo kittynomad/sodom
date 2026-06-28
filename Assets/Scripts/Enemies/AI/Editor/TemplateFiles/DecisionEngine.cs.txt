@@ -31,16 +31,11 @@ namespace TFOOL.Enemies.AI
                     }
     
                     break;
-                case SenseType.LoseAggro:
-                    break;
             }
+            return null;
         }
-        public override EnemyState Decide(EnemyBehavior currentState, EnemyController enemy, EnemyAI ai)
+        public override EnemyState Decide(EnemyState currentState, EnemyController enemy, EnemyAI ai)
         {
-            switch (currentState)
-            {
-                
-            }
             return null;
         }
     }
