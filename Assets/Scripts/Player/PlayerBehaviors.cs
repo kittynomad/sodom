@@ -295,14 +295,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 _anim.Play("PlayerMeleeStatic");
                 yield return new WaitForSeconds(0.45f);
             }
-            float lookDirection;
-            if (IsFacingRight()) { lookDirection = -1f; }
-            else {  lookDirection = 1f; }
-            //_hurtBox.transform.localPosition = new Vector2(lookDirection, pc.MovementDirection.y) * 1.5f;
+
             IsAttacking = true;
             _hurtBox.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            //_hurtBox.SetActive(false);
             IsAttacking = false;
         }
         else
@@ -311,15 +307,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             IsAttacking = true;
             _hurtBox.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            
             IsAttacking = false;
         }
-        //_hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-        //IsAttacking = true;
-        //_hurtBox.SetActive(true);
-        //yield return new WaitForSeconds(0.5f);
-        //_hurtBox.SetActive(false);
-        //IsAttacking = false;
     }
 
     public IEnumerator HurtRecoveryCoroutine()
