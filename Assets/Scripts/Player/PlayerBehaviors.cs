@@ -93,7 +93,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
         
             //set hurtBox pos while not attacking
-        if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
+        //if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
 
         //ensure player keeps consistent y velocity while mid ground pound
         if (pounding) rb.linearVelocity = new Vector2(rb.linearVelocityX, -1 * _poundStrength);
