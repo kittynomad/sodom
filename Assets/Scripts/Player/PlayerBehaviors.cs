@@ -288,27 +288,36 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             if (pc.MovementDirection.x != 0)
             {
                 _anim.Play("PlayerMeleeWalking");
-                yield return new WaitForSeconds(0.22f);
+                //yield return new WaitForSeconds(0.22f);
             }
             else
             {
                 _anim.Play("PlayerMeleeStatic");
-                yield return new WaitForSeconds(0.45f);
+                //yield return new WaitForSeconds(0.45f);
             }
 
-            IsAttacking = true;
-            _hurtBox.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
-            IsAttacking = false;
+            //StartAttack();
+            //yield return new WaitForSeconds(0.5f);
+            //EndAttack();
         }
         else
         {
             _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-            IsAttacking = true;
-            _hurtBox.SetActive(true);
+            StartAttack();
             yield return new WaitForSeconds(0.5f);
-            IsAttacking = false;
+            EndAttack();
         }
+    }
+
+    public void StartAttack()
+    {
+        IsAttacking = true;
+        _hurtBox.SetActive(true);
+    }
+
+    public void EndAttack()
+    {
+        IsAttacking = false;
     }
 
     public IEnumerator HurtRecoveryCoroutine()
