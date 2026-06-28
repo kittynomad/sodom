@@ -61,7 +61,7 @@ public class SwordController : MonoBehaviour
             attachedObject.transform.parent = null;
             attachedObject.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
             //attachedObject.GetComponent<Rigidbody2D>().excludeLayers = LayerMask.GetMask();
-            attachedObject.GetComponent<Rigidbody2D>().linearVelocity = transform.parent.GetComponent<Rigidbody2D>().linearVelocity;
+            attachedObject.GetComponent<Rigidbody2D>().linearVelocity = transform.parent.parent.GetComponent<Rigidbody2D>().linearVelocity;
             attachedObject.GetComponent<Rigidbody2D>().AddForce(direction * detachSpeed, ForceMode2D.Impulse);
             attachedObject.GetComponent<CorpseController>().Discarded = true;
         }

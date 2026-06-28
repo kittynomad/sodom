@@ -288,7 +288,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             float lookDirection;
             if (_sprite.flipX) { lookDirection = -1f; }
             else {  lookDirection = 1f; }
-            _hurtBox.transform.localPosition = new Vector2(lookDirection, pc.MovementDirection.y) * 1.5f;
+            //_hurtBox.transform.localPosition = new Vector2(lookDirection, pc.MovementDirection.y) * 1.5f;
             IsAttacking = true;
             _hurtBox.SetActive(true);
             yield return new WaitForSeconds(0.5f);
@@ -301,7 +301,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             IsAttacking = true;
             _hurtBox.SetActive(true);
             yield return new WaitForSeconds(0.5f);
-            //_hurtBox.SetActive(false);
+            
             IsAttacking = false;
         }
         //_hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
