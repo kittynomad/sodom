@@ -6,10 +6,12 @@ using UnityEngine;
 
 public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
 {
-    [SerializeField] private float _maxHealth;
-    [SerializeField] private GameObject _corpseObject;
-    [SerializeField] private float _corpseFlingStrength = 5f;
-    [SerializeField] private bool shouldStun;
+    [SerializeField, Tooltip("Maximum health of the enemy.")] private float _maxHealth;
+    [SerializeField, Tooltip("The corpse prefab to spawn when the enemy is destroyed.")] 
+    private GameObject _corpseObject;
+    [SerializeField, Tooltip("Force applied to the corpse when it is spawned.")] private float _corpseFlingStrength = 5f;
+    [SerializeField, Tooltip("Toggles if the enemy should be stunned when taking damage.")] 
+    private bool shouldStun;
     [SerializeField, Tooltip("The amount of time after being stunned that the enemy can't be stunned again for.")] 
     private float stunCooldown;
     [SerializeField] private StunnedState stunState;
