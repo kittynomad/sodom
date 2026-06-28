@@ -16,7 +16,8 @@ namespace TFOOL.Enemies
     [RequireComponent(typeof(Rigidbody2D))]
     public class EnemyProjectile : MonoBehaviour
     {
-        [SerializeField] private float maxLifetime;
+        [SerializeField,Tooltip("Amount of time after being launched. before the projectile is destroyed.")] 
+        private float maxLifetime;
         [SerializeField, Tooltip("The amount of time the projectile will fly straight before gravity takes effect. " +
             " Set to 0 to ignore.")] 
         private float falloffTime;

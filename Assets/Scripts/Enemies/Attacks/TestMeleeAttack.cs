@@ -17,7 +17,8 @@ namespace TFOOL.Enemies
     public class TestMeleeAttack : EnemyAttack
     {
         [SerializeField] private GameObject hitbox;
-        [SerializeField] private float attackTime;
+        [SerializeField, Tooltip("Amount of tiime the hitbox remains active.")] 
+        private float attackTime;
 
         /// <summary>
         /// Performs a basic spawn hitbox attack with a given timing.

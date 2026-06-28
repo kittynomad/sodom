@@ -4,7 +4,7 @@
 // Creation Date : 4/26/2026
 // Last Modified : 4/26/2026
 //
-// Brief Description : Utilizes trigger colliders to detect the player and/or other targets.
+// Brief Description : Utilizes trigger colliders to detect the player and/or other targets in the world.
 *****************************************************************************/
 using NaughtyAttributes;
 using System;
@@ -30,10 +30,15 @@ namespace TFOOL.Enemies.AI
         private float senseExpireTime;
         [SerializeField, Tooltip("The maximum height that the enemy can see.  Set 0 for no max height.")] 
         private float maxHeightDiff;
-        [SerializeField, Tooltip("Whether the enemy requires line fo sight to detect an objecct with this sense.")] 
+        [SerializeField, Tooltip("Whether the enemy requires line of sight to detect an objecct with this sense.")] 
         private bool requireLOS;
-        [SerializeField, ShowIf(nameof(requireLOS))] private bool debugLOS;
-        [SerializeField] private LayerMask detectionMask;
+        [SerializeField, ShowIf(nameof(requireLOS)), Tooltip("Whether to show a debug line tracking the " +
+            "enemy's line of sight.")] 
+        private bool debugLOS;
+        [SerializeField, ShowIf(nameof(requireLOS)), Tooltip("What collision layers should affect the enemy's " +
+            "line of sight.  Should include collision for ground and any layers that contain objects the enemy " +
+            "should be able to see.")] 
+        private LayerMask detectionMask;
 
         private readonly List<GameObject> monitoredObjects = new();
         private readonly List<GameObject> sensedObjects = new();

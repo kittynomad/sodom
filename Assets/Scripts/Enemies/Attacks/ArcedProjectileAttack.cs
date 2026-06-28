@@ -21,7 +21,7 @@ namespace TFOOL.Enemies
         {
             ct.ThrowIfCancellationRequested();
 
-            ShootProjectile(GetArcedShotVector2(projectileSpeed,
+            ShootProjectile(GetArcedShotVector(projectileSpeed,
                 target.transform.position, shotPoint.transform.position, projectilePrefab.Rigidbody.gravityScale));
 
             return Awaitable.NextFrameAsync(ct);
@@ -35,25 +35,25 @@ namespace TFOOL.Enemies
         /// <param name="shotPosition">The position from which the projectile will be shot.</param>
         /// <param name="gravityScale">The gravity scale of the projectile.</param>
         /// <returns>The vector that the projectiles hould be shot at to hit the target.</returns>
-        private Vector2 GetArcedShotVector(float speed, Vector2 targetPosition, Vector2 shotPosition, float gravityScale)
-        {
-            Vector2 deltaPosition = targetPosition - shotPosition;
-            float gravity = gravityScale * Physics2D.gravity.y;
-            float phaseAngle = Mathf.Atan(deltaPosition.x / deltaPosition.y);
+        //private Vector2 GetArcedShotVector(float speed, Vector2 targetPosition, Vector2 shotPosition, float gravityScale)
+        //{
+        //    Vector2 deltaPosition = targetPosition - shotPosition;
+        //    float gravity = gravityScale * Physics2D.gravity.y;
+        //    float phaseAngle = Mathf.Atan(deltaPosition.x / deltaPosition.y);
 
-            float angle = (Mathf.Acos((deltaPosition.y + (gravity * Mathf.Pow(deltaPosition.x, 2) / Mathf.Pow(speed, 2))) 
-                / deltaPosition.magnitude) + phaseAngle) / 2;
+        //    float angle = (Mathf.Acos((deltaPosition.y + (gravity * Mathf.Pow(deltaPosition.x, 2) / Mathf.Pow(speed, 2))) 
+        //        / deltaPosition.magnitude) + phaseAngle) / 2;
 
-            if (float.IsNaN(angle))
-            {
-                // NaN means that the target is out of range, in which case just use the ideal angle.
-                Debug.Log("Out of range");
-                angle = 45f;
-            }
-            Debug.Log(angle * Mathf.Rad2Deg);
+        //    if (float.IsNaN(angle))
+        //    {
+        //        // NaN means that the target is out of range, in which case just use the ideal angle.
+        //        Debug.Log("Out of range");
+        //        angle = 45f;
+        //    }
+        //    Debug.Log(angle * Mathf.Rad2Deg);
 
-            return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
-        }
+        //    return new Vector2(Mathf.Cos(angle), Mathf.Sin(angle)) * speed;
+        //}
 
         /// <summary>
         /// Utilizes the formula for finding the angle of a projectile based on initial speed and position.
@@ -63,7 +63,7 @@ namespace TFOOL.Enemies
         /// <param name="shotPosition">The position from which the projectile will be shot.</param>
         /// <param name="gravityScale">The gravity scale of the projectile.</param>
         /// <returns>The vector that the projectiles hould be shot at to hit the target.</returns>
-        private Vector2 GetArcedShotVector2(float verticalSpeed, Vector2 targetPosition, Vector2 shotPosition, float gravityScale)
+        private Vector2 GetArcedShotVector(float verticalSpeed, Vector2 targetPosition, Vector2 shotPosition, float gravityScale)
         {
             Vector2 deltaPosition = targetPosition - shotPosition;
             float gravity = gravityScale * Physics2D.gravity.y;

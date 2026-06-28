@@ -14,7 +14,8 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class RandomMovementBehavior : TraversalBehavior
     {
-        [SerializeField] private float wanderTime;
+        [SerializeField, Tooltip("How long the enemy should move in the random direction before AI continues.")]
+        private float wanderTime;
 
         /// <summary>
         /// Chooses a random direction and makes the enemy move in that direction for the specified wander time.

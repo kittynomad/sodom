@@ -17,9 +17,13 @@ namespace TFOOL.Enemies.AI
     [DropdownTag("Universal")]
     public class SequenceAttack : AttackBehavior
     {
-        [SerializeReference, ClassDropdown(typeof(EnemyBehavior), ExcludedTypes = new Type[] { typeof(AttackBehavior), typeof(EnemyState) })] 
+        [SerializeReference, ClassDropdown(typeof(EnemyBehavior), ExcludedTypes = new Type[] { typeof(AttackBehavior), typeof(EnemyState) })]
+        [Tooltip("The behaviors that the enemy should perform before performing the attack." +
+            "\n\nExample may include moving towards the target before a melee attack.")]
         private EnemyBehavior[] preBehaviors;
-        [SerializeReference, ClassDropdown(typeof(EnemyBehavior), ExcludedTypes = new Type[] { typeof(AttackBehavior), typeof(EnemyState) })] 
+        [SerializeReference, ClassDropdown(typeof(EnemyBehavior), ExcludedTypes = new Type[] { typeof(AttackBehavior), typeof(EnemyState) })]
+        [Tooltip("The behaviors that the enemy should perform after performing the attack." +
+            "\n\nExample may include performing a backdash after attacking.")]
         private EnemyBehavior[] postBehaviors;
         
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)

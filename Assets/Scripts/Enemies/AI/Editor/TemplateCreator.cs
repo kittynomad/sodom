@@ -13,10 +13,10 @@ namespace TFOOL.Enemies.AI.Editor
     public static class TemplateCreator
     {
         #region CONSTS
-        private const string ENEMYBEHAVIOR_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyBehavior.cs.txt";
-        private const string ENEMYSTATE_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyState.cs.txt";
-        private const string DECISIONENGINE_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/DecisionEngine.cs.txt";
-        private const string ATTACK_PATH = "Assets/Scripts/AI/Editor/TemplateFiles/EnemyAttack.cs.txt";
+        private const string ENEMYBEHAVIOR_PATH = "Assets/Scripts/Enemies/AI/Editor/TemplateFiles/EnemyBehavior.cs.txt";
+        private const string ENEMYSTATE_PATH = "Assets/Scripts/Enemies/AI/Editor/TemplateFiles/EnemyState.cs.txt";
+        private const string DECISIONENGINE_PATH = "Assets/Scripts/Enemies/AI/Editor/TemplateFiles/DecisionEngine.cs.txt";
+        private const string ATTACK_PATH = "Assets/Scripts/Enemies/AI/Editor/TemplateFiles/EnemyAttack.cs.txt";
         #endregion
 
         /// <summary>

@@ -6,6 +6,7 @@
 //
 // Brief Description : Teleport attack for the red rooms stabby guy.
 *****************************************************************************/
+using CustomAttributes;
 using NaughtyAttributes;
 using System;
 using System.Threading;
@@ -14,6 +15,7 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
+    [DropdownGroup("Red Rooms/Stabby Guy")]
     public class TeleportStabAttack : EnemyAttack
     {
         [SerializeField] private GameObject hitbox;

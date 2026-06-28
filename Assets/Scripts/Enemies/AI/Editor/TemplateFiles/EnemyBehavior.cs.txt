@@ -16,7 +16,7 @@ namespace TFOOL.Enemies.AI
     public class #SCRIPTNAME# : EnemyBehavior
     {
         #NOTRIM#
-        protected override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
             // Get Components

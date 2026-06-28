@@ -15,8 +15,13 @@ namespace TFOOL.Enemies
     [RequireComponent(typeof(EnemyMovement))]
     public class EnemyPatrolling : MonoBehaviour
     {
-        [SerializeField] private float patrolArea;
-        [SerializeField] private bool immediateBrake;
+        private const float PATROL_AREA_GIZMO_OFFSET = 0.1f;
+
+        [SerializeField, Tooltip("The total width that the enemy patrols around it's starting positition.  " +
+            "Shown by the blue line at the enemy's feet.")] 
+        private float patrolArea;
+        [SerializeField, Tooltip("If true, enemy lineary velocity is reset when it detects a ledge or wall.")] 
+        private bool immediateBrake;
 
         // Components
         [SerializeField, ShowIfNull] private EnemyMovement movement;
@@ -102,15 +107,22 @@ namespace TFOOL.Enemies
 
         private void OnDrawGizmosSelected()
         {
-            Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
-            Gizmos.color = Color.blue;
-            if (startPos == null)
+            if (movement != null)
             {
-                Gizmos.DrawLine(transform.position - patrolOffset, transform.position + patrolOffset);
-            }
-            else
-            {
-                Gizmos.DrawLine((Vector3)startPos - patrolOffset, (Vector3)startPos + patrolOffset);
+                Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
+                Vector3 posOffset = movement.GetFeetOffset() + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
+                Gizmos.color = Color.blue;
+                if (startPos == null)
+                {
+                    Debug.Log(movement.GetFeetPosition());
+                    Gizmos.DrawLine(transform.position + posOffset - patrolOffset, 
+                        transform.position + posOffset + patrolOffset);
+                }
+                else
+                {
+                    Gizmos.DrawLine((Vector3)startPos + posOffset - patrolOffset, 
+                        (Vector3)startPos + posOffset + patrolOffset);
+                }
             }
         }
     }

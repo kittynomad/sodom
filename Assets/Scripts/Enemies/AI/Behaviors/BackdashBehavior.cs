@@ -17,10 +17,12 @@ namespace TFOOL.Enemies.AI
     [Serializable]
     public class BackdashBehavior : EnemyBehavior
     {
-        [SerializeField] private float dashForce;
-        [SerializeField] private float dashJump;
-        [SerializeField] private float postDashDelay;
-        [SerializeField] private bool pointTowardsTarget;
+        [SerializeField, Tooltip("Controls the horizontal speed of the enemy during the backdash.")] 
+        private float dashForce;
+        [SerializeField, Tooltip("Controls how high the enemy jumps during the backdash.")] 
+        private float dashJump;
+        [SerializeField, Tooltip("How long to wait after backdashing before continuing.")] 
+        private float postDashDelay;
 
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
@@ -37,10 +39,7 @@ namespace TFOOL.Enemies.AI
 
             try
             {
-                if (pointTowardsTarget)
-                {
-                    enemy.PointTowardsTarget();
-                }
+                enemy.PointTowardsTarget();
 
                 Vector2 jumpBackForce = new Vector2(-Mathf.Sign(enemy.FacingDirection) * dashForce, dashJump);
 
