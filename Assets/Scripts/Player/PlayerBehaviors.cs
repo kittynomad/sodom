@@ -281,24 +281,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public IEnumerator AttackCoroutine()
     {
-        //Currently only the static idle melee animation is incorporated. 
-        //The yield for .45 seconds is to line up the attack hitbox coming out with the animation
         if (IsGrounded())
         {
             if (pc.MovementDirection.x != 0)
-            {
                 _anim.Play("PlayerMeleeWalking");
-                //yield return new WaitForSeconds(0.22f);
-            }
             else
-            {
                 _anim.Play("PlayerMeleeStatic");
-                //yield return new WaitForSeconds(0.45f);
-            }
-
-            //StartAttack();
-            //yield return new WaitForSeconds(0.5f);
-            //EndAttack();
         }
         else
         {
