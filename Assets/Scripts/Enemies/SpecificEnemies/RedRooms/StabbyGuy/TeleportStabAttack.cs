@@ -53,7 +53,7 @@ namespace TFOOL.Enemies.AI
             {
                 // Teleport behind the player.
                 movement.Rigidbody.gravityScale = 0;
-                movement.Rigidbody.position = GetTeleportPosition(target);
+                movement.Rigidbody.position = GetTeleportPosition(target, movement.EnemyBounds);
                 movement.Rigidbody.linearVelocity = Vector2.zero;
 
                 // Leap at the target and attack.
@@ -93,7 +93,7 @@ namespace TFOOL.Enemies.AI
     
         }
 
-        private Vector2 GetTeleportPosition(GameObject target)
+        private Vector2 GetTeleportPosition(GameObject target, Bounds enemyBounds)
         {
             if (manualTeleportPoints != null && manualTeleportPoints.Length > 0)
             {
@@ -112,7 +112,20 @@ namespace TFOOL.Enemies.AI
                 }
                 return manualTeleportPoints[targetIndex].position + (Vector3)teleportOffset;
             }
-            return (Vector2)target.transform.position + new Vector2(-GetTargetFacingDirection(target) * teleportOffset.x, teleportOffset.y);
+            else
+            {
+                float facingDirection = -GetTargetFacingDirection(target);
+                float xOffset = facingDirection * teleportOffset.x;
+                // Raycast for a valid position behind the player.
+                RaycastHit2D hit = Physics2D.BoxCast(target.transform.position, enemyBounds.size * 0.95f, 0f, 
+                    Vector2.right * facingDirection, Mathf.Abs(teleportOffset.x), 1 << (int)CollisionLayer.Ground);
+                if (hit)
+                {
+                    Debug.Log("Bonk");
+                    xOffset = facingDirection * hit.distance;
+                }
+                return (Vector2)target.transform.position + new Vector2(xOffset, teleportOffset.y);
+            }
         }
 
         /// <summary>
@@ -137,15 +150,8 @@ namespace TFOOL.Enemies.AI
         /// <returns></returns>
         private static int GetTargetFacingDirection(GameObject playerobj)
         {
-            SpriteRenderer[] spriteRends = playerobj.GetComponentsInChildren<SpriteRenderer>();
-            foreach(SpriteRenderer spriter in spriteRends)
-            {
-                if (spriter.gameObject.name == "PlayerSprite")
-                {
-                    return spriter.flipX ? -1 : 1;
-                }
-            }
-            return 1;
+            
+            return Mathf.Clamp(Mathf.RoundToInt(playerobj.transform.localScale.x), -1, 1);
         }
     }
 }

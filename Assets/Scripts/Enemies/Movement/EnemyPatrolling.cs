@@ -110,11 +110,10 @@ namespace TFOOL.Enemies
             if (movement != null)
             {
                 Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
-                Vector3 posOffset = movement.GetFeetOffset() + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
+                Vector3 posOffset = new Vector2(0, -movement.EnemyBounds.min.y) + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
                 Gizmos.color = Color.blue;
                 if (startPos == null)
                 {
-                    Debug.Log(movement.GetFeetPosition());
                     Gizmos.DrawLine(transform.position + posOffset - patrolOffset, 
                         transform.position + posOffset + patrolOffset);
                 }
