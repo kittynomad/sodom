@@ -69,12 +69,12 @@ namespace TFOOL.Enemies
 
             // Get the position of our destination.
             Vector2 destination = GetDestination(direction);
+            movement.SetMoveDirection(direction);
 
             while (!ct.IsCancellationRequested)
             {
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Stop patrolling once the point has been passed.
-                Debug.Log(toDest.x);
                 if (Mathf.Abs(toDest.y) < 0.5f && toDest.x * (direction) < 0)
                 {
                     break;
