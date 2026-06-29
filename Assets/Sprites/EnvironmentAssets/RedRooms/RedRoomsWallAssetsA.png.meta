@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 8a33ba1ad5a238c408a0e1f9c671b23a
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 758760065918591691
+    second: RedRoomsWallAssetsA_0
+  - first:
+      213: 8783006577186858859
+    second: RedRoomsWallAssetsA_1
+  - first:
+      213: 8681231139267856834
+    second: RedRoomsWallAssetsA_2
+  - first:
+      213: 2910820849344344271
+    second: RedRoomsWallAssetsA_3
+  - first:
+      213: -4654809998029133111
+    second: RedRoomsWallAssetsA_4
+  - first:
+      213: -4700908726732498785
+    second: RedRoomsWallAssetsA_5
+  - first:
+      213: -667247638763336593
+    second: RedRoomsWallAssetsA_6
+  - first:
+      213: 2323865109993474659
+    second: RedRoomsWallAssetsA_7
+  - first:
+      213: -771796766490310162
+    second: RedRoomsWallAssetsA_8
+  - first:
+      213: -7329075968489412825
+    second: RedRoomsWallAssetsA_9
+  - first:
+      213: -5639366703531153712
+    second: RedRoomsWallAssetsA_10
+  - first:
+      213: 7346469402730721952
+    second: RedRoomsWallAssetsA_11
+  - first:
+      213: -7742050446664338370
+    second: RedRoomsWallAssetsA_12
+  - first:
+      213: 8937152643321765634
+    second: RedRoomsWallAssetsA_13
+  - first:
+      213: 5303540570904994134
+    second: RedRoomsWallAssetsA_14
+  - first:
+      213: -5436673606725055438
+    second: RedRoomsWallAssetsA_15
+  - first:
+      213: -4641607900348725309
+    second: RedRoomsWallAssetsA_16
+  - first:
+      213: -6010792225998105501
+    second: RedRoomsWallAssetsA_17
+  - first:
+      213: -946578316914155087
+    second: RedRoomsWallAssetsA_18
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 333
+        width: 45
+        height: 124
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc264d68248a78a00800000000000000
+      internalID: 758760065918591691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_1
+      rect:
+        serializedVersion: 2
+        x: 99
+        y: 344
+        width: 74
+        height: 86
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b67642592f183e970800000000000000
+      internalID: 8783006577186858859
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_2
+      rect:
+        serializedVersion: 2
+        x: 183
+        y: 357
+        width: 68
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c9ce1dd9bde97870800000000000000
+      internalID: 8681231139267856834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_3
+      rect:
+        serializedVersion: 2
+        x: 275
+        y: 284
+        width: 80
+        height: 170
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc078f9e320556820800000000000000
+      internalID: 2910820849344344271
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_4
+      rect:
+        serializedVersion: 2
+        x: 374
+        y: 251
+        width: 157
+        height: 184
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9ca698218fac66fb0800000000000000
+      internalID: -4654809998029133111
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_5
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 278
+        width: 26
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f9853956b6403ceb0800000000000000
+      internalID: -4700908726732498785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_6
+      rect:
+        serializedVersion: 2
+        x: 78
+        y: 265
+        width: 24
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f6c0b4acec57db6f0800000000000000
+      internalID: -667247638763336593
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_7
+      rect:
+        serializedVersion: 2
+        x: 115
+        y: 270
+        width: 56
+        height: 61
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36ac5135107004020800000000000000
+      internalID: 2323865109993474659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_8
+      rect:
+        serializedVersion: 2
+        x: 191
+        y: 265
+        width: 69
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ee9cc861ee60a45f0800000000000000
+      internalID: -771796766490310162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_9
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 170
+        width: 125
+        height: 79
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 727265edc34e94a90800000000000000
+      internalID: -7329075968489412825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_10
+      rect:
+        serializedVersion: 2
+        x: 134
+        y: 184
+        width: 36
+        height: 21
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0d62cdd9cd1fcb1b0800000000000000
+      internalID: -5639366703531153712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_11
+      rect:
+        serializedVersion: 2
+        x: 136
+        y: 203
+        width: 55
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a27a0f9ff6e3f560800000000000000
+      internalID: 7346469402730721952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_12
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 177
+        width: 149
+        height: 62
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e34fa6d4326be8490800000000000000
+      internalID: -7742050446664338370
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_13
+      rect:
+        serializedVersion: 2
+        x: 382
+        y: 141
+        width: 55
+        height: 97
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 20f13a06af4270c70800000000000000
+      internalID: 8937152643321765634
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_14
+      rect:
+        serializedVersion: 2
+        x: 14
+        y: 102
+        width: 119
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6512aa4cc06f99940800000000000000
+      internalID: 5303540570904994134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_15
+      rect:
+        serializedVersion: 2
+        x: 162
+        y: 13
+        width: 53
+        height: 138
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 23c496fc82e0d84b0800000000000000
+      internalID: -5436673606725055438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_16
+      rect:
+        serializedVersion: 2
+        x: 243
+        y: 85
+        width: 30
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3c74119f432b59fb0800000000000000
+      internalID: -4641607900348725309
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_17
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 35
+        width: 93
+        height: 118
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 36414b62150659ca0800000000000000
+      internalID: -6010792225998105501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsWallAssetsA_18
+      rect:
+        serializedVersion: 2
+        x: 402
+        y: 21
+        width: 80
+        height: 113
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1ae3439041dd2f0800000000000000
+      internalID: -946578316914155087
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: d75f0c33d4dba0742948ebb389ac5be8
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 5771938d87134144fa1fea4eb5f3b1e0, type: 3}
+      name: _NormalMap
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RedRoomsWallAssetsA_0: 758760065918591691
+      RedRoomsWallAssetsA_1: 8783006577186858859
+      RedRoomsWallAssetsA_10: -5639366703531153712
+      RedRoomsWallAssetsA_11: 7346469402730721952
+      RedRoomsWallAssetsA_12: -7742050446664338370
+      RedRoomsWallAssetsA_13: 8937152643321765634
+      RedRoomsWallAssetsA_14: 5303540570904994134
+      RedRoomsWallAssetsA_15: -5436673606725055438
+      RedRoomsWallAssetsA_16: -4641607900348725309
+      RedRoomsWallAssetsA_17: -6010792225998105501
+      RedRoomsWallAssetsA_18: -946578316914155087
+      RedRoomsWallAssetsA_2: 8681231139267856834
+      RedRoomsWallAssetsA_3: 2910820849344344271
+      RedRoomsWallAssetsA_4: -4654809998029133111
+      RedRoomsWallAssetsA_5: -4700908726732498785
+      RedRoomsWallAssetsA_6: -667247638763336593
+      RedRoomsWallAssetsA_7: 2323865109993474659
+      RedRoomsWallAssetsA_8: -771796766490310162
+      RedRoomsWallAssetsA_9: -7329075968489412825
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

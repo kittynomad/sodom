@@ -38,8 +38,29 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: (AddMoreAsNeeded)
+    uniqueID: 3937626445
+    locked: 0
+  - name: BackgroundE
+    uniqueID: 3067478853
+    locked: 0
+  - name: BackgroundD
+    uniqueID: 2711195993
+    locked: 0
+  - name: BackgroundC
+    uniqueID: 1418754783
+    locked: 0
+  - name: BackgroundB
+    uniqueID: 3149660015
+    locked: 0
+  - name: BackgroundA
+    uniqueID: 1059089877
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Foreground
+    uniqueID: 3616358003
     locked: 0
   m_RenderingLayers:
   - Default
