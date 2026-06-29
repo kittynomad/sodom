@@ -22,7 +22,9 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
         [SerializeField] private BackdashBehavior backdash;
-        [SerializeField] private string throwAttackName;
+        [SerializeField, Tooltip("Name of the knife throw attack.  Used to find the knife throw and force the " +
+            "enemy to use it after backdashing.")] 
+        private string throwAttackName;
 
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
@@ -61,7 +63,7 @@ namespace TFOOL.Enemies.AI
                     // Point towards the target.
                     enemy.PointTowardsTarget();
 
-                    await GetAttackByDistance(enemy.ToTarget.magnitude).RunAI(enemy, ct);
+                    await GetRandomAttack(enemy.ToTarget.magnitude).RunAI(enemy, ct);
                 }
                 CleanUp();
             }
