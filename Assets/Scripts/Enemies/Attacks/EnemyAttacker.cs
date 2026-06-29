@@ -8,8 +8,7 @@
 // they have.
 *****************************************************************************/
 using CustomAttributes;
-using System;
-using System.Threading;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -18,9 +17,22 @@ namespace TFOOL.Enemies
     {
         [SerializeReference, ClassDropdown(typeof(EnemyAttack))] private EnemyAttack[] attacks;
 
+        private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
+
+        /// <summary>
+        /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
+        /// </summary>
+        private void Awake()
+        {
+            foreach(EnemyAttack attack in attacks)
+            {
+                attackDict.Add(attack.Name, attack);
+            }
+        }
+
         public EnemyAttack GetAttack(string name)
         {
-            return Array.Find(attacks, x => x.Name == name);
+            return attackDict[name];
         }
     }
 }
