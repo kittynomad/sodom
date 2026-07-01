@@ -53,25 +53,30 @@ MonoBehaviour:
           dashForce: 10
           dashJump: 6
           postDashDelay: 1
-          pointTowardsTarget: 1
         throwAttackName: KnifeThrow
     - rid: 3144940061986914382
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: KnifeThrow
-        idealDistance: 0
+        attackWeight: 7
+        minDistance: 0
+        maxDistance: 0
         postAttackDelay: 0.5
     - rid: 3144940061986914383
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
-        idealDistance: 9
+        attackWeight: 1
+        minDistance: 6
+        maxDistance: 0
         postAttackDelay: 2
     - rid: 3144940177937399909
       type: {class: SequenceAttack, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: RunningSlice
-        idealDistance: 5
+        attackWeight: 7
+        minDistance: 0
+        maxDistance: 0
         postAttackDelay: 1
         preBehaviors: []
         postBehaviors:
@@ -82,4 +87,3 @@ MonoBehaviour:
         dashForce: 10
         dashJump: 6
         postDashDelay: 1
-        pointTowardsTarget: 0

@@ -13,16 +13,26 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    public class AttackBehavior : EnemyBehavior
+    public class AttackBehavior : EnemyBehavior, IWeighted
     {
         [SerializeField, Tooltip("Name of the attack on the enemy's EnemyAttacker component to use.")] 
         private string attackName;
-        [SerializeField, Tooltip("The ideal distance for this attack.  Attacks are chosen based on which " +
-            "attack's ideal distance is closes to the distance between the enemy and the target.")] 
-        private float idealDistance;
+        [SerializeField, Tooltip("Controls how likely the enemy is to choose this attack.  " +
+            "Higher weight increases chance of this attack being chosen.")] 
+        private int attackWeight;
+        [SerializeField, Tooltip("The minimum distance that there must be between the enemy and it's target for " +
+            "it to choose this attack.  Set to 0 for none.\n\nIe. If set to 4, then the enemy will only use " +
+            "this attack if the player is more than 4 units away.")] 
+        private float minDistance;
+        [SerializeField, Tooltip("The maximum distance that there can be between the enemy and it's target for " +
+    "it to choose this attack.  Set to 0 for none.\n\nIe. If set to 4, then the enemy will only use this " +
+            "attack if the target is within 4 units.")]
+        private float maxDistance;
         [SerializeField, Tooltip("How long to wait after performing the attack.")] protected float postAttackDelay;
 
-        public float IdealDistance => idealDistance;
+        public float MinDistance => minDistance;
+        public float MaxDistance => maxDistance;
+        public int Weight => attackWeight;
         public string AttackName => attackName;
 
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)

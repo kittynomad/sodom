@@ -77,7 +77,7 @@ namespace TFOOL.Enemies
         #endregion
 
         public Rigidbody2D Rigidbody => rb;
-        private Bounds EnemyBounds => physicsCollider.bounds;
+        public Bounds EnemyBounds => physicsCollider.bounds;
         public int TargetDirection => targetDirection;
 
         private LayerMask GroundMask => 1 << (int)CollisionLayer.Ground; // Bit shift for layer mask.
@@ -221,12 +221,7 @@ namespace TFOOL.Enemies
 
         public Vector2 GetFeetPosition()
         {
-            return Rigidbody.position + GetFeetOffset();
-        }
-
-        public Vector2 GetFeetOffset()
-        {
-            return new Vector2(0, -EnemyBounds.min.y);
+            return Rigidbody.position + new Vector2(0, -EnemyBounds.min.y);
         }
         #endregion
 

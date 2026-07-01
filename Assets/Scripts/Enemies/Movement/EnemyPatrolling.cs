@@ -69,12 +69,12 @@ namespace TFOOL.Enemies
 
             // Get the position of our destination.
             Vector2 destination = GetDestination(direction);
+            movement.SetMoveDirection(direction);
 
             while (!ct.IsCancellationRequested)
             {
                 Vector2 toDest = destination - (Vector2)transform.position;
                 // Stop patrolling once the point has been passed.
-                Debug.Log(toDest.x);
                 if (Mathf.Abs(toDest.y) < 0.5f && toDest.x * (direction) < 0)
                 {
                     break;
@@ -110,11 +110,10 @@ namespace TFOOL.Enemies
             if (movement != null)
             {
                 Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
-                Vector3 posOffset = movement.GetFeetOffset() + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
+                Vector3 posOffset = new Vector2(0, -movement.EnemyBounds.min.y) + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
                 Gizmos.color = Color.blue;
                 if (startPos == null)
                 {
-                    Debug.Log(movement.GetFeetPosition());
                     Gizmos.DrawLine(transform.position + posOffset - patrolOffset, 
                         transform.position + posOffset + patrolOffset);
                 }

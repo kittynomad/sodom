@@ -48,7 +48,7 @@ namespace TFOOL.Enemies.AI
                 // Point towards the target.
                 enemy.PointTowardsTarget();
 
-                await GetAttackByDistance(enemy.ToTarget.magnitude).RunAI(enemy, ct);
+                await GetRandomAttack(enemy.ToTarget.magnitude).RunAI(enemy, ct);
             }
         }
     }
