@@ -174,7 +174,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.04947815}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.049478166}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -210,8 +210,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.7, y: 2.49, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.65, y: 0.65, z: 0.65}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 7693434898886157527}
   - {fileID: 373464477109081592}
@@ -586,7 +586,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0000003617626, y: 0.05429009}
-  m_ConnectedAnchor: {x: 0.00000038146973, y: -0.045109905}
+  m_ConnectedAnchor: {x: 0.00000029343826, y: -0.045109894}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -770,7 +770,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0000003617626, y: 0.05429009}
-  m_ConnectedAnchor: {x: 0.00000038146973, y: -0.042309903}
+  m_ConnectedAnchor: {x: 0.00000029343826, y: -0.042309836}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -917,7 +917,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.04947809}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.04947809}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1040,7 +1040,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: -0.0037944317, y: 0.26941347}
-  m_ConnectedAnchor: {x: -4.7037945, y: 2.7594135}
+  m_ConnectedAnchor: {x: -4.702466, y: 2.6651187}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1224,7 +1224,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0000003617626, y: 0.05429009}
-  m_ConnectedAnchor: {x: 0.00000038146973, y: -0.046109773}
+  m_ConnectedAnchor: {x: 0.00000029343826, y: -0.046109803}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1371,7 +1371,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.049478054}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.04947809}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1555,7 +1555,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.049478076}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.04947809}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1739,7 +1739,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.049478065}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.049478054}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -1960,7 +1960,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0000003617626, y: 0.05429009}
-  m_ConnectedAnchor: {x: 0.00000038146973, y: -0.045109846}
+  m_ConnectedAnchor: {x: 0.00000029343826, y: -0.045109846}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -2144,7 +2144,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.0000003617626, y: 0.05429009}
-  m_ConnectedAnchor: {x: 0.00000038146973, y: -0.0445099}
+  m_ConnectedAnchor: {x: 0.00000029343826, y: -0.044509906}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:
@@ -2328,7 +2328,7 @@ HingeJoint2D:
   m_BreakAction: 3
   m_AutoConfigureConnectedAnchor: 1
   m_Anchor: {x: 0.00097399874, y: 0.050321948}
-  m_ConnectedAnchor: {x: 0.00097398757, y: -0.04947815}
+  m_ConnectedAnchor: {x: 0.0009740683, y: -0.049478166}
   m_UseConnectedAnchor: 1
   m_UseMotor: 0
   m_Motor:

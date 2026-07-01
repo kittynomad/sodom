@@ -1,0 +1,431 @@
+fileFormatVersion: 2
+guid: 39090ef111f9a8145882b2566135ef45
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 705271693609170950
+    second: RedRoomsPropsGenericA_0
+  - first:
+      213: -5539972260540241756
+    second: RedRoomsPropsGenericA_1
+  - first:
+      213: -7782743787958169317
+    second: RedRoomsPropsGenericA_2
+  - first:
+      213: 4360318273444998931
+    second: RedRoomsPropsGenericA_3
+  - first:
+      213: -5093579348288343739
+    second: RedRoomsPropsGenericA_4
+  - first:
+      213: 5968036351797898830
+    second: RedRoomsPropsGenericA_5
+  - first:
+      213: 6353987620341394207
+    second: RedRoomsPropsGenericA_6
+  - first:
+      213: 3949268720023528700
+    second: RedRoomsPropsGenericA_7
+  - first:
+      213: 3389706218266217062
+    second: RedRoomsPropsGenericA_8
+  - first:
+      213: -4018656448455549280
+    second: RedRoomsPropsGenericA_9
+  - first:
+      213: 7820581576758141952
+    second: RedRoomsPropsGenericA_10
+  - first:
+      213: 2310854432987248857
+    second: RedRoomsPropsGenericA_11
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 3
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_0
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 165
+        width: 322
+        height: 242
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60876bf5ed0a9c900800000000000000
+      internalID: 705271693609170950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_1
+      rect:
+        serializedVersion: 2
+        x: 370
+        y: 173
+        width: 93
+        height: 237
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a82bf0c4901e13b0800000000000000
+      internalID: -5539972260540241756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_2
+      rect:
+        serializedVersion: 2
+        x: 502
+        y: 360
+        width: 79
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1110e472c32ef390800000000000000
+      internalID: -7782743787958169317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_3
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 174
+        width: 218
+        height: 169
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 31f65542e56f28c30800000000000000
+      internalID: 4360318273444998931
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_4
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 79
+        width: 113
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 541f106d198ff49b0800000000000000
+      internalID: -5093579348288343739
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_5
+      rect:
+        serializedVersion: 2
+        x: 174
+        y: 80
+        width: 101
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e4e28832179b2d250800000000000000
+      internalID: 5968036351797898830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_6
+      rect:
+        serializedVersion: 2
+        x: 348
+        y: 15
+        width: 102
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f1bada96316ed2850800000000000000
+      internalID: 6353987620341394207
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_7
+      rect:
+        serializedVersion: 2
+        x: 469
+        y: 15
+        width: 141
+        height: 80
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cf4609b0afe9ec630800000000000000
+      internalID: 3949268720023528700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_8
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 15
+        width: 38
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66ac0b898d7aa0f20800000000000000
+      internalID: 3389706218266217062
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_9
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 15
+        width: 30
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0ae597b704dda38c0800000000000000
+      internalID: -4018656448455549280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_10
+      rect:
+        serializedVersion: 2
+        x: 175
+        y: 15
+        width: 56
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 00422a34289488c60800000000000000
+      internalID: 7820581576758141952
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: RedRoomsPropsGenericA_11
+      rect:
+        serializedVersion: 2
+        x: 286
+        y: 15
+        width: 10
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9d877d50dddc11020800000000000000
+      internalID: 2310854432987248857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 873d2d392d15a6f44b2eb8c9dcf00088
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 8e3c731fc2a05e3408ed3c9a754be351, type: 3}
+      name: _NormalMap
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      RedRoomsPropsGenericA_0: 705271693609170950
+      RedRoomsPropsGenericA_1: -5539972260540241756
+      RedRoomsPropsGenericA_10: 7820581576758141952
+      RedRoomsPropsGenericA_11: 2310854432987248857
+      RedRoomsPropsGenericA_2: -7782743787958169317
+      RedRoomsPropsGenericA_3: 4360318273444998931
+      RedRoomsPropsGenericA_4: -5093579348288343739
+      RedRoomsPropsGenericA_5: 5968036351797898830
+      RedRoomsPropsGenericA_6: 6353987620341394207
+      RedRoomsPropsGenericA_7: 3949268720023528700
+      RedRoomsPropsGenericA_8: 3389706218266217062
+      RedRoomsPropsGenericA_9: -4018656448455549280
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
