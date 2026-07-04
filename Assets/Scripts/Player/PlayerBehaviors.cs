@@ -141,7 +141,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void AttackBehavior()
     {
         //can't start attack if already attacking
-        if(!IsAttacking)
+        //if(!IsAttacking)
         StartCoroutine(AttackCoroutine());
         //launch attached corpse on attack 
         if(sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
@@ -281,20 +281,20 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public IEnumerator AttackCoroutine()
     {
-        if (IsGrounded())
-        {
-            if (pc.MovementDirection.x != 0)
-                _anim.Play("PlayerMeleeWalking");
-            else
-                _anim.Play("PlayerMeleeStatic");
-        }
-        else
-        {
-            _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-            StartAttack();
-            yield return new WaitForSeconds(0.5f);
-            EndAttack();
-        }
+        _anim.SetBool("AttackBuffered", true);
+        print("attack buffered");
+        yield return null;
+        //if (IsGrounded())
+        //{
+        //    _anim.SetBool("AttackBuffered", true);
+        //}
+        //else
+        //{
+        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
+        //    StartAttack();
+        //    yield return new WaitForSeconds(0.5f);
+        //    EndAttack();
+        //}
     }
 
     public void StartAttack()

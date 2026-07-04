@@ -1,8 +1,10 @@
+using NaughtyAttributes;
 using UnityEngine;
 
 public class AnimationEventsConverter : MonoBehaviour
 {
     private PlayerBehaviors pb;
+    [SerializeField] private Animator _anim;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,5 +19,10 @@ public class AnimationEventsConverter : MonoBehaviour
     public void EndAttack()
     {
         pb.EndAttack();
+    }
+
+    public void UnbufferAttack()
+    {
+        _anim.SetBool("AttackBuffered", false);
     }
 }
