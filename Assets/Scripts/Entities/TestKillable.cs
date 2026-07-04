@@ -35,6 +35,10 @@ public class TestKillable : MonoBehaviour, IKillable
             Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
             corpse.GetComponent<Rigidbody2D>().AddForce(damageDir * _corpseFlingStrength, ForceMode2D.Impulse);
         }
+        if(gameObject.TryGetComponent(out MoneyDroppingObject mdo))
+        {
+            mdo.DropMoney();
+        }
         Destroy(gameObject);
     }
 
