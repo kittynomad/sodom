@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5607695607333736483}
   - component: {fileID: 1978690861715300240}
   - component: {fileID: 1235153401640694356}
+  - component: {fileID: 1509727955613029758}
   m_Layer: 0
   m_Name: TestEnemy
   m_TagString: Untagged
@@ -189,6 +190,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DamagingObject
   damageAmount: 1
+--- !u!114 &1509727955613029758
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1623969407670036750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73f5802bd4444df489e3057c81e84fec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MoneyDroppingObject
+  _moneyRange: {x: 0, y: 0}
 --- !u!1001 &5626079593265421205
 PrefabInstance:
   m_ObjectHideFlags: 0
