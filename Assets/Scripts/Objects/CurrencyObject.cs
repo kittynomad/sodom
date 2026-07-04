@@ -7,6 +7,7 @@
 // Brief Description : 
 *****************************************************************************/
 using UnityEngine;
+using NaughtyAttributes;
 
 public class CurrencyObject : MonoBehaviour
 {
@@ -16,6 +17,12 @@ public class CurrencyObject : MonoBehaviour
     public void UpdateValue(float value)
     {
         _value = value;
+
+        foreach(SpriteAndValue sv in _sprites)
+        {
+            if (_value >= sv.Value)
+                gameObject.GetComponent<SpriteRenderer>().sprite = sv.Image;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -24,5 +31,27 @@ public class CurrencyObject : MonoBehaviour
         {
             //add currency here
         }
+    }
+
+    [Button]
+    public void SetCurrencyToZero()
+    {
+        UpdateValue(0);
+    }
+
+    [Button]
+    public void SetCurrencyToOne()
+    {
+        UpdateValue(1);
+    }
+    [Button]
+    public void SetCurrencyToTwo()
+    {
+        UpdateValue(2);
+    }
+    [Button]
+    public void SetCurrencyToThree()
+    {
+        UpdateValue(3);
     }
 }

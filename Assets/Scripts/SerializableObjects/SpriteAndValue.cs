@@ -13,4 +13,7 @@ public class SpriteAndValue
 {
     [SerializeField] private Sprite _image;
     [SerializeField] private float _value;
+
+    public Sprite Image { get => _image; set => _image = value; }
+    public float Value { get => _value; set => _value = value; }
 }
