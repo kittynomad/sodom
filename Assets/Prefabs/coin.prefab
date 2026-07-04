@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4476086211246334712}
   - component: {fileID: 3927620148540470971}
   - component: {fileID: 315164392881264966}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: coin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.16, y: -1.44, z: 0}
-  m_LocalScale: {x: 0.49, y: 0.49, z: 0.49}
+  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
@@ -112,11 +112,11 @@ MonoBehaviour:
   - _image: {fileID: 1372784304078694742, guid: 60c68cb2e1197e647ae0e0c070c40719, type: 3}
     _value: 0
   - _image: {fileID: -7779238932283339112, guid: 60c68cb2e1197e647ae0e0c070c40719, type: 3}
-    _value: 1
+    _value: 6
   - _image: {fileID: -3674565767872829714, guid: 60c68cb2e1197e647ae0e0c070c40719, type: 3}
-    _value: 2
+    _value: 11
   - _image: {fileID: 6079785864957920332, guid: 60c68cb2e1197e647ae0e0c070c40719, type: 3}
-    _value: 3
+    _value: 16
 --- !u!61 &4476086211246334712
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -189,7 +189,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!58 &315164392881264966
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -206,7 +206,7 @@ CircleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 7744
+    m_Bits: 15936
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2

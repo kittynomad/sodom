@@ -140,7 +140,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8192
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -202,7 +202,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73f5802bd4444df489e3057c81e84fec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyDroppingObject
-  _moneyRange: {x: 0, y: 0}
+  _moneyRange: {x: 41.095894, y: 58.70842}
+  _coinLaunchStrength: {x: 5.870842, y: 34.24658}
+  _targetDivisions:
+  - 5
+  - 10
+  - 15
+  - 12
+  _moneyPrefab: {fileID: 6283068602969584427, guid: ed89a3e1370fbe842bbc0429b336cec7, type: 3}
 --- !u!1001 &5626079593265421205
 PrefabInstance:
   m_ObjectHideFlags: 0

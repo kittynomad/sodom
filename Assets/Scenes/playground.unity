@@ -16287,6 +16287,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1509727955613029758, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
+      propertyPath: _targetDivisions.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1623969407670036750, guid: 6080791b43f016a429f577f705ec96bd, type: 3}
       propertyPath: m_Name
       value: TestEnemy
