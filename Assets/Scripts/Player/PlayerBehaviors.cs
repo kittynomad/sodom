@@ -313,7 +313,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void EndAttack()
     {
         IsAttacking = false;
-        _hurtBox.SetActive(false);
+        //_hurtBox.SetActive(false);
     }
 
     public IEnumerator HurtRecoveryCoroutine()
