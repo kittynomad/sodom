@@ -41,6 +41,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private Collider2D coll;
     private PlayerController pc;
     private PlayerLoadout pl;
+    private PlayerResources pr;
 
     //state related vars
     private float currentHealth;
@@ -72,6 +73,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         pc = gameObject.GetComponent<PlayerController>();
         sc = _hurtBox.GetComponent<SwordController>();
         pl = gameObject.GetComponent<PlayerLoadout>();
+        pr = gameObject.GetComponent<PlayerResources>();
         coll = gameObject.GetComponent<Collider2D>();
 
         //set health and ammo
@@ -277,6 +279,11 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             }
                 
         }
+    }
+
+    public void CollectCurrency(float value)
+    {
+        pr.Currency += value;
     }
 
     public IEnumerator AttackCoroutine()

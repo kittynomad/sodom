@@ -14,6 +14,12 @@ public class CurrencyObject : MonoBehaviour
     [SerializeField] private float _value;
 
     [SerializeField] private SpriteAndValue[] _sprites;
+
+    private void Start()
+    {
+        UpdateValue(_value);
+    }
+
     public void UpdateValue(float value)
     {
         _value = value;
@@ -29,7 +35,8 @@ public class CurrencyObject : MonoBehaviour
     {
         if(collision.gameObject.TryGetComponent(out PlayerBehaviors pb))
         {
-            //add currency here
+            pb.CollectCurrency(_value);
+            Destroy(gameObject);
         }
     }
 
