@@ -8,6 +8,7 @@
 *****************************************************************************/
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 using TMPro;
 using XNode;
 using System.Collections;
@@ -37,6 +38,7 @@ public class DialogueManager : MonoBehaviour
     private GameObject treeSource;
     private string currentDialogue;
     private bool isTyping;
+    private bool isOpen = false;
 
     /// <summary>
     /// initializes a conversation from an outside source.
@@ -46,7 +48,11 @@ public class DialogueManager : MonoBehaviour
     /// <param name="willAutoAdvance">Determines if dialogue will advance automatically.</param>
     public void StartDialogue(LinkedNode branchDialogue, GameObject NPC, bool willAutoAdvance)
     {
+        isOpen = true;
+        FindAnyObjectByType<PlayerInput>().actions.FindActionMap("UI").Enable();
+        FindAnyObjectByType<PlayerInput>().actions.FindActionMap("Player").Disable();
         _dialogueBox.SetActive(true);
+        _playerResponses.SetActive(false);
 
         print("Dialogue started");
         //displays input node if it's a dialogueNode
@@ -78,6 +84,9 @@ public class DialogueManager : MonoBehaviour
                 currentNode = nextNode as DialogueNode;
                 currentNode.OnCall();
                 break;
+            case "DialogueBranchNode":
+                SetUpDialogueChoices(nextNode as DialogueBranchNode);
+                return;
 
         }
 
@@ -113,7 +122,7 @@ public class DialogueManager : MonoBehaviour
         //update ui elements
         _speakerLabel.text = nameTag;
         _speakerPortrait.sprite = talkIMG;
-        _speakerPortrait.SetNativeSize(); //just in case any portraits have different dimensions
+        //_speakerPortrait.SetNativeSize(); //just in case any portraits have different dimensions
 
         //prepare next node for next call of DisplayNextSentence
         nextNode = currentNode.NextNode;
@@ -162,6 +171,7 @@ public class DialogueManager : MonoBehaviour
 
     void SetUpDialogueChoices(DialogueBranchNode branchNode)
     {
+        StopAllCoroutines();
         //first check if there are any choices set up
         if (branchNode.nextNodes.Length > 0)
         {
@@ -208,11 +218,31 @@ public class DialogueManager : MonoBehaviour
     public void EndDialogue()
     {
         _dialogueBox.SetActive(false);
+        FindAnyObjectByType<PlayerInput>().actions.FindActionMap("UI").Disable();
+        FindAnyObjectByType<PlayerInput>().actions.FindActionMap("Player").Enable();
+        isOpen = false;
     }
 
     [Button]
     public void TestDialogue()
     {
         StartDialogue(_testDialogueTree.findIntroNode(), gameObject, false);
+    }
+
+    public void OnContinue()
+    {
+        if (isOpen && !_autoAdvance)
+        {
+            if (isTyping) //allows showing all dialogue instantly
+            {
+                isTyping = false;
+                StopAllCoroutines();
+
+                _dialogueBody.maxVisibleCharacters = currentDialogue.ToCharArray().Length;
+                //_buttonPrompt.enabled = true;
+            }
+            else
+                AdvanceDialogue();
+        }
     }
 }

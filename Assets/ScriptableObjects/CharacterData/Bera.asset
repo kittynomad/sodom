@@ -16,7 +16,7 @@ MonoBehaviour:
   _characterID: protag
   _defaultCharacterPortrait: {fileID: -8641815969807504195, guid: b1c2b5b442fdf714488d61942a14b4d8, type: 3}
   _portraits: []
-  _characterVoice: {fileID: 11400000, guid: 0ad89661635be194ea0b69ba20bb6614, type: 2}
+  _characterVoice: {fileID: 11400000, guid: 6643f9f77190a6d4abdfdb4c170bc20f, type: 2}
   _characterBio: 
   _characterHealth: 0
   _attackPower: 0

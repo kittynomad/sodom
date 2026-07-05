@@ -70,8 +70,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   nextNodes:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 1640283381098324180}
+  - {fileID: 6487147675409418310}
 --- !u!114 &-3779767258552351311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +152,10 @@ MonoBehaviour:
     - _fieldName: _nextNode
       _node: {fileID: -1496862147053214688}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: _lastNode
+        node: {fileID: 458193581760421171}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -160,9 +163,9 @@ MonoBehaviour:
   _lastNode: {fileID: 0}
   _nextNode: {fileID: 0}
   _dialogue:
-    _talkerData: {fileID: 0}
+    _talkerData: {fileID: 11400000, guid: 303b7d329058022429d0581fdf3bfcfe, type: 2}
     _portraitID: 
-    _sentences: 
+    _sentences: i choose googoo.
 --- !u!114 &-864138390989352523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -173,10 +176,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2f68bd7a346755445af61102d314dcd6, type: 3}
-  m_Name: Intro
+  m_Name: TestTree_intro
   m_EditorClassIdentifier: Assembly-CSharp::IntroNode
   graph: {fileID: 11400000}
-  position: {x: -184, y: -152}
+  position: {x: -184, y: -136}
   ports:
     keys:
     - _nextNode
@@ -224,6 +227,7 @@ MonoBehaviour:
   - {fileID: 4749232686453109289}
   - {fileID: 1640283381098324180}
   - {fileID: 6487147675409418310}
+  - {fileID: 458193581760421171}
 --- !u!114 &134488514720853349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -271,6 +275,53 @@ MonoBehaviour:
     _talkerData: {fileID: 11400000, guid: 00c40fedf80cf36439094ba8b4e6190f, type: 2}
     _portraitID: 
     _sentences: hello this is a test
+--- !u!114 &458193581760421171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 22f13d2cf4bbebb40aa67376a8fdc432, type: 3}
+  m_Name: Dialogue
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueNode
+  graph: {fileID: 11400000}
+  position: {x: 1608, y: -56}
+  ports:
+    keys:
+    - _lastNode
+    - _nextNode
+    values:
+    - _fieldName: _lastNode
+      _node: {fileID: 458193581760421171}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections:
+      - fieldName: _nextNode
+        node: {fileID: -1496862147053214688}
+        reroutePoints: []
+      - fieldName: _nextNode
+        node: {fileID: 4749232686453109289}
+        reroutePoints: []
+      _direction: 0
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+    - _fieldName: _nextNode
+      _node: {fileID: 458193581760421171}
+      _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+      connections: []
+      _direction: 1
+      _connectionType: 0
+      _typeConstraint: 0
+      _dynamic: 0
+  _lastNode: {fileID: 0}
+  _nextNode: {fileID: 0}
+  _dialogue:
+    _talkerData: {fileID: 11400000, guid: 00c40fedf80cf36439094ba8b4e6190f, type: 2}
+    _portraitID: 
+    _sentences: fuuuuck
 --- !u!114 &1640283381098324180
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,7 +399,10 @@ MonoBehaviour:
     - _fieldName: _nextNode
       _node: {fileID: 4749232686453109289}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-      connections: []
+      connections:
+      - fieldName: _lastNode
+        node: {fileID: 458193581760421171}
+        reroutePoints: []
       _direction: 1
       _connectionType: 0
       _typeConstraint: 0
@@ -356,9 +410,9 @@ MonoBehaviour:
   _lastNode: {fileID: 0}
   _nextNode: {fileID: 0}
   _dialogue:
-    _talkerData: {fileID: 0}
+    _talkerData: {fileID: 11400000, guid: 303b7d329058022429d0581fdf3bfcfe, type: 2}
     _portraitID: 
-    _sentences: 
+    _sentences: i choose gaagaa.
 --- !u!114 &6487147675409418310
 MonoBehaviour:
   m_ObjectHideFlags: 0

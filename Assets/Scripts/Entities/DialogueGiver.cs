@@ -15,7 +15,6 @@ public class DialogueGiver : InteractableEntity
     [SerializeField] private LinkedNode _dialogueToGive;
     [SerializeField] private bool _giveDialogueOnStart;
     [SerializeField] private bool _onlyAllowDialogueOnce;
-    [SerializeField] private bool _advanceDayAfterTalk = false;
     //[SerializeField] private CollectibleItem _itemToHideThis = null;
 
     private GameObject npc;
