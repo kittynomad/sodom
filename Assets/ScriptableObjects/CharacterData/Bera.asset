@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d38e45f088201764a9be71a55d14c284, type: 3}
+  m_Name: Bera
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterData
+  _characterName: Bera
+  _characterID: protag
+  _defaultCharacterPortrait: {fileID: -8641815969807504195, guid: b1c2b5b442fdf714488d61942a14b4d8, type: 3}
+  _portraits: []
+  _characterVoice: {fileID: 11400000, guid: 6643f9f77190a6d4abdfdb4c170bc20f, type: 2}
+  _characterBio: 
+  _characterHealth: 0
+  _attackPower: 0
+  _appearsInBestiary: 1

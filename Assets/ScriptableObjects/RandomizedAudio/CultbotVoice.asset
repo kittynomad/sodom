@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: CultbotVoice
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: bf1da94b39e4a0443851e5e883c10d1d, type: 3}
+  - {fileID: 8300000, guid: 54d55eda9ab2660428d56ad628708a3d, type: 3}
+  - {fileID: 8300000, guid: 6b079d53f2c97194580fb512454fe469, type: 3}
+  - {fileID: 8300000, guid: 46eae434fdd59854ab39b1c92e722290, type: 3}
+  - {fileID: 8300000, guid: 7565b11953d1bb24e8d9e7caef263f9e, type: 3}
+  - {fileID: 8300000, guid: 842c144be3771174e8d8892b3ae9f79c, type: 3}

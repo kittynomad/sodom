@@ -5,9 +5,16 @@ public class InteractableButton : InteractableEntity
 {
     [SerializeField] private UnityEvent _pressActions;
     [SerializeField] private bool _multipleInteractsAllowed = true;
+
+    private bool interactedWith = false;
     public override void OnInteract(PlayerBehaviors pb)
     {
-        base.OnInteract(pb);
-        _pressActions.Invoke();
+        if(_multipleInteractsAllowed || !interactedWith)
+        {
+            base.OnInteract(pb);
+            _pressActions.Invoke();
+            interactedWith = true;
+        }
+        
     }
 }
