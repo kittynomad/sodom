@@ -12,8 +12,8 @@ using XNode;
  * which type of node any given node is
  */
 public class LinkedNode : Node {
-	[Output] [SerializeField] private Node _lastNode;
-	[Input] [SerializeField] private Node _nextNode;
+	[Input] [SerializeField] private Node _lastNode;
+	[Output] [SerializeField] private Node _nextNode;
 
 	private Node nextNode;
 
@@ -24,7 +24,7 @@ public class LinkedNode : Node {
     protected override void Init() {
 		base.Init();
 		//Gets the nextNode port
-		NodePort nextPort = GetInputPort("_nextNode").Connection;
+		NodePort nextPort = GetOutputPort("_nextNode").Connection;
 		if (nextPort != null) //sets nextNode as nextPort's connection
 		{
 			NextNode = nextPort.node as Node;

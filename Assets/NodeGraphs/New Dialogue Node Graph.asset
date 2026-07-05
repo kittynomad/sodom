@@ -13,13 +13,13 @@ MonoBehaviour:
   m_Name: Intro
   m_EditorClassIdentifier: Assembly-CSharp::IntroNode
   graph: {fileID: 11400000}
-  position: {x: 136, y: -216}
+  position: {x: -184, y: -152}
   ports:
     keys:
-    - _lastNode
     - _nextNode
+    - _lastNode
     values:
-    - _fieldName: _lastNode
+    - _fieldName: _nextNode
       _node: {fileID: -864138390989352523}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
@@ -27,7 +27,7 @@ MonoBehaviour:
       _connectionType: 0
       _typeConstraint: 0
       _dynamic: 0
-    - _fieldName: _nextNode
+    - _fieldName: _lastNode
       _node: {fileID: -864138390989352523}
       _typeQualifiedName: XNode.Node, XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
