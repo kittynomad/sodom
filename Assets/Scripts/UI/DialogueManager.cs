@@ -11,6 +11,7 @@ using UnityEngine.UI;
 using TMPro;
 using XNode;
 using System.Collections;
+using NaughtyAttributes;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private GameObject _dialogueBox;
     [SerializeField] private AudioSource _voiceClipSource;
 
+    [SerializeField] private DialogueNodeGraph _testDialogueTree;
+
     private Node nextNode;
     private DialogueNode currentNode;
     private string currentDialogue;
@@ -40,17 +43,24 @@ public class DialogueManager : MonoBehaviour
     /// <param name="willAutoAdvance">Determines if dialogue will advance automatically.</param>
     public void StartDialogue(LinkedNode branchDialogue, GameObject NPC, bool willAutoAdvance)
     {
+        _dialogueBox.SetActive(true);
+
+        print("Dialogue started");
         //displays input node if it's a dialogueNode
         if (branchDialogue is IntroNode)
             nextNode = branchDialogue.NextNode;
         //displays input node's next node if it isn't dialogue
         else
             nextNode = branchDialogue;
+
+        AdvanceDialogue();
     }
 
+    [Button]
     public void AdvanceDialogue()
     {
         StopAllCoroutines();
+
         if(nextNode == null)
         {
             EndDialogue();
@@ -60,19 +70,17 @@ public class DialogueManager : MonoBehaviour
         switch(nextNode.GetType().ToString())
         {
             case "IntroNode":
-                return;
+                break;
             case "DialogueNode":
                 currentNode = nextNode as DialogueNode;
                 currentNode.OnCall();
-                return;
+                break;
 
         }
 
         SingleDialogue dialogue = null;
         try
         {
-
-            //pull SingleDialogue data out of current node
             dialogue = currentNode.Dialogue;
         }
         catch
@@ -103,6 +111,9 @@ public class DialogueManager : MonoBehaviour
         _speakerLabel.text = nameTag;
         _speakerPortrait.sprite = talkIMG;
         _speakerPortrait.SetNativeSize(); //just in case any portraits have different dimensions
+
+        //prepare next node for next call of DisplayNextSentence
+        nextNode = currentNode.NextNode;
     }
 
     /// <summary>
@@ -148,6 +159,12 @@ public class DialogueManager : MonoBehaviour
 
     public void EndDialogue()
     {
+        _dialogueBox.SetActive(false);
+    }
 
+    [Button]
+    public void TestDialogue()
+    {
+        StartDialogue(_testDialogueTree.findIntroNode(), gameObject, false);
     }
 }
