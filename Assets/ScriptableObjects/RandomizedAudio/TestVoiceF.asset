@@ -10,7 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
-  m_Name: TestVoice
+  m_Name: TestVoiceF
   m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
   clips:
-  - {fileID: 0}
+  - {fileID: 8300000, guid: 9713d5905efaa794ab5b8803bc32c4c5, type: 3}
+  - {fileID: 8300000, guid: c3061f443e47f924d9ac9241b9808c46, type: 3}
+  - {fileID: 8300000, guid: c9407fe556c8900448cfb69db79ec744, type: 3}
