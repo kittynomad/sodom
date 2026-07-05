@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: Upbeat
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: e1f8ff9a72270d14baef374baae0fe51, type: 3}
+  - {fileID: 8300000, guid: 3dea7f7d53dec074b8e6bc3e010fe963, type: 3}
+  - {fileID: 8300000, guid: 1ca08fb8348157245b4b35ec2bacbe57, type: 3}
+  - {fileID: 8300000, guid: 3c3812b03e5ed7341a13efd1909e06d2, type: 3}
+  - {fileID: 8300000, guid: 042932086be7b0446b7229ae844b557b, type: 3}
+  - {fileID: 8300000, guid: b138f89c985e99847951634c635f9587, type: 3}

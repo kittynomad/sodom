@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: GardisVoice
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: c73da923414d18a499ea4b7eb1647c1f, type: 3}
+  - {fileID: 8300000, guid: e1d90d8ea1840534ea13813c719418f0, type: 3}
+  - {fileID: 8300000, guid: d2c8c2d6c12128849b340ff981e047ad, type: 3}
+  - {fileID: 8300000, guid: 47f0e436d040b38418e8aa31c813d1db, type: 3}

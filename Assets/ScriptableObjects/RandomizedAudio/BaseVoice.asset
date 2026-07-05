@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: BaseVoice
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: 19cad0a1f078b0345b01f0de02f09b08, type: 3}
+  - {fileID: 8300000, guid: b67183d913a33d1428e8fa3d2ff60075, type: 3}
+  - {fileID: 8300000, guid: 8c2ecda206a4f8946889c7f04a617b05, type: 3}
+  - {fileID: 8300000, guid: 0e25492d794f0124e93bc11b8b46801b, type: 3}
+  - {fileID: 8300000, guid: 08cc34dd2f40b99498f48d7233d9795a, type: 3}

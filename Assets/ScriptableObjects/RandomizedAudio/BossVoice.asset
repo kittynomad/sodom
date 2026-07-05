@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: BossVoice
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: d3ddb991a290b4949821540bafddef7f, type: 3}
+  - {fileID: 8300000, guid: 24eb04bc9215d594c98d85dffc93a13a, type: 3}
+  - {fileID: 8300000, guid: c83809672b13122479ff88ecc4a95336, type: 3}
+  - {fileID: 8300000, guid: 00c45aff55a53c246944d95e703c5e32, type: 3}
+  - {fileID: 8300000, guid: 7e90ad30f63387948b08b3b71753608d, type: 3}

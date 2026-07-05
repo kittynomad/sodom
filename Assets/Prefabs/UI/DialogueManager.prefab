@@ -305,6 +305,7 @@ GameObject:
   m_Component:
   - component: {fileID: 99782680948014793}
   - component: {fileID: 8459333109512555685}
+  - component: {fileID: 7306629340361238617}
   m_Layer: 5
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -350,8 +351,26 @@ MonoBehaviour:
   _speakerLabel: {fileID: 9185681760288406994}
   _speakerPortrait: {fileID: 4294101904886086207}
   _dialogueBox: {fileID: 6285968610743111997}
+  _playerResponses: {fileID: 0}
+  _responseButtons: []
   _voiceClipSource: {fileID: 1757468385707909799}
   _testDialogueTree: {fileID: 11400000, guid: 5413518d68564944aa8208d61c379a49, type: 2}
+--- !u!114 &7306629340361238617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4554206210974008222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb0af228b3fc5214593eb5e737d09fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueGiver
+  _dialogueToGive: {fileID: -864138390989352523, guid: 5413518d68564944aa8208d61c379a49, type: 2}
+  _giveDialogueOnStart: 0
+  _onlyAllowDialogueOnce: 0
+  _advanceDayAfterTalk: 0
 --- !u!1 &6285968610743111997
 GameObject:
   m_ObjectHideFlags: 0

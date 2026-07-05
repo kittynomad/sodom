@@ -26,12 +26,15 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _speakerLabel;
     [SerializeField] private Image _speakerPortrait;
     [SerializeField] private GameObject _dialogueBox;
+    [SerializeField] private GameObject _playerResponses;
+    [SerializeField] private GameObject[] _responseButtons;
     [SerializeField] private AudioSource _voiceClipSource;
 
     [SerializeField] private DialogueNodeGraph _testDialogueTree;
 
     private Node nextNode;
     private DialogueNode currentNode;
+    private GameObject treeSource;
     private string currentDialogue;
     private bool isTyping;
 
@@ -155,6 +158,51 @@ public class DialogueManager : MonoBehaviour
             AdvanceDialogue();
         }
         //_buttonPrompt.enabled = true;
+    }
+
+    void SetUpDialogueChoices(DialogueBranchNode branchNode)
+    {
+        //first check if there are any choices set up
+        if (branchNode.nextNodes.Length > 0)
+        {
+            //show choice buttons
+            _playerResponses.SetActive(true);
+
+            //enable or disable scrollBar if needed
+            //_scrollbar.interactable =
+                //branchNode.nextNodes.Length >= minOptionsForScroll;
+
+            for (int i = 0; i < _responseButtons.Length; i++)
+            {
+                //sets buttons to each choice for this chunk of dialogue
+                if (i < branchNode.nextNodes.Length)
+                {
+                    ChoiceNode temp = branchNode.nextNodes[i] as ChoiceNode;
+                    _responseButtons[i].SetActive(true);
+
+                    //make button "locked" if corresponding choice is labeled as not selectable
+                    if (!temp.IsSelectable())
+                    {
+                        _responseButtons[i].GetComponentInChildren<TextMeshProUGUI>().text
+                                = "LOCKED";
+                        _responseButtons[i].GetComponent<Button>().interactable = false;
+                        continue;
+                    }
+
+                    //sets button text and stored node to choice's data
+                    _responseButtons[i].GetComponent<Button>().interactable = true;
+                    _responseButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = temp.ChoiceLabel;
+                    _responseButtons[i].GetComponent<DialogueGiver>().DialogueToGive = temp.NextNode as DialogueNode;
+                    _responseButtons[i].GetComponent<DialogueGiver>().Npc = treeSource;
+                }
+                //hides any extra buttons
+                else
+                {
+                    _responseButtons[i].SetActive(false);
+                }
+            }
+
+        }
     }
 
     public void EndDialogue()

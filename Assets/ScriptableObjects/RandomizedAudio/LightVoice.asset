@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a6fb9849b536e4428e7d1d4a3732148, type: 3}
+  m_Name: LightVoice
+  m_EditorClassIdentifier: Assembly-CSharp::RandomizedAudio
+  clips:
+  - {fileID: 8300000, guid: 5c770360d8ec0ee49a2aa822cc54e2cb, type: 3}
+  - {fileID: 8300000, guid: 0bf410aa23fff9a4f89e2b62b804adcd, type: 3}
+  - {fileID: 8300000, guid: 5637ef0e8db35ba42bc91e1e881711e8, type: 3}
+  - {fileID: 8300000, guid: 6c5a7fd6a7abd204daccd46658039b3d, type: 3}
+  - {fileID: 8300000, guid: 333c21a25242a534fa76c3ab81f6e7de, type: 3}

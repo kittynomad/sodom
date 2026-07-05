@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d38e45f088201764a9be71a55d14c284, type: 3}
-  m_Name: TestChar
+  m_Name: Bera
   m_EditorClassIdentifier: Assembly-CSharp::CharacterData
-  _characterName: Joe
-  _characterID: testCharacterData
-  _defaultCharacterPortrait: {fileID: 6423151898903384714, guid: 59152d6b381bf6243aeb8a52e37ea9c8, type: 3}
+  _characterName: Bera
+  _characterID: protag
+  _defaultCharacterPortrait: {fileID: -8641815969807504195, guid: b1c2b5b442fdf714488d61942a14b4d8, type: 3}
   _portraits: []
-  _characterVoice: {fileID: 11400000, guid: 6643f9f77190a6d4abdfdb4c170bc20f, type: 2}
-  _characterBio: This is test char's bio. Hello!
-  _characterHealth: 1
-  _attackPower: 1
+  _characterVoice: {fileID: 11400000, guid: 0ad89661635be194ea0b69ba20bb6614, type: 2}
+  _characterBio: 
+  _characterHealth: 0
+  _attackPower: 0
   _appearsInBestiary: 1
