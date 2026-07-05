@@ -7,16 +7,30 @@
 // Brief Description : 
 *****************************************************************************/
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using XNode;
+using System.Collections;
 
 public class DialogueManager : MonoBehaviour
 {
-    private Node nextNode;
-
-    [SerializeField] private TextMeshProUGUI _dialogueBody;
     
+
+    //dialogue settings
+    [SerializeField] private float _chatSpeed = 0f;
+    [SerializeField] private bool _autoAdvance = false;
+
+    //references
+    [SerializeField] private TextMeshProUGUI _dialogueBody;
+    [SerializeField] private TextMeshProUGUI _speakerLabel;
+    [SerializeField] private Image _speakerPortrait;
     [SerializeField] private GameObject _dialogueBox;
+    [SerializeField] private AudioSource _voiceClipSource;
+
+    private Node nextNode;
+    private DialogueNode currentNode;
+    private string currentDialogue;
+    private bool isTyping;
 
     /// <summary>
     /// initializes a conversation from an outside source.
@@ -37,5 +51,103 @@ public class DialogueManager : MonoBehaviour
     public void AdvanceDialogue()
     {
         StopAllCoroutines();
+        if(nextNode == null)
+        {
+            EndDialogue();
+            return;
+        }
+
+        switch(nextNode.GetType().ToString())
+        {
+            case "IntroNode":
+                return;
+            case "DialogueNode":
+                currentNode = nextNode as DialogueNode;
+                currentNode.OnCall();
+                return;
+
+        }
+
+        SingleDialogue dialogue = null;
+        try
+        {
+
+            //pull SingleDialogue data out of current node
+            dialogue = currentNode.Dialogue;
+        }
+        catch
+        {
+            print("node is of no known type");
+            return;
+        }
+
+
+        //pull current dialogue text out of the SingleDialogue data
+        currentDialogue = dialogue.sentences;
+
+        //pull current talker's name out of the SingleDialogue's TalkerData
+        string nameTag = dialogue.TalkerData.CharacterName;
+
+        //pull current talker's portrait out of the SingleDialogue's TalkerData
+        Sprite talkIMG = dialogue.TalkerData.GetPortraitByID(dialogue.PortraitID);
+        AudioClip[] voice = dialogue.TalkerData.CharacterVoice.clips;
+
+        //print dialogue text (for debug mostly)
+        print(currentDialogue);
+
+        //Stop all coroutines to prevent complications
+        StopAllCoroutines();
+        //Start coroutine to type out dialogue text
+        StartCoroutine(TypeSentence(currentDialogue, voice));
+        //update ui elements
+        _speakerLabel.text = nameTag;
+        _speakerPortrait.sprite = talkIMG;
+        _speakerPortrait.SetNativeSize(); //just in case any portraits have different dimensions
+    }
+
+    /// <summary>
+    /// Makes a sentence in dialogue appear one letter at a time, as well as play the associated voice clip(s).
+    /// </summary>
+    /// <param name="sentence">The string to be displayed as a sentence.</param>
+    /// <param name="voice">An array of AudioClips to be used as the voice.</param>
+    /// <returns></returns>
+    IEnumerator TypeSentence(string sentence, AudioClip[] voice)
+    {
+        isTyping = true;
+
+        _dialogueBody.maxVisibleCharacters = 0;
+        _dialogueBody.text = sentence;
+        char[] sentenceCharArray = sentence.ToCharArray();
+
+        for (int i = 0; i < sentenceCharArray.Length; i++)
+        {
+            char letter = sentenceCharArray[i];
+
+            _dialogueBody.maxVisibleCharacters++;
+
+            //clip isn't played for specific chars or when no voice is available
+            if (voice != null && letter != " "[0] && letter != ","[0] && letter != "'"[0])
+            {
+                int randomVChoice = UnityEngine.Random.Range(0, voice.Length);
+                _voiceClipSource.clip = voice[randomVChoice];
+                _voiceClipSource.Play();
+            }
+
+            //wait pre-specified time until printing the next letter
+            yield return new WaitForSeconds(_chatSpeed);
+        }
+
+        isTyping = false;
+
+        if (_autoAdvance) //go straight to next sentence if autoAdvance is on
+        {
+            AdvanceDialogue();
+        }
+        //_buttonPrompt.enabled = true;
+    }
+
+    public void EndDialogue()
+    {
+
     }
 }
