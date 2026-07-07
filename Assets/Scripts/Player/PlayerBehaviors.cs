@@ -21,6 +21,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _hurtRecoveryPeriod;
     [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
+    [SerializeField][Range(0, 1)] private float _customMeleeComboVelocityFalloffRate = 0f;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -52,6 +53,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool pounding = false;
     private bool recovering = false;
     private float moveModifier = 1f;
+    private bool moveLocked = false;
+    private bool meleeSliding = false;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -87,10 +90,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     }
     public void FixedUpdate()
     {
-        if (pc.MovementDirection.x == 0 && rb.linearVelocityX != 0)
+        if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0)
             rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
         //player walks in input direction IF not past max speed and not anchored
-        else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit)
+        else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit && !moveLocked)
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
         
@@ -109,7 +112,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void FlipSpriteForVelocity()
     {
         //_sprite.flipX = pc.MovementDirection.x == 0 ? _sprite.flipX : pc.MovementDirection.x < 0f;
-        if(pc.MovementDirection.x != 0)
+        if(pc.MovementDirection.x != 0 && !moveLocked)
         {
             transform.localScale = new Vector3(pc.MovementDirection.x < 0f ? -1f : 1f, 1f, 1f);
         }
@@ -128,15 +131,18 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
 
         //jump if on ground
-        if (IsGrounded())
+        if (!moveLocked)
         {
-            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
-        }
-        //also jump if not grounded but have double jump still
-        else if(pl.DoubleJumpUnlocked && doubleJumpReady)
-        {
-            doubleJumpReady = false;
-            rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+            if (IsGrounded())
+            {
+                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+            }
+            //also jump if not grounded but have double jump still
+            else if (pl.DoubleJumpUnlocked && doubleJumpReady)
+            {
+                doubleJumpReady = false;
+                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+            }
         }
     }
 
@@ -211,13 +217,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void PoundBehavior()
     {
         //if not grounded, do a vertical ground pound
-        if(pl.PoundUnlocked && !IsGrounded())
+        if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
         }
         //if grounded, do a horizontal dash
-        else if(pl.DashUnlocked && IsGrounded())
+        else if(pl.DashUnlocked && IsGrounded() && !moveLocked)
         {
             //dash in input direction if there is current directional input
             if(pc.MovementDirection.x != 0)
@@ -356,5 +362,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         _anim.SetBool("IsMoving", (pc.MovementDirection.x != 0));
         _anim.SetFloat("YSpeed", relativeVelocity.y);
         _anim.SetFloat("XSpeed", relativeVelocity.x);
+    }
+
+    public void MoveLockOn()
+    {
+        moveLocked = true;
+    }
+    public void MoveLockOff()
+    {
+        moveLocked = false;
     }
 }
