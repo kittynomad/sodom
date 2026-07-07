@@ -25,4 +25,13 @@ public class AnimationEventsConverter : MonoBehaviour
     {
         _anim.SetBool("AttackBuffered", false);
     }
+
+    public void MoveLockOn()
+    {
+        pb.MoveLockOn();
+    }
+    public void MoveLockOff()
+    {
+        pb.MoveLockOff();
+    }
 }
