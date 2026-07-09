@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1978690861715300240}
   - component: {fileID: 1235153401640694356}
   - component: {fileID: 1509727955613029758}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: TestEnemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -137,7 +137,7 @@ CapsuleCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 2048
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 8192
@@ -175,8 +175,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TestKillable
   _maxHealth: 3
   _corpseObject: {fileID: 981806431881458497, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
-  _corpseFlingStrength: 5
+  _corpseFlingStrengthX: 12
+  _corpseFlingStrengthY: 6
   _bloodParticleSystem: {fileID: 3092321463005682519}
+  _hitFlashMat: {fileID: 2100000, guid: aae083fd9a69f6c4fb9c2442dc2b6cfd, type: 2}
+  _bloodDeathFX: {fileID: 7238399625850922170, guid: c188e58afe8b0e8408f0426b61bad0e7, type: 3}
 --- !u!114 &1235153401640694356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -203,12 +206,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MoneyDroppingObject
   _moneyRange: {x: 41.095894, y: 58.70842}
-  _coinLaunchStrength: {x: 5.870842, y: 34.24658}
+  _coinLaunchStrength: {x: 2.6519578, y: 8.495504}
   _targetDivisions:
   - 5
   - 10
   - 15
-  - 12
   _moneyPrefab: {fileID: 6283068602969584427, guid: ed89a3e1370fbe842bbc0429b336cec7, type: 3}
 --- !u!1001 &5626079593265421205
 PrefabInstance:
@@ -223,8 +225,32 @@ PrefabInstance:
       value: BloodParticleSystem
       objectReference: {fileID: 0}
     - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: lengthInSec
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
       propertyPath: playOnAwake
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: simulationSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 9.35
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: InitialModule.startSpeed.minScalar
+      value: 5.57
+      objectReference: {fileID: 0}
+    - target: {fileID: 7276119800423497922, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
+      propertyPath: InitialModule.gravityModifier.scalar
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7895898737048091892, guid: fd6819a9f74e2414f8a732b97d07ddac, type: 3}
       propertyPath: m_LocalPosition.x
