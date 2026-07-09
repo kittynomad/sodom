@@ -55,6 +55,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private float moveModifier = 1f;
     private bool moveLocked = false;
     private bool meleeSliding = false;
+    private bool meleeChaining = false;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -90,8 +91,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     }
     public void FixedUpdate()
     {
-        if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0)
+        if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0 && !meleeChaining)
             rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
+        //else if (meleeChaining)
+        //{
+        //
+        //}
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit && !moveLocked)
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;

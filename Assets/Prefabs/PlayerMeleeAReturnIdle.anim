@@ -23,6 +23,8 @@ AnimationClip:
     - time: 0
       value: {fileID: 3417585869164381636, guid: e3ef82af01c38774bbedb032d51b6dcd, type: 3}
     - time: 0.1
+      value: {fileID: 21300000, guid: 1fb3e0c30485537499cfb7f7be599402, type: 3}
+    - time: 0.2
       value: {fileID: 2168322458102931083, guid: d69e8fd0e5837cb4185d7ef2b8ec76ab, type: 3}
     attribute: m_Sprite
     path: 
@@ -47,13 +49,14 @@ AnimationClip:
       isSerializeReferenceCurve: 0
     pptrCurveMapping:
     - {fileID: 3417585869164381636, guid: e3ef82af01c38774bbedb032d51b6dcd, type: 3}
+    - {fileID: 21300000, guid: 1fb3e0c30485537499cfb7f7be599402, type: 3}
     - {fileID: 2168322458102931083, guid: d69e8fd0e5837cb4185d7ef2b8ec76ab, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.11666667
+    m_StopTime: 0.21666667
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -80,7 +83,7 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.1
+  - time: 0.2
     functionName: MoveLockOff
     data: 
     objectReferenceParameter: {fileID: 0}

@@ -113,7 +113,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
-  m_Mass: 1.7853982
+  m_Mass: 1.2147858
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1.5
@@ -162,8 +162,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0.09278703}
+  m_Size: {x: 0.59, y: 2.185574}
   m_Direction: 0
 --- !u!114 &3753652207779660862
 MonoBehaviour:
@@ -194,16 +194,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors
   _maxHealth: 100
   _maxAmmo: 5
-  _playerWalkAcceleration: 7
+  _playerWalkAcceleration: 9
   _playerJumpForce: 15
-  _playerWalkSpeedLimit: 8
+  _playerWalkSpeedLimit: 11
   _projectileSpeed: 45
   _hurtRecoveryPeriod: 1
-  _customVelocityFalloffRate: 0.096
+  _customVelocityFalloffRate: 0.128
+  _customMeleeComboVelocityFalloffRate: 0.076
   _poundStrength: 20
   _poundDamage: 1
   _poundPushStrength: 15
-  _dashStrength: 30
+  _dashStrength: 24.41
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -328,6 +329,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9055226684425164179}
+  - {fileID: 5608323281410961132}
   m_Father: {fileID: 3053939233233668686}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3519555628608411484
@@ -424,6 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationEventsConverter
   _anim: {fileID: 6515553039800913211}
+  _camShake: {fileID: 0}
 --- !u!1 &3862160118748894185
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +469,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3862160118748894185}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -576,3 +579,87 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordController
   detachSpeed: 15
+--- !u!1 &5642927929203135686
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5608323281410961132}
+  - component: {fileID: 6762605630611707940}
+  m_Layer: 0
+  m_Name: SparksFX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5608323281410961132
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642927929203135686}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7668041285061911429}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6762605630611707940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5642927929203135686}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.RenderPipelines.Universal.2D.Runtime::UnityEngine.Rendering.Universal.Light2D
+  m_ComponentVersion: 2
+  m_LightType: 2
+  m_BlendStyleIndex: 1
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 0.18867922, g: 0.15457706, b: 0.10946955, a: 0.84313726}
+  m_Intensity: 0
+  m_LightVolumeIntensity: 778.81
+  m_LightVolumeEnabled: 0
+  m_ApplyToSortingLayers: 4d69b3ea4503d6b6599199a1df7a90546fffbbbbd56d203f00000000733e8dd7
+  m_LightCookieSprite: {fileID: 1866007078422997055, guid: 2bae81f1367e9d94fa2c492fd0092b36, type: 3}
+  m_DeprecatedPointLightCookieSprite: {fileID: 0}
+  m_LightOrder: 20
+  m_AlphaBlendOnOverlap: 0
+  m_OverlapOperation: 1
+  m_NormalMapDistance: 1.96
+  m_NormalMapQuality: 2
+  m_UseNormalMap: 0
+  m_ShadowsEnabled: 0
+  m_ShadowIntensity: 0
+  m_ShadowSoftness: 0.3
+  m_ShadowSoftnessFalloffIntensity: 0.5
+  m_ShadowVolumeIntensityEnabled: 0
+  m_ShadowVolumeIntensity: 0.75
+  m_LocalBounds:
+    m_Center: {x: -0.25, y: -1.25, z: 0}
+    m_Extent: {x: 0.1875, y: 0.25, z: 0}
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.5
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: -0.5, z: 0}
+  - {x: 0.5, y: 0.5, z: 0}
+  - {x: -0.5, y: 0.5, z: 0}
