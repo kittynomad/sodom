@@ -124,7 +124,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         
     }
 
-    private bool IsFacingRight()
+    public bool IsFacingRight()
     {
         return transform.localScale.x >= 0f;
     }
@@ -318,13 +318,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void StartAttack()
     {
         IsAttacking = true;
-        _hurtBox.SetActive(true);
+        _hurtBox.GetComponent<BoxCollider2D>().enabled = true;
     }
 
     public void EndAttack()
     {
         IsAttacking = false;
-        //_hurtBox.SetActive(false);
+        _hurtBox.GetComponent<BoxCollider2D>().enabled = false;
     }
 
     public IEnumerator HurtRecoveryCoroutine()

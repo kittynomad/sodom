@@ -14,6 +14,7 @@ public class SwordController : MonoBehaviour
     private GameObject attachedObject;
     //speed which corpses are jettisoned when detached
     [SerializeField] private float detachSpeed = 5f;
+    [SerializeField] private GameObject _meleeChewFX;
 
     public bool HasCorpseAttached { get => attachedObject != null; }
     public GameObject AttachedObject { get => attachedObject; set => attachedObject = value; }
@@ -34,6 +35,9 @@ public class SwordController : MonoBehaviour
         //deal damage while attacking
         if (pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
         {
+            Vector2 contactPoint = collision.ClosestPoint(transform.position);
+            Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
+            Instantiate(_meleeChewFX, contactPoint, customRotation);
             ik.OnDamage(1f, gameObject);
         }
     }

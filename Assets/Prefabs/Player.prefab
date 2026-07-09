@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 3194776434010405081}
   m_Layer: 6
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -144,7 +144,7 @@ CapsuleCollider2D:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
@@ -439,7 +439,7 @@ GameObject:
   - component: {fileID: 2420685308066473399}
   - component: {fileID: 7497974442560162974}
   - component: {fileID: 9037844592180956653}
-  m_Layer: 6
+  m_Layer: 11
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +533,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 512
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 192
@@ -579,6 +579,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordController
   detachSpeed: 15
+  _meleeChewFX: {fileID: 607572984691785413, guid: fb6b32d136965a9489e59aff72993d80, type: 3}
 --- !u!1 &5642927929203135686
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,0 +1,613 @@
+fileFormatVersion: 2
+guid: 5da4bc8ec4d331e4d944833827b7192f
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 6145519028445012611
+    second: TFOOLBloodSprayFX_0
+  - first:
+      213: 2796308210480617300
+    second: TFOOLBloodSprayFX_1
+  - first:
+      213: -3844025409084511189
+    second: TFOOLBloodSprayFX_2
+  - first:
+      213: 1474646116044504604
+    second: TFOOLBloodSprayFX_3
+  - first:
+      213: 4926978517069702326
+    second: TFOOLBloodSprayFX_4
+  - first:
+      213: 3253820324636073289
+    second: TFOOLBloodSprayFX_5
+  - first:
+      213: -4863142346593477348
+    second: TFOOLBloodSprayFX_6
+  - first:
+      213: -4381833528341310154
+    second: TFOOLBloodSprayFX_7
+  - first:
+      213: -2377475854440307890
+    second: TFOOLBloodSprayFX_8
+  - first:
+      213: 8178698805479264689
+    second: TFOOLBloodSprayFX_9
+  - first:
+      213: 7287101314189838714
+    second: TFOOLBloodSprayFX_10
+  - first:
+      213: -8879681641924572296
+    second: TFOOLBloodSprayFX_11
+  - first:
+      213: -4937104017562536282
+    second: TFOOLBloodSprayFX_12
+  - first:
+      213: -2649339351406910927
+    second: TFOOLBloodSprayFX_13
+  - first:
+      213: 6963603839315015951
+    second: TFOOLBloodSprayFX_14
+  - first:
+      213: -6132649272634662998
+    second: TFOOLBloodSprayFX_15
+  - first:
+      213: -236721912335049265
+    second: TFOOLBloodSprayFX_16
+  - first:
+      213: 2293352644604048597
+    second: TFOOLBloodSprayFX_17
+  - first:
+      213: 2894709943070301418
+    second: TFOOLBloodSprayFX_18
+  - first:
+      213: 6885882503091079864
+    second: TFOOLBloodSprayFX_19
+  - first:
+      213: -7157791087327808656
+    second: TFOOLBloodSprayFX_20
+  - first:
+      213: -7528106042158647498
+    second: TFOOLBloodSprayFX_21
+  - first:
+      213: -2601323028782220325
+    second: TFOOLBloodSprayFX_22
+  - first:
+      213: 2624454160510280708
+    second: TFOOLBloodSprayFX_23
+  - first:
+      213: 8673990044448942652
+    second: TFOOLBloodSprayFX_24
+  - first:
+      213: -7510500104919521583
+    second: TFOOLBloodSprayFX_25
+  - first:
+      213: -8854322501080175718
+    second: TFOOLBloodSprayFX_26
+  - first:
+      213: 4879050853821384262
+    second: TFOOLBloodSprayFX_27
+  - first:
+      213: 120024094778440510
+    second: TFOOLBloodSprayFX_28
+  - first:
+      213: -1573233485748058499
+    second: TFOOLBloodSprayFX_29
+  - first:
+      213: -1083880881769197511
+    second: TFOOLBloodSprayFX_30
+  - first:
+      213: 769963590441475108
+    second: TFOOLBloodSprayFX_31
+  - first:
+      213: 7684121493476465629
+    second: TFOOLBloodSprayFX_32
+  - first:
+      213: -1093191242919164459
+    second: TFOOLBloodSprayFX_33
+  - first:
+      213: 1348701236767734564
+    second: TFOOLBloodSprayFX_34
+  - first:
+      213: -1642760665461842011
+    second: TFOOLBloodSprayFX_35
+  - first:
+      213: 6163606467612805868
+    second: TFOOLBloodSprayFX_36
+  - first:
+      213: -6342915881166395802
+    second: TFOOLBloodSprayFX_37
+  - first:
+      213: -5805688694748161333
+    second: TFOOLBloodSprayFX_38
+  - first:
+      213: -6399761651781809424
+    second: TFOOLBloodSprayFX_39
+  - first:
+      213: -6145864023240362962
+    second: TFOOLBloodSprayFX_40
+  - first:
+      213: 4442881173313873921
+    second: TFOOLBloodSprayFX_41
+  - first:
+      213: 899222050515293126
+    second: TFOOLBloodSprayFX_42
+  - first:
+      213: 9043392602459977164
+    second: TFOOLBloodSprayFX_43
+  - first:
+      213: -7734021052655063946
+    second: TFOOLBloodSprayFX_44
+  - first:
+      213: -6728863617333967415
+    second: TFOOLBloodSprayFX_45
+  - first:
+      213: 7259472033093386949
+    second: TFOOLBloodSprayFX_46
+  - first:
+      213: 611193591895031054
+    second: TFOOLBloodSprayFX_47
+  - first:
+      213: 2102396646757267521
+    second: TFOOLBloodSprayFX_48
+  - first:
+      213: -5114516128673049712
+    second: TFOOLBloodSprayFX_49
+  - first:
+      213: 8181281348083940593
+    second: TFOOLBloodSprayFX_50
+  - first:
+      213: -7591556980286250949
+    second: TFOOLBloodSprayFX_51
+  - first:
+      213: -3122885220040911366
+    second: TFOOLBloodSprayFX_52
+  - first:
+      213: -103030647992408633
+    second: TFOOLBloodSprayFX_53
+  - first:
+      213: -6316310530794992785
+    second: TFOOLBloodSprayFX_54
+  - first:
+      213: -4625217659853942607
+    second: TFOOLBloodSprayFX_55
+  - first:
+      213: -1542640037037880490
+    second: TFOOLBloodSprayFX_56
+  - first:
+      213: -7436003478866276554
+    second: TFOOLBloodSprayFX_57
+  - first:
+      213: 7841588945127815591
+    second: TFOOLBloodSprayFX_58
+  - first:
+      213: 8971167664170300069
+    second: TFOOLBloodSprayFX_59
+  - first:
+      213: -7241924900029000340
+    second: TFOOLBloodSprayFX_60
+  - first:
+      213: -2412684299593188940
+    second: TFOOLBloodSprayFX_61
+  - first:
+      213: 3593375195199497506
+    second: TFOOLBloodSprayFX_62
+  - first:
+      213: -2100754136487038147
+    second: TFOOLBloodSprayFX_63
+  - first:
+      213: 4264060198346078255
+    second: TFOOLBloodSprayFX_64
+  - first:
+      213: -6279995224830083202
+    second: TFOOLBloodSprayFX_65
+  - first:
+      213: -6307278940307110611
+    second: TFOOLBloodSprayFX_66
+  - first:
+      213: -1936356430957839902
+    second: TFOOLBloodSprayFX_67
+  - first:
+      213: 5018163982209479563
+    second: TFOOLBloodSprayFX_68
+  - first:
+      213: 7697167974203739388
+    second: TFOOLBloodSprayFX_69
+  - first:
+      213: 2427278911485927393
+    second: TFOOLBloodSprayFX_70
+  - first:
+      213: -2197643067783256324
+    second: TFOOLBloodSprayFX_71
+  - first:
+      213: -9206944155032967489
+    second: TFOOLBloodSprayFX_72
+  - first:
+      213: 159964708684305575
+    second: TFOOLBloodSprayFX_73
+  - first:
+      213: 5320457635676793654
+    second: TFOOLBloodSprayFX_74
+  - first:
+      213: -4513454304279630025
+    second: TFOOLBloodSprayFX_75
+  - first:
+      213: -3414728593702741200
+    second: TFOOLBloodSprayFX_76
+  - first:
+      213: 7061704597849358064
+    second: TFOOLBloodSprayFX_77
+  - first:
+      213: -3319213512103603482
+    second: TFOOLBloodSprayFX_78
+  - first:
+      213: 6126075988791202446
+    second: TFOOLBloodSprayFX_79
+  - first:
+      213: -1472517691046068435
+    second: TFOOLBloodSprayFX_80
+  - first:
+      213: 3392967942011813796
+    second: TFOOLBloodSprayFX_81
+  - first:
+      213: 2467206312754878043
+    second: TFOOLBloodSprayFX_82
+  - first:
+      213: -8417094786936568912
+    second: TFOOLBloodSprayFX_83
+  - first:
+      213: -5299173929920078871
+    second: TFOOLBloodSprayFX_84
+  - first:
+      213: 2292489495561046899
+    second: TFOOLBloodSprayFX_85
+  - first:
+      213: -6126189294862305233
+    second: TFOOLBloodSprayFX_86
+  - first:
+      213: 6507072635820128694
+    second: TFOOLBloodSprayFX_87
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 16384
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3826edafef4494550800000000000000
+      internalID: 6145519028445012611
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_1
+      rect:
+        serializedVersion: 2
+        x: 500
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4579430808b7ec620800000000000000
+      internalID: 2796308210480617300
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_2
+      rect:
+        serializedVersion: 2
+        x: 1000
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b2c21f7c14747aac0800000000000000
+      internalID: -3844025409084511189
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_3
+      rect:
+        serializedVersion: 2
+        x: 1500
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1efd3c54def67410800000000000000
+      internalID: 1474646116044504604
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_4
+      rect:
+        serializedVersion: 2
+        x: 2000
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b4abe56bd4206440800000000000000
+      internalID: 4926978517069702326
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_5
+      rect:
+        serializedVersion: 2
+        x: 2500
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94d11e48854e72d20800000000000000
+      internalID: 3253820324636073289
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_6
+      rect:
+        serializedVersion: 2
+        x: 3000
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c1dd2234dc5a28cb0800000000000000
+      internalID: -4863142346593477348
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_7
+      rect:
+        serializedVersion: 2
+        x: 3500
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 635d1563f999033c0800000000000000
+      internalID: -4381833528341310154
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_8
+      rect:
+        serializedVersion: 2
+        x: 4000
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e43640a8e42810fd0800000000000000
+      internalID: -2377475854440307890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLBloodSprayFX_9
+      rect:
+        serializedVersion: 2
+        x: 4500
+        y: 0
+        width: 500
+        height: 300
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1b1d0812b33908170800000000000000
+      internalID: 8178698805479264689
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 161e2920caae7714687f37aa539293d9
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":11.0,"y":1.0},"gridSpriteSize":{"x":500.0,"y":300.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      TFOOLBloodSprayFX_0: 6145519028445012611
+      TFOOLBloodSprayFX_1: 2796308210480617300
+      TFOOLBloodSprayFX_2: -3844025409084511189
+      TFOOLBloodSprayFX_3: 1474646116044504604
+      TFOOLBloodSprayFX_4: 4926978517069702326
+      TFOOLBloodSprayFX_5: 3253820324636073289
+      TFOOLBloodSprayFX_6: -4863142346593477348
+      TFOOLBloodSprayFX_7: -4381833528341310154
+      TFOOLBloodSprayFX_8: -2377475854440307890
+      TFOOLBloodSprayFX_9: 8178698805479264689
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
