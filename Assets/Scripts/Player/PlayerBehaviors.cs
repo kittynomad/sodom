@@ -205,11 +205,11 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 Vector2 fd;
                 if(pc.MovementDirection.y == 0)
                 {
-                    fd = FacingDirection() * Vector2.right;
+                    fd = -(FacingDirection() * Vector2.right);
                 }
                 else
                 {
-                    fd =  new Vector2(0.7f * FacingDirection(), 0.7f * pc.MovementDirection.y);
+                    fd =  new Vector2(-(0.7f * FacingDirection()), 0.7f * pc.MovementDirection.y);
                 }
                 temp.GetComponent<Rigidbody2D>().AddForce(fd * _projectileSpeed);
             }
