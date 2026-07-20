@@ -30,9 +30,13 @@ namespace TFOOL.Enemies.AI
         {
             await base.RunAI(enemy, ct);
             ct.ThrowIfCancellationRequested();
-            
+
             // Get Components
-    
+            if (!enemy.TryGetComponent(out EnemyAttacker attacker))
+            {
+                Debug.LogError($"Enemy {enemy} is missing an {nameof(EnemyAttacker)} component.");
+            }
+
             void CleanUp()
             {
                 // Reset back to defaults.
@@ -63,7 +67,7 @@ namespace TFOOL.Enemies.AI
                     // Point towards the target.
                     enemy.PointTowardsTarget();
 
-                    await GetRandomAttack(enemy.ToTarget.magnitude).RunAI(enemy, ct);
+                    await GetRandomAttack(enemy, attacker).PerformAttack(enemy, attacker, ct);
                 }
                 CleanUp();
             }

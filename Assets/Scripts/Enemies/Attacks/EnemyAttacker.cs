@@ -31,7 +31,7 @@ namespace TFOOL.Enemies
         #endregion
 
         #region Properties
-        public string LastUsedAttack => lastUsedAttack;
+        public string PreviousAttack => lastUsedAttack;
         #endregion
 
         /// <summary>
@@ -54,7 +54,6 @@ namespace TFOOL.Enemies
 
         public void HandleHitboxHit(IKillable hitObj, EnemyHitbox hitbox)
         {
-            Debug.Log("Hit Object from attacker.");
             OnHitEvent?.Invoke(hitObj, hitbox);
         }
 

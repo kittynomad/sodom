@@ -26,9 +26,19 @@ MonoBehaviour:
       data:
         attackName: RunningSlice
         attackWeight: 7
-        minDistance: 0
-        maxDistance: 0
         postAttackDelay: 1
+        conditions: []
+    - rid: 2595282218735894639
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 2595282218735894641
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 2595282218735894642
+      type: {class: RequiredDistance, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        minDistance: 7
+        maxDistance: 0
     - rid: 3144940043314135134
       type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 
@@ -67,14 +77,15 @@ MonoBehaviour:
       data:
         attackName: KnifeThrow
         attackWeight: 7
-        minDistance: 0
-        maxDistance: 0
         postAttackDelay: 0.5
+        conditions:
+        - rid: 2595282218735894639
     - rid: 3144940061986914383
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
         attackWeight: 1
-        minDistance: 6
-        maxDistance: 0
         postAttackDelay: 2
+        conditions:
+        - rid: 2595282218735894641
+        - rid: 2595282218735894642

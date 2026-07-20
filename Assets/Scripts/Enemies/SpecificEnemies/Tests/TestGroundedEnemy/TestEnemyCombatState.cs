@@ -26,6 +26,13 @@ namespace TFOOL.Enemies.AI
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
+
+            // Get Components
+            if (!enemy.TryGetComponent(out EnemyAttacker attacker))
+            {
+                Debug.LogError($"Enemy {enemy} is missing an {nameof(EnemyAttacker)} component.");
+            }
+
             while (!ct.IsCancellationRequested)
             {
                 // Make the enemy dash back.
@@ -48,7 +55,7 @@ namespace TFOOL.Enemies.AI
                 // Point towards the target.
                 enemy.PointTowardsTarget();
 
-                await GetRandomAttack(enemy.ToTarget.magnitude).RunAI(enemy, ct);
+                await GetRandomAttack(enemy, attacker).PerformAttack(enemy, attacker, ct);
             }
         }
     }
