@@ -20,6 +20,6 @@ namespace TFOOL.Enemies
 
         public string Name => attackName;
 
-        public abstract Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct);
+        public abstract Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct);
     }
 }

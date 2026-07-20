@@ -24,7 +24,7 @@ namespace TFOOL.Enemies
         [SerializeField] protected EnemyProjectile projectilePrefab;
         [SerializeField] protected float projectileSpeed;
 
-        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             Vector2 toTarget = target.transform.position - shotPoint.transform.position;
             ShootProjectile(toTarget.normalized * projectileSpeed);

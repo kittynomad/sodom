@@ -17,7 +17,7 @@ namespace TFOOL.Enemies
     [DropdownGroup("Projectiles")]
     public class ArcedProjectileAttack : ProjectileAttack
     {
-        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 

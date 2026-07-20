@@ -8,6 +8,7 @@
 // they have.
 *****************************************************************************/
 using CustomAttributes;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -19,6 +20,10 @@ namespace TFOOL.Enemies
 
         private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
 
+        private EnemyHitbox[] hitboxes;
+
+        public event Action<EnemyHitbox, IKillable> OnHitEvent;
+
         /// <summary>
         /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
         /// </summary>
@@ -28,11 +33,28 @@ namespace TFOOL.Enemies
             {
                 attackDict.Add(attack.Name, attack);
             }
+
+            // Initialize hitboxes.
+            hitboxes = GetComponentsInChildren<EnemyHitbox>();
+            foreach(EnemyAttack attack in attacks)
+            {
+
+            }
+        }
+
+        public void HandleHitboxHit(IKillable hitObj, EnemyHitbox hitbox)
+        {
+
         }
 
         public EnemyAttack GetAttack(string name)
         {
             return attackDict[name];
+        }
+
+        private void OnDestroy()
+        {
+            OnHitEvent = null;
         }
     }
 }

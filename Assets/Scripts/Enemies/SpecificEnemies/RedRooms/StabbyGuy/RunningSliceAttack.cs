@@ -22,13 +22,13 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float attackTime;
         [SerializeField, Tooltip("Controls how close the enemy has to be to the player before it spawns the hitbox.")]
         private float attackRange;
+        [Header("Charge")]
         [SerializeField] private float maxChargeTime;
-        [Header("Movement")]
         [SerializeField] private float chargeSpeed;
-        [SerializeField] private float acceleration;
-        //[SerializeField] private float overshootTime;
+        [SerializeField] private float chargeWindupTime;
+        [SerializeField] private BackdashBehavior hitBackdash;
         
-        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
@@ -39,31 +39,33 @@ namespace TFOOL.Enemies.AI
             // Get Components
 
             float startingSpeed = movement.MoveSpeed;
-            float startingAcceleration = movement.Acceleration;
 
             void CleanUp()
             {
                 // Reset to defaults
                 movement.MoveSpeed = startingSpeed;
-                movement.Acceleration = startingAcceleration;
                 movement.SetMoveDirection(0);
                 hitbox.SetActive(false);
             }
     
             try
             {
-                // Behavior Logic.
+                int attackDirection = enemy.DirectionToTarget;
+
+                await Awaitable.WaitForSecondsAsync(chargeWindupTime, ct);
+
+                // Immediately set the enemy to max speed after delay.
                 movement.MoveSpeed = chargeSpeed;
-                movement.Acceleration = acceleration;
+                movement.SetMoveDirection(attackDirection);
+                movement.Rigidbody.linearVelocityX = chargeSpeed * attackDirection;
+                enemy.PointTowardsTarget();
 
-                // Move towards the player until within range.
+                // Move until the player is passed.
                 float timer = maxChargeTime;
-                while(!ct.IsCancellationRequested && enemy.ToTarget.magnitude > attackRange && (maxChargeTime <= 0 || timer > 0))
+                while(!ct.IsCancellationRequested 
+                    && enemy.DirectionToTarget == attackDirection
+                    && (maxChargeTime <= 0 || timer > 0))
                 {
-                    ct.ThrowIfCancellationRequested();
-                    movement.SetMoveDirection(enemy.DirectionToTarget);
-                    enemy.PointTowardsTarget();
-
                     timer -= Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();
                 }
@@ -76,9 +78,6 @@ namespace TFOOL.Enemies.AI
                     await Awaitable.WaitForSecondsAsync(attackTime, ct);
                     hitbox.SetActive(false);
                 }
-
-                // Enemy keeps moving.
-                //await Awaitable.WaitForSecondsAsync(overshootTime, ct);
 
                 CleanUp();
             }

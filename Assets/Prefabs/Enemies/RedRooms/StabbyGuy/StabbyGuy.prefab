@@ -383,6 +383,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 4024369721363070276, guid: 45ccafc73b257114e9254d394a67e8b9, type: 3}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940043314135156].chargeWindupTime
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].teleportOffset.x
       value: 3
       objectReference: {fileID: 0}
@@ -399,8 +403,20 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.dashJump
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].decideDirectionDelay
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.dashForce
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.postDashDelay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].manualTeleportPoints.Array.size

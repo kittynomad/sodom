@@ -32,7 +32,7 @@ namespace TFOOL.Enemies.AI
     "If none are set, it will teleport behind the player.")]
         private Transform[] manualTeleportPoints;
                 
-        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             if (!enemy.TryGetComponent(out EnemyMovement movement))
             {

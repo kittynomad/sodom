@@ -21,6 +21,14 @@ MonoBehaviour:
   references:
     version: 2
     RefIds:
+    - rid: 2595282202363166796
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: RunningSlice
+        attackWeight: 7
+        minDistance: 0
+        maxDistance: 0
+        postAttackDelay: 1
     - rid: 3144940043314135134
       type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 
@@ -41,7 +49,7 @@ MonoBehaviour:
         attacks:
         - rid: 3144940061986914382
         - rid: 3144940061986914383
-        - rid: 3144940177937399909
+        - rid: 2595282202363166796
         randomMovement:
           moveSpeed: 2
           acceleration: 30
@@ -70,20 +78,3 @@ MonoBehaviour:
         minDistance: 6
         maxDistance: 0
         postAttackDelay: 2
-    - rid: 3144940177937399909
-      type: {class: SequenceAttack, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        attackName: RunningSlice
-        attackWeight: 7
-        minDistance: 0
-        maxDistance: 0
-        postAttackDelay: 1
-        preBehaviors: []
-        postBehaviors:
-        - rid: 3144940177937399910
-    - rid: 3144940177937399910
-      type: {class: BackdashBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        dashForce: 10
-        dashJump: 6
-        postDashDelay: 1
