@@ -534,6 +534,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8020116375145420765, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: senseExpireRange
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8020116375145420765, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: expireOnSensorLeave
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8810617332145201169, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_IsTrigger
       value: 1

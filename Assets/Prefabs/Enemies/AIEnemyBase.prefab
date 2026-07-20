@@ -82,7 +82,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySensor
   senseType: 0
+  expireOnSensorLeave: 1
   senseExpireTime: 5
+  senseExpireRange: 0
   maxHeightDiff: 3.5
   requireLOS: 1
   debugLOS: 1

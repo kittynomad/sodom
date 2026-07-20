@@ -28,6 +28,9 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("How long the target has to be undetectable by this sense before the enemy " +
             "loses track of it.")] 
         private float senseExpireTime;
+        [SerializeField, Tooltip("How far away the object has to be from the enemy before the enemy loses track of it.  " +
+            "Set to 0 for no range.")]
+        private float senseExpireRange;
         [SerializeField, Tooltip("The maximum height that the enemy can see.  Set 0 for no max height.")] 
         private float maxHeightDiff;
         [SerializeField, Tooltip("Whether the enemy requires line of sight to detect an objecct with this sense.")] 
@@ -40,6 +43,7 @@ namespace TFOOL.Enemies.AI
             "should be able to see.")] 
         private LayerMask detectionMask;
 
+        private readonly List<GameObject> collidedObjects = new();
         private readonly List<GameObject> monitoredObjects = new();
         private readonly List<GameObject> sensedObjects = new();
         private readonly Dictionary<GameObject, Coroutine> expiringSenses = new();
@@ -56,7 +60,11 @@ namespace TFOOL.Enemies.AI
             {
                 if (requireLOS || maxHeightDiff > 0)
                 {
-                    monitoredObjects.Add(collision.gameObject);
+                    collidedObjects.Add(collision.gameObject);
+                    if (!monitoredObjects.Contains(collision.gameObject))
+                    {
+                        monitoredObjects.Add(collision.gameObject);
+                    }
                     if (monitoredObjects.Count == 1 && !isMonitoring)
                     {
                         isMonitoring = true;
@@ -68,20 +76,28 @@ namespace TFOOL.Enemies.AI
                     SenseObject(collision.gameObject);
                 }
             }
-
         }
 
         private void OnTriggerExit2D(Collider2D collision)
         {
             if (IsSensable(collision.gameObject))
             {
-                monitoredObjects.Remove(collision.gameObject);
-                if (sensedObjects.Contains(collision.gameObject))
+                bool isSensed = sensedObjects.Contains(collision.gameObject);
+
+                collidedObjects.Remove(collision.gameObject);
+                Debug.Log(isSensed);
+                if (senseExpireRange <= 0 || !isSensed)
+                {
+                    monitoredObjects.Remove(collision.gameObject);
+                }
+                if (isSensed)
                 {
                     StopSensingObject(collision.gameObject);
                 }
             }
         }
+
+
 
         private IEnumerator MonitorObjectsRoutine()
         {
@@ -89,6 +105,15 @@ namespace TFOOL.Enemies.AI
             {
                 for (int i = 0; i < monitoredObjects.Count; i++)
                 {
+                    // First, stop monitoring once the object goes out of range.
+                    if (Vector2.Distance(transform.position, monitoredObjects[i].transform.position) > senseExpireRange)
+                    {
+                        StopSensingObject(monitoredObjects[i]);
+                        monitoredObjects.RemoveAt(i);
+                        i--;
+                        continue;
+                    }
+
                     bool breakSense = false;
                     
                     if (maxHeightDiff > 0)
@@ -102,7 +127,6 @@ namespace TFOOL.Enemies.AI
                         // Raycast to the monitored object.
                         breakSense |= !CheckLOS(i);
                     }
-                    
 
                     // If all sense factors return true, set the object as sensed.
                     if (!breakSense)
@@ -183,13 +207,17 @@ namespace TFOOL.Enemies.AI
         {
             yield return new WaitForSeconds(time);
             LoseObject(obj);
-
-            // Check if the enemy is still not sensed.
+            Debug.Log("Lost " + obj);
         }
 
         private void LoseObject(GameObject obj)
         {
             sensedObjects.Remove(obj);
+            expiringSenses.Remove(obj);
+            if (!collidedObjects.Contains(obj))
+            {
+                monitoredObjects.Remove(obj);
+            }
             EntitySenseEvent?.Invoke(obj, senseType, false);
         }
 
@@ -197,6 +225,17 @@ namespace TFOOL.Enemies.AI
         private bool IsSensable(GameObject obj)
         {
             return obj.CompareTag(PLAYER_TAG);
+        }
+
+        private void OnDrawGizmosSelected()
+        {
+            if (senseExpireRange > 0)
+            {
+                Color col = Color.greenYellow;
+                col.a = 0.1f;
+                Gizmos.color = col;
+                Gizmos.DrawWireSphere(transform.position, senseExpireRange);
+            }
         }
     }
 
