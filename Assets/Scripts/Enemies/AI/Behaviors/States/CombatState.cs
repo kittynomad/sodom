@@ -24,7 +24,7 @@ namespace TFOOL.Enemies.AI
 
             int randomAttack = RandomUtility.GetRandomIndexWeighted(validAttacks);
 
-            return attacks[randomAttack];
+            return validAttacks[randomAttack];
         }
 
         protected AttackBehavior GetAttackByName(string name)

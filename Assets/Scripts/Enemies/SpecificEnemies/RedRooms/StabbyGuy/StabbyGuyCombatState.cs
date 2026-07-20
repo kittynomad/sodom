@@ -17,11 +17,14 @@ namespace TFOOL.Enemies.AI
     [DropdownGroup("Red Rooms/Stabby Guy")]
     public class StabbyGuyCombatState : CombatState
     {
-        [SerializeField] private RandomMovementBehavior randomMovement;
+        [Header("Custom AI Values")]
+        [SerializeField, Tooltip("Enemy moves randomly a little between each attack to prevent enemies from " +
+            "stacking on top of each other.  Adjust random movements here.")] 
+        private RandomMovementBehavior randomMovement;
 
         [SerializeField, Tooltip("Controls how close the player needs to be to the enemy to make them backdash.")]
         private float backdashThreshold;
-        [SerializeField] private BackdashBehavior backdash;
+        [SerializeField, Tooltip("Controls the backdash the enemy performs if the target is too close.")] private BackdashBehavior backdash;
         [SerializeField, Tooltip("Name of the knife throw attack.  Used to find the knife throw and force the " +
             "enemy to use it after backdashing.")] 
         private string throwAttackName;

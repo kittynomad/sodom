@@ -65,7 +65,7 @@ MonoBehaviour:
           acceleration: 30
           stopAtEdge: 1
           tryJump: 0
-          wanderTime: 0.5
+          wanderTime: 1
         backdashThreshold: 4
         backdash:
           dashForce: 10
@@ -84,7 +84,7 @@ MonoBehaviour:
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
-        attackWeight: 1
+        attackWeight: 70
         postAttackDelay: 2
         conditions:
         - rid: 2595282218735894641

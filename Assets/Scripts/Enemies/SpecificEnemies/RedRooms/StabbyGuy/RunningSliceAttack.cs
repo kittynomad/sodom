@@ -22,6 +22,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("Controls how close the enemy has to be to the player before it spawns the hitbox.")]
         private float attackRange;
         [Header("Charge")]
+        [SerializeField] private float minChargeTime;
         [SerializeField] private float maxChargeTime;
         [SerializeField] private float chargeSpeed;
         [SerializeField] private float chargeWindupTime;
@@ -70,12 +71,11 @@ namespace TFOOL.Enemies.AI
                 enemy.PointTowardsTarget();
 
                 // Move until the player is passed.
-                float timer = maxChargeTime;
-                while(!ct.IsCancellationRequested 
-                    && enemy.DirectionToTarget == attackDirection
-                    && (maxChargeTime <= 0 || timer > 0))
+                float timer = 0;
+                while(!ct.IsCancellationRequested && (timer < minChargeTime 
+                    || (enemy.DirectionToTarget == attackDirection && timer < maxChargeTime)))
                 {
-                    timer -= Time.fixedDeltaTime;
+                    timer += Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();
                 }
 
