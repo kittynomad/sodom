@@ -79,12 +79,13 @@ namespace TFOOL.Enemies.AI
                     await Awaitable.FixedUpdateAsync();
                 }
 
-                attackerComp.OnHitEvent += HandleHit;
                 ct.ThrowIfCancellationRequested();
+
+                // Spawn the attack hitbox.
+                attackerComp.OnHitEvent += HandleHit;
                 float attackTimer = attackTime;
                 if (enemy.ToTarget.magnitude <= attackRange)
                 {
-                    // Perform the attack.
                     hitbox.SetActive(true);
                     while(!ct.IsCancellationRequested && attackTimer > 0 && !hitTarget)
                     {

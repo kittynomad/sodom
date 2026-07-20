@@ -12,9 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Threading;
 using TFOOL.Enemies.AI;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
-using static UnityEngine.GraphicsBuffer;
 
 namespace TFOOL.Enemies
 {
@@ -24,11 +22,17 @@ namespace TFOOL.Enemies
 
         private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
 
-        [SerializeField] private EnemyHitbox[] hitboxes;
-
-        public event Action<IKillable, EnemyHitbox> OnHitEvent;
+        private EnemyHitbox[] hitboxes;
 
         private string lastUsedAttack;
+
+        #region Events
+        public event Action<IKillable, EnemyHitbox> OnHitEvent;
+        #endregion
+
+        #region Properties
+        public string LastUsedAttack => lastUsedAttack;
+        #endregion
 
         /// <summary>
         /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
