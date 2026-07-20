@@ -84,7 +84,7 @@ MonoBehaviour:
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
-        attackWeight: 70
+        attackWeight: 3
         postAttackDelay: 2
         conditions:
         - rid: 2595282218735894641
