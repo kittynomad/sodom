@@ -14,15 +14,15 @@ namespace TFOOL.Enemies
     public class EnemyHitbox : MonoBehaviour
     {
         [SerializeField] private float damageAmount;
-        public event Action<PlayerBehaviors> OnHitEvent;
+        public event Action<IKillable, EnemyHitbox> OnHitEvent;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if ((CollisionLayer)collision.gameObject.layer == CollisionLayer.Player 
-                && collision.TryGetComponent(out PlayerBehaviors pb))
+                && collision.TryGetComponent(out IKillable killable))
             {
-                pb.OnDamage(damageAmount, gameObject);
-                OnHitEvent?.Invoke(pb);
+                killable.OnDamage(damageAmount, gameObject);
+                OnHitEvent?.Invoke(killable, this);
             }
         }
     }

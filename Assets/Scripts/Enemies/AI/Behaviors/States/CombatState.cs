@@ -18,29 +18,13 @@ namespace TFOOL.Enemies.AI
     {
         [SerializeReference, ClassDropdown(typeof(AttackBehavior))] protected AttackBehavior[] attacks;
 
-        protected AttackBehavior GetRandomAttack(float distance)
+        protected AttackBehavior GetRandomAttack(EnemyController enemy, EnemyAttacker attacker)
         {
-
-            AttackBehavior[] validAttacks = attacks.Where(x => x.MinDistance <= 0 || distance > x.MinDistance)
-                .Where(x => x.MaxDistance <= 0 || distance < x.MaxDistance).ToArray();
+            AttackBehavior[] validAttacks = attacks.Where(x => x.IsValid(enemy, attacker)).ToArray();
 
             int randomAttack = RandomUtility.GetRandomIndexWeighted(validAttacks);
 
-            //int chosenAttackIndex = 0;
-            //float closestDistance = Mathf.Abs(attacks[0].IdealDistance - distance);
-            //for (int i = 1; i < attacks.Length; i++)
-            //{
-            //    float distanceToIdeal = Mathf.Abs(attacks[i].IdealDistance - distance);
-            //    // If the enemy is closer to this attack's ideal distance from it's target, this is now the 
-            //    // most ideal attack.
-            //    if (distanceToIdeal < closestDistance)
-            //    {
-            //        chosenAttackIndex = i;
-            //        closestDistance = distanceToIdeal;
-            //    }
-            //}
-
-            return attacks[randomAttack];
+            return validAttacks[randomAttack];
         }
 
         protected AttackBehavior GetAttackByName(string name)

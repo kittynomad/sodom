@@ -26,7 +26,12 @@ namespace TFOOL.Enemies.AI
             "\n\nExample may include performing a backdash after attacking.")]
         private EnemyBehavior[] postBehaviors;
         
-        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        {
+            return PerformAttack(enemy, GetAttacker(enemy), ct);
+        }
+
+        public override async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
 
@@ -37,7 +42,7 @@ namespace TFOOL.Enemies.AI
 
             ct.ThrowIfCancellationRequested();
             enemy.PointTowardsTarget();
-            await PerformAttack(enemy, GetAttacker(enemy), enemy.Target, ct);
+            await PerformAttack(enemy, attacker, ct);
 
             foreach (var behavior in postBehaviors)
             {
@@ -45,7 +50,6 @@ namespace TFOOL.Enemies.AI
             }
 
             await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
-
         }
     }
 }

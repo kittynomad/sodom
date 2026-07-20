@@ -7,6 +7,7 @@
 // Brief Description : Base class triggering enemy attacks through AI.  NOT the attack itself, that is stored as
 // EnemyAttack.  Divided like this for easier creation of things like boss phases with overlapping attacks.
 *****************************************************************************/
+using CustomAttributes;
 using System.Threading;
 using UnityEngine;
 
@@ -20,26 +21,16 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("Controls how likely the enemy is to choose this attack.  " +
             "Higher weight increases chance of this attack being chosen.")] 
         private int attackWeight;
-        [SerializeField, Tooltip("The minimum distance that there must be between the enemy and it's target for " +
-            "it to choose this attack.  Set to 0 for none.\n\nIe. If set to 4, then the enemy will only use " +
-            "this attack if the player is more than 4 units away.")] 
-        private float minDistance;
-        [SerializeField, Tooltip("The maximum distance that there can be between the enemy and it's target for " +
-    "it to choose this attack.  Set to 0 for none.\n\nIe. If set to 4, then the enemy will only use this " +
-            "attack if the target is within 4 units.")]
-        private float maxDistance;
         [SerializeField, Tooltip("How long to wait after performing the attack.")] protected float postAttackDelay;
-
-        public float MinDistance => minDistance;
-        public float MaxDistance => maxDistance;
+        [SerializeReference, ClassDropdown(typeof(AttackCondition)), Tooltip("List of conditions that must be met by " +
+    "the enemy for this attack to be used.")]
+        private AttackCondition[] conditions;
         public int Weight => attackWeight;
         public string AttackName => attackName;
 
-        public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
+        public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            enemy.PointTowardsTarget();
-            await PerformAttack(enemy, GetAttacker(enemy), enemy.Target, ct);
-            await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
+            return PerformAttack(enemy, GetAttacker(enemy), ct);
         }
 
         protected EnemyAttacker GetAttacker(EnemyController enemy)
@@ -51,10 +42,28 @@ namespace TFOOL.Enemies.AI
             return attacker;
         }
 
-        protected async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, GameObject target, CancellationToken ct)
-        { 
-            EnemyAttack toPerform = attacker.GetAttack(attackName);
-            await toPerform.PerformAttack(enemy, target, ct);
+        public virtual async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, CancellationToken ct)
+        {
+            enemy.PointTowardsTarget();
+            await attacker.PerformAttack(attackName, enemy, enemy.Target, ct);
+            await Awaitable.WaitForSecondsAsync(postAttackDelay, ct);
+        }
+
+        /// <summary>
+        /// Checks if this attack behavior is valid, checking both conditions on the behavior itself and on the attack.
+        /// </summary>
+        /// <param name="enemy"></param>
+        /// <param name="attacker"></param>
+        /// <returns></returns>
+        public bool IsValid(EnemyController enemy, EnemyAttacker attacker)
+        {
+            bool isInvalid = false;
+            // Check all conditions on the behavior.
+            foreach(AttackCondition condition in conditions)
+            {
+                isInvalid |= !condition.CheckCondition(enemy, this, attacker);
+            }
+            return !isInvalid;
         }
     }
 }

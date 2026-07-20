@@ -21,8 +21,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private GameObject hitbox;
         [SerializeField] private float hitboxOffset;
         [SerializeField] private float attackTime;
-        [SerializeField] private float stabbingLeapForce;
-        [SerializeField] private float stabYVelocity;
+        [SerializeField] private float stabVelocity;
         [Header("Timing")]
         [SerializeField] private float decideDirectionDelay;
         [SerializeField] private float leapDelay;
@@ -32,7 +31,7 @@ namespace TFOOL.Enemies.AI
     "If none are set, it will teleport behind the player.")]
         private Transform[] manualTeleportPoints;
                 
-        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
@@ -63,14 +62,13 @@ namespace TFOOL.Enemies.AI
                 await Awaitable.WaitForSecondsAsync(decideDirectionDelay, ct);
 
                 Vector2 stabVector = GetStabDirection(enemy.transform.position, target.transform.position);
-                Debug.DrawLine(movement.transform.position, movement.transform.position + (Vector3)stabVector, Color.yellow, 5f);
 
                 await Awaitable.WaitForSecondsAsync(leapDelay, ct);
 
                 // Leap at the target and attack.
                 enemy.PointTowardsTarget();
                 hitbox.transform.position = enemy.transform.position + (Vector3)(stabVector * hitboxOffset);
-                movement.Rigidbody.linearVelocity = stabVector * stabbingLeapForce;
+                movement.Rigidbody.linearVelocity = stabVector * stabVelocity;
                 hitbox.SetActive(true);
                 await Awaitable.WaitForSecondsAsync(attackTime, ct);
                 hitbox.SetActive(false);

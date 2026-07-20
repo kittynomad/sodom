@@ -88,7 +88,7 @@ namespace TFOOL.Enemies
         /// Destroy this projectile when it hits the player.
         /// </summary>
         /// <param name="obj"></param>
-        private void HandleOnHit(PlayerBehaviors obj)
+        private void HandleOnHit(IKillable hitObj, EnemyHitbox hitbox)
         {
             DestroyProjectile();
         }

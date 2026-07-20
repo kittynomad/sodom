@@ -8,7 +8,10 @@
 // they have.
 *****************************************************************************/
 using CustomAttributes;
+using System;
 using System.Collections.Generic;
+using System.Threading;
+using TFOOL.Enemies.AI;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -19,6 +22,18 @@ namespace TFOOL.Enemies
 
         private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
 
+        private EnemyHitbox[] hitboxes;
+
+        private string lastUsedAttack;
+
+        #region Events
+        public event Action<IKillable, EnemyHitbox> OnHitEvent;
+        #endregion
+
+        #region Properties
+        public string PreviousAttack => lastUsedAttack;
+        #endregion
+
         /// <summary>
         /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
         /// </summary>
@@ -28,11 +43,35 @@ namespace TFOOL.Enemies
             {
                 attackDict.Add(attack.Name, attack);
             }
+
+            // Initialize hitboxes.
+            hitboxes = GetComponentsInChildren<EnemyHitbox>(true);
+            foreach(EnemyHitbox hitbox in hitboxes)
+            {
+                hitbox.OnHitEvent += HandleHitboxHit;
+            }
+        }
+
+        public void HandleHitboxHit(IKillable hitObj, EnemyHitbox hitbox)
+        {
+            OnHitEvent?.Invoke(hitObj, hitbox);
         }
 
         public EnemyAttack GetAttack(string name)
         {
             return attackDict[name];
+        }
+
+        public Awaitable PerformAttack(string attackName, EnemyController enemy, GameObject target, CancellationToken ct)
+        {
+            EnemyAttack toPerform = GetAttack(attackName);
+            lastUsedAttack = toPerform.Name;
+            return toPerform.PerformAttack(enemy, target, this, ct);
+        }
+
+        private void OnDestroy()
+        {
+            OnHitEvent = null;
         }
     }
 }

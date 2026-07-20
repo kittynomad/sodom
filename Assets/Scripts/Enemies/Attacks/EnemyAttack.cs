@@ -20,6 +20,34 @@ namespace TFOOL.Enemies
 
         public string Name => attackName;
 
-        public abstract Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct);
+        public abstract Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct);
+
+        ///// <summary>
+        ///// Custom condition check for specific attacks 
+        ///// </summary>
+        ///// <param name="enemy"></param>
+        ///// <param name="target"></param>
+        ///// <param name="attackerComp"></param>
+        ///// <returns></returns>
+        //public virtual bool CheckPerformable(EnemyController enemy, GameObject target, EnemyAttacker attackerComp)
+        //{
+        //    return true;
+        //}
+
+        ///// <summary>
+        ///// Custom modifier to the weight of the attack based on specific conditions.
+        ///// </summary>
+        ///// <remarks>
+        ///// Would be used for things like making a move more probable in certain conditions.
+        ///// </remarks>
+        ///// <param name="baseWeight"></param>
+        ///// <param name="enemy"></param>
+        ///// <param name="target"></param>
+        ///// <param name="attackerComp"></param>
+        ///// <returns></returns>
+        //public virtual int ModifyWeight(int baseWeight, EnemyController enemy, GameObject target, EnemyAttacker attackerComp)
+        //{
+        //    return baseWeight;
+        //}
     }
 }

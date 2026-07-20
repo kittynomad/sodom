@@ -6,11 +6,10 @@
 //
 // Brief Description : Controls the running slice attack of the red rooms stabby guy.
 *****************************************************************************/
-using UnityEngine;
-using System.Threading;
-using System;
 using CustomAttributes;
-using Unity.VisualScripting;
+using System;
+using System.Threading;
+using UnityEngine;
 
 namespace TFOOL.Enemies.AI
 {
@@ -22,13 +21,14 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private float attackTime;
         [SerializeField, Tooltip("Controls how close the enemy has to be to the player before it spawns the hitbox.")]
         private float attackRange;
+        [Header("Charge")]
+        [SerializeField] private float minChargeTime;
         [SerializeField] private float maxChargeTime;
-        [Header("Movement")]
         [SerializeField] private float chargeSpeed;
-        [SerializeField] private float acceleration;
-        //[SerializeField] private float overshootTime;
+        [SerializeField] private float chargeWindupTime;
+        [SerializeField] private BackdashBehavior hitBackdash;
         
-        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             if (!enemy.TryGetComponent(out EnemyMovement movement))
             {
@@ -39,46 +39,68 @@ namespace TFOOL.Enemies.AI
             // Get Components
 
             float startingSpeed = movement.MoveSpeed;
-            float startingAcceleration = movement.Acceleration;
+
+            bool hitTarget = false;
 
             void CleanUp()
             {
                 // Reset to defaults
                 movement.MoveSpeed = startingSpeed;
-                movement.Acceleration = startingAcceleration;
                 movement.SetMoveDirection(0);
                 hitbox.SetActive(false);
+                attackerComp.OnHitEvent -= HandleHit;
+            }
+
+            // When the enemy hits an enemy, flag it to backdash after the attack concludes.
+            void HandleHit(IKillable hitObj, EnemyHitbox hitbox)
+            {
+                Debug.Log("Hit Player");
+                hitTarget = true;
             }
     
             try
             {
-                // Behavior Logic.
+                int attackDirection = enemy.DirectionToTarget;
+
+                await Awaitable.WaitForSecondsAsync(chargeWindupTime, ct);
+
+                // Immediately set the enemy to max speed after delay.
                 movement.MoveSpeed = chargeSpeed;
-                movement.Acceleration = acceleration;
+                movement.SetMoveDirection(attackDirection);
+                movement.Rigidbody.linearVelocityX = chargeSpeed * attackDirection;
+                enemy.PointTowardsTarget();
 
-                // Move towards the player until within range.
-                float timer = maxChargeTime;
-                while(!ct.IsCancellationRequested && enemy.ToTarget.magnitude > attackRange && (maxChargeTime <= 0 || timer > 0))
+                // Move until the player is passed.
+                float timer = 0;
+                while(!ct.IsCancellationRequested && (timer < minChargeTime 
+                    || (enemy.DirectionToTarget == attackDirection && timer < maxChargeTime)))
                 {
-                    ct.ThrowIfCancellationRequested();
-                    movement.SetMoveDirection(enemy.DirectionToTarget);
-                    enemy.PointTowardsTarget();
-
-                    timer -= Time.fixedDeltaTime;
+                    timer += Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync();
                 }
 
                 ct.ThrowIfCancellationRequested();
+
+                // Spawn the attack hitbox.
+                attackerComp.OnHitEvent += HandleHit;
+                float attackTimer = attackTime;
                 if (enemy.ToTarget.magnitude <= attackRange)
                 {
-                    // Perform the attack.
                     hitbox.SetActive(true);
-                    await Awaitable.WaitForSecondsAsync(attackTime, ct);
+                    while(!ct.IsCancellationRequested && attackTimer > 0 && !hitTarget)
+                    {
+                        attackTimer -= Time.fixedDeltaTime;
+                        await Awaitable.FixedUpdateAsync(ct);
+                    }
                     hitbox.SetActive(false);
                 }
+                attackerComp.OnHitEvent -= HandleHit;
 
-                // Enemy keeps moving.
-                //await Awaitable.WaitForSecondsAsync(overshootTime, ct);
+                // Backdash if the enemy hit something.
+                if (hitTarget)
+                {
+                    await hitBackdash.PerformBackdash(movement, -attackDirection, ct);
+                }
 
                 CleanUp();
             }

@@ -6,6 +6,7 @@
 //
 // Brief Description : Main component that controls enemies based on the settings of an EnemyAI Object.
 *****************************************************************************/
+using CustomAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -15,7 +16,7 @@ namespace TFOOL.Enemies.AI
     public class EnemyController : MonoBehaviour
     {
         // Serialized Fields
-        [SerializeField] private EnemyAI ai;
+        [SerializeField, ShowNestedEditor] private EnemyAI ai;
 
         private EnemyState currentState;
         private CancellationTokenSource stateCanceller;

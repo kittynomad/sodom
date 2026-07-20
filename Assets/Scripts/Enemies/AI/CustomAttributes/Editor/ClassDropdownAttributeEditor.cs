@@ -54,28 +54,37 @@ namespace CustomAttributes.Editor
             }
 
             // Draw the subclass serialized fields.
+            
             if (property.managedReferenceValue != null)
             {
-                EditorGUI.indentLevel++;
-
-                // Calculate the starting y position for the child fields.
-                float yOffset = position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
-                
-                void DrawProperty(SerializedProperty property)
+                if (property.hasVisibleChildren)
                 {
-                    float childHeight = EditorGUI.GetPropertyHeight(property, true);
-                    Rect childRect = new Rect(position.x, yOffset, position.width, childHeight);
-
-                    // Draw the child property field.
-                    EditorGUI.PropertyField(childRect,property, true);
-
-                    // Move to the next property.
-                    yOffset += childHeight + EditorGUIUtility.standardVerticalSpacing;
+                    property.isExpanded = EditorGUI.Foldout(dropdownRect, property.isExpanded, "");
                 }
+                
+                if (property.isExpanded)
+                {
+                    EditorGUI.indentLevel++;
 
-                LoopForProperties(DrawProperty, property);
+                    // Calculate the starting y position for the child fields.
+                    float yOffset = position.y + EditorGUIUtility.singleLineHeight + EditorGUIUtility.standardVerticalSpacing;
 
-                EditorGUI.indentLevel--;
+                    void DrawProperty(SerializedProperty property)
+                    {
+                        float childHeight = EditorGUI.GetPropertyHeight(property, true);
+                        Rect childRect = new Rect(position.x, yOffset, position.width, childHeight);
+
+                        // Draw the child property field.
+                        EditorGUI.PropertyField(childRect, property, true);
+
+                        // Move to the next property.
+                        yOffset += childHeight + EditorGUIUtility.standardVerticalSpacing;
+                    }
+
+                    LoopForProperties(DrawProperty, property);
+
+                    EditorGUI.indentLevel--;
+                }
             }
         }
 
@@ -90,7 +99,7 @@ namespace CustomAttributes.Editor
             float height = EditorGUIUtility.singleLineHeight;
 
             // If we have a class selected, then loop through all of it's properties and add their heights to the total.
-            if (property.managedReferenceValue != null)
+            if (property.managedReferenceValue != null && property.isExpanded)
             {
                 void IncreaseHeight(SerializedProperty ppt)
                 {
