@@ -40,12 +40,22 @@ namespace TFOOL.Enemies.AI
 
             float startingSpeed = movement.MoveSpeed;
 
+            bool hitTarget = false;
+
             void CleanUp()
             {
                 // Reset to defaults
                 movement.MoveSpeed = startingSpeed;
                 movement.SetMoveDirection(0);
                 hitbox.SetActive(false);
+                attackerComp.OnHitEvent -= HandleHit;
+            }
+
+            // When the enemy hits an enemy, flag it to backdash after the attack concludes.
+            void HandleHit(IKillable hitObj, EnemyHitbox hitbox)
+            {
+                Debug.Log("Hit Player");
+                hitTarget = true;
             }
     
             try
@@ -70,6 +80,7 @@ namespace TFOOL.Enemies.AI
                     await Awaitable.FixedUpdateAsync();
                 }
 
+                attackerComp.OnHitEvent += HandleHit;
                 ct.ThrowIfCancellationRequested();
                 if (enemy.ToTarget.magnitude <= attackRange)
                 {
@@ -77,6 +88,13 @@ namespace TFOOL.Enemies.AI
                     hitbox.SetActive(true);
                     await Awaitable.WaitForSecondsAsync(attackTime, ct);
                     hitbox.SetActive(false);
+                }
+                attackerComp.OnHitEvent -= HandleHit;
+
+                // Backdash if the enemy hit something.
+                if (hitTarget)
+                {
+                    await hitBackdash.RunAI(enemy, ct);
                 }
 
                 CleanUp();

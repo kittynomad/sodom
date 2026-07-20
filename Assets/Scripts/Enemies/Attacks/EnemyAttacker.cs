@@ -22,7 +22,7 @@ namespace TFOOL.Enemies
 
         private EnemyHitbox[] hitboxes;
 
-        public event Action<EnemyHitbox, IKillable> OnHitEvent;
+        public event Action<IKillable, EnemyHitbox> OnHitEvent;
 
         /// <summary>
         /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
@@ -36,15 +36,16 @@ namespace TFOOL.Enemies
 
             // Initialize hitboxes.
             hitboxes = GetComponentsInChildren<EnemyHitbox>();
-            foreach(EnemyAttack attack in attacks)
+            foreach(EnemyHitbox hitbox in hitboxes)
             {
-
+                hitbox.OnHitEvent += HandleHitboxHit;
             }
         }
 
         public void HandleHitboxHit(IKillable hitObj, EnemyHitbox hitbox)
         {
-
+            Debug.Log("Hit Object from attacker.");
+            OnHitEvent?.Invoke(hitObj, hitbox);
         }
 
         public EnemyAttack GetAttack(string name)
