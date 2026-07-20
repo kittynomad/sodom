@@ -10,7 +10,11 @@
 using CustomAttributes;
 using System;
 using System.Collections.Generic;
+using System.Threading;
+using TFOOL.Enemies.AI;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using static UnityEngine.GraphicsBuffer;
 
 namespace TFOOL.Enemies
 {
@@ -20,9 +24,11 @@ namespace TFOOL.Enemies
 
         private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
 
-        private EnemyHitbox[] hitboxes;
+        [SerializeField] private EnemyHitbox[] hitboxes;
 
         public event Action<IKillable, EnemyHitbox> OnHitEvent;
+
+        private string lastUsedAttack;
 
         /// <summary>
         /// Setup a dictionary at runtime for quicker attack access.  Stupid lack of serialized dictionaries.
@@ -35,7 +41,7 @@ namespace TFOOL.Enemies
             }
 
             // Initialize hitboxes.
-            hitboxes = GetComponentsInChildren<EnemyHitbox>();
+            hitboxes = GetComponentsInChildren<EnemyHitbox>(true);
             foreach(EnemyHitbox hitbox in hitboxes)
             {
                 hitbox.OnHitEvent += HandleHitboxHit;
@@ -51,6 +57,13 @@ namespace TFOOL.Enemies
         public EnemyAttack GetAttack(string name)
         {
             return attackDict[name];
+        }
+
+        public Awaitable PerformAttack(string attackName, EnemyController enemy, GameObject target, CancellationToken ct)
+        {
+            EnemyAttack toPerform = GetAttack(attackName);
+            lastUsedAttack = toPerform.Name;
+            return toPerform.PerformAttack(enemy, target, this, ct);
         }
 
         private void OnDestroy()

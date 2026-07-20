@@ -41,12 +41,7 @@ namespace TFOOL.Enemies.AI
             {
                 enemy.PointTowardsTarget();
 
-                Vector2 jumpBackForce = new Vector2(-Mathf.Sign(enemy.FacingDirection) * dashForce, dashJump);
-
-                // TODO: Switch this to linearVelocity
-                movement.Rigidbody.linearVelocity = jumpBackForce;
-
-                await Awaitable.WaitForSecondsAsync(postDashDelay, ct);
+                await PerformBackdash(movement, -Mathf.Sign(enemy.FacingDirection), ct);
                 CleanUp();
             }
             catch (OperationCanceledException oce)
@@ -55,6 +50,16 @@ namespace TFOOL.Enemies.AI
                 throw oce;
             }
 
+        }
+
+        public async Awaitable PerformBackdash(EnemyMovement movement, float direction, CancellationToken ct)
+        {
+            Vector2 jumpBackForce = new Vector2(direction * dashForce, dashJump);
+
+            // TODO: Switch this to linearVelocity
+            movement.Rigidbody.linearVelocity = jumpBackForce;
+
+            await Awaitable.WaitForSecondsAsync(postDashDelay, ct);
         }
     }
 

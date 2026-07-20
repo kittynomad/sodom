@@ -6,11 +6,10 @@
 //
 // Brief Description : Controls the running slice attack of the red rooms stabby guy.
 *****************************************************************************/
-using UnityEngine;
-using System.Threading;
-using System;
 using CustomAttributes;
-using Unity.VisualScripting;
+using System;
+using System.Threading;
+using UnityEngine;
 
 namespace TFOOL.Enemies.AI
 {
@@ -82,11 +81,16 @@ namespace TFOOL.Enemies.AI
 
                 attackerComp.OnHitEvent += HandleHit;
                 ct.ThrowIfCancellationRequested();
+                float attackTimer = attackTime;
                 if (enemy.ToTarget.magnitude <= attackRange)
                 {
                     // Perform the attack.
                     hitbox.SetActive(true);
-                    await Awaitable.WaitForSecondsAsync(attackTime, ct);
+                    while(!ct.IsCancellationRequested && attackTimer > 0 && !hitTarget)
+                    {
+                        attackTimer -= Time.fixedDeltaTime;
+                        await Awaitable.FixedUpdateAsync(ct);
+                    }
                     hitbox.SetActive(false);
                 }
                 attackerComp.OnHitEvent -= HandleHit;
@@ -94,7 +98,7 @@ namespace TFOOL.Enemies.AI
                 // Backdash if the enemy hit something.
                 if (hitTarget)
                 {
-                    await hitBackdash.RunAI(enemy, ct);
+                    await hitBackdash.PerformBackdash(movement, -attackDirection, ct);
                 }
 
                 CleanUp();

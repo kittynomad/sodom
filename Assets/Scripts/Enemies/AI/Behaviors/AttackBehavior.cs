@@ -52,9 +52,8 @@ namespace TFOOL.Enemies.AI
         }
 
         protected async Awaitable PerformAttack(EnemyController enemy, EnemyAttacker attacker, GameObject target, CancellationToken ct)
-        { 
-            EnemyAttack toPerform = attacker.GetAttack(attackName);
-            await toPerform.PerformAttack(enemy, target, attacker, ct);
+        {
+            await attacker.PerformAttack(attackName, enemy, target, ct);
         }
     }
 }
