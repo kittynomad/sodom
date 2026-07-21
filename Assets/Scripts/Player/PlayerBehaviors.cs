@@ -21,7 +21,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _hurtRecoveryPeriod;
     [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
-    [SerializeField][Range(0, 1)] private float _customMeleeComboVelocityFalloffRate = 0f;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -54,8 +53,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool recovering = false;
     private float moveModifier = 1f;
     private bool moveLocked = false;
-    private bool meleeSliding = false;
     private bool meleeChaining = false;
+    private bool meleeTurnWindow = false;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -69,6 +68,9 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public bool CanFire { get => currentAmmo > 0; }
     public float PlayerWalkSpeedLimit { get => _playerWalkSpeedLimit; set => _playerWalkSpeedLimit = value; }
     public float MoveModifier { get => moveModifier; set => moveModifier = value; }
+    public bool MoveLocked { get => moveLocked; set => moveLocked = value; }
+    public bool MeleeChaining { get => meleeChaining; set => meleeChaining = value; }
+    public bool MeleeTurnWindow { get => meleeTurnWindow; set => meleeTurnWindow = value; }
 
     private void Start()
     {
@@ -93,10 +95,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     {
         if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0 && !meleeChaining)
             rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
-        //else if (meleeChaining)
-        //{
-        //
-        //}
+        if (pc.MovementDirection.x != 0 && meleeTurnWindow)
+            transform.localScale = new Vector3(pc.MovementDirection.x, 1f, 1f);
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit && !moveLocked)
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
@@ -121,7 +121,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         {
             transform.localScale = new Vector3(pc.MovementDirection.x < 0f ? -1f : 1f, 1f, 1f);
         }
-        
     }
 
     public bool IsFacingRight()
@@ -363,12 +362,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         _anim.SetFloat("XSpeed", relativeVelocity.x);
     }
 
-    public void SetMoveLock(bool b)
-    {
-        moveLocked = b;
-    }
-
     // cam function, might be shit
+    // update: worked awesome sauce but still might cause horrific issues down da line
     public void AnimApplyForce(float f, Vector2 v)
     {
         rb.AddForce(f * v, ForceMode2D.Impulse);

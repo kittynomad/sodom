@@ -886,12 +886,40 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: SetMeleeTurnWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
   - time: 0.16666667
     functionName: AttackCycle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
+    messageOptions: 0
+  - time: 0.18333334
+    functionName: SetMeleeTurnWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.21666667
+    functionName: SetMeleeChaining
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.21666667
+    functionName: AnimApplyForce
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 10
+    intParameter: 0
     messageOptions: 0
   - time: 0.3
     functionName: CamShake
@@ -902,6 +930,13 @@ AnimationClip:
     messageOptions: 0
   - time: 0.4
     functionName: AttackCycle
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: SetMeleeChaining
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0

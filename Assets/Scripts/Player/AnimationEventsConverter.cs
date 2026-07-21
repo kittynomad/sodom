@@ -5,12 +5,15 @@ using UnityEngine;
 public class AnimationEventsConverter : MonoBehaviour
 {
     private PlayerBehaviors pb;
-    [SerializeField] private Animator _anim;
+    private SpriteRenderer sr;
+    private Animator anim;
     [SerializeField] private CameraShake _camShake;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         pb = GetComponentInParent<PlayerBehaviors>();
+        sr = gameObject.GetComponent<SpriteRenderer>();
+        anim = gameObject.GetComponent<Animator>();
     }
 
     public void AttackCycle(int i)
@@ -23,7 +26,7 @@ public class AnimationEventsConverter : MonoBehaviour
 
     public void UnbufferAttack()
     {
-        _anim.SetBool("AttackBuffered", false);
+        anim.SetBool("AttackBuffered", false);
     }
 
     public void CamShake(string s)
@@ -41,8 +44,33 @@ public class AnimationEventsConverter : MonoBehaviour
     public void SetMoveLock(int i)
     {
         if (i == 0)
-            pb.SetMoveLock(false);
+            pb.MoveLocked = false;
         else if (i == 1)
-            pb.SetMoveLock(true);
+            pb.MoveLocked = true;
+    }
+    public void SetMeleeChaining(float f)
+    {
+        if (f == 0)
+            pb.MeleeChaining = false;
+        else if (f == 1)
+            pb.MeleeChaining = true;
+    }
+
+    public void SetMeleeTurnWindow(float f)
+    {
+        if (f == 0)
+            pb.MeleeTurnWindow = false;
+        else if (f == 1)
+            pb.MeleeTurnWindow = true;
+    }
+
+    public void AnimApplyForce(float f)
+    {
+        Vector2 v = new Vector2(0, 0);
+        if (pb.transform.localScale.x == -1)
+            v = Vector2.left;
+        else
+            v = Vector2.right;
+        pb.AnimApplyForce(f, v);
     }
 }
