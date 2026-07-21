@@ -13,44 +13,36 @@ public class AnimationEventsConverter : MonoBehaviour
         pb = GetComponentInParent<PlayerBehaviors>();
     }
 
-    public void StartAttack()
+    public void AttackCycle(int i)
     {
-        pb.StartAttack();
-    }
-
-    public void EndAttack()
-    {
-        pb.EndAttack();
+        if (i == 0)
+            pb.AttackCycle(false);
+        else if (i == 1)
+            pb.AttackCycle(true);
     }
 
     public void UnbufferAttack()
     {
         _anim.SetBool("AttackBuffered", false);
     }
-    public void CamSmallShake()
+
+    public void CamShake(string s)
     {
-        StartCoroutine(_camShake.Shake(0.02f, 0.02f, 0.02f));
+        if (s.Equals("Small"))
+            StartCoroutine(_camShake.Shake(0.02f, 0.02f, 0.02f));
+        else if (s.Equals("Medium"))
+            StartCoroutine(_camShake.Shake(0.07f, 0.07f, 0.07f));
+        else if (s.Equals("Big"))
+            StartCoroutine(_camShake.Shake(0.1f, 0.1f, 0.1f));
+        else if (s.Equals("LUNATIC"))
+            StartCoroutine(_camShake.Shake(0.12f, 0.2f, 0.2f));
     }
 
-    public void CamMedShake()
+    public void SetMoveLock(int i)
     {
-        StartCoroutine(_camShake.Shake(0.07f, 0.07f, 0.07f));
-    }
-    public void CamBigShake()
-    {
-        StartCoroutine(_camShake.Shake(0.1f, 0.1f, 0.1f));
-    }
-    public void CamLUNATICShake()
-    {
-        StartCoroutine(_camShake.Shake(0.12f, 0.2f, 0.2f));
-    }
-
-    public void MoveLockOn()
-    {
-        pb.MoveLockOn();
-    }
-    public void MoveLockOff()
-    {
-        pb.MoveLockOff();
+        if (i == 0)
+            pb.SetMoveLock(false);
+        else if (i == 1)
+            pb.SetMoveLock(true);
     }
 }

@@ -680,28 +680,28 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.56666666
-    functionName: StartAttack
+    functionName: AttackCycle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 0
+    intParameter: 1
     messageOptions: 0
   - time: 0.6
-    functionName: CamMedShake
-    data: 
+    functionName: CamShake
+    data: Medium
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.65
-    functionName: CamMedShake
-    data: 
+    functionName: CamShake
+    data: Medium
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 0.8
-    functionName: EndAttack
+    functionName: AttackCycle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
