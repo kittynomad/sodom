@@ -17217,18 +17217,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: _playerJumpForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: _projectileSpeed
-      value: 100
-      objectReference: {fileID: 0}
-    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: _playerWalkAcceleration
-      value: 11
-      objectReference: {fileID: 0}
     - target: {fileID: 2420685308066473399, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -17284,18 +17272,6 @@ PrefabInstance:
     - target: {fileID: 3862160118748894185, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_IsActive
       value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048464291530945123, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: m_Mass
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048464291530945123, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: m_UseAutoMass
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4048464291530945123, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
-      propertyPath: m_GravityScale
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7668041285061911429, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_LocalPosition.x
