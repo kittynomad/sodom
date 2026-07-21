@@ -22,14 +22,14 @@ public class SwordController : MonoBehaviour
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
         //deal damage while attacking
-        if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
-        {
-            ik.OnDamage(1f, gameObject);
-        }
-    }
+        //if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
+        //{
+        //    ik.OnDamage(1f, gameObject);
+        //}
+    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //deal damage while attacking

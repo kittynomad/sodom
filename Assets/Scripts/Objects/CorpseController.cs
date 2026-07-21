@@ -6,6 +6,7 @@ public class CorpseController : InteractableEntity
     [SerializeField] private int _ammoValue;
     [SerializeField] private float _damageValue;
     [SerializeField] private GameObject _destroyParticles;
+    [SerializeField] private Vector2 _flingStrength;
 
     private bool discarded = false;
 
@@ -13,6 +14,16 @@ public class CorpseController : InteractableEntity
     public int AmmoValue { get => _ammoValue; set => _ammoValue = value; }
     public float DamageValue { get => _damageValue; set => _damageValue = value; }
     public bool Discarded { get => discarded; set => discarded = value; }
+    public Vector2 FlingStrength { get => _flingStrength; set => _flingStrength = value; }
+
+    private void Start()
+    {
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = _flingStrength;
+    }
+    public void DeathFling()
+    {
+
+    }
 
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,7 +36,6 @@ public class CorpseController : InteractableEntity
             }
             DestroyCorpse();
         }
-            
     }
 
     public override void OnInteract(PlayerBehaviors pb)

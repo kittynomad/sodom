@@ -110,8 +110,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //check if time to end pound
         if (pounding && PoundHitCheck()) PoundConnectBehavior();
 
-        FlipSpriteForVelocity();
         UpdateAnimator();
+        FlipSpriteForVelocity();
     }
 
     public void FlipSpriteForVelocity()
