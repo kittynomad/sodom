@@ -27,18 +27,6 @@ namespace TFOOL.Enemies.AI
 
         #region Utilities
         /// <summary>
-        /// Awaits a delay equal to the length of the animator's current animation.
-        /// </summary>
-        /// <param name="anim">The animator to wait for.</param>
-        /// <returns></returns>
-        protected static Awaitable AwaitAnimation(Animator anim, CancellationToken ct)
-        {
-            anim.Update(0);
-            float animationDuration = anim.GetCurrentAnimatorStateInfo(0).length;
-            return Awaitable.WaitForSecondsAsync(animationDuration, ct);
-        }
-
-        /// <summary>
         /// Awaits a signal sent to the EnemyController.
         /// </summary>
         /// <param name="signalName">The name of the signal from the animation event.</param>

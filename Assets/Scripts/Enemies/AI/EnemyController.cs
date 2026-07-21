@@ -16,6 +16,7 @@ namespace TFOOL.Enemies.AI
     public class EnemyController : MonoBehaviour
     {
         // Serialized Fields
+        [SerializeField] private Animator enemyAnimator;
         [SerializeField, ShowNestedEditor] private EnemyAI ai;
 
         private EnemyState currentState;
@@ -226,6 +227,18 @@ namespace TFOOL.Enemies.AI
         public void SetSignal(string signalName)
         {
             animationSignal = signalName;
+        }
+
+        /// <summary>
+        /// Play an animation.
+        /// </summary>
+        /// <param name="animName"></param>
+        /// <returns>The duration of the newly played animation.</returns>
+        public float PlayAnimation(string animName)
+        {
+            enemyAnimator.Play(animName);
+            enemyAnimator.Update(0);
+            return enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
         }
         #endregion
     }
