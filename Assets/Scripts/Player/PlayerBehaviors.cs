@@ -315,16 +315,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //}
     }
 
-    public void StartAttack()
+    public void AttackCycle(bool b)
     {
-        IsAttacking = true;
-        _hurtBox.GetComponent<BoxCollider2D>().enabled = true;
-    }
-
-    public void EndAttack()
-    {
-        IsAttacking = false;
-        _hurtBox.GetComponent<BoxCollider2D>().enabled = false;
+        IsAttacking = b;
+        _hurtBox.GetComponent<BoxCollider2D>().enabled = b;
     }
 
     public IEnumerator HurtRecoveryCoroutine()
@@ -369,12 +363,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         _anim.SetFloat("XSpeed", relativeVelocity.x);
     }
 
-    public void MoveLockOn()
+    public void SetMoveLock(bool b)
     {
-        moveLocked = true;
+        moveLocked = b;
     }
-    public void MoveLockOff()
+
+    // cam function, might be shit
+    public void AnimApplyForce(float f, Vector2 v)
     {
-        moveLocked = false;
+        rb.AddForce(f * v, ForceMode2D.Impulse);
     }
 }
