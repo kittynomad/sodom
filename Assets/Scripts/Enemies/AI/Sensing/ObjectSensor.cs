@@ -85,7 +85,6 @@ namespace TFOOL.Enemies.AI
                 bool isSensed = sensedObjects.Contains(collision.gameObject);
 
                 collidedObjects.Remove(collision.gameObject);
-                Debug.Log(isSensed);
                 if (senseExpireRange <= 0 || !isSensed)
                 {
                     monitoredObjects.Remove(collision.gameObject);
