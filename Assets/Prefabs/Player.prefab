@@ -112,11 +112,11 @@ Rigidbody2D:
   m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 1
-  m_Mass: 1.2147858
+  m_UseAutoMass: 0
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1.5
+  m_GravityScale: 2
   m_Material: {fileID: 6200000, guid: b2e302678893fdd459577bc67b9ab4f9, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -194,10 +194,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBehaviors
   _maxHealth: 100
   _maxAmmo: 5
-  _playerWalkAcceleration: 9
-  _playerJumpForce: 15
+  _playerWalkAcceleration: 11
+  _playerJumpForce: 25
   _playerWalkSpeedLimit: 11
-  _projectileSpeed: 45
+  _projectileSpeed: 100
   _hurtRecoveryPeriod: 1
   _customVelocityFalloffRate: 0.128
   _customMeleeComboVelocityFalloffRate: 0.076
