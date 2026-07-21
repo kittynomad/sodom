@@ -10,5 +10,5 @@ using UnityEngine;
 
 public interface IWeighted
 {
-    int Weight { get; }
+    int GetWeight(float param);
 }
