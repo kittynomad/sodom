@@ -16,6 +16,7 @@ namespace TFOOL.Enemies.AI
     public class EnemyController : MonoBehaviour
     {
         // Serialized Fields
+        [SerializeField] private Animator enemyAnimator;
         [SerializeField, ShowNestedEditor] private EnemyAI ai;
 
         private EnemyState currentState;
@@ -27,10 +28,25 @@ namespace TFOOL.Enemies.AI
 
         private int facingDirection = 1;
 
+        private string animationSignal;
+
         #region Properties
         public Vector2 ToTarget => Target.transform.position - transform.position;
         public CancellationToken StateCancelToken => stateCanceller.Token;
         public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);
+        public string AnimationSignal
+        {
+            get
+            {
+                if (animationSignal != null && animationSignal != "")
+                {
+                    string sig = animationSignal;
+                    animationSignal = "";
+                    return sig;
+                }
+                return animationSignal;
+            }
+        }
         public int FacingDirection
         { 
             get { return facingDirection; }
@@ -200,6 +216,29 @@ namespace TFOOL.Enemies.AI
         {
             if (Target == null) { return; }
             FacingDirection = DirectionToTarget;
+        }
+        #endregion
+
+        #region Animations
+        /// <summary>
+        /// Signals to this enemy to move to the next part of it's behavior.
+        /// </summary>
+        /// <param name="signalName"></param>
+        public void SetSignal(string signalName)
+        {
+            animationSignal = signalName;
+        }
+
+        /// <summary>
+        /// Play an animation.
+        /// </summary>
+        /// <param name="animName"></param>
+        /// <returns>The duration of the newly played animation.</returns>
+        public float PlayAnimation(string animName)
+        {
+            enemyAnimator.Play(animName);
+            enemyAnimator.Update(0);
+            return enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
         }
         #endregion
     }
