@@ -25,7 +25,39 @@ MonoBehaviour:
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: RunningSlice
-        attackWeight: 7
+        weightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 1.5
+            outSlope: 1.5
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 4
+            value: 7
+            inSlope: -0.0051204124
+            outSlope: -0.0051204124
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.35000008
+          - serializedVersion: 3
+            time: 9
+            value: 1
+            inSlope: -1.2
+            outSlope: -1.2
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         postAttackDelay: 1
         conditions: []
     - rid: 2595282218735894639
@@ -34,11 +66,6 @@ MonoBehaviour:
     - rid: 2595282218735894641
       type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 
-    - rid: 2595282218735894642
-      type: {class: RequiredDistance, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        minDistance: 7
-        maxDistance: 0
     - rid: 3144940043314135134
       type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 
@@ -76,7 +103,39 @@ MonoBehaviour:
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: KnifeThrow
-        attackWeight: 7
+        weightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 3
+            value: 7
+            inSlope: 0.25178593
+            outSlope: -0.8
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.43015337
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 8
+            value: 3
+            inSlope: -0.64458567
+            outSlope: -0.8
+            tangentMode: 1
+            weightedMode: 3
+            inWeight: 0.41397
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         postAttackDelay: 0.5
         conditions:
         - rid: 2595282218735894639
@@ -84,8 +143,39 @@ MonoBehaviour:
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
-        attackWeight: 3
+        weightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 7
+            value: 3
+            inSlope: 0.36813188
+            outSlope: 0.36813188
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 20
+            value: 7
+            inSlope: 0.30769232
+            outSlope: 0.30769232
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
         postAttackDelay: 2
         conditions:
         - rid: 2595282218735894641
-        - rid: 2595282218735894642

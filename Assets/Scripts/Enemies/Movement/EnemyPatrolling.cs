@@ -110,7 +110,8 @@ namespace TFOOL.Enemies
             if (movement != null)
             {
                 Vector3 patrolOffset = (Vector3.right * patrolArea / 2);
-                Vector3 posOffset = new Vector2(0, -movement.EnemyBounds.min.y) + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
+                Vector3 posOffset = new Vector2(0, -movement.EnemyBounds.min.y + movement.EnemyBounds.center.y 
+                    - movement.EnemyBounds.size.y) + (Vector2.up * PATROL_AREA_GIZMO_OFFSET);
                 Gizmos.color = Color.blue;
                 if (startPos == null)
                 {

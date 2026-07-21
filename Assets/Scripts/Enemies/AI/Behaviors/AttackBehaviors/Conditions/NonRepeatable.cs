@@ -17,7 +17,6 @@ namespace TFOOL.Enemies.AI
         {
             if (attacker.PreviousAttack == attackBehavior.AttackName)
             {
-                Debug.Log(attacker.PreviousAttack);
                 return false;
             }
             return true;

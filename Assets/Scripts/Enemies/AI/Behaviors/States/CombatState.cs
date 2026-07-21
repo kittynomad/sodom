@@ -22,7 +22,7 @@ namespace TFOOL.Enemies.AI
         {
             AttackBehavior[] validAttacks = attacks.Where(x => x.IsValid(enemy, attacker)).ToArray();
 
-            int randomAttack = RandomUtility.GetRandomIndexWeighted(validAttacks);
+            int randomAttack = RandomUtility.GetRandomIndexWeighted(validAttacks, enemy.ToTarget.magnitude);
 
             return validAttacks[randomAttack];
         }
