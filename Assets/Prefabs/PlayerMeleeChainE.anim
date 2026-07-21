@@ -2052,12 +2052,40 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
+  - time: 0
+    functionName: SetMeleeTurnWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
   - time: 0.38333333
     functionName: AttackCycle
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
+    messageOptions: 0
+  - time: 0.38333333
+    functionName: SetMeleeTurnWindow
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: SetMeleeChaining
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 1
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.4
+    functionName: AnimApplyForce
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 17
+    intParameter: 0
     messageOptions: 0
   - time: 0.51666665
     functionName: AttackCycle
@@ -2076,6 +2104,13 @@ AnimationClip:
   - time: 0.81666666
     functionName: CamShake
     data: LUNATIC
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.8333333
+    functionName: SetMeleeChaining
+    data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
