@@ -40,9 +40,13 @@ public class PlayerController : MonoBehaviour
         pb.FireBehavior(aimDirection);
     }
 
-    public void OnJump()
+    public void OnJump(InputValue iVal)
     {
-        pb.JumpBehavior();
+        //Debug.Log(iVal.Get<float>());
+        if (iVal.Get<float>() == 1)
+            pb.JumpBehavior();
+        else if (iVal.Get<float>() == 0)
+            pb.EndJumpBehavior();
     }
 
     public void OnAttack()
