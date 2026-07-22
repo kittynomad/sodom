@@ -150,6 +150,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
     }
 
+    public void EndJumpBehavior()
+    {
+        if (rb.linearVelocityY > 0)
+            rb.linearVelocityY = 0;
+    }
+
     public void AttackBehavior()
     {
         //can't start attack if already attacking
