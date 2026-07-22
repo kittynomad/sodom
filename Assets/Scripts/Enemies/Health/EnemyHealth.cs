@@ -17,6 +17,8 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
     [SerializeField] private StunnedState stunState;
 
     [SerializeField, ShowIfNull] private EnemyController enemyController;
+    [SerializeField, ShowIfNull] private Rigidbody2D rb;
+
 
     private float currentHealth;
     private bool isStunCooldown;
@@ -26,6 +28,7 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
     private void Reset()
     {
         enemyController = GetComponent<EnemyController>();
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Start()
@@ -38,6 +41,14 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
         currentHealth -= damageAmount;
         EntitySenseEvent?.Invoke(damageSource, SenseType.Damage, true);
 
+        if (currentHealth <= 0f)
+            OnKill(damageSource);
+
+        return currentHealth <= 0f;
+    }
+
+    public void OnStun()
+    {
         if (shouldStun && !isStunCooldown)
         {
             // If the enemy is sucesssfully stunned, then set the stun cooldown.
@@ -46,11 +57,12 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
                 StartCoroutine(StunCooldown());
             }
         }
+    }
 
-        if (currentHealth <= 0f)
-            OnKill(damageSource);
-
-        return currentHealth <= 0f;
+    public void ApplyKnockback(Vector2 knockbackForce)
+    {
+        // Update this if needed.
+        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
     }
 
     private IEnumerator StunCooldown()

@@ -16,18 +16,18 @@ public static class RandomUtility
     /// </summary>
     /// <param name="weightedElements">The weighted elements to get a random element from.</param>
     /// <returns>The index of the chosen element.</returns>
-    public static int GetRandomIndexWeighted(IWeighted[] weightedElements)
+    public static int GetRandomIndexWeighted(IWeighted[] weightedElements, float param = 0)
     {
         int totalWeight = 0;
         foreach (IWeighted element in weightedElements)
         {
-            totalWeight += element.Weight;
+            totalWeight += element.GetWeight(param);
         }
         int randomWeight = Random.Range(0, totalWeight);
 
         for(int i = 0; i < weightedElements.Length; i++)
         {
-            randomWeight -= weightedElements[i].Weight;
+            randomWeight -= weightedElements[i].GetWeight(param);
             if (randomWeight < 0)
             {
                 return i;

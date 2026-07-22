@@ -18,14 +18,17 @@ namespace TFOOL.Enemies.AI
     {
         [SerializeField, Tooltip("Name of the attack on the enemy's EnemyAttacker component to use.")] 
         private string attackName;
-        [SerializeField, Tooltip("Controls how likely the enemy is to choose this attack.  " +
-            "Higher weight increases chance of this attack being chosen.")] 
-        private int attackWeight;
+        //[SerializeField, Tooltip("Controls how likely the enemy is to choose this attack.  " +
+        //    "Higher weight increases chance of this attack being chosen.")] 
+        //private int attackWeight;
+        [SerializeField, Tooltip("Controls how likely the enemy is to choose this attack.  Higher " +
+            "weights increases the chance of this attack being chosen.  The X/time axis corresponds to the " +
+            "distance from the target.")] 
+        private AnimationCurve weightCurve;
         [SerializeField, Tooltip("How long to wait after performing the attack.")] protected float postAttackDelay;
         [SerializeReference, ClassDropdown(typeof(AttackCondition)), Tooltip("List of conditions that must be met by " +
     "the enemy for this attack to be used.")]
         private AttackCondition[] conditions;
-        public int Weight => attackWeight;
         public string AttackName => attackName;
 
         public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
@@ -64,6 +67,17 @@ namespace TFOOL.Enemies.AI
                 isInvalid |= !condition.CheckCondition(enemy, this, attacker);
             }
             return !isInvalid;
+        }
+
+        /// <summary>
+        /// Gets the weight of this attack based on the enemy's distance from the target.
+        /// </summary>
+        /// <param name="distance"></param>
+        /// <returns></returns>
+        public int GetWeight(float distance)
+        {
+            Debug.Log($"{attackName}: Distance: {distance}. Weight: {Mathf.RoundToInt(weightCurve.Evaluate(distance))}.");
+            return Mathf.RoundToInt(weightCurve.Evaluate(distance));
         }
     }
 }
