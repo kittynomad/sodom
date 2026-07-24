@@ -98,7 +98,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         if (pc.MovementDirection.x != 0 && meleeTurnWindow)
             transform.localScale = new Vector3(pc.MovementDirection.x, 1f, 1f);
         //player walks in input direction IF not past max speed and not anchored
-        else if (!anchored && Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit && !moveLocked)
+        else if (!anchored && (Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit || pc.MovementDirection.x != transform.localScale.x) && !moveLocked)
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
         
@@ -110,8 +110,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //check if time to end pound
         if (pounding && PoundHitCheck()) PoundConnectBehavior();
 
-        UpdateAnimator();
         FlipSpriteForVelocity();
+        UpdateAnimator();
     }
 
     public void FlipSpriteForVelocity()
@@ -343,9 +343,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             rb.linearVelocity = damageDir * 5f;
             StartCoroutine(HurtRecoveryCoroutine());
         }
-
         return false;
-
     }
 
     public void OnKill(GameObject damageSource = null)
