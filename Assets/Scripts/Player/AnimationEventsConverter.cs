@@ -64,7 +64,12 @@ public class AnimationEventsConverter : MonoBehaviour
             pb.MeleeTurnWindow = true;
     }
 
-    public void AnimApplyForce(float f)
+    public void VelocityStall()
+    {
+        pb.AnimSetVelocity(new Vector2(0, 0), false);
+    }
+
+    public void AnimApplyForceX(float f)
     {
         Vector2 v = new Vector2(0, 0);
         if (pb.transform.localScale.x == -1)
@@ -72,5 +77,16 @@ public class AnimationEventsConverter : MonoBehaviour
         else
             v = Vector2.right;
         pb.AnimApplyForce(f, v);
+    }
+
+    public void AnimApplyForceY(float f)
+    {
+        Vector2 v = Vector2.up;
+        pb.AnimApplyForce(f, v);
+    }
+
+    public void AirAttackUsed()
+    {
+        anim.SetBool("CanAirAttack", false);
     }
 }

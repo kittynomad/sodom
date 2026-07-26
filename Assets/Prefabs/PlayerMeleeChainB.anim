@@ -646,7 +646,7 @@ AnimationClip:
     intParameter: 0
     messageOptions: 0
   - time: 0.15
-    functionName: AnimApplyForce
+    functionName: AnimApplyForceX
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 7
