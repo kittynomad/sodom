@@ -152,7 +152,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void EndJumpBehavior()
     {
-        if (rb.linearVelocityY > 0)
+        if (rb.linearVelocityY > 0 && !moveLocked)
             rb.linearVelocityY = 0;
     }
 
@@ -361,6 +361,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
         else relativeVelocity = rb.linearVelocity;
         _anim.SetBool("IsGrounded", IsGrounded());
+        if (!_anim.GetBool("CanAirAttack") && IsGrounded())
+            _anim.SetBool("CanAirAttack", true);
         _anim.SetBool("IsMoving", (pc.MovementDirection.x != 0));
         _anim.SetFloat("YSpeed", relativeVelocity.y);
         _anim.SetFloat("XSpeed", relativeVelocity.x);
@@ -371,5 +373,17 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void AnimApplyForce(float f, Vector2 v)
     {
         rb.AddForce(f * v, ForceMode2D.Impulse);
+    }
+
+    public void AnimSetVelocity(Vector2 v, bool b)
+    {
+        if (b)
+        {
+            if (v.x == 0)
+                v.x = rb.linearVelocityX;
+            if (v.y == 0)
+                v.y = rb.linearVelocityY;
+        }
+        rb.linearVelocity = v;
     }
 }
