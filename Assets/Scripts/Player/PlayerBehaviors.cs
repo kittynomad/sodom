@@ -366,6 +366,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         _anim.SetBool("IsMoving", (pc.MovementDirection.x != 0));
         _anim.SetFloat("YSpeed", relativeVelocity.y);
         _anim.SetFloat("XSpeed", relativeVelocity.x);
+        _anim.SetFloat("YControl", pc.MovementDirection.y);
     }
 
     // cam function, might be shit
