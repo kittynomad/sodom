@@ -26,6 +26,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _maxStamina;
     [SerializeField] private float _staminaRegenCooldown;
     [SerializeField] private float _staminaRegenRate;
+    [SerializeField] private float _attackStaminaCost;
+    [SerializeField] private float _jumpStaminaCost;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -142,24 +144,28 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void JumpBehavior()
     {
-        //player gets un-anchored by jumping
-        anchored = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        //jump if on ground
-        if (!moveLocked)
+        if(UseStamina(_jumpStaminaCost))
         {
-            if (IsGrounded())
+            //player gets un-anchored by jumping
+            anchored = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            //jump if on ground
+            if (!moveLocked)
             {
-                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
-            }
-            //also jump if not grounded but have double jump still
-            else if (pl.DoubleJumpUnlocked && doubleJumpReady)
-            {
-                doubleJumpReady = false;
-                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                if (IsGrounded())
+                {
+                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                }
+                //also jump if not grounded but have double jump still
+                else if (pl.DoubleJumpUnlocked && doubleJumpReady)
+                {
+                    doubleJumpReady = false;
+                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                }
             }
         }
+        
     }
 
     public void EndJumpBehavior()
@@ -170,7 +176,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void AttackBehavior()
     {
-        if(UseStamina(25))
+        if(UseStamina(_attackStaminaCost))
         {
             //can't start attack if already attacking
             //if(!IsAttacking)
