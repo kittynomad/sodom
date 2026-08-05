@@ -22,6 +22,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _hurtRecoveryPeriod;
     [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
 
+    [Header("Stamina")]
+    [SerializeField] private float _maxStamina;
+    [SerializeField] private float _staminaRegenCooldown;
+    [SerializeField] private float _staminaRegenRate;
+    [SerializeField] private float _attackStaminaCost;
+    [SerializeField] private float _jumpStaminaCost;
+
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
     [SerializeField] private float _poundDamage;
@@ -45,6 +52,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     //state related vars
     private float currentHealth;
+    private float currentStamina;
     private int currentAmmo;
     private bool isAttacking = false;
     private bool doubleJumpReady = true;
@@ -59,6 +67,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     //actions
     public Action<PlayerBehaviors> interactAction;
 
+    private Coroutine staminaCoroutine;
+
     //getters/setters
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
     public int MaxHealth { get => _maxHealth; set => _maxHealth = value; }
@@ -71,6 +81,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public bool MoveLocked { get => moveLocked; set => moveLocked = value; }
     public bool MeleeChaining { get => meleeChaining; set => meleeChaining = value; }
     public bool MeleeTurnWindow { get => meleeTurnWindow; set => meleeTurnWindow = value; }
+    public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
+    public float MaxStamina { get => _maxStamina; set => _maxStamina = value; }
 
     private void Start()
     {
@@ -85,6 +97,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //set health and ammo
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
+        currentStamina = MaxStamina;
+
 
         if(SpawnPointHolder.instance != null && SpawnPointHolder.instance.GetRelevantSpawnPoint(out Vector2 pos))
         {
@@ -130,24 +144,28 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void JumpBehavior()
     {
-        //player gets un-anchored by jumping
-        anchored = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-
-        //jump if on ground
-        if (!moveLocked)
+        if(UseStamina(_jumpStaminaCost))
         {
-            if (IsGrounded())
+            //player gets un-anchored by jumping
+            anchored = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+
+            //jump if on ground
+            if (!moveLocked)
             {
-                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
-            }
-            //also jump if not grounded but have double jump still
-            else if (pl.DoubleJumpUnlocked && doubleJumpReady)
-            {
-                doubleJumpReady = false;
-                rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                if (IsGrounded())
+                {
+                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                }
+                //also jump if not grounded but have double jump still
+                else if (pl.DoubleJumpUnlocked && doubleJumpReady)
+                {
+                    doubleJumpReady = false;
+                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
+                }
             }
         }
+        
     }
 
     public void EndJumpBehavior()
@@ -158,11 +176,15 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void AttackBehavior()
     {
-        //can't start attack if already attacking
-        //if(!IsAttacking)
-        StartCoroutine(AttackCoroutine());
-        //launch attached corpse on attack 
-        if(sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+        if(UseStamina(_attackStaminaCost))
+        {
+            //can't start attack if already attacking
+            //if(!IsAttacking)
+            StartCoroutine(AttackCoroutine());
+            //launch attached corpse on attack 
+            if (sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+        }
+        
     }
 
     public void InteractBehavior()
@@ -302,24 +324,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         pr.Currency += value;
     }
 
-    public IEnumerator AttackCoroutine()
-    {
-        _anim.SetBool("AttackBuffered", true);
-        print("attack buffered");
-        yield return null;
-        //if (IsGrounded())
-        //{
-        //    _anim.SetBool("AttackBuffered", true);
-        //}
-        //else
-        //{
-        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-        //    StartAttack();
-        //    yield return new WaitForSeconds(0.5f);
-        //    EndAttack();
-        //}
-    }
-
     public void AttackCycle(bool b)
     {
         IsAttacking = b;
@@ -386,5 +390,50 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 v.y = rb.linearVelocityY;
         }
         rb.linearVelocity = v;
+    }
+
+    public bool UseStamina(float staminaUsed)
+    {
+        if (staminaCoroutine != null)
+            StopCoroutine(staminaCoroutine);
+        staminaCoroutine = StartCoroutine(StaminaRegenCoroutine());
+
+        if(staminaUsed <= currentStamina)
+        {
+            currentStamina -= staminaUsed;
+            return true;
+        }
+
+        return false;
+    }
+
+    public IEnumerator AttackCoroutine()
+    {
+        _anim.SetBool("AttackBuffered", true);
+        print("attack buffered");
+        yield return null;
+        //if (IsGrounded())
+        //{
+        //    _anim.SetBool("AttackBuffered", true);
+        //}
+        //else
+        //{
+        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
+        //    StartAttack();
+        //    yield return new WaitForSeconds(0.5f);
+        //    EndAttack();
+        //}
+    }
+
+    public IEnumerator StaminaRegenCoroutine()
+    {
+        yield return new WaitForSeconds(_staminaRegenCooldown);
+
+        while(currentStamina < _maxStamina)
+        {
+            currentStamina += _staminaRegenRate * Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        currentStamina = _maxStamina;
     }
 }

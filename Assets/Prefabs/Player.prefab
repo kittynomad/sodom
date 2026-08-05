@@ -199,6 +199,11 @@ MonoBehaviour:
   _projectileSpeed: 100
   _hurtRecoveryPeriod: 1
   _customVelocityFalloffRate: 0.128
+  _maxStamina: 100
+  _staminaRegenCooldown: 1
+  _staminaRegenRate: 25
+  _attackStaminaCost: 25
+  _jumpStaminaCost: 10
   _poundStrength: 20
   _poundDamage: 1
   _poundPushStrength: 15
