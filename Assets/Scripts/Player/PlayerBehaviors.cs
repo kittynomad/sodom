@@ -97,6 +97,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         currentAmmo = MaxAmmo;
         currentStamina = MaxStamina;
 
+
         if(SpawnPointHolder.instance != null && SpawnPointHolder.instance.GetRelevantSpawnPoint(out Vector2 pos))
         {
             transform.position = pos;
@@ -379,6 +380,21 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 v.y = rb.linearVelocityY;
         }
         rb.linearVelocity = v;
+    }
+
+    public bool UseStamina(float staminaUsed)
+    {
+        if (staminaCoroutine != null)
+            StopCoroutine(staminaCoroutine);
+        staminaCoroutine = StartCoroutine(StaminaRegenCoroutine());
+
+        if(staminaUsed <= currentStamina)
+        {
+            currentStamina -= staminaUsed;
+            return true;
+        }
+
+        return false;
     }
 
     public IEnumerator AttackCoroutine()
