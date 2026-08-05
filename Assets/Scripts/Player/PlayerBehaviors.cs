@@ -15,13 +15,17 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [Header("General stats")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxAmmo;
-    [SerializeField] private float _maxStamina;
     [SerializeField] private float _playerWalkAcceleration;
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _hurtRecoveryPeriod;
     [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
+
+    [Header("Stamina")]
+    [SerializeField] private float _maxStamina;
+    [SerializeField] private float _staminaRegenCooldown;
+    [SerializeField] private float _staminaRegenRate;
 
     [Header("Ability stats")]
     [SerializeField] private float _poundStrength;
@@ -60,6 +64,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     //actions
     public Action<PlayerBehaviors> interactAction;
+
+    private Coroutine staminaCoroutine;
 
     //getters/setters
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
@@ -307,24 +313,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         pr.Currency += value;
     }
 
-    public IEnumerator AttackCoroutine()
-    {
-        _anim.SetBool("AttackBuffered", true);
-        print("attack buffered");
-        yield return null;
-        //if (IsGrounded())
-        //{
-        //    _anim.SetBool("AttackBuffered", true);
-        //}
-        //else
-        //{
-        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-        //    StartAttack();
-        //    yield return new WaitForSeconds(0.5f);
-        //    EndAttack();
-        //}
-    }
-
     public void AttackCycle(bool b)
     {
         IsAttacking = b;
@@ -391,5 +379,33 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                 v.y = rb.linearVelocityY;
         }
         rb.linearVelocity = v;
+    }
+
+    public IEnumerator AttackCoroutine()
+    {
+        _anim.SetBool("AttackBuffered", true);
+        print("attack buffered");
+        yield return null;
+        //if (IsGrounded())
+        //{
+        //    _anim.SetBool("AttackBuffered", true);
+        //}
+        //else
+        //{
+        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
+        //    StartAttack();
+        //    yield return new WaitForSeconds(0.5f);
+        //    EndAttack();
+        //}
+    }
+
+    public IEnumerator StaminaRegenCoroutine()
+    {
+        yield return new WaitForSeconds(_staminaRegenCooldown);
+
+        while(currentStamina < _maxStamina)
+        {
+            currentStamina += _staminaRegenRate * Time.deltaTime;
+        }
     }
 }
