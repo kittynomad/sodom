@@ -29,7 +29,8 @@ public class DebugTextController : MonoBehaviour
         string output = "velocity: " + rb.linearVelocity + 
             "\ncurrent health: " + pb.CurrentHealth + "/" + pb.MaxHealth + 
             "\ncurrent ammo: " + pb.CurrentAmmo + "/" + pb.MaxAmmo +
-            "\ncurrent currency: " + pr.Currency;
+            "\ncurrent currency: " + pr.Currency + 
+            "\ncurrent stamina: " + pb.CurrentStamina + "/" + pb.MaxStamina;
 
         _debugUIText.text = output;
     }

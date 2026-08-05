@@ -170,11 +170,15 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void AttackBehavior()
     {
-        //can't start attack if already attacking
-        //if(!IsAttacking)
-        StartCoroutine(AttackCoroutine());
-        //launch attached corpse on attack 
-        if(sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+        if(UseStamina(25))
+        {
+            //can't start attack if already attacking
+            //if(!IsAttacking)
+            StartCoroutine(AttackCoroutine());
+            //launch attached corpse on attack 
+            if (sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+        }
+        
     }
 
     public void InteractBehavior()
@@ -422,6 +426,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         while(currentStamina < _maxStamina)
         {
             currentStamina += _staminaRegenRate * Time.deltaTime;
+            yield return new WaitForFixedUpdate();
         }
+        currentStamina = _maxStamina;
     }
 }
