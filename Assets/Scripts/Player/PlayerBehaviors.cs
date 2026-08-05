@@ -15,6 +15,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [Header("General stats")]
     [SerializeField] private int _maxHealth;
     [SerializeField] private int _maxAmmo;
+    [SerializeField] private float _maxStamina;
     [SerializeField] private float _playerWalkAcceleration;
     [SerializeField] private float _playerJumpForce;
     [SerializeField] private float _playerWalkSpeedLimit;
@@ -45,6 +46,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     //state related vars
     private float currentHealth;
+    private float currentStamina;
     private int currentAmmo;
     private bool isAttacking = false;
     private bool doubleJumpReady = true;
@@ -71,6 +73,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public bool MoveLocked { get => moveLocked; set => moveLocked = value; }
     public bool MeleeChaining { get => meleeChaining; set => meleeChaining = value; }
     public bool MeleeTurnWindow { get => meleeTurnWindow; set => meleeTurnWindow = value; }
+    public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
+    public float MaxStamina { get => _maxStamina; set => _maxStamina = value; }
 
     private void Start()
     {
@@ -85,6 +89,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //set health and ammo
         CurrentHealth = _maxHealth / 2;
         currentAmmo = MaxAmmo;
+        currentStamina = MaxStamina;
 
         if(SpawnPointHolder.instance != null && SpawnPointHolder.instance.GetRelevantSpawnPoint(out Vector2 pos))
         {
