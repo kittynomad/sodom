@@ -201,7 +201,7 @@ MonoBehaviour:
   _customVelocityFalloffRate: 0.128
   _maxStamina: 100
   _staminaRegenCooldown: 0.5
-  _staminaRegenRate: 20
+  _staminaRegenRate: 25
   _attackStaminaCost: 18
   _jumpStaminaCost: 0
   _poundStrength: 40
