@@ -63,6 +63,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool moveLocked = false;
     private bool meleeChaining = false;
     private bool meleeTurnWindow = false;
+    private bool staminaOverheat = false;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -394,6 +395,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public bool UseStamina(float staminaUsed)
     {
+        if (staminaOverheat) return false;
+
         if (staminaCoroutine != null)
             StopCoroutine(staminaCoroutine);
         staminaCoroutine = StartCoroutine(StaminaRegenCoroutine());
@@ -401,10 +404,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         if(staminaUsed <= currentStamina)
         {
             currentStamina -= staminaUsed;
-            return true;
+            
         }
-
-        return false;
+        else
+        {
+            staminaOverheat = true;
+            currentStamina = 0;
+        }
+        return true;
     }
 
     public IEnumerator AttackCoroutine()
@@ -435,5 +442,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             yield return new WaitForFixedUpdate();
         }
         currentStamina = _maxStamina;
+        staminaOverheat = false;
     }
 }
