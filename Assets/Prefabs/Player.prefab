@@ -202,7 +202,7 @@ MonoBehaviour:
   _maxStamina: 100
   _staminaRegenCooldown: 0.5
   _staminaRegenRate: 20
-  _attackStaminaCost: 25
+  _attackStaminaCost: 18
   _jumpStaminaCost: 0
   _poundStrength: 40
   _poundDamage: 1
