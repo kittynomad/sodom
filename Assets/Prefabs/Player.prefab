@@ -204,7 +204,7 @@ MonoBehaviour:
   _staminaRegenRate: 20
   _attackStaminaCost: 25
   _jumpStaminaCost: 0
-  _poundStrength: 20
+  _poundStrength: 40
   _poundDamage: 1
   _poundPushStrength: 15
   _dashStrength: 24.41
