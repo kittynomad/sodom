@@ -76,7 +76,6 @@ namespace TFOOL.Enemies.AI
         /// <returns></returns>
         public int GetWeight(float distance)
         {
-            Debug.Log($"{attackName}: Distance: {distance}. Weight: {Mathf.RoundToInt(weightCurve.Evaluate(distance))}.");
             return Mathf.RoundToInt(weightCurve.Evaluate(distance));
         }
     }

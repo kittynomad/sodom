@@ -24,20 +24,5 @@ namespace TFOOL.Enemies.AI
         /// <param name="ct">The cancellation token for handling cancels on state change.</param>
         /// <returns></returns>
         public abstract Awaitable RunAI(EnemyController enemy, CancellationToken ct);
-
-        #region Utilities
-        /// <summary>
-        /// Awaits a signal sent to the EnemyController.
-        /// </summary>
-        /// <param name="signalName">The name of the signal from the animation event.</param>
-        /// <returns></returns>
-        protected static async Awaitable AwaitSignal(string signalName, EnemyController enemy, CancellationToken ct)
-        {
-            while(enemy.AnimationSignal != signalName && !ct.IsCancellationRequested)
-            {
-                await Awaitable.NextFrameAsync(ct);
-            }
-        }
-        #endregion
     }
 }

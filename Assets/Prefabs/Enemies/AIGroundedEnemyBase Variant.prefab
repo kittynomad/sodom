@@ -83,11 +83,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyMovement
   physicsCollider: {fileID: 6230289653417215470}
+  directionUpdateMode: 0
   walkSpeed: 0
-  acceleration: 0
+  groundAcceleration: 0
+  airAcceleration: 0
+  jumpOverGaps: 0
+  jumpUpLedges: 0
+  maxJumpDistance: 0
+  maxJumpHeight: 0
+  jumpWindupTime: 0
+  jumpLagTime: 0
   rb: {fileID: 2481911175174928383}
+  controller: {fileID: 7677886506025874442}
 --- !u!70 &6230289653417215470 stripped
 CapsuleCollider2D:
   m_CorrespondingSourceObject: {fileID: 29003965345087154, guid: 1e8d4aef35f67444885abd217713da44, type: 3}
   m_PrefabInstance: {fileID: 6201849890285370204}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &7677886506025874442 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4367419085721358166, guid: 1e8d4aef35f67444885abd217713da44, type: 3}
+  m_PrefabInstance: {fileID: 6201849890285370204}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192103440435443517}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf2aff95ff2dc49aca30e4ea10eb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController

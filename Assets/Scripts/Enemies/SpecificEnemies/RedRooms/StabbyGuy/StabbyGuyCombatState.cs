@@ -70,7 +70,7 @@ namespace TFOOL.Enemies.AI
                     // Point towards the target.
                     enemy.PointTowardsTarget();
 
-                    await GetRandomAttack(enemy, attacker).PerformAttack(enemy, attacker, ct);
+                    await GetWeightedAttack(enemy, attacker).PerformAttack(enemy, attacker, ct);
                 }
                 CleanUp();
             }
