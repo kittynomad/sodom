@@ -26,8 +26,12 @@ namespace TFOOL.Enemies.AI
             "acceleratedAttackRange of the enemy.")] 
         private float acceleratedAttackTime = 1;
         [SerializeField, Tooltip("Controls the range from the player the enemy tries to maintain while preparing to attack.")] 
-        private MoveToDistanceBehavior enemyMovement;
-        
+        private MoveToDistanceBehavior moveInRange;
+        [SerializeField, Tooltip("Controls the enemy's wandering movement when somewhat near the player.")]
+        private RandomMovementBehavior wanderingMovement;
+        [SerializeField, Tooltip("Randomized delay between enemy wanderings.")] 
+        private Vector2 randomMovementDelay;
+
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
@@ -52,15 +56,30 @@ namespace TFOOL.Enemies.AI
                 while (!ct.IsCancellationRequested)
                 {
                     float attackTime = this.attackTime;
+                    float wanderTime = UnityEngine.Random.Range(randomMovementDelay.x, randomMovementDelay.y);
                     while(attackTime > 0)
                     {
                         float distToPlayer = enemy.ToTarget.magnitude;
                         // If the enemy is too far away from the player, move back in range.
-                        if (!enemyMovement.IsWithinRange(distToPlayer) && (movementSubroutine == null || movementSubroutine.IsCompleted))
+                        if (movementSubroutine == null || movementSubroutine.IsCompleted)
                         {
-                            movementCts = new CancellationTokenSource();
-                            movementSubroutine = enemyMovement.RunAI(enemy, movementCts.Token);
+                            if (!moveInRange.IsWithinRange(distToPlayer))
+                            {
+                                movementCts = new CancellationTokenSource();
+                                movementSubroutine = moveInRange.RunAI(enemy, movementCts.Token);
+                            }
+                            else
+                            {
+                                wanderTime -= Time.deltaTime;
+                                if (wanderTime < 0)
+                                {
+                                    movementCts = new CancellationTokenSource();
+                                    movementSubroutine = wanderingMovement.RunAI(enemy, movementCts.Token);
+                                    wanderTime = UnityEngine.Random.Range(randomMovementDelay.x, randomMovementDelay.y);
+                                }
+                            }
                         }
+                        
 
                         // Decrement AttackTime.
                         if (distToPlayer < acceleratedAttackRange)
@@ -76,6 +95,7 @@ namespace TFOOL.Enemies.AI
                     // Enemy continually wanders around the player until the player is close enough.
 
                     movementCts?.Cancel();
+                    movementSubroutine = null;
                     await GetWeightedAttack(enemy, attacker).PerformAttack(enemy, attacker, ct);
                 }
                 CleanUp();

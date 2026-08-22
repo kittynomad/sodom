@@ -40,15 +40,23 @@ MonoBehaviour:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
         - rid: 2824903128881037396
+        - rid: 2824903176552448092
         attackTime: 8
         acceleratedAttackRange: 3
         acceleratedAttackTime: 3
-        enemyMovement:
+        moveInRange:
           moveSpeed: 2
           acceleration: 20
-          stopAtEdge: 1
+          stopAtEdge: 0
           tryJump: 0
           distanceRange: {x: 0, y: 7}
+        wanderingMovement:
+          moveSpeed: 2
+          acceleration: 20
+          stopAtEdge: 0
+          tryJump: 0
+          wanderTime: 1.5
+        randomMovementDelay: {x: 1.5, y: 3}
     - rid: 2824903128881037396
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
@@ -77,5 +85,35 @@ MonoBehaviour:
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        postAttackDelay: 3
+        postAttackDelay: 2
+        conditions: []
+    - rid: 2824903176552448092
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: JumpAttack
+        weightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 4
+            value: 1
+            inSlope: 0.25
+            outSlope: 0.25
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        postAttackDelay: 1
         conditions: []

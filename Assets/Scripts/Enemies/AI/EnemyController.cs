@@ -222,6 +222,15 @@ namespace TFOOL.Enemies.AI
 
         #region Animations
         /// <summary>
+        /// Alias for animator.Play();
+        /// </summary>
+        /// <param name="animationName"></param>
+        public void PlayAnimation(string animationName)
+        {
+            enemyAnimator.Play(animationName);
+        }
+
+        /// <summary>
         /// Signals to this enemy to move to the next part of it's behavior.
         /// </summary>
         /// <param name="signalName"></param>
