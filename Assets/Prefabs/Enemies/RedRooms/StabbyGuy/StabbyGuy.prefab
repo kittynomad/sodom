@@ -446,10 +446,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: StabbyGuy
       objectReference: {fileID: 0}
-    - target: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
-      propertyPath: m_Layer
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: walkSpeed
       value: 5
@@ -542,10 +538,6 @@ PrefabInstance:
       propertyPath: expireOnSensorLeave
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8810617332145201169, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -562,9 +554,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6663221974757413229}
-    - targetCorrespondingSourceObject: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 926979867679935688}
   m_SourcePrefab: {fileID: 100100000, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
 --- !u!114 &493431829271473971 stripped
 MonoBehaviour:
@@ -618,16 +607,3 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
   m_PrefabInstance: {fileID: 7805952820141038393}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &926979867679935688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4821645334647248261}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f7e405ed0feb274ab7569004bb64bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
-  damageAmount: 5

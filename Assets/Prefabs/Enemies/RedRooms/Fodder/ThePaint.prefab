@@ -26,7 +26,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[2824903128881037415].animationStateName
-      value: headbutt
+      value: TestMelee
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[2824903128881037415].pointTowardsTarget
