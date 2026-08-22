@@ -10310,21 +10310,9 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1266227280671448496, guid: ed5ac29bb23233a4e9b2e5ed6c40d4a7, type: 3}
-      propertyPath: managedReferences[2824903176552448091].selfDamage
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 3061676573593916948, guid: ed5ac29bb23233a4e9b2e5ed6c40d4a7, type: 3}
       propertyPath: m_Name
       value: ThePaint
-      objectReference: {fileID: 0}
-    - target: {fileID: 3061676573593916948, guid: ed5ac29bb23233a4e9b2e5ed6c40d4a7, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7601177784682133236, guid: ed5ac29bb23233a4e9b2e5ed6c40d4a7, type: 3}
-      propertyPath: senseExpireRange
-      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7923209866847172107, guid: ed5ac29bb23233a4e9b2e5ed6c40d4a7, type: 3}
       propertyPath: m_LocalPosition.x
