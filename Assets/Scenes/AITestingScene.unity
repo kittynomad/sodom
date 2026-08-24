@@ -10631,6 +10631,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DebugTextController
   _debugUIText: {fileID: 1821519711}
+  _stamBar: {fileID: 0}
 --- !u!114 &1947352473
 MonoBehaviour:
   m_ObjectHideFlags: 0
