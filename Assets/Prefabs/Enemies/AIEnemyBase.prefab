@@ -509,7 +509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ca8b740d5d8ea274cb902eb422df9fac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHealth
-  _maxHealth: 20
+  _maxHealth: 5
   _corpseObject: {fileID: 981806431881458497, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
   _corpseFlingStrength: 5
   shouldStun: 1
@@ -518,6 +518,7 @@ MonoBehaviour:
     debugColor: {r: 1, g: 0.5282031, b: 0, a: 1}
     stunTime: 1
   enemyController: {fileID: 4367419085721358166}
+  rb: {fileID: 0}
 --- !u!114 &4367419085721358166
 MonoBehaviour:
   m_ObjectHideFlags: 0
