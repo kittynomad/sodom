@@ -27,8 +27,8 @@ MonoBehaviour:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
         - rid: 2824903310154137682
-        - rid: 2824903310154137683
         - rid: 2824903310154137684
+        - rid: 2824903310154137683
         randomMovement:
           moveSpeed: 0
           acceleration: 0
@@ -44,39 +44,128 @@ MonoBehaviour:
     - rid: 2824903310154137682
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: 
+        attackName: KnifeThrow
         weightCurve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 3
+            value: 7
+            inSlope: 0.25178593
+            outSlope: -0.8
+            tangentMode: 1
+            weightedMode: 0
+            inWeight: 0.43015337
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 8
+            value: 3
+            inSlope: -0.64458567
+            outSlope: -0.8
+            tangentMode: 1
+            weightedMode: 3
+            inWeight: 0.41397
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        postAttackDelay: 0
-        conditions: []
+        postAttackDelay: 0.5
+        conditions:
+        - rid: 2824903310154137703
     - rid: 2824903310154137683
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: 
+        attackName: TeleportStab
         weightCurve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 0
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 7
+            value: 3
+            inSlope: 0.36813188
+            outSlope: 0.36813188
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 20
+            value: 7
+            inSlope: 0.30769232
+            outSlope: 0.30769232
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        postAttackDelay: 0
-        conditions: []
+        postAttackDelay: 2
+        conditions:
+        - rid: 2824903310154137702
     - rid: 2824903310154137684
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: 
+        attackName: RunningSlice
         weightCurve:
           serializedVersion: 2
-          m_Curve: []
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 1.5
+            outSlope: 1.5
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 4
+            value: 7
+            inSlope: -0.0051204124
+            outSlope: -0.0051204124
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.35000008
+          - serializedVersion: 3
+            time: 9
+            value: 1
+            inSlope: -1.2
+            outSlope: -1.2
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        postAttackDelay: 0
+        postAttackDelay: 1
         conditions: []
+    - rid: 2824903310154137702
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 2824903310154137703
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
     - rid: 3144940043314135134
       type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data: 

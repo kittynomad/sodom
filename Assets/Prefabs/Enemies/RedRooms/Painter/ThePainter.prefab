@@ -288,7 +288,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: 'attacks.Array.data[0]'
-      value: 3144940044914524242
+      value: 3144940043314135147
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: 'attacks.Array.data[1]'
@@ -296,7 +296,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: 'attacks.Array.data[2]'
-      value: 3144940043314135147
+      value: 3144940044914524242
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: 'managedReferences[3144940043314135147]'
@@ -444,7 +444,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_Name
-      value: StabbyGuy
+      value: ThePainter
       objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: walkSpeed
