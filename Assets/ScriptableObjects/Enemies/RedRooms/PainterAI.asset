@@ -30,17 +30,17 @@ MonoBehaviour:
         - rid: 2824903310154137684
         - rid: 2824903310154137683
         randomMovement:
-          moveSpeed: 0
-          acceleration: 0
-          stopAtEdge: 0
+          moveSpeed: 2
+          acceleration: 30
+          stopAtEdge: 1
           tryJump: 0
-          wanderTime: 0
-        backdashThreshold: 0
+          wanderTime: 1
+        backdashThreshold: 4
         backdash:
-          dashForce: 0
-          dashJump: 0
-          postDashDelay: 0
-        throwAttackName: 
+          dashForce: 10
+          dashJump: 6
+          postDashDelay: 1
+        throwAttackName: KnifeThrow
     - rid: 2824903310154137682
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:

@@ -7,7 +7,6 @@
 // Brief Description : Base class for enemy projectiles.
 *****************************************************************************/
 using CustomAttributes;
-using NaughtyAttributes;
 using System.Collections;
 using UnityEngine;
 
@@ -21,6 +20,8 @@ namespace TFOOL.Enemies
         [SerializeField, Tooltip("The amount of time the projectile will fly straight before gravity takes effect. " +
             " Set to 0 to ignore.")] 
         private float falloffTime;
+        [SerializeField, Tooltip("If true, the projectile will be destroyed when it collides with the ground.")]
+        private bool hitGround;
 
         [SerializeField, ShowIfNull] private Rigidbody2D rb;
         [SerializeField, ShowIfNull] private EnemyHitbox hitbox;
@@ -42,6 +43,7 @@ namespace TFOOL.Enemies
             switch ((CollisionLayer)collision.gameObject.layer)
             {
                 case CollisionLayer.PlayerHitbox:
+                case CollisionLayer.Ground:
                     DestroyProjectile();
                     break;
             }
