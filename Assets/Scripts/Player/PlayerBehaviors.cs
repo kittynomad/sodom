@@ -335,10 +335,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public IEnumerator HurtRecoveryCoroutine()
     {
         recovering = true;
-        GetComponent<PlayerInput>().DeactivateInput();
+        moveLocked = true;
         yield return new WaitForSeconds(_hurtRecoveryPeriod);
         recovering = false;
-        GetComponent<PlayerInput>().ActivateInput();
+        moveLocked = false;
     }
 
     public bool OnDamage(float damageAmount, GameObject damageSource = null)
@@ -348,7 +348,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             currentHealth -= damageAmount;
             //bounce away from damage source
             Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
-            rb.linearVelocity = damageDir * 15f;
+            rb.linearVelocity = damageDir * 5f;
             StartCoroutine(HurtRecoveryCoroutine());
         }
         return false;
