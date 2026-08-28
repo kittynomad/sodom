@@ -10364,7 +10364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[-2]'
@@ -10947,6 +10947,10 @@ PrefabInstance:
     - target: {fileID: 7273629064436251163, guid: 431c426180f0cac42823e2b761f90176, type: 3}
       propertyPath: m_Name
       value: ThePaint
+      objectReference: {fileID: 0}
+    - target: {fileID: 7273629064436251163, guid: 431c426180f0cac42823e2b761f90176, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
