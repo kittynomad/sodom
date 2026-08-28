@@ -28,7 +28,7 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("Controls the range from the player the enemy tries to maintain while preparing to attack.")] 
         private MoveToDistanceBehavior moveInRange;
         [SerializeField, Tooltip("Controls the enemy's wandering movement when somewhat near the player.")]
-        private RandomMovementBehavior wanderingMovement;
+        private MoveTowardsTarget inRangeMovement;
         [SerializeField, Tooltip("Randomized delay between enemy wanderings.")] 
         private Vector2 randomMovementDelay;
 
@@ -74,7 +74,7 @@ namespace TFOOL.Enemies.AI
                                 if (wanderTime < 0)
                                 {
                                     movementCts = new CancellationTokenSource();
-                                    movementSubroutine = wanderingMovement.RunAI(enemy, movementCts.Token);
+                                    movementSubroutine = inRangeMovement.RunAI(enemy, movementCts.Token);
                                     wanderTime = UnityEngine.Random.Range(randomMovementDelay.x, randomMovementDelay.y);
                                 }
                             }
