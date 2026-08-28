@@ -56,4 +56,15 @@ public class GroundSaver : MonoBehaviour
             rb.linearVelocity = Vector2.zero;
         }
     }
+
+    public void SafeReturnDelayed(float timeUntilReturn)
+    {
+        StartCoroutine(ReturnDelayCoroutine(timeUntilReturn));
+    }
+
+    public IEnumerator ReturnDelayCoroutine(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+        SafeReturn();
+    }
 }
