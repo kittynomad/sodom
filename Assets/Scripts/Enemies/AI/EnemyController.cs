@@ -34,6 +34,7 @@ namespace TFOOL.Enemies.AI
         public Vector2 ToTarget => Target.transform.position - transform.position;
         public CancellationToken StateCancelToken => stateCanceller.Token;
         public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);
+        public Animator Animator => enemyAnimator;
         public string AnimationSignal
         {
             get
@@ -221,24 +222,21 @@ namespace TFOOL.Enemies.AI
 
         #region Animations
         /// <summary>
+        /// Alias for animator.Play();
+        /// </summary>
+        /// <param name="animationName"></param>
+        public void PlayAnimation(string animationName)
+        {
+            enemyAnimator.Play(animationName);
+        }
+
+        /// <summary>
         /// Signals to this enemy to move to the next part of it's behavior.
         /// </summary>
         /// <param name="signalName"></param>
         public void SetSignal(string signalName)
         {
             animationSignal = signalName;
-        }
-
-        /// <summary>
-        /// Play an animation.
-        /// </summary>
-        /// <param name="animName"></param>
-        /// <returns>The duration of the newly played animation.</returns>
-        public float PlayAnimation(string animName)
-        {
-            enemyAnimator.Play(animName);
-            enemyAnimator.Update(0);
-            return enemyAnimator.GetCurrentAnimatorStateInfo(0).length;
         }
         #endregion
     }

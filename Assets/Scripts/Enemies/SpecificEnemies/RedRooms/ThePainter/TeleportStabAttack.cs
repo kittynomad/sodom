@@ -4,10 +4,9 @@
 // Creation Date : 6/20/2026
 // Last Modified : 6/20/2026
 //
-// Brief Description : Teleport attack for the red rooms stabby guy.
+// Brief Description : Teleport attack for the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
-using NaughtyAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -15,7 +14,7 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    [DropdownGroup("Red Rooms/Stabby Guy")]
+    [DropdownGroup("Red Rooms/Painter")]
     public class TeleportStabAttack : EnemyAttack
     {
         [SerializeField] private GameObject hitbox;

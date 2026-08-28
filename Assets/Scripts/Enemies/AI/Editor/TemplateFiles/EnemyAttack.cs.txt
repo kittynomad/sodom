@@ -9,6 +9,7 @@
 using UnityEngine;
 using System.Threading;
 using System;
+using CustomAttributes;
 
 namespace TFOOL.Enemies.AI
 {
@@ -17,7 +18,7 @@ namespace TFOOL.Enemies.AI
     public class #SCRIPTNAME# : EnemyAttack
     {
         #NOTRIM#
-        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
             // Get Components

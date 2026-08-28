@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4024369721363070276}
   - component: {fileID: 2472271054887092906}
   m_Layer: 10
-  m_Name: StabbyGuyKnife
+  m_Name: Painter_KnifeProjectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

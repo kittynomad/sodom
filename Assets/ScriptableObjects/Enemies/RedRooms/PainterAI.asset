@@ -10,83 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59e3ae87bf60ff94aa4bbeeb62bbaa2e, type: 3}
-  m_Name: StabbyGuy
+  m_Name: PainterAI
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyAI
   decisionEngine:
     rid: 3144940043314135134
   stateMachine:
   - rid: 3144940043314135135
   - rid: 3144940043314135136
-  - rid: 3144940043314135146
+  - rid: 2824903310154137681
   references:
     version: 2
     RefIds:
-    - rid: 2595282202363166796
-      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        attackName: RunningSlice
-        weightCurve:
-          serializedVersion: 2
-          m_Curve:
-          - serializedVersion: 3
-            time: 0
-            value: 1
-            inSlope: 1.5
-            outSlope: 1.5
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0
-            outWeight: 0.33333334
-          - serializedVersion: 3
-            time: 4
-            value: 7
-            inSlope: -0.0051204124
-            outSlope: -0.0051204124
-            tangentMode: 0
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0.35000008
-          - serializedVersion: 3
-            time: 9
-            value: 1
-            inSlope: -1.2
-            outSlope: -1.2
-            tangentMode: 34
-            weightedMode: 0
-            inWeight: 0.33333334
-            outWeight: 0
-          m_PreInfinity: 2
-          m_PostInfinity: 2
-          m_RotationOrder: 4
-        postAttackDelay: 1
-        conditions: []
-    - rid: 2595282218735894639
-      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data: 
-    - rid: 2595282218735894641
-      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data: 
-    - rid: 3144940043314135134
-      type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data: 
-    - rid: 3144940043314135135
-      type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 1, g: 1, b: 1, a: 1}
-        patrolWait: 1
-    - rid: 3144940043314135136
-      type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
-      data:
-        debugColor: {r: 1, g: 0.99804246, b: 0, a: 1}
-        enterCombatDelay: 0.75
-    - rid: 3144940043314135146
-      type: {class: StabbyGuyCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+    - rid: 2824903310154137681
+      type: {class: PainterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
-        - rid: 3144940061986914382
-        - rid: 3144940061986914383
-        - rid: 2595282202363166796
+        - rid: 2824903310154137682
+        - rid: 2824903310154137684
+        - rid: 2824903310154137683
         randomMovement:
           moveSpeed: 2
           acceleration: 30
@@ -99,7 +41,7 @@ MonoBehaviour:
           dashJump: 6
           postDashDelay: 1
         throwAttackName: KnifeThrow
-    - rid: 3144940061986914382
+    - rid: 2824903310154137682
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: KnifeThrow
@@ -138,8 +80,8 @@ MonoBehaviour:
           m_RotationOrder: 4
         postAttackDelay: 0.5
         conditions:
-        - rid: 2595282218735894639
-    - rid: 3144940061986914383
+        - rid: 2824903310154137703
+    - rid: 2824903310154137683
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         attackName: TeleportStab
@@ -178,4 +120,62 @@ MonoBehaviour:
           m_RotationOrder: 4
         postAttackDelay: 2
         conditions:
-        - rid: 2595282218735894641
+        - rid: 2824903310154137702
+    - rid: 2824903310154137684
+      type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        attackName: RunningSlice
+        weightCurve:
+          serializedVersion: 2
+          m_Curve:
+          - serializedVersion: 3
+            time: 0
+            value: 1
+            inSlope: 1.5
+            outSlope: 1.5
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0
+            outWeight: 0.33333334
+          - serializedVersion: 3
+            time: 4
+            value: 7
+            inSlope: -0.0051204124
+            outSlope: -0.0051204124
+            tangentMode: 0
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0.35000008
+          - serializedVersion: 3
+            time: 9
+            value: 1
+            inSlope: -1.2
+            outSlope: -1.2
+            tangentMode: 34
+            weightedMode: 0
+            inWeight: 0.33333334
+            outWeight: 0
+          m_PreInfinity: 2
+          m_PostInfinity: 2
+          m_RotationOrder: 4
+        postAttackDelay: 1
+        conditions: []
+    - rid: 2824903310154137702
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 2824903310154137703
+      type: {class: NonRepeatable, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 3144940043314135134
+      type: {class: GroundedEnemyDE, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data: 
+    - rid: 3144940043314135135
+      type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 1, b: 1, a: 1}
+        patrolWait: 1
+    - rid: 3144940043314135136
+      type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+      data:
+        debugColor: {r: 1, g: 0.99804246, b: 0, a: 1}
+        enterCombatDelay: 0.75

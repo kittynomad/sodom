@@ -42,7 +42,6 @@ namespace TFOOL.Enemies.AI
                     // Move to combat if the enemy has a target.
                     if (enemy.Target != null)
                     {
-                        Debug.Log("Sensed enemy.  Me Angy");
                         return ai.GetState<EnterCombatState>();
                     }
                     break;
@@ -55,7 +54,6 @@ namespace TFOOL.Enemies.AI
                 case CombatState:
                     if (enemy.Target == null)
                     {
-                        Debug.Log("Lost Enemy.");
                         return ai.GetState<GroundedPatrolState>();
                     }
                     break;

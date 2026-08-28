@@ -20,7 +20,7 @@ namespace TFOOL.Enemies.AI
 
         public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            if (enemy.TryGetComponent(out SpriteRenderer rend))
+            if (enemy.transform.GetChild(0).TryGetComponent(out SpriteRenderer rend))
             {
                 rend.color = debugColor;
             }

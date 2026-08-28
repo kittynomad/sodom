@@ -1,10 +1,10 @@
 /*****************************************************************************
-// File Name : TestMeleeAttack.cs
+// File Name : MeleeAttack.cs
 // Author : Arcadia Koederitz
 // Creation Date : 5/21/2026
-// Last Modified : 5/21/2026
+// Last Modified : 8/20/2026
 //
-// Brief Description : Test melee attack script that just spawns a hitbox for a certain duration.
+// Brief Description : Basic melee attack script for attacks that just use simple animations with no triggers.
 *****************************************************************************/
 using System;
 using System.Threading;
@@ -14,11 +14,12 @@ using UnityEngine;
 namespace TFOOL.Enemies
 {
     [System.Serializable]
-    public class TestMeleeAttack : EnemyAttack
+    public class MeleeAttack : EnemyAttack
     {
-        [SerializeField] private GameObject hitbox;
-        [SerializeField, Tooltip("Amount of tiime the hitbox remains active.")] 
-        private float attackTime;
+        [SerializeField, Tooltip("The name of the animation state that should be played when this attack is used.")] 
+        private string animationStateName;
+        [SerializeField, Tooltip("If true, the enemy will point towards the target before attacking.")]
+        private bool pointTowardsTarget = true;
 
         /// <summary>
         /// Performs a basic spawn hitbox attack with a given timing.
@@ -30,13 +31,15 @@ namespace TFOOL.Enemies
         {
             try
             {
-                hitbox.SetActive(true);
-                await Awaitable.WaitForSecondsAsync(attackTime, ct);
-                hitbox.SetActive(false);
+                if (pointTowardsTarget)
+                {
+                    enemy.PointTowardsTarget();
+                }
+                // Play the attack animation.
+                await AIUtilities.PlayAndAwaitAnimation(animationStateName, enemy.Animator, ct);
             }
             catch (OperationCanceledException oce)
             {
-                hitbox.SetActive(false);
                 throw oce;
             }
         }
