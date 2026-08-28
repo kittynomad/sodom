@@ -18,7 +18,7 @@ public class CorpseController : InteractableEntity
 
     private void Start()
     {
-        gameObject.GetComponent<Rigidbody2D>().linearVelocity = _flingStrength;
+        //gameObject.GetComponent<Rigidbody2D>().linearVelocity = _flingStrength;
     }
     public void DeathFling()
     {
