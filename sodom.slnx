@@ -4,6 +4,11 @@
   <Project Path="Assembly-CSharp.csproj" />
   <Project Path="NaughtyAttributes.Editor.csproj" />
   <Project Path="XNodeEditor.csproj" />
+  <Project Path="FMODUnityResonanceEditor.csproj" />
+  <Project Path="FMODUnityEditor.csproj" />
+  <Project Path="FMODUnity.csproj" />
+  <Project Path="FMODUnityHaptics.csproj" />
   <Project Path="XNode.csproj" />
   <Project Path="Assembly-CSharp-Editor.csproj" />
+  <Project Path="FMODUnityResonance.csproj" />
 </Solution>
