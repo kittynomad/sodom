@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerBehaviors : MonoBehaviour, IKillable
 {
@@ -334,8 +335,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public IEnumerator HurtRecoveryCoroutine()
     {
         recovering = true;
+        moveLocked = true;
         yield return new WaitForSeconds(_hurtRecoveryPeriod);
         recovering = false;
+        moveLocked = false;
     }
 
     public bool OnDamage(float damageAmount, GameObject damageSource = null)

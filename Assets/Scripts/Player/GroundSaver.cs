@@ -18,6 +18,7 @@ public class GroundSaver : MonoBehaviour
 
     private Vector2 _lastSafePosition;
     private Collider2D coll;
+    private bool respawnQueued = false;
 
     public Vector2 LastSafePosition { get => _lastSafePosition; set => _lastSafePosition = value; }
 
@@ -42,6 +43,7 @@ public class GroundSaver : MonoBehaviour
     //This function is currently identical to IsGrounded, but I've made a separate function in case special cases come up (i.e. moving platforms).
     public bool IsSafelyGrounded()
     {
+        if (respawnQueued) return false;
         //check if grounded (duh)
         bool hg = Physics2D.BoxCast(coll.bounds.center, coll.bounds.size, 0f, Vector2.down, .1f, _safeLayers);
         return hg;
@@ -55,5 +57,19 @@ public class GroundSaver : MonoBehaviour
         {
             rb.linearVelocity = Vector2.zero;
         }
+    }
+
+    public void SafeReturnDelayed(float timeUntilReturn)
+    {
+        if (!respawnQueued)
+        StartCoroutine(ReturnDelayCoroutine(timeUntilReturn));
+    }
+
+    public IEnumerator ReturnDelayCoroutine(float duration)
+    {
+        respawnQueued = true;
+        yield return new WaitForSeconds(duration);
+        SafeReturn();
+        respawnQueued = false;
     }
 }
