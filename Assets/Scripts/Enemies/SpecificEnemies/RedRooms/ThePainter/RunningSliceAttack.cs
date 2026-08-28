@@ -4,7 +4,7 @@
 // Creation Date : 6/20/2026
 // Last Modified : 6/20/2026
 //
-// Brief Description : Controls the running slice attack of the red rooms stabby guy.
+// Brief Description : Controls the running slice attack of the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
 using System;
@@ -14,7 +14,7 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    [DropdownGroup("Red Rooms/Stabby Guy")]
+    [DropdownGroup("Red Rooms/Painter")]
     public class RunningSliceAttack : EnemyAttack
     {
         [SerializeField] private GameObject hitbox;

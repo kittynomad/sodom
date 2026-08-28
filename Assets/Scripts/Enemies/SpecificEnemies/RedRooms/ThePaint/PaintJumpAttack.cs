@@ -1,10 +1,10 @@
 /*****************************************************************************
-// File Name : FodderJumpAttack.cs
+// File Name : PaintJumpAttack.cs
 // Author : Arcadia Koederitz
 // Creation Date : 8/22/2026
 // Last Modified : 8/22/2026
 //
-// Brief Description : Jump attack for the red rooms fodder enemy.
+// Brief Description : Jump attack for the red rooms Paint enemy.
 *****************************************************************************/
 using CustomAttributes;
 using System;
@@ -14,8 +14,8 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    [DropdownGroup("Red Rooms/Fodder")]
-    public class FodderJumpAttack : EnemyAttack
+    [DropdownGroup("Red Rooms/Paint")]
+    public class PaintJumpAttack : EnemyAttack
     {
         [SerializeField, Tooltip("The hitbox to use for the jump attack.")] 
         private GameObject hitbox;

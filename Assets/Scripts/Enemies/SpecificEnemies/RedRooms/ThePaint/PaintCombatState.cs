@@ -1,5 +1,5 @@
 /*****************************************************************************
-// File Name : FodderCombatState.cs
+// File Name : PaintCombatState.cs
 // Author : Arcadia Koederitz
 // Creation Date : 8/20/2026
 // Last Modified : 8/20/2026
@@ -15,8 +15,8 @@ using UnityEngine;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    [DropdownGroup("Red Rooms/Fodder")]
-    public class FodderCombatState : CombatState
+    [DropdownGroup("Red Rooms/Paint")]
+    public class PaintCombatState : CombatState
     {
         [SerializeField, Tooltip("The time in seconds between each of the enemy's attacks.")] private float attackTime;
         [SerializeField, Tooltip("If the enemy is less than this distance away, then attack time decreased " +

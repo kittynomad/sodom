@@ -10,14 +10,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 59e3ae87bf60ff94aa4bbeeb62bbaa2e, type: 3}
-  m_Name: FodderAI
+  m_Name: PaintAI
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyAI
   decisionEngine:
     rid: 2824903128881037388
   stateMachine:
   - rid: 2824903128881037389
   - rid: 2824903128881037390
-  - rid: 2824903128881037395
+  - rid: 2824903309855031374
   references:
     version: 2
     RefIds:
@@ -34,63 +34,63 @@ MonoBehaviour:
       data:
         debugColor: {r: 1, g: 0.974843, b: 0, a: 1}
         enterCombatDelay: 1
-    - rid: 2824903128881037395
-      type: {class: FodderCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
+    - rid: 2824903309855031374
+      type: {class: PaintCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
-        - rid: 2824903128881037396
-        - rid: 2824903176552448092
-        attackTime: 8
+        - rid: 2824903309855031375
+        - rid: 2824903309855031376
+        attackTime: 6
         acceleratedAttackRange: 3
-        acceleratedAttackTime: 3
+        acceleratedAttackTime: 2.5
         moveInRange:
           moveSpeed: 2
           acceleration: 20
-          stopAtEdge: 0
+          stopAtEdge: 1
           tryJump: 0
-          distanceRange: {x: 0, y: 7}
+          distanceRange: {x: 0, y: 9}
         wanderingMovement:
           moveSpeed: 2
           acceleration: 20
-          stopAtEdge: 0
+          stopAtEdge: 1
           tryJump: 0
           wanderTime: 1.5
         randomMovementDelay: {x: 1.5, y: 3}
-    - rid: 2824903128881037396
+    - rid: 2824903309855031375
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: Headbutt
+        attackName: Melee
         weightCurve:
           serializedVersion: 2
           m_Curve:
           - serializedVersion: 3
             time: 0
             value: 1
-            inSlope: Infinity
-            outSlope: Infinity
-            tangentMode: 103
+            inSlope: -0.25
+            outSlope: -0.25
+            tangentMode: 34
             weightedMode: 0
             inWeight: 0
             outWeight: 0.33333334
           - serializedVersion: 3
             time: 4
             value: 0
-            inSlope: -0.25
-            outSlope: -0.25
-            tangentMode: 34
+            inSlope: Infinity
+            outSlope: Infinity
+            tangentMode: 103
             weightedMode: 0
             inWeight: 0.33333334
-            outWeight: 0.33333334
+            outWeight: 0
           m_PreInfinity: 2
           m_PostInfinity: 2
           m_RotationOrder: 4
-        postAttackDelay: 2
+        postAttackDelay: 0.5
         conditions: []
-    - rid: 2824903176552448092
+    - rid: 2824903309855031376
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        attackName: JumpAttack
+        attackName: Jump
         weightCurve:
           serializedVersion: 2
           m_Curve:

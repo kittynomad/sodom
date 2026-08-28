@@ -4,7 +4,7 @@
 // Creation Date : 6/14/2026
 // Last Modified : 6/14/2026
 //
-// Brief Description : Combat state that controls the behavior of the stabby guy from the red rooms.
+// Brief Description : Combat state that controls the behavior of the Painter from the red rooms.
 *****************************************************************************/
 using UnityEngine;
 using System.Threading;
@@ -14,8 +14,8 @@ using CustomAttributes;
 namespace TFOOL.Enemies.AI
 {
     [System.Serializable]
-    [DropdownGroup("Red Rooms/Stabby Guy")]
-    public class StabbyGuyCombatState : CombatState
+    [DropdownGroup("Red Rooms/Painter")]
+    public class PainterCombatState : CombatState
     {
         [Header("Custom AI Values")]
         [SerializeField, Tooltip("Enemy moves randomly a little between each attack to prevent enemies from " +
