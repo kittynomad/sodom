@@ -50,12 +50,12 @@ MonoBehaviour:
           stopAtEdge: 1
           tryJump: 0
           distanceRange: {x: 0, y: 9}
-        wanderingMovement:
+        inRangeMovement:
           moveSpeed: 2
           acceleration: 20
           stopAtEdge: 1
           tryJump: 0
-          wanderTime: 1.5
+          moveTime: 1
         randomMovementDelay: {x: 1.5, y: 3}
     - rid: 2824903309855031375
       type: {class: AttackBehavior, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
