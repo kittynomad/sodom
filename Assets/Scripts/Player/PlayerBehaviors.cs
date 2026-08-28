@@ -9,6 +9,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerBehaviors : MonoBehaviour, IKillable
 {
@@ -334,8 +335,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public IEnumerator HurtRecoveryCoroutine()
     {
         recovering = true;
+        GetComponent<PlayerInput>().DeactivateInput();
         yield return new WaitForSeconds(_hurtRecoveryPeriod);
         recovering = false;
+        GetComponent<PlayerInput>().ActivateInput();
     }
 
     public bool OnDamage(float damageAmount, GameObject damageSource = null)
@@ -345,7 +348,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             currentHealth -= damageAmount;
             //bounce away from damage source
             Vector2 damageDir = Vector2.Normalize(transform.position - damageSource.transform.position);
-            rb.linearVelocity = damageDir * 5f;
+            rb.linearVelocity = damageDir * 15f;
             StartCoroutine(HurtRecoveryCoroutine());
         }
         return false;

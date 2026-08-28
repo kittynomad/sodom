@@ -12,7 +12,7 @@ public class StageHazard : MonoBehaviour
         }
         if (collision.gameObject.TryGetComponent(out GroundSaver gs))
         {
-            gs.SafeReturn();
+            gs.SafeReturnDelayed(1f);
         }
     }
 }
