@@ -20,7 +20,7 @@ namespace TFOOL.Audio
     {
         [SerializeField] private FMODSound[] sounds;
 
-        private Dictionary<string, FMODSound> soundLookup;
+        private readonly Dictionary<string, FMODSound> soundLookup = new Dictionary<string, FMODSound>();
 
         #region Nested
         private enum SoundType
