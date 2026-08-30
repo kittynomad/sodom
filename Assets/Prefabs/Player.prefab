@@ -298,6 +298,7 @@ GameObject:
   - component: {fileID: 3519555628608411484}
   - component: {fileID: 6515553039800913211}
   - component: {fileID: 3171315501008562458}
+  - component: {fileID: 5637066946977478772}
   m_Layer: 0
   m_Name: PlayerSprite
   m_TagString: Untagged
@@ -416,6 +417,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AnimationEventsConverter
   _camShake: {fileID: 0}
+--- !u!114 &5637066946977478772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2647097481341889447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfdc935fae8b9649bb3314fc6a97718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Audio.FMODAudioPlayer
+  sounds:
+  - soundName: FootstepQuiet
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 1923602911
+        Data2: 1196811872
+        Data3: 1953366453
+        Data4: 1406910610
+      Path: event:/Clink
+  - soundName: LegScrape
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 1719485026
+        Data2: 1138853310
+        Data3: 1662032775
+        Data4: 1109486803
+      Path: event:/Scrape
 --- !u!1 &3862160118748894185
 GameObject:
   m_ObjectHideFlags: 0
@@ -568,6 +600,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SwordController
   detachSpeed: 15
+  _hitDamage: 1
   _meleeChewFX: {fileID: 607572984691785413, guid: fb6b32d136965a9489e59aff72993d80, type: 3}
 --- !u!1 &5642927929203135686
 GameObject:
