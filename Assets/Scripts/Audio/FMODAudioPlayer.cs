@@ -11,8 +11,6 @@ using FMODUnity;
 using NaughtyAttributes;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-using static UnityEngine.Timeline.AnimationPlayableAsset;
 
 namespace TFOOL.Audio
 {
@@ -25,8 +23,7 @@ namespace TFOOL.Audio
         #region Nested
         private enum SoundType
         {
-            EventReference,
-            EventEmitter
+            EventReference
         }
         [System.Serializable]
         private struct FMODSound
@@ -35,10 +32,6 @@ namespace TFOOL.Audio
             [SerializeField, Tooltip("Controls what type of sound this is.  Use EventEmitter for spatial sounds.")] 
             internal SoundType soundType;
             [SerializeField, AllowNesting, ShowIf("soundType", SoundType.EventReference)] internal EventReference eventReference;
-            [SerializeField, AllowNesting, ShowIf("soundType", SoundType.EventEmitter)] internal StudioEventEmitter eventEmitter;
-
-            internal EventInstance instance;
-            internal bool isPlaying;
         }
         #endregion
 
@@ -82,9 +75,6 @@ namespace TFOOL.Audio
                 case SoundType.EventReference:
                     RuntimeManager.PlayOneShot(sound.eventReference);
                     break;
-                case SoundType.EventEmitter:
-                    RuntimeManager.PlayOneShot(sound.eventEmitter.EventReference);
-                    break;
                 default:
                     break;
             }
@@ -110,106 +100,6 @@ namespace TFOOL.Audio
             {
                 case SoundType.EventReference:
                     RuntimeManager.PlayOneShot(sound.eventReference, position);
-                    break;
-                case SoundType.EventEmitter:
-                    RuntimeManager.PlayOneShot(sound.eventEmitter.EventReference, position);
-                    break;
-                default:
-                    break;
-            }
-        }
-        #endregion
-
-        #region Persistent Sounds
-        /// <summary>
-        /// Starts playing a sound over time.
-        /// </summary>
-        /// <param name="soundName"></param>
-        public void StartSound(string soundName)
-        {
-            FMODSound sound = GetSound(soundName);
-            switch (sound.soundType)
-            {
-                case SoundType.EventReference:
-                    if (sound.isPlaying)
-                    {
-                        Debug.LogWarning($"Sound {soundName} is already playing.");
-                        return;
-                    }
-                    sound.instance = RuntimeManager.CreateInstance(sound.eventReference);
-                    sound.instance.start();
-                    break;
-                case SoundType.EventEmitter:
-                    if (sound.eventEmitter.IsPlaying())
-                    {
-                        Debug.LogWarning($"Sound {soundName} is already playing.");
-                        return;
-                    }
-                    sound.eventEmitter.Play();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Stops a sound that is currently playing.
-        /// </summary>
-        /// <param name="soundName"></param>
-        /// <param name="stopMode"></param>
-        public void StopSound(string soundName, FMOD.Studio.STOP_MODE stopMode = FMOD.Studio.STOP_MODE.IMMEDIATE)
-        {
-            FMODSound sound = GetSound(soundName);
-            switch (sound.soundType)
-            {
-                case SoundType.EventReference:
-                    if (!sound.isPlaying)
-                    {
-                        Debug.LogWarning($"Sound {soundName} is not currently playing.");
-                        return;
-                    }
-                    sound.instance.stop(stopMode);
-                    sound.instance.release();
-                    break;
-                case SoundType.EventEmitter:
-                    if (!sound.eventEmitter.IsPlaying())
-                    {
-                        Debug.LogWarning($"Sound {soundName} is not currently playing.");
-                        return;
-                    }
-                    sound.eventEmitter.Stop();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        /// <summary>
-        /// Sets a parameter of a currently playing sound.
-        /// </summary>
-        /// <param name="soundName"></param>
-        /// <param name="parameterName"></param>
-        /// <param name="parameterValue"></param>
-        public void SetParameter(string soundName, string parameterName, float parameterValue)
-        {
-            FMODSound sound = GetSound(soundName);
-            switch (sound.soundType)
-            {
-                case SoundType.EventReference:
-                    if (!sound.isPlaying)
-                    {
-                        Debug.LogWarning($"Sound {soundName} is not currently playing.");
-                        return;
-                    }
-                    sound.instance.setParameterByName(parameterName, parameterValue);
-                    break;
-                case SoundType.EventEmitter:
-                    if (!sound.eventEmitter.IsPlaying())
-                    {
-                        Debug.LogWarning($"Sound {soundName} is not currently playing.");
-                        return;
-                    }
-                    sound.eventEmitter.SetParameter(parameterName, parameterValue);
                     break;
                 default:
                     break;
