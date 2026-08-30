@@ -11080,22 +11080,20 @@ MonoBehaviour:
     soundType: 0
     eventReference:
       Guid:
-        Data1: -1873670536
-        Data2: 1331148487
-        Data3: -725611097
-        Data4: -1849802919
-      Path: event:/SFX/Game/CollectGold
-    eventEmitter: {fileID: 0}
+        Data1: 1923602911
+        Data2: 1196811872
+        Data3: 1953366453
+        Data4: 1406910610
+      Path: event:/Clink
   - soundName: LegScrape
     soundType: 0
     eventReference:
       Guid:
-        Data1: 429701503
-        Data2: 1084331659
-        Data3: 1594946483
-        Data4: -1242647505
-      Path: event:/SFX/Game/TakeDamage
-    eventEmitter: {fileID: 0}
+        Data1: 1719485026
+        Data2: 1138853310
+        Data3: 1662032775
+        Data4: 1109486803
+      Path: event:/Scrape
 --- !u!1001 &6017404599299024202
 PrefabInstance:
   m_ObjectHideFlags: 0

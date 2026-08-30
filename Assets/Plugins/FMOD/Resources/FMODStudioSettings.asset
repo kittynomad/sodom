@@ -708,14 +708,7 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - Aphrodite
-  - Athena
-  - Game
-  - Minotaur
-  - Music
-  - Poseidon
-  - UI
-  - Zeus
+  - Player
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
