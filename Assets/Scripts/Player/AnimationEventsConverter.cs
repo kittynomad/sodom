@@ -16,17 +16,22 @@ public class AnimationEventsConverter : MonoBehaviour
         anim = gameObject.GetComponent<Animator>();
     }
 
+    public void AnimBoolFalse(string s)
+    {
+        anim.SetBool(s, false);
+    }
+
+    public void AnimBoolTrue(string s)
+    {
+        anim.SetBool(s, true);
+    }
+
     public void AttackCycle(int i)
     {
         if (i == 0)
             pb.AttackCycle(false);
         else if (i == 1)
             pb.AttackCycle(true);
-    }
-
-    public void UnbufferAttack()
-    {
-        anim.SetBool("AttackBuffered", false);
     }
 
     public void CamShake(string s)
@@ -83,10 +88,5 @@ public class AnimationEventsConverter : MonoBehaviour
     {
         Vector2 v = Vector2.up;
         pb.AnimApplyForce(f, v);
-    }
-
-    public void AirAttackUsed()
-    {
-        anim.SetBool("CanAirAttack", false);
     }
 }
