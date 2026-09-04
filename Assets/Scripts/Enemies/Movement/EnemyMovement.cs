@@ -4,7 +4,7 @@
 // Creation Date : 4/26/2026
 // Last Modified : 4/26/2026
 //
-// Brief Description : Middleman script to handle routing senses to the enemy controller.
+// Brief Description : Controls horizontal movement for grounded enemies.
 *****************************************************************************/
 using CustomAttributes;
 using NaughtyAttributes;
@@ -36,9 +36,6 @@ namespace TFOOL.Enemies
 
         [SerializeField, Tooltip("The collider used to determine the location of wall, edge, and ground checks.")]
         private Collider2D physicsCollider;
-        [SerializeField, Tooltip("Sets if the enemy automatically aligns the direction it's facing to the direct " +
-            "it's moving.")] 
-        private DirectionUpdateMode directionUpdateMode;
         [Header("Movement")]
         [SerializeField] private float walkSpeed;
         [SerializeField] private float groundAcceleration;
@@ -70,7 +67,6 @@ namespace TFOOL.Enemies
         public float MoveSpeed { get => walkSpeed; set => walkSpeed = value; }
         public float Acceleration { get => groundAcceleration; set => groundAcceleration = value; }
         public DetectedBlockers Blockers => blockers;
-        private DirectionUpdateMode DirectionMode => directionUpdateMode;
         public bool JumpOverGaps { get => jumpOverGaps; set => jumpOverGaps = value; }
         public int MaxJumpDistance { get => maxJumpDistance; set => maxJumpDistance = value; }
         public int MaxJumpHeight { get => maxJumpHeight; set => maxJumpHeight = value; }
@@ -128,12 +124,6 @@ namespace TFOOL.Enemies
             if (direction != targetDirection)
             {
                 targetDirection = direction;
-                // Invert speed so that the enemy is moving the other direction.
-                //rb.linearVelocity = new Vector2(-rb.linearVelocity.x, rb.linearVelocity.y);
-                if (controller != null && DirectionMode == DirectionUpdateMode.TargetDirection)
-                {
-                    controller.FacingDirection = direction;
-                }
             }
         }
 
@@ -144,15 +134,6 @@ namespace TFOOL.Enemies
             float acceleration = onGround ? groundAcceleration : airAcceleration;
             horizontalSpeed = Mathf.MoveTowards(horizontalSpeed, walkSpeed * targetDirection, acceleration * Time.fixedDeltaTime);
             rb.linearVelocity = new Vector2(horizontalSpeed, rb.linearVelocity.y);
-
-            if (DirectionMode == DirectionUpdateMode.Velocity)
-            {
-                controller.FacingDirection = (int)Mathf.Sign(horizontalSpeed);
-            }
-            else if (DirectionMode == DirectionUpdateMode.ToTarget)
-            {
-                controller.PointTowardsTarget();
-            }
 
             CheckBlockers();
         }
