@@ -7,6 +7,7 @@
 // Brief Description : Controls the running slice attack of the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
+using NaughtyAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -17,15 +18,19 @@ namespace TFOOL.Enemies.AI
     [DropdownGroup("Red Rooms/Painter")]
     public class RunningSliceAttack : EnemyAttack
     {
-        [SerializeField] private GameObject hitbox;
-        [SerializeField] private float attackTime;
+        //[SerializeField] private GameObject hitbox;
+        //[SerializeField] private float attackTime;
         [SerializeField, Tooltip("Controls how close the enemy has to be to the player before it spawns the hitbox.")]
         private float attackRange;
         [Header("Charge")]
-        [SerializeField] private float minChargeTime;
-        [SerializeField] private float maxChargeTime;
+        [SerializeField, Tooltip("The amount of time the enemy charges before before stopping when passing the player.")]
+        private float minChargeTime;
+        [SerializeField, Tooltip("The max amount of time the enemy can charge before being forced to stop.")] 
+        private float maxChargeTime;
         [SerializeField] private float chargeSpeed;
-        [SerializeField] private float chargeWindupTime;
+        [Header("Animation")]
+        [SerializeField] private string windupAnimationState;
+        [SerializeField] private string sliceAnimationState;
         [SerializeField] private BackdashBehavior hitBackdash;
         
         public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
@@ -47,7 +52,6 @@ namespace TFOOL.Enemies.AI
                 // Reset to defaults
                 movement.MoveSpeed = startingSpeed;
                 movement.SetMoveDirection(0);
-                hitbox.SetActive(false);
                 attackerComp.OnHitEvent -= HandleHit;
             }
 
@@ -62,7 +66,9 @@ namespace TFOOL.Enemies.AI
             {
                 int attackDirection = enemy.DirectionToTarget;
 
-                await Awaitable.WaitForSecondsAsync(chargeWindupTime, ct);
+                // Play windup animation.
+                enemy.PlayAnimation(windupAnimationState);
+                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
 
                 // Immediately set the enemy to max speed after delay.
                 movement.MoveSpeed = chargeSpeed;
@@ -76,24 +82,27 @@ namespace TFOOL.Enemies.AI
                     || (enemy.DirectionToTarget == attackDirection && timer < maxChargeTime)))
                 {
                     timer += Time.fixedDeltaTime;
-                    await Awaitable.FixedUpdateAsync();
+                    await Awaitable.FixedUpdateAsync(ct);
                 }
 
                 ct.ThrowIfCancellationRequested();
 
                 // Spawn the attack hitbox.
                 attackerComp.OnHitEvent += HandleHit;
-                float attackTimer = attackTime;
-                if (enemy.ToTarget.magnitude <= attackRange)
-                {
-                    hitbox.SetActive(true);
-                    while(!ct.IsCancellationRequested && attackTimer > 0 && !hitTarget)
-                    {
-                        attackTimer -= Time.fixedDeltaTime;
-                        await Awaitable.FixedUpdateAsync(ct);
-                    }
-                    hitbox.SetActive(false);
-                }
+                //float attackTimer = attackTime;
+                //if (enemy.ToTarget.magnitude <= attackRange)
+                //{
+                //    hitbox.SetActive(true);
+                //    while(!ct.IsCancellationRequested && attackTimer > 0 && !hitTarget)
+                //    {
+                //        attackTimer -= Time.fixedDeltaTime;
+                //        await Awaitable.FixedUpdateAsync(ct);
+                //    }
+                //    hitbox.SetActive(false);
+                //}
+                enemy.PlayAnimation(sliceAnimationState);
+                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+
                 attackerComp.OnHitEvent -= HandleHit;
 
                 // Backdash if the enemy hit something.

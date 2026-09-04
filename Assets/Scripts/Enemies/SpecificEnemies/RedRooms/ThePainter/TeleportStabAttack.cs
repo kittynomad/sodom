@@ -7,8 +7,10 @@
 // Brief Description : Teleport attack for the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
+using NaughtyAttributes;
 using System;
 using System.Threading;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TFOOL.Enemies.AI
@@ -17,9 +19,9 @@ namespace TFOOL.Enemies.AI
     [DropdownGroup("Red Rooms/Painter")]
     public class TeleportStabAttack : EnemyAttack
     {
-        [SerializeField] private GameObject hitbox;
-        [SerializeField] private float hitboxOffset;
-        [SerializeField] private float attackTime;
+        //[SerializeField] private GameObject hitbox;
+        //[SerializeField] private float hitboxOffset;
+        //[SerializeField] private float attackTime;
         [SerializeField] private float stabVelocity;
         [Header("Timing")]
         [SerializeField] private float decideDirectionDelay;
@@ -29,6 +31,8 @@ namespace TFOOL.Enemies.AI
         [SerializeField, Tooltip("The set of points around the scene that the enemy should teleport to.  " +
     "If none are set, it will teleport behind the player.")]
         private Transform[] manualTeleportPoints;
+        [Header("Animation")]
+        [SerializeField] private string windupAnimationState;
                 
         public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
@@ -44,7 +48,7 @@ namespace TFOOL.Enemies.AI
             {
                 // Reset to defaults
                 movement.Rigidbody.gravityScale = originalGravity;
-                hitbox.SetActive(false);
+                //hitbox.SetActive(false);
             }
     
             try
@@ -58,19 +62,20 @@ namespace TFOOL.Enemies.AI
                 await Awaitable.FixedUpdateAsync(ct);
                 enemy.PointTowardsTarget();
 
-                await Awaitable.WaitForSecondsAsync(decideDirectionDelay, ct);
-
                 Vector2 stabVector = GetStabDirection(enemy.transform.position, target.transform.position);
 
-                await Awaitable.WaitForSecondsAsync(leapDelay, ct);
+                enemy.PlayAnimation(windupAnimationState);
+                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
 
                 // Leap at the target and attack.
                 enemy.PointTowardsTarget();
-                hitbox.transform.position = enemy.transform.position + (Vector3)(stabVector * hitboxOffset);
+                //hitbox.transform.position = enemy.transform.position + (Vector3)(stabVector * hitboxOffset);
                 movement.Rigidbody.linearVelocity = stabVector * stabVelocity;
-                hitbox.SetActive(true);
-                await Awaitable.WaitForSecondsAsync(attackTime, ct);
-                hitbox.SetActive(false);
+
+                //hitbox.SetActive(true);
+                //await Awaitable.WaitForSecondsAsync(attackTime, ct);
+                //hitbox.SetActive(false);
+
                 movement.Rigidbody.gravityScale = originalGravity;
 
                 // Wait until the enemy hits the ground.
@@ -87,7 +92,6 @@ namespace TFOOL.Enemies.AI
                 CleanUp();
                 throw oce;
             }
-    
         }
 
         private Vector2 GetTeleportPosition(GameObject target, Bounds enemyBounds)
@@ -118,7 +122,6 @@ namespace TFOOL.Enemies.AI
                     Vector2.right * facingDirection, Mathf.Abs(teleportOffset.x), 1 << (int)CollisionLayer.Ground);
                 if (hit)
                 {
-                    Debug.Log("Bonk");
                     xOffset = facingDirection * hit.distance;
                 }
                 return (Vector2)target.transform.position + new Vector2(xOffset, teleportOffset.y);
