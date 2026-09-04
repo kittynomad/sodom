@@ -15,7 +15,7 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class MoveToDistanceBehavior : TraversalBehavior
     {
-        [SerializeField, VectorLabels("Min", "Max"), Tooltip("Controls how close/far the enemy needs to be from " +
+        [SerializeField, Tooltip("Controls how close/far the enemy needs to be from " +
             "their target before movement stops.  X = minimum distance before stopping.  Y = maximum distance before stopping.")] 
         private Vector2 distanceRange;
         //[SerializeField] private bool hasMaxTime;

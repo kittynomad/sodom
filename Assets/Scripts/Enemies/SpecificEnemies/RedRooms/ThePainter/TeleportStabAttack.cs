@@ -7,10 +7,8 @@
 // Brief Description : Teleport attack for the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
-using NaughtyAttributes;
 using System;
 using System.Threading;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace TFOOL.Enemies.AI

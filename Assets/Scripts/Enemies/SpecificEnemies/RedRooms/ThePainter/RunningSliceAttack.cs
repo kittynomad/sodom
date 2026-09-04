@@ -7,7 +7,6 @@
 // Brief Description : Controls the running slice attack of the red rooms Painter.
 *****************************************************************************/
 using CustomAttributes;
-using NaughtyAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -31,6 +30,7 @@ namespace TFOOL.Enemies.AI
         [Header("Animation")]
         [SerializeField] private string windupAnimationState;
         [SerializeField] private string sliceAnimationState;
+        [Header("Backdash On Hit")]
         [SerializeField] private BackdashBehavior hitBackdash;
         
         public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
