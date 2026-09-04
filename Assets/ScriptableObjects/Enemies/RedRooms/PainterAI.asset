@@ -30,6 +30,7 @@ MonoBehaviour:
         - rid: 2824903310154137684
         - rid: 2824903310154137683
         randomMovement:
+          overrideMovement: 1
           moveSpeed: 2
           acceleration: 30
           stopAtEdge: 1
@@ -178,4 +179,4 @@ MonoBehaviour:
       type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
         debugColor: {r: 1, g: 0.99804246, b: 0, a: 1}
-        enterCombatDelay: 0.75
+        enterCombatAnimation: 
