@@ -597,7 +597,7 @@ AnimatorStateMachine:
   - first: {fileID: -8889341004731753387}
     second: []
   m_StateMachineBehaviours: []
-  m_AnyStatePosition: {x: -70, y: 380, z: 0}
+  m_AnyStatePosition: {x: 10, y: 280, z: 0}
   m_EntryPosition: {x: 70, y: 80, z: 0}
   m_ExitPosition: {x: 990, y: 150, z: 0}
   m_ParentStateMachinePosition: {x: 800, y: 20, z: 0}
@@ -916,6 +916,12 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 9100000}
+  - m_Name: Mid-Attack
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer
@@ -1137,7 +1143,6 @@ AnimatorStateMachine:
   - {fileID: 8668319007810371924}
   - {fileID: -531113863021092519}
   - {fileID: 7934665403809489326}
-  - {fileID: 4356422743060881864}
   m_StateMachineTransitions: {}
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 30, y: -40, z: 0}
@@ -1340,35 +1345,6 @@ AnimatorStateTransition:
   m_InterruptionSource: 0
   m_OrderedInterruption: 1
   m_CanTransitionToSelf: 1
---- !u!1109 &4356422743060881864
-AnimatorTransition:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  m_Conditions:
-  - m_ConditionMode: 1
-    m_ConditionEvent: IsGrounded
-    m_EventTreshold: 0
-  - m_ConditionMode: 1
-    m_ConditionEvent: AttackBuffered
-    m_EventTreshold: 0
-  - m_ConditionMode: 3
-    m_ConditionEvent: YControl
-    m_EventTreshold: -0.5
-  - m_ConditionMode: 4
-    m_ConditionEvent: YControl
-    m_EventTreshold: 0.5
-  - m_ConditionMode: 1
-    m_ConditionEvent: ComboAPH
-    m_EventTreshold: 0
-  m_DstStateMachine: {fileID: 0}
-  m_DstState: {fileID: 8062326881885138168}
-  m_Solo: 0
-  m_Mute: 0
-  m_IsExit: 0
-  serializedVersion: 1
 --- !u!1101 &4656212021328425570
 AnimatorStateTransition:
   m_ObjectHideFlags: 1
@@ -1480,6 +1456,9 @@ AnimatorStateTransition:
     m_EventTreshold: 0
   - m_ConditionMode: 1
     m_ConditionEvent: AttackBuffered
+    m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: Mid-Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 2772557218690911621}
   m_DstState: {fileID: 0}
@@ -1649,7 +1628,7 @@ AnimatorTransition:
     m_ConditionEvent: YControl
     m_EventTreshold: 0.5
   - m_ConditionMode: 2
-    m_ConditionEvent: ComboAPH
+    m_ConditionEvent: Mid-Attack
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -7945364175255822926}
