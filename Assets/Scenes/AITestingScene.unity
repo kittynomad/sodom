@@ -10517,14 +10517,22 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 2112867600}
+    - target: {fileID: 2812668463479870674, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.383
+      objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Name
       value: ThePainter
       objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8369411441780858969, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5814a5da7c641a448a083add5b03e7b1, type: 2}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[-2]'
       value: 
@@ -10550,6 +10558,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].sliceAnimationState
+      value: RREnemyADashSlash
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].windupAnimationState
+      value: RREnemyADashWindup
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
       value: 
       objectReference: {fileID: 1680091615}
@@ -10557,6 +10573,22 @@ PrefabInstance:
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1705448743}
+    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_FlipX
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11109,7 +11141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7273629064436251163, guid: 431c426180f0cac42823e2b761f90176, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
