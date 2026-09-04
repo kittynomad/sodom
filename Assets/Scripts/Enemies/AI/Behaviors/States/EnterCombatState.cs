@@ -15,8 +15,8 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public class EnterCombatState : EnemyState
     {
-        [SerializeField, Tooltip("The amount of time to wait on this state before mocing to combat.")] 
-        private float enterCombatDelay;
+        [SerializeField, Tooltip("Name of the animation state to play when the enemy notices the enemy.")]
+        private string enterCombatAnimation;
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);
@@ -31,7 +31,9 @@ namespace TFOOL.Enemies.AI
 
             try
             {
-                await Awaitable.WaitForSecondsAsync(enterCombatDelay);
+                enemy.PlayAnimation(enterCombatAnimation);
+                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+                //await Awaitable.WaitForSecondsAsync(enterCombatDelay);
                 CleanUp();
             }
             catch (OperationCanceledException oce)
