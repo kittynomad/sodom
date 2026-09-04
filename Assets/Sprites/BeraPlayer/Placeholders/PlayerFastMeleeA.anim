@@ -410,8 +410,8 @@ AnimationClip:
     intParameter: 1
     messageOptions: 0
   - time: 0
-    functionName: UnbufferAttack
-    data: 
+    functionName: AnimBoolFalse
+    data: AttackBuffered
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -422,6 +422,20 @@ AnimationClip:
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 1
+    messageOptions: 0
+  - time: 0
+    functionName: AnimBoolTrue
+    data: Mid-Attack
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: AnimBoolTrue
+    data: ComboAPH
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
     messageOptions: 0
   - time: 0.016666668
     functionName: SetMeleeChaining
@@ -468,6 +482,13 @@ AnimationClip:
   - time: 0.3
     functionName: SetMoveLock
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.3
+    functionName: AnimBoolFalse
+    data: Mid-Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

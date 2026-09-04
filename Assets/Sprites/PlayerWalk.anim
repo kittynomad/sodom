@@ -89,8 +89,8 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_Events:
   - time: 0
-    functionName: UnbufferAttack
-    data: 
+    functionName: AnimBoolFalse
+    data: AttackBuffered
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -98,6 +98,13 @@ AnimationClip:
   - time: 0
     functionName: PlayOneShot
     data: FootstepQuiet
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: AnimBoolFalse
+    data: ComboAPH
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0

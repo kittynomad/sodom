@@ -523,8 +523,15 @@ AnimationClip:
     intParameter: 1
     messageOptions: 0
   - time: 0
-    functionName: UnbufferAttack
-    data: 
+    functionName: AnimBoolFalse
+    data: AttackBuffered
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0
+    functionName: AnimBoolTrue
+    data: Mid-Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
@@ -546,6 +553,13 @@ AnimationClip:
   - time: 0.33333334
     functionName: SetMoveLock
     data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.33333334
+    functionName: AnimBoolFalse
+    data: Mid-Attack
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
