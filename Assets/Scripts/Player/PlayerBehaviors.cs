@@ -43,7 +43,9 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private Animator _anim;
     private SwordController sc;
     [SerializeField] private GameObject _projectile;
-
+    [SerializeField] private string _eatCorpseAnim;
+    [SerializeField] private string _ammoCorpseAnim;
+ 
     //components
     private Rigidbody2D rb;
     private Collider2D coll;
@@ -189,7 +191,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         
     }
 
-    public void InteractBehavior()
+    public async Awaitable InteractBehavior()
     {
         Debug.Log("interact behgavior");
         //broadcast interactAction if it has subscribers
@@ -200,6 +202,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //eat attached corpse on interact if no interactibles around
         else if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
+            await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
             sc.DetachObject(pc.MovementDirection, true);
         }
@@ -211,11 +214,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         return IsFacingRight() ? -1f : 1f;   
     }
 
-    public void FireBehavior(Vector2 fireDirection, bool mouseAim = false)
+    public async Awaitable FireBehavior(Vector2 fireDirection, bool mouseAim = false)
     {
         //turn attached corpse into ammo if below max ammo
         if (sc.HasCorpseAttached && currentAmmo < _maxAmmo)
         {
+            await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
             currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
             sc.DetachObject(pc.MovementDirection, true);
         }
@@ -447,4 +451,17 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         currentStamina = _maxStamina;
         staminaOverheat = false;
     }
+
+    private async Awaitable PlayAndAwaitPlayerAnimation(string animName)
+    {
+        _anim.Play(animName);
+
+        _anim.Update(0);
+        AnimatorStateInfo animState = _anim.GetCurrentAnimatorStateInfo(0);
+        float dur = animState.length / animState.speed;
+
+
+        await Awaitable.WaitForSecondsAsync(dur);
+    }
+
 }
