@@ -447,4 +447,17 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         currentStamina = _maxStamina;
         staminaOverheat = false;
     }
+
+    private async Awaitable PlayAndAwaitPlayerAnimation(string animName)
+    {
+        _anim.Play(animName);
+
+        _anim.Update(0);
+        AnimatorStateInfo animState = _anim.GetCurrentAnimatorStateInfo(0);
+        float dur = animState.length / animState.speed;
+
+
+        await Awaitable.WaitForSecondsAsync(dur));
+    }
+
 }
