@@ -215,6 +215,8 @@ MonoBehaviour:
   _sprite: {fileID: 3519555628608411484}
   _anim: {fileID: 6515553039800913211}
   _projectile: {fileID: 984829486225534601, guid: 075c897b006af2841ac2281675014832, type: 3}
+  _eatCorpseAnim: PlayerDevour
+  _ammoCorpseAnim: PlayerHarvest
 --- !u!114 &1427404586909964195
 MonoBehaviour:
   m_ObjectHideFlags: 0
