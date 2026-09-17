@@ -32,6 +32,7 @@ public static class AIUtilities
     /// <param name="ct"></param>
     /// <param name="layerIndex"></param>
     /// <returns></returns>
+    [System.Obsolete]
     internal static async Awaitable PlayAndAwaitAnimation(string animStateName, Animator animator, CancellationToken ct, int layerIndex = 0)
     {
         animator.Play(animStateName);
@@ -45,6 +46,7 @@ public static class AIUtilities
     /// <param name="ct">The cancellation token to cancel the await.</param>
     /// <param name="layerIndex">Optional layer index of the animator to await the state of.</param>
     /// <returns></returns>
+    [System.Obsolete]
     internal static async Awaitable AwaitAnimation(Animator animator, CancellationToken ct, int layerIndex = 0)
     {
         await Awaitable.WaitForSecondsAsync(GetCurrentAnimationDuration(animator, layerIndex), ct);
@@ -56,6 +58,7 @@ public static class AIUtilities
     /// <param name="animator"></param>
     /// <param name="layerIndex"></param>
     /// <returns></returns>
+    [System.Obsolete]
     internal static float GetCurrentAnimationDuration(Animator animator, int layerIndex = 0)
     {
         animator.Update(0);
