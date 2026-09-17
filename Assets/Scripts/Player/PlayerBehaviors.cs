@@ -10,6 +10,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using TFOOL;
 
 public class PlayerBehaviors : MonoBehaviour, IKillable
 {
@@ -198,7 +199,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //eat attached corpse on interact
         if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
-            await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
+            await AnimationUtility.PlayAndAwaitAnimation(_eatCorpseAnim, _anim, destroyCancellationToken);
+            //await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
             sc.DetachObject(pc.MovementDirection, true);
         }
@@ -221,7 +223,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //turn attached corpse into ammo if below max ammo
         if (sc.HasCorpseAttached && currentAmmo < _maxAmmo)
         {
-            await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
+            await AnimationUtility.PlayAndAwaitAnimation(_ammoCorpseAnim, _anim, destroyCancellationToken);
+            //await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
             currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
             sc.DetachObject(pc.MovementDirection, true);
         }
@@ -452,18 +455,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
         currentStamina = _maxStamina;
         staminaOverheat = false;
-    }
-
-    private async Awaitable PlayAndAwaitPlayerAnimation(string animName)
-    {
-        _anim.Play(animName);
-
-        _anim.Update(0);
-        AnimatorStateInfo animState = _anim.GetCurrentAnimatorStateInfo(0);
-        float dur = animState.length / animState.speed;
-
-
-        await Awaitable.WaitForSecondsAsync(dur);
     }
 
 }
