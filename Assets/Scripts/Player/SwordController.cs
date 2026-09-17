@@ -57,6 +57,15 @@ public class SwordController : MonoBehaviour
         }
         return false;
     }
+
+    public void HideAttachedObject()
+    {
+        if (attachedObject != null)
+        {
+            attachedObject.GetComponent<SpriteRenderer>().enabled = false;
+        }
+
+    }
     public void DetachObject(Vector2 direction, bool destroyImmediate = false)
     {
         

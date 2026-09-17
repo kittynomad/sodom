@@ -199,6 +199,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //eat attached corpse on interact
         if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
+            sc.HideAttachedObject();
             await AnimationUtility.PlayAndAwaitAnimation(_eatCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
@@ -223,6 +224,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //turn attached corpse into ammo if below max ammo
         if (sc.HasCorpseAttached && currentAmmo < _maxAmmo)
         {
+            sc.HideAttachedObject();
             await AnimationUtility.PlayAndAwaitAnimation(_ammoCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
             currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
