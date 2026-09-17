@@ -9,6 +9,7 @@
 using System;
 using System.Threading;
 using UnityEngine;
+using TFOOL;
 
 namespace TFOOL.Enemies.AI
 {
@@ -32,7 +33,7 @@ namespace TFOOL.Enemies.AI
             try
             {
                 enemy.PlayAnimation(enterCombatAnimation);
-                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+                await AnimationUtility.AwaitAnimation(enemy.Animator, ct);
                 //await Awaitable.WaitForSecondsAsync(enterCombatDelay);
                 CleanUp();
             }

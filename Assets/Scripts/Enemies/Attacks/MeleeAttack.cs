@@ -9,6 +9,7 @@
 using System;
 using System.Threading;
 using TFOOL.Enemies.AI;
+using TFOOL;
 using UnityEngine;
 
 namespace TFOOL.Enemies
@@ -36,7 +37,7 @@ namespace TFOOL.Enemies
                     enemy.PointTowardsTarget();
                 }
                 // Play the attack animation.
-                await AIUtilities.PlayAndAwaitAnimation(animationStateName, enemy.Animator, ct);
+                await AnimationUtility.PlayAndAwaitAnimation(animationStateName, enemy.Animator, ct);
             }
             catch (OperationCanceledException oce)
             {
