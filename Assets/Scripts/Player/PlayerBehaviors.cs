@@ -194,18 +194,20 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public async Awaitable InteractBehavior()
     {
         Debug.Log("interact behgavior");
-        //broadcast interactAction if it has subscribers
-        if(interactAction != null)
-        {
-            interactAction?.Invoke(this);
-        }
-        //eat attached corpse on interact if no interactibles around
-        else if (sc.HasCorpseAttached && currentHealth < _maxHealth)
+
+        //eat attached corpse on interact
+        if (sc.HasCorpseAttached && currentHealth < _maxHealth)
         {
             await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
             sc.DetachObject(pc.MovementDirection, true);
         }
+        //broadcast interactAction if it has subscribers
+        else if (interactAction != null)
+        {
+            interactAction?.Invoke(this);
+        }
+        
             
     }
 
