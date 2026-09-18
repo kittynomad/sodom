@@ -171,13 +171,13 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             {
                 if (IsGrounded())
                 {
+                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
                     GameObject g = Instantiate(_jumpStaticVFX, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
                     g.transform.localScale = transform.localScale;
                     if (pc.MovementDirection.x != 0)
                         g.GetComponent<Animator>().Play("JumpSparkMovingA");
                     else
                         g.GetComponent<Animator>().Play("JumpSparkStaticA");
-                    rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
                 }
                 //also jump if not grounded but have double jump still
                 else if (pl.DoubleJumpUnlocked && doubleJumpReady)
