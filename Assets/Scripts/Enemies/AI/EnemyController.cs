@@ -31,6 +31,7 @@ namespace TFOOL.Enemies.AI
         private string animationSignal;
 
         #region Properties
+        public EnemyState CurrentState => currentState;
         public Vector2 ToTarget => Target.transform.position - transform.position;
         public CancellationToken StateCancelToken => stateCanceller.Token;
         public int DirectionToTarget => (int)Mathf.Sign(ToTarget.x);

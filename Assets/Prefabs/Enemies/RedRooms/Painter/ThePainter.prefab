@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4229990087354229521}
   - component: {fileID: 3760480622963894396}
   m_Layer: 10
-  m_Name: StabHitbox
+  m_Name: SliceHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -191,6 +191,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 3609255068167007566, guid: 6ce9e41c02f857346bb37c2a8439ce41, type: 3}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: attacks.Array.size
       value: 3
@@ -321,7 +337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135156].sliceAnimationState
-      value: 
+      value: RREnemyADashSlash
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135156].hitBackdash.dashJump
@@ -329,7 +345,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135156].windupAnimationState
-      value: 
+      value: RREnemyADashWindup
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].decideDirectionDelay
@@ -359,6 +375,10 @@ PrefabInstance:
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 1761558260219329376, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5814a5da7c641a448a083add5b03e7b1, type: 2}
     - target: {fileID: 2481911175174928383, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_GravityScale
       value: 2
@@ -367,6 +387,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThePainter
       objectReference: {fileID: 0}
+    - target: {fileID: 5430439189447331819, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 5631141839943281862}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: walkSpeed
       value: 5
@@ -413,11 +441,11 @@ PrefabInstance:
       objectReference: {fileID: 11400000, guid: 0dfd3d61fa453c044bd8679512cb3169, type: 2}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 18.47
+      value: 20.01
       objectReference: {fileID: 0}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.04
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.z
@@ -523,5 +551,10 @@ MonoBehaviour:
 --- !u!1 &4821645334647248261 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3368055190227160764, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+  m_PrefabInstance: {fileID: 7805952820141038393}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &5631141839943281862 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2481911175174928383, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
   m_PrefabInstance: {fileID: 7805952820141038393}
   m_PrefabAsset: {fileID: 0}

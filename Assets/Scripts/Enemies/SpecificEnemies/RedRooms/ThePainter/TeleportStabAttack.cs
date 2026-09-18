@@ -30,8 +30,9 @@ namespace TFOOL.Enemies.AI
     "If none are set, it will teleport behind the player.")]
         private Transform[] manualTeleportPoints;
         [Header("Animation")]
+        [SerializeField] private string preTeleportAnimationState;
         [SerializeField] private string windupAnimationState;
-                
+
         public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
             if (!enemy.TryGetComponent(out EnemyMovement movement))
@@ -51,6 +52,9 @@ namespace TFOOL.Enemies.AI
     
             try
             {
+                enemy.PlayAnimation(preTeleportAnimationState);
+                await AnimationUtility.AwaitAnimation(enemy.Animator, ct);
+
                 // Teleport behind the player.
                 movement.Rigidbody.gravityScale = 0;
                 movement.Rigidbody.position = GetTeleportPosition(target, movement.EnemyBounds);
@@ -63,7 +67,7 @@ namespace TFOOL.Enemies.AI
                 Vector2 stabVector = GetStabDirection(enemy.transform.position, target.transform.position);
 
                 enemy.PlayAnimation(windupAnimationState);
-                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+                await AnimationUtility.AwaitAnimation(enemy.Animator, ct);
 
                 // Leap at the target and attack.
                 enemy.PointTowardsTarget();

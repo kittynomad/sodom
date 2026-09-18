@@ -9,6 +9,7 @@
 using CustomAttributes;
 using System.Threading;
 using TFOOL.Enemies.AI;
+using Unity.VisualScripting;
 using UnityEditor.Search;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
@@ -23,12 +24,22 @@ namespace TFOOL.Enemies
         protected Transform shotPoint;
         [SerializeField] protected EnemyProjectile projectilePrefab;
         [SerializeField] protected float projectileSpeed;
+        [Header("Animation")]
+        [SerializeField, Tooltip("The name of the animation state for this attack.")] 
+        private string animationStateName;
+        [SerializeField, Tooltip("The string signal that is sent from an animation event when the projectile should be thrown.")] 
+        private string shootSignal;
 
-        public override Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
+        public override async Awaitable PerformAttack(EnemyController enemy, GameObject target, EnemyAttacker attackerComp, CancellationToken ct)
         {
+            enemy.PlayAnimation(animationStateName);
+
+            // Play an animation, then await until the given signal in the animation to shoot the projectile.
+            await AIUtilities.AwaitSignal(shootSignal, enemy, ct);
+
             Vector2 toTarget = target.transform.position - shotPoint.transform.position;
             ShootProjectile(toTarget.normalized * projectileSpeed);
-            return Awaitable.NextFrameAsync(ct);
+            await Awaitable.NextFrameAsync(ct);
         }
 
         protected void ShootProjectile(Vector2 launchVector)

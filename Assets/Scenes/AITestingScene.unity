@@ -272,6 +272,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &508615530 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+  m_PrefabInstance: {fileID: 1573691251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +610,11 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &770994968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+  m_PrefabInstance: {fileID: 1573691251}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &814943198
 GameObject:
   m_ObjectHideFlags: 0
@@ -10509,61 +10519,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1191771646200384032, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Name
-      value: SliceHitbox
-      objectReference: {fileID: 0}
-    - target: {fileID: 2497944178788533143, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 2112867600}
-    - target: {fileID: 2812668463479870674, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.383
-      objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Name
       value: ThePainter
       objectReference: {fileID: 0}
-    - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8369411441780858969, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: 5814a5da7c641a448a083add5b03e7b1, type: 2}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: 'managedReferences[-2]'
-      value: 
+      propertyPath: managedReferences[3144940043314135156].attackRange
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: 'managedReferences[2595282218735894694]'
-      value: Assembly-CSharp TFOOL.Enemies.ProjectileAttack
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[2595282218735894694].shotPoint
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[2595282218735894694].attackName
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[2595282218735894694].projectileSpeed
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[2595282218735894694].projectilePrefab
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[3144940043314135156].sliceAnimationState
-      value: RREnemyADashSlash
-      objectReference: {fileID: 0}
-    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: managedReferences[3144940043314135156].windupAnimationState
-      value: RREnemyADashWindup
+      propertyPath: managedReferences[3144940043314135156].minChargeTime
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
@@ -10573,26 +10539,13 @@ PrefabInstance:
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1705448743}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2112867608}
   m_SourcePrefab: {fileID: 100100000, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
 --- !u!1 &1680091614
 GameObject:
@@ -10989,11 +10942,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2112867600 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 5631141839943281862, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+--- !u!114 &2112867604 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 493431829271473971, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
   m_PrefabInstance: {fileID: 1573691251}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770994968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4acf2aff95ff2dc49aca30e4ea10eb9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyController
+--- !u!114 &2112867608
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 770994968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3a247979b6ad1d41ac54fb2e4eaafbe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.AI.EnemyStateDebugger
+  enemyRend: {fileID: 508615530}
+  enemy: {fileID: 2112867604}
 --- !u!1001 &783852898481227457
 PrefabInstance:
   m_ObjectHideFlags: 0
