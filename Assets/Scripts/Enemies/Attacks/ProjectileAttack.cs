@@ -35,7 +35,7 @@ namespace TFOOL.Enemies
             enemy.PlayAnimation(animationStateName);
 
             // Play an animation, then await until the given signal in the animation to shoot the projectile.
-            await AIUtilities.AwaitSignal(shootSignal, enemy, ct);
+            await AIUtility.AwaitSignal(shootSignal, enemy, ct);
 
             Vector2 toTarget = target.transform.position - shotPoint.transform.position;
             ShootProjectile(toTarget.normalized * projectileSpeed);
