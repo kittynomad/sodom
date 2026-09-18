@@ -18,6 +18,8 @@ namespace TFOOL.Enemies.AI
     {
         [SerializeField, Tooltip("Name of the animation state to play when the enemy notices the enemy.")]
         private string enterCombatAnimation;
+
+        public override Color DebugColor => Color.yellow;
         public override async Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
             await base.RunAI(enemy, ct);

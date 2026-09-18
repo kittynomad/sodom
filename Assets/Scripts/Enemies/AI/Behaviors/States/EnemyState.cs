@@ -7,7 +7,6 @@
 // Brief Description : A form of enemy behavior that is used at the top level of the state machine and controls a continuous behavior.
 *****************************************************************************/
 using System.Threading;
-using UnityEditor.Search;
 using UnityEngine;
 
 namespace TFOOL.Enemies.AI
@@ -15,15 +14,15 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public abstract class EnemyState : EnemyBehavior
     {
-        [SerializeField] private Color debugColor;
         public virtual bool IsCancellable => true;
+        public virtual Color DebugColor => Color.white;
 
         public override Awaitable RunAI(EnemyController enemy, CancellationToken ct)
         {
-            if (enemy.transform.GetChild(0).TryGetComponent(out SpriteRenderer rend))
-            {
-                rend.color = debugColor;
-            }
+            //if (enemy.transform.GetChild(0).TryGetComponent(out SpriteRenderer rend))
+            //{
+            //    rend.color = debugColor;
+            //}
             return Awaitable.NextFrameAsync();
         }
     }

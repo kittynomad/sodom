@@ -48,7 +48,7 @@ namespace TFOOL.Enemies.AI
                 // Behavior Logic.
                 enemy.PlayAnimation(animationStateName);
 
-                await AIUtilities.AwaitSignal(jumpSignal, enemy, ct);
+                await AIUtility.AwaitSignal(jumpSignal, enemy, ct);
                 hitbox.SetActive(true);
 
                 // Apply Jump Velocity.

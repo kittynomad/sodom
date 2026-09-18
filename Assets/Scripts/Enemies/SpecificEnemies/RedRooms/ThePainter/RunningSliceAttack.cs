@@ -68,7 +68,7 @@ namespace TFOOL.Enemies.AI
 
                 // Play windup animation.
                 enemy.PlayAnimation(windupAnimationState);
-                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+                await AnimationUtility.AwaitAnimation(enemy.Animator, ct);
 
                 // Immediately set the enemy to max speed after delay.
                 movement.MoveSpeed = chargeSpeed;
@@ -79,8 +79,10 @@ namespace TFOOL.Enemies.AI
                 // Move until the player is passed.
                 float timer = 0;
                 while(!ct.IsCancellationRequested && (timer < minChargeTime 
-                    || (enemy.DirectionToTarget == attackDirection && timer < maxChargeTime)))
+                    || (Mathf.Abs(enemy.ToTarget.x) > attackRange && timer < maxChargeTime)))
                 {
+                    Debug.Log(Mathf.Abs(enemy.ToTarget.x) > attackRange);
+
                     timer += Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync(ct);
                 }
@@ -101,7 +103,7 @@ namespace TFOOL.Enemies.AI
                 //    hitbox.SetActive(false);
                 //}
                 enemy.PlayAnimation(sliceAnimationState);
-                await AIUtilities.AwaitAnimation(enemy.Animator, ct);
+                await AnimationUtility.AwaitAnimation(enemy.Animator, ct);
 
                 attackerComp.OnHitEvent -= HandleHit;
 

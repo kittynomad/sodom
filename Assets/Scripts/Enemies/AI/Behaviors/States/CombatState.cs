@@ -18,6 +18,8 @@ namespace TFOOL.Enemies.AI
     {
         [SerializeReference, ClassDropdown(typeof(AttackBehavior))] protected AttackBehavior[] attacks;
 
+        public override Color DebugColor => Color.red;
+
         /// <summary>
         /// Gets an attack to use, using weighted randomness.  The weight of each attack is determined by distance from the target.
         /// </summary>
