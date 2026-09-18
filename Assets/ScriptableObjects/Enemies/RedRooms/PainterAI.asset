@@ -24,7 +24,6 @@ MonoBehaviour:
     - rid: 2824903310154137681
       type: {class: PainterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        debugColor: {r: 1, g: 0, b: 0, a: 1}
         attacks:
         - rid: 2824903310154137682
         - rid: 2824903310154137684
@@ -173,10 +172,8 @@ MonoBehaviour:
     - rid: 3144940043314135135
       type: {class: GroundedPatrolState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        debugColor: {r: 1, g: 1, b: 1, a: 1}
         patrolWait: 1
     - rid: 3144940043314135136
       type: {class: EnterCombatState, ns: TFOOL.Enemies.AI, asm: Assembly-CSharp}
       data:
-        debugColor: {r: 1, g: 0.99804246, b: 0, a: 1}
-        enterCombatAnimation: 
+        enterCombatAnimation: RREnemyAAlert
