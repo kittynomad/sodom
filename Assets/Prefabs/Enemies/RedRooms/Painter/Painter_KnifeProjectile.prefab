@@ -172,6 +172,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyProjectile
   maxLifetime: 5
   falloffTime: 0.75
+  hitGround: 0
   rb: {fileID: 7549142934413486401}
   hitbox: {fileID: 2472271054887092906}
 --- !u!114 &2472271054887092906
@@ -187,3 +188,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
   damageAmount: 5
+  damagingTags: 1

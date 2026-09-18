@@ -423,6 +423,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
   damageAmount: 5
+  damagingTag: 
 --- !u!1 &8817419937492880481
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,10 +541,10 @@ MonoBehaviour:
   _maxHealth: 5
   _corpseObject: {fileID: 981806431881458497, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
   _corpseFlingStrength: 5
+  _friendlyFireTags: 
   shouldStun: 1
   stunCooldown: 3
   stunState:
-    debugColor: {r: 1, g: 0.5282031, b: 0, a: 1}
     stunTime: 1
   enemyController: {fileID: 4367419085721358166}
   rb: {fileID: 0}
