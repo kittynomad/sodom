@@ -152,6 +152,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Enemies.EnemyHitbox
   damageAmount: 5
+  damagingTags: 0
 --- !u!1001 &5241554664911605030
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -331,6 +332,10 @@ PrefabInstance:
     - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: _maxHealth
       value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: _friendlyFireTags
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: walkSpeed

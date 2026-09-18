@@ -10,6 +10,9 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
     [SerializeField, Tooltip("The corpse prefab to spawn when the enemy is destroyed.")] 
     private GameObject _corpseObject;
     [SerializeField, Tooltip("Force applied to the corpse when it is spawned.")] private float _corpseFlingStrength = 5f;
+    [SerializeField, Tooltip("Allows this enemy to take damage from enemy hitboxes with these tags.  Can contain multiple tags.")]
+    private FriendlyFireTags _friendlyFireTags;
+    [Header("Stun")]
     [SerializeField, Tooltip("Toggles if the enemy should be stunned when taking damage.")] 
     private bool shouldStun;
     [SerializeField, Tooltip("The amount of time after being stunned that the enemy can't be stunned again for.")] 
@@ -24,6 +27,8 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
     private bool isStunCooldown;
 
     public event Action<GameObject, SenseType, bool> EntitySenseEvent;
+
+    public FriendlyFireTags FriendlyFireTags => _friendlyFireTags;
 
     private void Reset()
     {
