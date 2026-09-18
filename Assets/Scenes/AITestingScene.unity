@@ -10513,6 +10513,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SliceHitbox
       objectReference: {fileID: 0}
+    - target: {fileID: 1191771646200384032, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2497944178788533143, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: rb
       value: 
@@ -10528,6 +10532,18 @@ PrefabInstance:
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821645334647248261, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085735921221078611, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927647141118323700, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.16
       objectReference: {fileID: 0}
     - target: {fileID: 8369411441780858969, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Controller
