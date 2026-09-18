@@ -10525,6 +10525,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0.383
       objectReference: {fileID: 0}
+    - target: {fileID: 3437468876232838646, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.781
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437468876232838646, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.646
+      objectReference: {fileID: 0}
     - target: {fileID: 4188980788916559575, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Size.y
       value: 2.119002
@@ -10574,12 +10582,20 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].shootSignal
+      value: PainterProjectileThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: managedReferences[2595282218735894694].projectileSpeed
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: managedReferences[2595282218735894694].projectilePrefab
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].animationStateName
+      value: RREnemyAThrow
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
