@@ -18231,6 +18231,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: _jumpStaticVFX
+      value: 
+      objectReference: {fileID: 4719207145571531207, guid: f73a413d6ade82345a4ab89f399390f2, type: 3}
+    - target: {fileID: 2037644245168623204, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: _staminaRegenRate
       value: 25
       objectReference: {fileID: 0}

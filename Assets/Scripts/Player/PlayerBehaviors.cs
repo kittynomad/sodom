@@ -11,6 +11,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TFOOL;
+using Unity.VisualScripting;
 
 public class PlayerBehaviors : MonoBehaviour, IKillable
 {
@@ -74,6 +75,9 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public Action<PlayerBehaviors> interactAction;
 
     private Coroutine staminaCoroutine;
+
+    //VFX prefabs (cam placeholder)
+    [SerializeField] private GameObject _jumpStaticVFX;
 
     //getters/setters
     public bool IsAttacking { get => isAttacking; set => isAttacking = value; }
@@ -167,6 +171,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             {
                 if (IsGrounded())
                 {
+                    GameObject g = Instantiate(_jumpStaticVFX, new Vector2(transform.position.x, transform.position.y + 0.5f), Quaternion.identity);
+                    g.transform.localScale = transform.localScale;
+                    if (pc.MovementDirection.x != 0)
+                        g.GetComponent<Animator>().Play("JumpSparkMovingA");
+                    else
+                        g.GetComponent<Animator>().Play("JumpSparkStaticA");
                     rb.AddForce(_playerJumpForce * Vector2.up, ForceMode2D.Impulse);
                 }
                 //also jump if not grounded but have double jump still
