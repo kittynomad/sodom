@@ -68,6 +68,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private bool meleeChaining = false;
     private bool meleeTurnWindow = false;
     private bool staminaOverheat = false;
+    public float facingDirection = 0;
 
     //actions
     public Action<PlayerBehaviors> interactAction;
@@ -118,6 +119,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             transform.localScale = new Vector3(pc.MovementDirection.x, 1f, 1f);
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && (Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit || pc.MovementDirection.x != transform.localScale.x) && !moveLocked)
+            if (pc.MovementDirection.x != 0)
+            {
+                if (facingDirection == -(pc.MovementDirection.x))
+                    _anim.SetBool("IsTurning", true);
+                facingDirection = pc.MovementDirection.x;
+            }
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
             //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
         
