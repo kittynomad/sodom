@@ -217,6 +217,8 @@ MonoBehaviour:
   _projectile: {fileID: 984829486225534601, guid: 075c897b006af2841ac2281675014832, type: 3}
   _eatCorpseAnim: PlayerDevour
   _ammoCorpseAnim: PlayerHarvest
+  facingDirection: 0
+  _jumpStaticVFX: {fileID: 4719207145571531207, guid: f73a413d6ade82345a4ab89f399390f2, type: 3}
 --- !u!114 &1427404586909964195
 MonoBehaviour:
   m_ObjectHideFlags: 0

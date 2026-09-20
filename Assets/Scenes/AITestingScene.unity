@@ -10586,8 +10586,16 @@ PrefabInstance:
       value: PainterProjectileThrow
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].chargeSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: managedReferences[2595282218735894694].projectileSpeed
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].projectileSpeed
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: managedReferences[2595282218735894694].projectilePrefab
@@ -10596,6 +10604,22 @@ PrefabInstance:
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: managedReferences[3144940043314135147].animationStateName
       value: RREnemyAThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].windupAnimationState
+      value: RREnemyATeleportIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.dashForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.postDashDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].preTeleportAnimationState
+      value: RREnemyATeleportOut
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
