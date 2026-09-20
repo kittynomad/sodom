@@ -303,6 +303,22 @@ PrefabInstance:
       propertyPath: groundAcceleration
       value: 25
       objectReference: {fileID: 0}
+    - target: {fileID: 6230289653417215470, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Size.y
+      value: 2.119002
+      objectReference: {fileID: 0}
+    - target: {fileID: 6230289653417215470, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.059501052
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956121869920983025, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: damagingTag
+      value: Painter
+      objectReference: {fileID: 0}
+    - target: {fileID: 6956121869920983025, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: damagingTags
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7677886506025874442, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: ai
       value: 
@@ -313,7 +329,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.11
+      value: 2.128
       objectReference: {fileID: 0}
     - target: {fileID: 7765620627004462882, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalPosition.z

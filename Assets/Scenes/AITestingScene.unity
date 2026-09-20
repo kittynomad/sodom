@@ -10629,22 +10629,6 @@ PrefabInstance:
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[1]'
       value: 
       objectReference: {fileID: 1705448743}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_FlipX
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.b
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.g
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9084569596507535579, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11045,11 +11029,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!50 &2112867600 stripped
-Rigidbody2D:
-  m_CorrespondingSourceObject: {fileID: 5631141839943281862, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
-  m_PrefabInstance: {fileID: 1573691251}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &783852898481227457
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11194,10 +11173,6 @@ PrefabInstance:
     - target: {fileID: 7273629064436251163, guid: 431c426180f0cac42823e2b761f90176, type: 3}
       propertyPath: m_Name
       value: ThePaint
-      objectReference: {fileID: 0}
-    - target: {fileID: 7273629064436251163, guid: 431c426180f0cac42823e2b761f90176, type: 3}
-      propertyPath: m_IsActive
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
