@@ -10509,9 +10509,117 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1191771646200384032, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Name
+      value: SliceHitbox
+      objectReference: {fileID: 0}
+    - target: {fileID: 1191771646200384032, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2497944178788533143, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 2112867600}
+    - target: {fileID: 2812668463479870674, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.383
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437468876232838646, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.781
+      objectReference: {fileID: 0}
+    - target: {fileID: 3437468876232838646, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.646
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188980788916559575, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Size.y
+      value: 2.119002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4188980788916559575, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.059501052
+      objectReference: {fileID: 0}
     - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: m_Name
       value: ThePainter
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618707026506411012, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4821645334647248261, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5085735921221078611, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6927647141118323700, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.16
+      objectReference: {fileID: 0}
+    - target: {fileID: 8369411441780858969, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 5814a5da7c641a448a083add5b03e7b1, type: 2}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: 'managedReferences[-2]'
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: 'managedReferences[2595282218735894694]'
+      value: Assembly-CSharp TFOOL.Enemies.ProjectileAttack
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[2595282218735894694].shotPoint
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[2595282218735894694].attackName
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].shootSignal
+      value: PainterProjectileThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].chargeSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[2595282218735894694].projectileSpeed
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].projectileSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[2595282218735894694].projectilePrefab
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135147].animationStateName
+      value: RREnemyAThrow
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].windupAnimationState
+      value: RREnemyATeleportIn
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.dashForce
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940043314135156].hitBackdash.postDashDelay
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
+      propertyPath: managedReferences[3144940044914524242].preTeleportAnimationState
+      value: RREnemyATeleportOut
       objectReference: {fileID: 0}
     - target: {fileID: 8932670020235044768, guid: 24728ba6e355ef74c9276dcd00e45d0d, type: 3}
       propertyPath: 'managedReferences[3144940044914524242].manualTeleportPoints.Array.data[0]'
