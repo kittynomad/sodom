@@ -11,7 +11,6 @@ public class TestKillable : MonoBehaviour, IKillable
     [SerializeField] private ParticleSystem _bloodParticleSystem;
     [SerializeField] private Material _hitFlashMat;
     private SpriteRenderer _sR;
-    private PlayerBehaviors playerB;
     [SerializeField] private GameObject _bloodDeathFX;
 
     private float currentHealth;
@@ -19,7 +18,6 @@ public class TestKillable : MonoBehaviour, IKillable
     private void Start()
     {
         _sR = gameObject.GetComponent<SpriteRenderer>();
-        playerB = GameObject.FindAnyObjectByType<PlayerBehaviors>();
         currentHealth = _maxHealth;
     }
 
@@ -41,24 +39,25 @@ public class TestKillable : MonoBehaviour, IKillable
 
     public void OnKill(GameObject damageSource = null)
     {
-        float playerRightLook = 1;
+
         GameObject bloodParticle = Instantiate(_bloodParticleSystem.gameObject, transform.position, Quaternion.identity);
-        bloodParticle.GetComponent<ParticleSystem>().Play();
         GameObject bloodSmear = Instantiate(_bloodDeathFX, transform.position, Quaternion.identity);
-        if (!playerB.IsFacingRight())
-        {
-            bloodSmear.transform.localScale = new Vector3(-1,1,1);
-            playerRightLook = -1;
-        }
         GameObject corpse = Instantiate(_corpseObject, transform.position, transform.rotation);
+
+        bloodParticle.GetComponent<ParticleSystem>().Play();
+        
         if(damageSource != null)
         {
-            corpse.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(_corpseFlingStrengthX * playerRightLook, _corpseFlingStrengthY);
+            bool damageSourceIsRight = damageSource.transform.position.x > transform.position.x;
+            if (damageSourceIsRight) bloodSmear.transform.localScale = new Vector3(-1, 1, 1);
+            corpse.GetComponent<Rigidbody2D>().linearVelocity = new Vector2(_corpseFlingStrengthX * (damageSourceIsRight ? -1 : 1), _corpseFlingStrengthY);
         }
+
         if(gameObject.TryGetComponent(out MoneyDroppingObject mdo))
         {
             mdo.DropMoney();
         }
+
         Destroy(gameObject);
     }
     public IEnumerator HitFlash()
