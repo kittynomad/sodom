@@ -53,6 +53,7 @@ namespace TFOOL.Enemies.AI
                 movement.MoveSpeed = startingSpeed;
                 movement.SetMoveDirection(0);
                 attackerComp.OnHitEvent -= HandleHit;
+                enemy.ResetAnimation();
             }
 
             // When the enemy hits an enemy, flag it to backdash after the attack concludes.
@@ -81,7 +82,7 @@ namespace TFOOL.Enemies.AI
                 while(!ct.IsCancellationRequested && (timer < minChargeTime 
                     || (Mathf.Abs(enemy.ToTarget.x) > attackRange && timer < maxChargeTime)))
                 {
-                    Debug.Log(Mathf.Abs(enemy.ToTarget.x) > attackRange);
+                    //Debug.Log(Mathf.Abs(enemy.ToTarget.x) > attackRange);
 
                     timer += Time.fixedDeltaTime;
                     await Awaitable.FixedUpdateAsync(ct);
