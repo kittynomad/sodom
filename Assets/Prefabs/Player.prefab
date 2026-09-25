@@ -196,7 +196,7 @@ MonoBehaviour:
   _playerWalkAcceleration: 11
   _playerJumpForce: 30
   _playerWalkSpeedLimit: 11
-  _projectileSpeed: 100
+  _projectileSpeed: 200
   _hurtRecoveryPeriod: 1
   _customVelocityFalloffRate: 0.128
   _maxStamina: 100
@@ -214,9 +214,11 @@ MonoBehaviour:
   _hurtBox: {fileID: 3862160118748894185}
   _sprite: {fileID: 3519555628608411484}
   _anim: {fileID: 6515553039800913211}
+  _bulletSpawn: {fileID: 7872085182429718219}
   _projectile: {fileID: 984829486225534601, guid: 075c897b006af2841ac2281675014832, type: 3}
   _eatCorpseAnim: PlayerDevour
   _ammoCorpseAnim: PlayerHarvest
+  _shootGunAnim: PlayerShootStraightStatic
   facingDirection: 0
   _jumpStaticVFX: {fileID: 4719207145571531207, guid: f73a413d6ade82345a4ab89f399390f2, type: 3}
 --- !u!114 &1427404586909964195
@@ -325,6 +327,7 @@ Transform:
   m_Children:
   - {fileID: 9055226684425164179}
   - {fileID: 5608323281410961132}
+  - {fileID: 7872085182429718219}
   m_Father: {fileID: 3053939233233668686}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3519555628608411484
@@ -690,3 +693,34 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &8365950142062954273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7872085182429718219}
+  m_Layer: 0
+  m_Name: BulletPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7872085182429718219
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8365950142062954273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 7668041285061911429}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

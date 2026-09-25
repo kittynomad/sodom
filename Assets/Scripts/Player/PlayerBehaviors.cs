@@ -44,9 +44,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private SpriteRenderer _sprite;
     [SerializeField] private Animator _anim;
     private SwordController sc;
+    [SerializeField] private Transform _bulletSpawn;
     [SerializeField] private GameObject _projectile;
     [SerializeField] private string _eatCorpseAnim;
     [SerializeField] private string _ammoCorpseAnim;
+    [SerializeField] private string _shootGunAnim;
+    
  
     //components
     private Rigidbody2D rb;
@@ -252,7 +255,9 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         //fire projectile otherwise
         else if (CanFire)
         {
-            GameObject temp = Instantiate(_projectile, transform.position, Quaternion.identity);
+            //S_anim.SetBool("ShotBuffered", true);
+            await AnimationUtility.PlayAndAwaitAnimation(_shootGunAnim, _anim, destroyCancellationToken);
+            GameObject temp = Instantiate(_projectile, _bulletSpawn.position, Quaternion.identity);
             //fire towards mouse pos if mouseAim set to true
             if (mouseAim)
             {
