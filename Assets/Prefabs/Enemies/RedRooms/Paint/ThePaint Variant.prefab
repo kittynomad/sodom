@@ -162,6 +162,26 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -7715235980458656416, guid: 8c71b355c3294524291319a975f92dec, type: 3}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1316897519255561186, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_DrawMode
       value: 1
       objectReference: {fileID: 0}
@@ -315,15 +335,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5430439189447331819, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5430439189447331819, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5430439189447331819, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.8
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: rb

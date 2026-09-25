@@ -468,7 +468,7 @@ GameObject:
   - component: {fileID: 7497974442560162974}
   - component: {fileID: 9037844592180956653}
   m_Layer: 11
-  m_Name: Square
+  m_Name: PlayerMeleeHitbox
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
