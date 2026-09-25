@@ -29,6 +29,7 @@ namespace TFOOL.Enemies.AI
         private int facingDirection = 1;
 
         private string animationSignal;
+        private string _baseAnimationName;
 
         #region Properties
         public EnemyState CurrentState => currentState;
@@ -73,6 +74,8 @@ namespace TFOOL.Enemies.AI
                     sensor.EntitySenseEvent += OnSense;
                 }
             }
+
+            _baseAnimationName = Animator.GetCurrentAnimatorClipInfo(0)[0].clip.name;
         }
 
         // Set to the first state by default.
@@ -229,6 +232,11 @@ namespace TFOOL.Enemies.AI
         public void PlayAnimation(string animationName)
         {
             enemyAnimator.Play(animationName);
+        }
+
+        public void ResetAnimation()
+        {
+            enemyAnimator.Play(_baseAnimationName);
         }
 
         /// <summary>
