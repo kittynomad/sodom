@@ -169,3 +169,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c6be97003fe38a499f3999dfb9c2b40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ProjectileController
+  _projectileDamage: 3
