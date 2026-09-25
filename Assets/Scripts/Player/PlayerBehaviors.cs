@@ -99,13 +99,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     private void Start()
     {
-        //set component references
-        rb = gameObject.GetComponent<Rigidbody2D>();
-        pc = gameObject.GetComponent<PlayerController>();
-        sc = _hurtBox.GetComponent<SwordController>();
-        pl = gameObject.GetComponent<PlayerLoadout>();
-        pr = gameObject.GetComponent<PlayerResources>();
-        coll = gameObject.GetComponent<Collider2D>();
+        SetComponentReferences();
 
         //set health and ammo
         CurrentHealth = _maxHealth / 2;
@@ -118,12 +112,26 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             transform.position = pos;
         }
     }
+
+    private void SetComponentReferences()
+    {
+        //set component references
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        pc = gameObject.GetComponent<PlayerController>();
+        sc = _hurtBox.GetComponent<SwordController>();
+        pl = gameObject.GetComponent<PlayerLoadout>();
+        pr = gameObject.GetComponent<PlayerResources>();
+        coll = gameObject.GetComponent<Collider2D>();
+    }
     public void FixedUpdate()
     {
+        //taper off player velocity when not moving
         if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0 && !meleeChaining)
             rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
+        //flip player based on movement direction
         if (pc.MovementDirection.x != 0 && meleeTurnWindow)
             transform.localScale = new Vector3(pc.MovementDirection.x, 1f, 1f);
+
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && (Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit || pc.MovementDirection.x != transform.localScale.x) && !moveLocked)
         {
@@ -133,12 +141,9 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
                     _anim.SetBool("IsTurning", true);
                 facingDirection = pc.MovementDirection.x;
             }
+            //set player velocity for input
             rb.linearVelocityX = pc.MovementDirection.x * _playerWalkAcceleration * MoveModifier;
         }
-            //rb.AddForce(new Vector2(pc.MovementDirection.x * _playerWalkAcceleration, 0f));
-        
-            //set hurtBox pos while not attacking
-        //if (!IsAttacking) _hurtBox.transform.localPosition = pc.MovementDirection * 0.5f;
 
         //ensure player keeps consistent y velocity while mid ground pound
         if (pounding) rb.linearVelocity = new Vector2(rb.linearVelocityX, -1 * _poundStrength);
@@ -165,6 +170,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     public void JumpBehavior()
     {
+        //only jump if there's enough stamina
         if(UseStamina(_jumpStaminaCost))
         {
             //player gets un-anchored by jumping
@@ -457,17 +463,6 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         _anim.SetBool("AttackBuffered", true);
         print("attack buffered");
         yield return null;
-        //if (IsGrounded())
-        //{
-        //    _anim.SetBool("AttackBuffered", true);
-        //}
-        //else
-        //{
-        //    _hurtBox.transform.localPosition = pc.MovementDirection * 1.5f;
-        //    StartAttack();
-        //    yield return new WaitForSeconds(0.5f);
-        //    EndAttack();
-        //}
     }
 
     public IEnumerator StaminaRegenCoroutine()
