@@ -17,6 +17,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ArcadiasRoomTestScenes/Room2.unity
     guid: c0d47b812c2dd5a4fab6781c124ae7ac
+  - enabled: 1
+    path: Assets/Scenes/ArcadiasRoomTestScenes/Room3.unity
+    guid: 21b9a425632ea7d44b4b351865f24336
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
   m_UseUCBPForAssetBundles: 0

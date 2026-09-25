@@ -1070,7 +1070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb16178d263ae4cbdd683102b2941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTransition
-  _destinationScene: 2
+  _destinationRoom: {fileID: 11400000, guid: b72793993d8f79e4a9b49ed0469161f2, type: 2}
   _doorIndex: 0
   _destinationIndex: 0
 --- !u!61 &503369204
@@ -1128,7 +1128,7 @@ Transform:
   m_GameObject: {fileID: 503369202}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.67, y: -1, z: 0}
+  m_LocalPosition: {x: 7.17, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1164,9 +1164,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb16178d263ae4cbdd683102b2941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTransition
-  _destinationScene: 2
-  _doorIndex: 0
-  _destinationIndex: 0
+  _destinationRoom: {fileID: 11400000, guid: add09ed40e085af4ca2f9bd0d5a3097f, type: 2}
+  _doorIndex: 1
+  _destinationIndex: 1
 --- !u!61 &852567490
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1237,6 +1237,14 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4878342999339108297, guid: 309d218208d12484d90285304535505d, type: 3}
+      propertyPath: m_Size.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878342999339108297, guid: 309d218208d12484d90285304535505d, type: 3}
+      propertyPath: m_Size.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 4878342999339108297, guid: 309d218208d12484d90285304535505d, type: 3}
       propertyPath: m_Offset.x
       value: 0
       objectReference: {fileID: 0}
@@ -1246,11 +1254,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5711176994465229072, guid: 309d218208d12484d90285304535505d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 15
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 5711176994465229072, guid: 309d218208d12484d90285304535505d, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.5
       objectReference: {fileID: 0}
     - target: {fileID: 5711176994465229072, guid: 309d218208d12484d90285304535505d, type: 3}
       propertyPath: m_LocalPosition.z

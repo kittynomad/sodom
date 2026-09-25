@@ -12,7 +12,7 @@ using UnityEngine;
 
 public class RoomTransition : MonoBehaviour
 {
-    [SerializeField, Scene] private int _destinationScene;
+    [SerializeField] private RoomData _destinationRoom;
     [SerializeField, Range(0, 10)] private byte _doorIndex;
     [SerializeField, Range(0, 10)] private byte _destinationIndex;
 }

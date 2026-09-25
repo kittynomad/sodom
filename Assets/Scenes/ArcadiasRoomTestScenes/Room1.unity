@@ -222,7 +222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb16178d263ae4cbdd683102b2941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTransition
-  _destinationScene: 2
+  _destinationRoom: {fileID: 11400000, guid: f5f7ee1de995fb24ab5f1b8fcccc73a6, type: 2}
   _doorIndex: 0
   _destinationIndex: 0
 --- !u!61 &458447822
@@ -280,7 +280,7 @@ Transform:
   m_GameObject: {fileID: 458447820}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.67, y: -1, z: 0}
+  m_LocalPosition: {x: 7.17, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

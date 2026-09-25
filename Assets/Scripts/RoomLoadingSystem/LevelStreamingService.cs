@@ -7,6 +7,7 @@
 // Brief Description : Controls loading and unloading levels based on player location.
 *****************************************************************************/
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelStreamingService : MonoBehaviour
 {
@@ -16,6 +17,11 @@ public class LevelStreamingService : MonoBehaviour
     }
 
     public void Deinitialize()
+    {
+
+    }
+
+    public void SetRoom(RoomData room)
     {
 
     }
