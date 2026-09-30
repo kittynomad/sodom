@@ -6,20 +6,13 @@
 //
 // Brief Description : 
 *****************************************************************************/
+using TFOOL.ManagersAndServices;
 using UnityEngine;
 
-public class WorldManager : MonoBehaviour
+namespace TFOOL.World
 {
-    [SerializeField] private LevelStreamingService levelStreamingService;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Awake()
+    public class WorldManager : Manager
     {
-        levelStreamingService.Initialize();
-    }
-
-    private void OnDestroy()
-    {
-        levelStreamingService.Deinitialize();
+        
     }
 }

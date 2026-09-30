@@ -9,9 +9,13 @@
 using NaughtyAttributes;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "RoomData", menuName = "Scriptable Objects/Room Data")]
-public class RoomData : ScriptableObject
+namespace TFOOL.World
 {
-    [SerializeField, Scene] private int thisScene;
-    [SerializeField, Scene] private int[] adjacentScenes;
+    [CreateAssetMenu(fileName = "RoomData", menuName = "Scriptable Objects/Room Data")]
+    public class RoomData : ScriptableObject
+    {
+        [SerializeField, Scene] private int thisScene;
+        [SerializeField, Scene] private int[] adjacentScenes;
+    }
+
 }
