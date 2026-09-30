@@ -6,23 +6,23 @@
 //
 // Brief Description : Controls loading and unloading levels based on player location.
 *****************************************************************************/
+using TFOOL.ManagersAndServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LevelStreamingService : MonoBehaviour
+namespace TFOOL.World
 {
-    public void Initialize()
+    public class LevelStreamingService : Service
     {
+        public override async Awaitable Initialize()
+        {
+            
+        }
 
+        public static void SetCurrentRoom(RoomData room)
+        {
+
+        }
     }
 
-    public void Deinitialize()
-    {
-
-    }
-
-    public void SetRoom(RoomData room)
-    {
-
-    }
 }
