@@ -23,8 +23,7 @@ MonoBehaviour:
     values:
     - _fieldName: _responses
       _node: {fileID: -4188594432712411247}
-      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections: []
       _direction: 1
       _connectionType: 0
@@ -43,8 +42,7 @@ MonoBehaviour:
       _dynamic: 0
     - _fieldName: _responses 0
       _node: {fileID: -4188594432712411247}
-      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _lastNode
         node: {fileID: 1640283381098324180}
@@ -55,8 +53,7 @@ MonoBehaviour:
       _dynamic: 1
     - _fieldName: _responses 1
       _node: {fileID: -4188594432712411247}
-      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral,
-        PublicKeyToken=null
+      _typeQualifiedName: XNode.Node[], XNode, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
       connections:
       - fieldName: _lastNode
         node: {fileID: 6487147675409418310}
