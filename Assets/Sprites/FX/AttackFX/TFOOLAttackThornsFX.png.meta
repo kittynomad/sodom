@@ -1,0 +1,331 @@
+fileFormatVersion: 2
+guid: 04c8c4409ed396446af48b2ebc11f816
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 632320242314632532
+    second: TFOOLAttackThornsFX_0
+  - first:
+      213: 7660095926391659248
+    second: TFOOLAttackThornsFX_1
+  - first:
+      213: -2332064168684805397
+    second: TFOOLAttackThornsFX_2
+  - first:
+      213: 3276077874668672508
+    second: TFOOLAttackThornsFX_3
+  - first:
+      213: 2550626290171933557
+    second: TFOOLAttackThornsFX_4
+  - first:
+      213: 6239710758732173753
+    second: TFOOLAttackThornsFX_5
+  - first:
+      213: -1382184896035890381
+    second: TFOOLAttackThornsFX_6
+  - first:
+      213: -505711692053591550
+    second: TFOOLAttackThornsFX_7
+  - first:
+      213: -6711506430751864613
+    second: TFOOLAttackThornsFX_8
+  - first:
+      213: -2419705132062129219
+    second: TFOOLAttackThornsFX_9
+  - first:
+      213: -3877932296165767783
+    second: TFOOLAttackThornsFX_10
+  - first:
+      213: 1322166627164325762
+    second: TFOOLAttackThornsFX_11
+  - first:
+      213: -2983883552241898838
+    second: TFOOLAttackThornsFX_12
+  - first:
+      213: -3305215210269315742
+    second: TFOOLAttackThornsFX_13
+  - first:
+      213: 129556544513837190
+    second: TFOOLAttackThornsFX_14
+  - first:
+      213: 6268159083103271296
+    second: TFOOLAttackThornsFX_15
+  - first:
+      213: 258104654098252488
+    second: TFOOLAttackThornsFX_16
+  - first:
+      213: -6675487419446876572
+    second: TFOOLAttackThornsFX_17
+  - first:
+      213: -260336914662685278
+    second: TFOOLAttackThornsFX_18
+  - first:
+      213: 6138022408952571741
+    second: TFOOLAttackThornsFX_19
+  - first:
+      213: 3299690472658935020
+    second: TFOOLAttackThornsFX_20
+  - first:
+      213: -3331260701653190614
+    second: TFOOLAttackThornsFX_21
+  - first:
+      213: 946228251910172234
+    second: TFOOLAttackThornsFX_22
+  - first:
+      213: 8029785059026013310
+    second: TFOOLAttackThornsFX_23
+  - first:
+      213: 6649473623935048698
+    second: TFOOLAttackThornsFX_24
+  - first:
+      213: -3410124210358465247
+    second: TFOOLAttackThornsFX_25
+  - first:
+      213: -5968369122072660211
+    second: TFOOLAttackThornsFX_26
+  - first:
+      213: 1234040646339757258
+    second: TFOOLAttackThornsFX_27
+  - first:
+      213: 4557495518136237578
+    second: TFOOLAttackThornsFX_28
+  - first:
+      213: -5715387924198566962
+    second: TFOOLAttackThornsFX_29
+  - first:
+      213: -215074264566169030
+    second: TFOOLAttackThornsFX_30
+  - first:
+      213: 7550545224369842906
+    second: TFOOLAttackThornsFX_31
+  - first:
+      213: 1234106207820282307
+    second: TFOOLAttackThornsFX_32
+  - first:
+      213: -1971520705012008261
+    second: TFOOLAttackThornsFX_33
+  - first:
+      213: 1648821152758389835
+    second: TFOOLAttackThornsFX_34
+  - first:
+      213: -3089882298204380127
+    second: TFOOLAttackThornsFX_35
+  - first:
+      213: 4850764948579875716
+    second: TFOOLAttackThornsFX_36
+  - first:
+      213: 2370079066235981057
+    second: TFOOLAttackThornsFX_37
+  - first:
+      213: 3389748344590064356
+    second: TFOOLAttackThornsFX_38
+  - first:
+      213: -718233263273937305
+    second: TFOOLAttackThornsFX_39
+  - first:
+      213: 9089907636481106606
+    second: TFOOLAttackThornsFX_40
+  - first:
+      213: 3251408184007943809
+    second: TFOOLAttackThornsFX_41
+  - first:
+      213: -8603535507440273226
+    second: TFOOLAttackThornsFX_42
+  - first:
+      213: -9023934110865964813
+    second: TFOOLAttackThornsFX_43
+  - first:
+      213: -1809130117189872753
+    second: TFOOLAttackThornsFX_44
+  - first:
+      213: -3564282874329181148
+    second: TFOOLAttackThornsFX_45
+  - first:
+      213: -2449839177017452221
+    second: TFOOLAttackThornsFX_46
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationMethod: 0
+  spriteTessellationDetail: -1
+  spriteGeometrySubdivision: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TFOOLAttackThornsFX_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 45dd37309e376c800800000000000000
+      internalID: 632320242314632532
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLAttackThornsFX_1
+      rect:
+        serializedVersion: 2
+        x: 150
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0faddfdf8a02e4a60800000000000000
+      internalID: 7660095926391659248
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TFOOLAttackThornsFX_2
+      rect:
+        serializedVersion: 2
+        x: 300
+        y: 0
+        width: 150
+        height: 150
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: be220209ef7d2afd0800000000000000
+      internalID: -2332064168684805397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 3b87369160cba0e4c8d3de308fedd3cd
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":3.0,"y":1.0},"gridSpriteSize":{"x":150.0,"y":150.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+    nameFileIdTable:
+      TFOOLAttackThornsFX_0: 632320242314632532
+      TFOOLAttackThornsFX_1: 7660095926391659248
+      TFOOLAttackThornsFX_2: -2332064168684805397
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
