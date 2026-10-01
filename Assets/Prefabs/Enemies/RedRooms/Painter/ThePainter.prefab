@@ -252,6 +252,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: m_Icon
+      value: 
+      objectReference: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+    - target: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: m_Name
       value: ThePainter
       objectReference: {fileID: 0}

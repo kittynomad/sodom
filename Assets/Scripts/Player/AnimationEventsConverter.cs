@@ -7,6 +7,7 @@ public class AnimationEventsConverter : MonoBehaviour
     private PlayerBehaviors pb;
     private SpriteRenderer sr;
     private Animator anim;
+    [SerializeField] private ParticleSystem _SparkPS;
     [SerializeField] private CameraShake _camShake;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -14,6 +15,11 @@ public class AnimationEventsConverter : MonoBehaviour
         pb = GetComponentInParent<PlayerBehaviors>();
         sr = gameObject.GetComponent<SpriteRenderer>();
         anim = gameObject.GetComponent<Animator>();
+    }
+
+    public void PlaySparks()
+    {
+        _SparkPS.Play();
     }
 
     public void AnimBoolFalse(string s)
