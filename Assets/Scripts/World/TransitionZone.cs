@@ -14,6 +14,8 @@ namespace TFOOL.World
 {
     public class TransitionZone : MonoBehaviour
     {
+        [SerializeField, Tooltip("The room this transition zone is in.")]
+        private RoomData _currentRoom;
         [SerializeField, Tooltip("Information about the room that this transition zone connects to.")] 
         private RoomData _destinationRoom;
         [SerializeField, Range(0, 10), Tooltip("The index of this transition zone.")] 
@@ -21,18 +23,26 @@ namespace TFOOL.World
         [SerializeField, Range(0, 10), Tooltip("The index of the transition zone that the player should spawn at in the next scene.")] 
         private byte _destinationIndex;
 
+        private bool currentLoadingZone;
+
+        public byte DoorIndex => _doorIndex;
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
             if (collision.gameObject.CompareTag("Player"))
             {
-
+                // Transition to the destination room if the player is currently in this room.
+                currentLoadingZone = LevelStreamingService.EnterNewRoom(_currentRoom, _destinationRoom, _destinationIndex);
             }
         }
 
-        private void OnGUI()
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            
+            if (collision.gameObject.CompareTag("Player") && currentLoadingZone)
+            {
+                // Only allow a room transition to happen again once the player has left the loading zone.
+                LevelStreamingService.ResetTransitionability();
+            }
         }
     }
 

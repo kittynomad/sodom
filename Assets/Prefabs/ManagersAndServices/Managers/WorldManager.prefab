@@ -47,3 +47,4 @@ MonoBehaviour:
   ServiceReferences:
   - {fileID: 5753252056046454262, guid: 11425928956831c45a53509ccd910724, type: 3}
   ServiceInstances: []
+  persistentObjectsScene: PersistentData

@@ -14,14 +14,36 @@ namespace TFOOL.World
 {
     public class LevelStreamingService : Service
     {
+        private static RoomData currentRoom;
+        private static bool canTransition;
+
         public override async Awaitable Initialize()
+        {
+            canTransition = true;
+        }
+
+        public static bool EnterNewRoom(RoomData fromRoom, RoomData toRoom, byte entryDoor)
+        {
+            if (fromRoom != currentRoom)
+            {
+                SetRoom(toRoom, entryDoor);
+                canTransition = false;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public static void SetRoom(RoomData toRoom, byte entryDoor)
         {
             
         }
 
-        public static void SetCurrentRoom(RoomData room)
+        public static void ResetTransitionability()
         {
-
+            canTransition = true;
         }
     }
 
