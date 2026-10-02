@@ -7,7 +7,10 @@ public class CorpseController : InteractableEntity
     [SerializeField] private float _damageValue;
     [SerializeField] private GameObject _destroyParticles;
     [SerializeField] private Vector2 _flingStrength;
+    [SerializeField] private Animator _anim;
+    [SerializeField] private string _landAnimationName;
 
+    public bool initialFling = true;
     private bool discarded = false;
 
     public float HealthValue { get => _healthValue; set => _healthValue = value; }
@@ -18,7 +21,7 @@ public class CorpseController : InteractableEntity
 
     private void Start()
     {
-        //gameObject.GetComponent<Rigidbody2D>().linearVelocity = _flingStrength;
+        gameObject.GetComponent<Rigidbody2D>().linearVelocity = _flingStrength;
     }
     public void DeathFling()
     {
@@ -28,6 +31,14 @@ public class CorpseController : InteractableEntity
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (initialFling && collision.gameObject.layer == 7)
+        {
+            initialFling = false;
+            if (_anim != null)
+            {
+                _anim.Play(_landAnimationName);
+            }
+        }
         if (Discarded)
         {
             if(collision.gameObject.TryGetComponent(out IKillable ik))

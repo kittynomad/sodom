@@ -209,7 +209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].windupAnimationState
-      value: 
+      value: RREnemyATeleportOut
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940043314135156].hitBackdash.dashForce
@@ -221,7 +221,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].preTeleportAnimationState
-      value: 
+      value: RREnemyATeleportIn
       objectReference: {fileID: 0}
     - target: {fileID: 1703320211380452505, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: managedReferences[3144940044914524242].manualTeleportPoints.Array.size
@@ -263,6 +263,14 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 5631141839943281862}
+    - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: _corpseObject
+      value: 
+      objectReference: {fileID: 7112556040944185853, guid: 06da3f51ba902fc45b7abb73ab19868c, type: 3}
+    - target: {fileID: 5692033457107310766, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      propertyPath: _corpseFlingStrength
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       propertyPath: walkSpeed
       value: 5
