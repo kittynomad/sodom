@@ -47,4 +47,5 @@ MonoBehaviour:
   ServiceReferences:
   - {fileID: 5753252056046454262, guid: 11425928956831c45a53509ccd910724, type: 3}
   ServiceInstances: []
-  persistentObjectsScene: PersistentData
+  persistentObjectsScene: WorldPersistentData
+  defaultRoom: {fileID: 11400000, guid: b72793993d8f79e4a9b49ed0469161f2, type: 2}

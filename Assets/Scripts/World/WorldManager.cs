@@ -26,18 +26,18 @@ namespace TFOOL.World
 
         public override async Awaitable Initialize()
         {
-            await base.Initialize();
-            
             if (instance != null && instance != this)
-            {
-                instance = this;
-            }
-            else
             {
                 Debug.LogError("Duplicate WorldManager Found");
                 Destroy(gameObject);
                 return;
             }
+            else
+            {
+                instance = this;
+            }
+
+            await base.Initialize();
         }
 
         public override void DeInitialize()
@@ -61,17 +61,28 @@ namespace TFOOL.World
 
                 // Load the persistent data (Non-additively)
                 AsyncOperation persistentOp = SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
-                // Wait until both scenes are loaded.
+                // Wait until the scene is loaded.
                 await persistentOp;
 
                 // Delegate to the LevelStreamingService.
-
+                await LevelStreamingService.SetRoom(GetStartingRoom());
+                // Move the player to the right spot.
 
             }
             catch (Exception e)
             {
                 Debug.LogException(e);
             }            
+        }
+
+        /// <summary>
+        /// gets a service of a given type.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        private T GetService<T>() where T : Service
+        {
+            return ServiceInstances.Find(x => x is T) as T;
         }
 
 
