@@ -14,7 +14,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6460669818467249783, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: m_FlipX
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6460669818467249783, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: m_Sprite
@@ -32,13 +32,21 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6460669818467249783, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6460669818467249783, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_SpriteSortPoint
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7276155714481435695, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.43183
+      value: 13.51
       objectReference: {fileID: 0}
     - target: {fileID: 7276155714481435695, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.23143
+      value: 2.61
       objectReference: {fileID: 0}
     - target: {fileID: 7276155714481435695, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: m_LocalPosition.z
@@ -73,9 +81,25 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8130507467533166095, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
-      propertyPath: m_Offset.y
-      value: -0.5
+      propertyPath: m_Size.x
+      value: 1.1588678
       objectReference: {fileID: 0}
+    - target: {fileID: 8130507467533166095, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_Size.y
+      value: 1.9065478
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130507467533166095, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.0420537
+      objectReference: {fileID: 0}
+    - target: {fileID: 8130507467533166095, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.54201996
+      objectReference: {fileID: 0}
+    - target: {fileID: 8797574843151571750, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 6200000, guid: d7bb6d6eeb3f55d4b897bb28d6625795, type: 2}
     - target: {fileID: 8901502517468431408, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: _anim
       value: 
@@ -86,11 +110,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8901502517468431408, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: _flingStrength.x
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8901502517468431408, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: _flingStrength.y
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8901502517468431408, guid: 6043ff0e0fda71541a4663716af4e3cd, type: 3}
       propertyPath: _landAnimationName
