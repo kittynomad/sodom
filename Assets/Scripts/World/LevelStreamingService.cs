@@ -34,6 +34,16 @@ namespace TFOOL.World
         {
             _mainCts.Cancel();
         }
+        
+        /// <summary>
+        /// Checks if a 
+        /// </summary>
+        /// <param name="toCompare"></param>
+        /// <returns></returns>
+        public static bool IsCurrent(RoomData toCompare)
+        {
+            return toCompare == currentRoom;
+        }
 
         /// <summary>
         /// Loads a new room from a given current room.
@@ -42,17 +52,11 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         /// <param name="entryDoor"></param>
         /// <returns></returns>
-        public static bool EnterNewRoom(RoomData toRoom, byte entryDoor)
+        public static void EnterNewRoom(RoomData toRoom, byte entryDoor)
         {
             if (toRoom != currentRoom)
             {
                 EnterRoom(toRoom, entryDoor);
-                // Move the player to the given entry door.
-                return true;
-            }
-            else
-            {
-                return false;
             }
         }
 

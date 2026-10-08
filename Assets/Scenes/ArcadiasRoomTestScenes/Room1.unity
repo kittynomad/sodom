@@ -222,8 +222,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49cb16178d263ae4cbdd683102b2941d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTransition
-  _currentRoom: {fileID: 11400000, guid: b72793993d8f79e4a9b49ed0469161f2, type: 2}
   _destinationRoom: {fileID: 11400000, guid: f5f7ee1de995fb24ab5f1b8fcccc73a6, type: 2}
+  _direction: 0
   _doorIndex: 0
   _destinationIndex: 0
 --- !u!61 &458447822
