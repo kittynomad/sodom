@@ -150,7 +150,7 @@ MonoBehaviour:
   _ammoValue: 2
   _damageValue: 5
   _destroyParticles: {fileID: 4839642909253531074, guid: 30974142583440d42aaf6a4c4f78aae8, type: 3}
-  _flingStrength: {x: 7, y: 4}
+  _flingStrength: {x: 5, y: 3}
   _anim: {fileID: 5119774968810218080}
   _landAnimationName: RREnemyDCorpseLand
   initialFling: 1
