@@ -1,0 +1,17 @@
+/*****************************************************************************
+// File Name : ShowIfNullAttribute.cs
+// Author : Arcadia Koederitz
+// Creation Date : 3/29/2025
+// Last Modified : 3/29/2025
+//
+// Brief Description : Hides a field if it's a not-null object reference.
+*****************************************************************************/
+using UnityEngine;
+
+namespace AriUtils
+{
+    public class ShowIfNullAttribute : PropertyAttribute
+    {
+
+    }
+}
