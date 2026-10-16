@@ -35,6 +35,7 @@ namespace TFOOL.World
             else
             {
                 instance = this;
+                DontDestroyOnLoad(this);
             }
 
             await base.Initialize();
