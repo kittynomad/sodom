@@ -16,6 +16,7 @@ public class SwordController : MonoBehaviour
     [SerializeField] private float detachSpeed = 5f;
     [SerializeField] private float _hitDamage = 1f;
     [SerializeField] private GameObject _meleeChewFX;
+    [SerializeField] private GameObject _meleeThornFX;
 
     public bool HasCorpseAttached { get => attachedObject != null; }
     public GameObject AttachedObject { get => attachedObject; set => attachedObject = value; }
@@ -34,13 +35,32 @@ public class SwordController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //deal damage while attacking
-        if (pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
+        if (pb.IsAttacking)
         {
-            Vector2 contactPoint = collision.ClosestPoint(transform.position);
-            Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
-            Instantiate(_meleeChewFX, contactPoint, customRotation);
-            ik.OnDamage(_hitDamage, gameObject);
+            if (collision.gameObject.TryGetComponent(out IKillable ik))
+            {
+                Vector2 contactPoint = collision.ClosestPoint(transform.position);
+                Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
+                Instantiate(_meleeChewFX, contactPoint, customRotation);
+                Instantiate(_meleeThornFX, contactPoint, customRotation);
+                ik.OnDamage(_hitDamage, gameObject);
+            }
+            //create the thorn vfx regardless of what player hits for feedback
+            else
+            {
+                Vector2 contactPoint = collision.ClosestPoint(transform.position);
+                Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
+                Instantiate(_meleeThornFX, contactPoint, customRotation);
+            }
         }
+        //if (pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
+        //{
+        //    Vector2 contactPoint = collision.ClosestPoint(transform.position);
+        //    Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
+        //    Instantiate(_meleeChewFX, contactPoint, customRotation);
+        //    Instantiate(_meleeThornFX, contactPoint, customRotation);
+        //    ik.OnDamage(_hitDamage, gameObject);
+        //}
     }
 
     public bool TryAttachCorpse(GameObject corpse)

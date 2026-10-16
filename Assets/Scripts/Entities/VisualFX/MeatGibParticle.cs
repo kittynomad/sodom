@@ -18,7 +18,7 @@ public class MeatGibParticle : MonoBehaviour
 
         for(int i = 0; i < num; i++)
         {
-            Instantiate(_gibSplatFX, collisionEvents[i].intersection, Quaternion.identity);
+            Instantiate(_gibSplatFX, collisionEvents[i].intersection, Quaternion.Euler(0f, 0f, 0f));
         }
     }
 }
