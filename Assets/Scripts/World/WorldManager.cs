@@ -26,19 +26,11 @@ namespace TFOOL.World
 
         public override async Awaitable Initialize()
         {
-            if (instance != null && instance != this)
+            if (SingletonUtility.SetSingleton(ref instance, this))
             {
-                Debug.LogError("Duplicate WorldManager Found");
-                Destroy(gameObject);
-                return;
-            }
-            else
-            {
-                instance = this;
                 DontDestroyOnLoad(this);
+                await base.Initialize();
             }
-
-            await base.Initialize();
         }
 
         public override void DeInitialize()

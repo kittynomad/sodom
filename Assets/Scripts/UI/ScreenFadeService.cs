@@ -16,9 +16,15 @@ namespace TFOOL.UI
     public class ScreenFadeService : Service
     {
         [SerializeField, BoxGroup("References")] private Image fadeImage;
+
+        private static ScreenFadeService instance;
+
         public override async Awaitable Initialize()
         {
-            
+            if (SingletonUtility.SetSingleton(ref instance, this))
+            {
+
+            }
         }
     }
 }
