@@ -6,7 +6,8 @@
 //
 // Brief Description : Main component that controls enemies based on the settings of an EnemyAI Object.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
+using NaughtyAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
@@ -17,7 +18,7 @@ namespace TFOOL.Enemies.AI
     {
         // Serialized Fields
         [SerializeField] private Animator enemyAnimator;
-        [SerializeField, ShowNestedEditor] private EnemyAI ai;
+        [SerializeField, Expandable] private EnemyAI ai;
 
         private EnemyState currentState;
         private CancellationTokenSource stateCanceller;

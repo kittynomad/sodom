@@ -7,7 +7,9 @@
 // Brief Description : Draws a custom dropdown for an abstract base class and any relevant serialized properties.
 // Based on an article at: https://medium.com/@modyari/unity-workflow-customization-robust-custom-dropdowns-to-unlock-manageable-architecture-f16c183b993a 
 *****************************************************************************/
+using Codice.Client.Common.GameUI;
 using System;
+using TFOOL.Enemies;
 using UnityEditor;
 using UnityEngine;
 
@@ -30,11 +32,14 @@ namespace AriUtils.Editor
             if (editorDropdown == null)
             {
                 ClassDropdownAttribute dda = (attribute as ClassDropdownAttribute);
-                Type baseType = fieldInfo.FieldType;
+                Type baseType = GetClassType(); 
+                
                 bool ClassFilter(Type type)
                 {
                     return EditorUtils.IsClassOrSubclass(baseType, type);
                 }
+
+                //Debug.Log($"Type: {baseType}.  IsSubclass: {EditorUtils.IsClassOrSubclass(baseType, typeof(ProjectileAttack))}");
 
                 editorDropdown = new EditorClassDropdown(ClassFilter, property, dda.RestrictAssemblies ? baseType : null);
            }
@@ -52,8 +57,19 @@ namespace AriUtils.Editor
         {
             return EditorUtils.GetDynamicPropertyHeight(property);
         }
+
+        private Type GetClassType()
+        {
+            Type baseType = fieldInfo.FieldType;
+            if (baseType.HasElementType)
+            {
+                baseType = baseType.GetElementType();
+            }
+            return baseType;
+        }
     }
 }
+
 
 
 // Filter by allowed and excluded types.

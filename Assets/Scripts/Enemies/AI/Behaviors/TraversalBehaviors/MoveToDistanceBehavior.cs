@@ -6,7 +6,7 @@
 //
 // Brief Description : Moves the enemy to be within a certain distance range of it's target.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using UnityEngine;
 

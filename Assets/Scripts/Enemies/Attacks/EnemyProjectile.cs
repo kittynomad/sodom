@@ -6,7 +6,7 @@
 //
 // Brief Description : Base class for enemy projectiles.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Collections;
 using UnityEngine;
 

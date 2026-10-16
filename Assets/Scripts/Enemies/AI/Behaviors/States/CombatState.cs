@@ -6,7 +6,7 @@
 //
 // Brief Description : Base combat state to allow for easier selection.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Linq;
 using UnityEngine;
@@ -16,7 +16,7 @@ namespace TFOOL.Enemies.AI
     [System.Serializable]
     public abstract class CombatState : EnemyState
     {
-        [SerializeReference, ClassDropdown(typeof(AttackBehavior))] protected AttackBehavior[] attacks;
+        [SerializeReference, ClassDropdown] protected AttackBehavior[] attacks;
 
         public override Color DebugColor => Color.red;
 

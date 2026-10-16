@@ -6,7 +6,7 @@
 //
 // Brief Description : Base combat state logic for grounded enemies.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using UnityEngine;
 

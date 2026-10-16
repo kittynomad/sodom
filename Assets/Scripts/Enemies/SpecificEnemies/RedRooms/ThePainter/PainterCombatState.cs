@@ -9,7 +9,7 @@
 using UnityEngine;
 using System.Threading;
 using System;
-using CustomAttributes;
+using AriUtils;
 
 namespace TFOOL.Enemies.AI
 {

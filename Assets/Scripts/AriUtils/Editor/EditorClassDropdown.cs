@@ -116,12 +116,14 @@ namespace AriUtils.Editor
         {
             foreach (Type type in assembly.GetTypes())
             {
+                //Debug.Log($"Type: {type.Name}.  IsInterface: {type.IsInterface}.  IsAbstract: {type.IsAbstract}.  Matches Class: {classMatcher(type)}");
                 // By default, filter out abstract classes and interfaces (as we cannot make instances of them)
                 if (type.IsInterface || type.IsAbstract || !classMatcher(type))
                 {
+                    
                     continue;
                 }
-
+                
                 // Store the type and the type's name for use in the dropdown.
                 selectionTypes.Add(type);
                 string displayName = type.Name;

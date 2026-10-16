@@ -6,7 +6,7 @@
 //
 // Brief Description : Teleport attack for the red rooms Painter.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Threading;
 using UnityEngine;

@@ -6,7 +6,7 @@
 //
 // Brief Description : Controls the running slice attack of the red rooms Painter.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Threading;
 using UnityEngine;

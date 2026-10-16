@@ -6,7 +6,7 @@
 //
 // Brief Description : Attack that fires a basic projectile
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using TFOOL.Enemies.AI;
 using Unity.VisualScripting;

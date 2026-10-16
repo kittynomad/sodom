@@ -6,7 +6,7 @@
 //
 // Brief Description : Reroute script that handles enemy animation events.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using NaughtyAttributes;
 using TFOOL.Enemies.AI;
 using UnityEngine;
