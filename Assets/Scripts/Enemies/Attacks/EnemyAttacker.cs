@@ -7,7 +7,7 @@
 // Brief Description : Component script that controls all the attacks an enemy can use and any parameters/references
 // they have.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -18,7 +18,7 @@ namespace TFOOL.Enemies
 {
     public class EnemyAttacker : MonoBehaviour
     {
-        [SerializeReference, ClassDropdown(typeof(EnemyAttack))] private EnemyAttack[] attacks;
+        [SerializeReference, ClassDropdown] private EnemyAttack[] attacks;
 
         private readonly Dictionary<string, EnemyAttack> attackDict = new Dictionary<string, EnemyAttack>();
 

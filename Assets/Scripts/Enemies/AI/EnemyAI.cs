@@ -8,7 +8,7 @@
 // Done this way to allow for 1 object that controls all enemies of a certain type, instead of each enemy having it's
 // own copy of the AI.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using UnityEngine;
 
@@ -17,8 +17,8 @@ namespace TFOOL.Enemies.AI
     [CreateAssetMenu(fileName = "EnemyAI", menuName = "Scriptable Objects/Enemy AI")]
     public class EnemyAI : ScriptableObject
     {
-        [SerializeReference, ClassDropdown(typeof(DecisionEngine))] private DecisionEngine decisionEngine;
-        [SerializeReference, ClassDropdown(typeof(EnemyState))] private EnemyState[] stateMachine;
+        [SerializeReference, ClassDropdown] private DecisionEngine decisionEngine;
+        [SerializeReference, ClassDropdown] private EnemyState[] stateMachine;
 
         /// <summary>
         /// Gets a state by type.

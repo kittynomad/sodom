@@ -6,7 +6,7 @@
 //
 // Brief Description : Changes the color tint on a given sprite renderer based on the enemy's state.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Collections.Generic;
 using UnityEngine;

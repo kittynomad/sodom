@@ -6,7 +6,7 @@
 //
 // Brief Description : Jump attack for the red rooms Paint enemy.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System;
 using System.Threading;
 using UnityEngine;

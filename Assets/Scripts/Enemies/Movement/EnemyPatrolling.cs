@@ -6,7 +6,7 @@
 //
 // Brief Description : Handles settings for an enemy's patrol route.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using UnityEngine;
 

@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a8be62d9bf6c944a883e97bb45029d, type: 3}
   m_Name: TestRoom3
   m_EditorClassIdentifier: Assembly-CSharp::RoomData
-  thisScene: 4
-  adjacentScenes: 03000000
+  _thisScene: Room3
+  _adjacentScenes:
+  - Room2

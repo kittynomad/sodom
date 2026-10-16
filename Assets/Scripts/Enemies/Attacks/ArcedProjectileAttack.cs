@@ -6,7 +6,7 @@
 //
 // Brief Description : Attack that fires a gravity-affected projectile at an arc.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using TFOOL.Enemies.AI;
 using UnityEngine;

@@ -6,7 +6,7 @@
 //
 // Brief Description : Controls horizontal movement for grounded enemies.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using NaughtyAttributes;
 using System;
 using System.Threading;

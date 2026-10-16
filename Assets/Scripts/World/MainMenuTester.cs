@@ -1,16 +1,10 @@
+using TFOOL.World;
 using UnityEngine;
 
 public class MainMenuTester : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void Play()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        WorldManager.LoadWorld();
     }
 }

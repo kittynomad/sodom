@@ -7,7 +7,7 @@
 // Brief Description : Base class triggering enemy attacks through AI.  NOT the attack itself, that is stored as
 // EnemyAttack.  Divided like this for easier creation of things like boss phases with overlapping attacks.
 *****************************************************************************/
-using CustomAttributes;
+using AriUtils;
 using System.Threading;
 using UnityEngine;
 
@@ -26,7 +26,7 @@ namespace TFOOL.Enemies.AI
             "distance from the target.")] 
         private AnimationCurve weightCurve;
         [SerializeField, Tooltip("How long to wait after performing the attack.")] protected float postAttackDelay;
-        [SerializeReference, ClassDropdown(typeof(AttackCondition)), Tooltip("List of conditions that must be met by " +
+        [SerializeReference, ClassDropdown, Tooltip("List of conditions that must be met by " +
     "the enemy for this attack to be used.")]
         private AttackCondition[] conditions;
         public string AttackName => attackName;
