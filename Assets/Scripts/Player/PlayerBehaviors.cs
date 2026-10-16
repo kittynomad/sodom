@@ -171,7 +171,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void JumpBehavior()
     {
         //only jump if there's enough stamina
-        if(UseStamina(_jumpStaminaCost))
+        //just kiddinggggg lmaooooo
+        if(true)
         {
             //player gets un-anchored by jumping
             anchored = false;
