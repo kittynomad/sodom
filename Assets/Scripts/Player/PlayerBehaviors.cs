@@ -37,6 +37,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _poundDamage;
     [SerializeField] private float _poundPushStrength;
     [SerializeField] private float _dashStrength;
+    [SerializeField] private float _airDashDuration;
 
     [Header("References")]
     [SerializeField] private LayerMask _solidLayer;
@@ -293,10 +294,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void PoundBehavior()
     {
         //if not grounded, do a vertical ground pound
-        if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
+        /*if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
+        }*/
+        if(pl.DashUnlocked && !IsGrounded() && !moveLocked)
+        {
+            StartCoroutine(AirDashCoroutine(pc.MovementDirection.x < 0 ? _dashStrength * -1f : _dashStrength));
         }
         //if grounded, do a horizontal dash
         else if(pl.DashUnlocked && IsGrounded() && !moveLocked)
@@ -304,12 +309,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             //dash in input direction if there is current directional input
             if(pc.MovementDirection.x != 0)
             {
-                rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                //rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                StartCoroutine(AirDashCoroutine(pc.MovementDirection.x < 0 ? _dashStrength * -1f : _dashStrength));
             }
             //if no directional input, dash in direction player is facing
             else
             {
-                rb.AddForce(Vector2.left * (IsFacingRight() ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                StartCoroutine(AirDashCoroutine(IsFacingRight() ? _dashStrength : _dashStrength * -1f));
+                //rb.AddForce(Vector2.left * (IsFacingRight() ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
             }
         }
         
@@ -457,6 +464,23 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             currentStamina = 0;
         }
         return true;
+    }
+
+    public IEnumerator AirDashCoroutine(float dashStr)
+    {
+        moveLocked = true;
+        float dur = 0f;
+        float veloc;
+        while (dur < _airDashDuration)
+        {
+            veloc = Mathf.Lerp(dashStr, 0f, (dur) / _airDashDuration);
+            Debug.Log(veloc);
+            rb.linearVelocityX = veloc;
+            rb.linearVelocityY = 0f;
+            dur += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        moveLocked = false;
     }
 
     public IEnumerator AttackCoroutine()
