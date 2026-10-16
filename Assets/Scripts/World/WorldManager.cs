@@ -6,6 +6,7 @@
 //
 // Brief Description : 
 *****************************************************************************/
+using AriUtils;
 using NaughtyAttributes;
 using System;
 using System.Threading;
@@ -17,7 +18,7 @@ namespace TFOOL.World
 {
     public class WorldManager : Manager
     {
-        [SerializeField, Scene] private string persistentObjectsScene;
+        [SerializeField] private SceneField persistentObjectsScene;
         [SerializeField] private RoomData defaultRoom;
 
         private static WorldManager instance;

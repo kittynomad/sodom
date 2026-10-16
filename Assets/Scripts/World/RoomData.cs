@@ -6,8 +6,10 @@
 //
 // Brief Description : Stores data needed to load a room and unload it's corresponding rooms.
 *****************************************************************************/
+using AriUtils;
 using NaughtyAttributes;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace TFOOL.World
@@ -15,13 +17,13 @@ namespace TFOOL.World
     [CreateAssetMenu(fileName = "RoomData", menuName = "Scriptable Objects/Room Data")]
     public class RoomData : ScriptableObject
     {
-        [SerializeField, Scene] private string _thisScene;
-        [SerializeField, Scene] private string[] _adjacentScenes;
+        [SerializeField] private SceneField _thisScene;
+        [SerializeField] private SceneField[] _adjacentScenes;
 
         private string[] _allScenes;
 
         public string ThisScene => _thisScene;
-        public string[] AdjacentScenes => _adjacentScenes;
+        public string[] AdjacentScenes => _adjacentScenes.Select(x => x.SceneName).ToArray();
         public string[] AllScenes
         {
             get
@@ -29,7 +31,7 @@ namespace TFOOL.World
                 if (_allScenes == null || _allScenes.Length == 0)
                 {
                     List<string> scenes = new() { _thisScene };
-                    scenes.AddRange(_adjacentScenes);
+                    scenes.AddRange(AdjacentScenes);
                     _allScenes = scenes.ToArray();
                 }
                 return _allScenes;
