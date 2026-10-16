@@ -37,6 +37,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _poundDamage;
     [SerializeField] private float _poundPushStrength;
     [SerializeField] private float _dashStrength;
+    [SerializeField] private float _airDashDuration;
 
     [Header("References")]
     [SerializeField] private LayerMask _solidLayer;
@@ -293,10 +294,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void PoundBehavior()
     {
         //if not grounded, do a vertical ground pound
-        if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
+        /*if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
+        }*/
+        if(pl.DashUnlocked && !IsGrounded() && !moveLocked)
+        {
+            StartCoroutine(AirDashCoroutine());
         }
         //if grounded, do a horizontal dash
         else if(pl.DashUnlocked && IsGrounded() && !moveLocked)
@@ -457,6 +462,23 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             currentStamina = 0;
         }
         return true;
+    }
+
+    public IEnumerator AirDashCoroutine()
+    {
+        moveLocked = true;
+        float dur = 0f;
+        float veloc;
+        while (dur < _airDashDuration)
+        {
+            veloc = Mathf.Lerp(_dashStrength, 0f, (dur) / _airDashDuration);
+            Debug.Log(veloc);
+            rb.linearVelocityX = veloc;
+            rb.linearVelocityY = 0f;
+            dur += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        moveLocked = false;
     }
 
     public IEnumerator AttackCoroutine()

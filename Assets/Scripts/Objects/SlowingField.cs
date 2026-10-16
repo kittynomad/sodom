@@ -5,7 +5,7 @@ public class SlowingField : MonoBehaviour
     [SerializeField] [Range(0, 100f)] private float _movementPercent = 50f;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
         if (collision.gameObject.TryGetComponent(out PlayerBehaviors pb))
         {
             
@@ -14,7 +14,7 @@ public class SlowingField : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log(collision.gameObject);
+        //Debug.Log(collision.gameObject);
         if (collision.gameObject.TryGetComponent(out PlayerBehaviors pb))
         {
             

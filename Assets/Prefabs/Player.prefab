@@ -209,6 +209,7 @@ MonoBehaviour:
   _poundDamage: 1
   _poundPushStrength: 15
   _dashStrength: 24.41
+  _airDashDuration: 0.5
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128
