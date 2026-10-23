@@ -52,6 +52,7 @@ namespace TFOOL.World
             {
                 // Queue any transitions.
 
+
                 // Load the persistent data (Non-additively)
                 AsyncOperation persistentOp = SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
                 // Wait until the scene is loaded.
