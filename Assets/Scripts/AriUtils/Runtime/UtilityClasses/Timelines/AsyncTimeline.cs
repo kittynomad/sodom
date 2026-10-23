@@ -30,53 +30,89 @@ namespace AriUtils
         public event Action<float> OnUpdateEvent;
         public event Action OnFinishedEvent;
 
+        /// <summary>
+        /// Plays the timeline from it's current position.
+        /// </summary>
         public void Play()
         {
             _ = PlayAsync();
         }
+
+        /// <summary>
+        /// Plays the timeline asyncronously.
+        /// </summary>
+        /// <returns></returns>
         public async Awaitable PlayAsync()
         {
            await PlayTimeline(1);
         }
 
+        /// <summary>
+        /// Plays the timeline from the starting position.
+        /// </summary>
         public void PlayFromStart()
         {
             time = 0;
             Play();
         }
 
+        /// <summary>
+        /// Plays the timeline from the starting position asyncronously.
+        /// </summary>
+        /// <returns></returns>
         public async Awaitable PlayFromStartAsync()
         {
             time = 0;
             await PlayAsync();
         }
 
+        /// <summary>
+        /// Plays the timeline in reverse from it's current time.
+        /// </summary>
         public void Reverse()
         {
             _ = ReverseAsync();
         }
+        /// <summary>
+        /// Plays the timeline in reverse from it's current time asyncronously.
+        /// </summary>
+        /// <returns></returns>
         public async Awaitable ReverseAsync()
         {
             await PlayTimeline(-1);
         }
 
+        /// <summary>
+        /// Plays the timeline in reverse from the end.
+        /// </summary>
         public void ReverseFromEnd()
         {
             time = duration;
             Reverse();
         }
 
+        /// <summary>
+        /// Plats the timleine in reverse from the end asyncronously.
+        /// </summary>
+        /// <returns></returns>
         public async Awaitable ReverseFromEndAsync()
         {
             time = duration;
             await ReverseAsync();
         }
 
+        /// <summary>
+        /// Sets the current time of the playhead.
+        /// </summary>
+        /// <param name="time"></param>
         public void SetTime(float time)
         {
             this.time = Mathf.Clamp(time, 0, duration);
         }
 
+        /// <summary>
+        /// Stops the timeline.
+        /// </summary>
         public void Stop()
         {
             if (isPlaying)

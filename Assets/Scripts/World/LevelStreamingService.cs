@@ -6,12 +6,10 @@
 //
 // Brief Description : Controls loading and unloading levels based on player location.
 *****************************************************************************/
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using TFOOL.ManagersAndServices;
-using Unity.Scripting.LifecycleManagement;
+using TFOOL.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,15 +17,20 @@ namespace TFOOL.World
 {
     public class LevelStreamingService : Service
     {
+        [SerializeField] private Color fadeColor;
+
         private static RoomData currentRoom;
 
         private static CancellationTokenSource _mainCts;
 
         private static CancellationToken mainCt => _mainCts.Token;
+        private static LevelStreamingService instance;
 
         public override async Awaitable Initialize()
         {
             _mainCts = new CancellationTokenSource();
+            SingletonUtility.SetSingleton(ref instance, this);
+
         }
 
         public override void DeInitialize()
@@ -72,6 +75,12 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         public static async Awaitable SetRoom(RoomData toRoom)
         {
+            if (instance != null)
+            {
+                // Fade the screen to black.
+                await ScreenFadeService.FadeScreenTo(instance.fadeColor);
+            }
+
             Awaitable unloadScenesOp = null;
             // Unload rooms asssociated with the previous room (Unless it is also listed in new room).
             if (currentRoom != null)
@@ -91,6 +100,12 @@ namespace TFOOL.World
             }
             currentRoom = toRoom;
             Debug.Log("Current room is now: " + currentRoom);
+
+            if (instance != null)
+            {
+                // Fade back in.
+                await ScreenFadeService.FadeScreenOut();
+            }
         }
 
         private static async Awaitable UnloadScenes(string[] scenes)

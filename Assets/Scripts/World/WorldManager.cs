@@ -10,6 +10,7 @@ using AriUtils;
 using System;
 using System.Threading;
 using TFOOL.ManagersAndServices;
+using TFOOL.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,6 +20,7 @@ namespace TFOOL.World
     {
         [SerializeField] private SceneField persistentObjectsScene;
         [SerializeField] private RoomData defaultRoom;
+        [SerializeField] private Color loadFadeColor;
 
         private static WorldManager instance;
 
@@ -50,18 +52,16 @@ namespace TFOOL.World
             }
             try
             {
-                // Queue any transitions.
+                // Fade to Black.
+                await ScreenFadeService.FadeScreenTo(instance.loadFadeColor);
 
 
                 // Load the persistent data (Non-additively)
-                AsyncOperation persistentOp = SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
-                // Wait until the scene is loaded.
-                await persistentOp;
-
+                await SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
                 // Delegate to the LevelStreamingService.
                 await LevelStreamingService.SetRoom(GetStartingRoom());
-                // Move the player to the right spot.
 
+                // Move the player to the right spot.
             }
             catch (Exception e)
             {

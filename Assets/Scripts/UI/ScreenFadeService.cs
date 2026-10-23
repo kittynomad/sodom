@@ -28,24 +28,33 @@ namespace TFOOL.UI
             SingletonUtility.SetSingleton(ref instance, this);
         }
 
-        public static async Awaitable FadeScreenTo(Color color, float duration)
+        /// <summary>
+        /// Fades the screen to a given color.
+        /// </summary>
+        /// <param name="color"></param>
+        /// <returns></returns>
+        public static async Awaitable FadeScreenTo(Color color)
         {
             if (instance == null) { return; }
-            await instance.FadeAsync(color, duration);
+            await instance.FadeAsync(color);
         }
          
-        public static async Awaitable FadeScreenOut(float duration)
+        /// <summary>
+        /// Fades the screen back to transparent.
+        /// </summary>
+        /// <returns></returns>
+        public static async Awaitable FadeScreenOut()
         {
             if (instance == null) { return; }
-            await instance.FadeAsync(Color.clear, duration);
+            await instance.FadeAsync(Color.clear);
         }
 
-        private async Awaitable FadeAsync(Color targetColor, float duration)
+        private async Awaitable FadeAsync(Color targetColor)
         {
             if (!isTransitioning)
             {
+                isTransitioning = true;
                 Color baseColor = fadeImage.color;
-                fadeTimeline.Duration = duration;
 
                 void UpdateColor(float val)
                 {
@@ -55,6 +64,7 @@ namespace TFOOL.UI
                 fadeTimeline.OnUpdateEvent += UpdateColor;
                 await fadeTimeline.PlayFromStartAsync();
                 fadeTimeline.OnUpdateEvent -= UpdateColor;
+                isTransitioning = false;
             }
         }
     }
