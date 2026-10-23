@@ -20,18 +20,12 @@ public class SwordController : MonoBehaviour
 
     public bool HasCorpseAttached { get => attachedObject != null; }
     public GameObject AttachedObject { get => attachedObject; set => attachedObject = value; }
+    public float HitDamage { get => _hitDamage; set => _hitDamage = value; }
+
     private void Start()
     {
         pb = FindAnyObjectByType<PlayerBehaviors>();
     }
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-        //deal damage while attacking
-        //if(pb.IsAttacking && collision.gameObject.TryGetComponent(out IKillable ik))
-        //{
-        //    ik.OnDamage(1f, gameObject);
-        //}
-    //}
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //deal damage while attacking
@@ -43,7 +37,7 @@ public class SwordController : MonoBehaviour
                 Quaternion customRotation = Quaternion.Euler(0f, 0f, Random.Range(80f, 100f));
                 Instantiate(_meleeChewFX, contactPoint, customRotation);
                 Instantiate(_meleeThornFX, contactPoint, customRotation);
-                ik.OnDamage(_hitDamage, gameObject);
+                ik.OnDamage(HitDamage, gameObject);
             }
             //create the thorn vfx regardless of what player hits for feedback
             else
@@ -86,7 +80,7 @@ public class SwordController : MonoBehaviour
         }
 
     }
-    public void DetachObject(Vector2 direction, bool destroyImmediate = false)
+    public void DetachObject(Vector2 direction, out float damage, bool destroyImmediate = false)
     {
         
         if(attachedObject != null)
@@ -98,6 +92,11 @@ public class SwordController : MonoBehaviour
             attachedObject.GetComponent<Rigidbody2D>().linearVelocity = transform.parent.parent.GetComponent<Rigidbody2D>().linearVelocity;
             attachedObject.GetComponent<Rigidbody2D>().AddForce(direction * detachSpeed, ForceMode2D.Impulse);
             attachedObject.GetComponent<CorpseController>().Discarded = true;
+            damage = attachedObject.GetComponent<CorpseController>().DamageValue;
+        }
+        else
+        {
+            damage = 0f;
         }
         if(destroyImmediate)
         {
