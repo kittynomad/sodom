@@ -50,6 +50,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private string _eatCorpseAnim;
     [SerializeField] private string _ammoCorpseAnim;
     [SerializeField] private string _shootGunAnim;
+    [SerializeField] private string _attachCorpseAnim;
     
  
     //components
@@ -242,6 +243,11 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
         
             
+    }
+
+    public async Awaitable CorpseAttachAnimator()
+    {
+        await AnimationUtility.PlayAndAwaitAnimation(_attachCorpseAnim, _anim, destroyCancellationToken);
     }
 
     public float FacingDirection()

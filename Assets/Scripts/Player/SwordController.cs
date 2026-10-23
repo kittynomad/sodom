@@ -63,19 +63,19 @@ public class SwordController : MonoBehaviour
         //}
     }
 
-    public bool TryAttachCorpse(GameObject corpse)
+    public async Awaitable TryAttachCorpse(GameObject corpse)
     {
         //attach corpse if nothing is already attached
         if (corpse.TryGetComponent(out CorpseController cc) && attachedObject == null)
         {
+            attachedObject = corpse;
+            await pb.CorpseAttachAnimator();
             corpse.transform.parent = gameObject.transform;
             corpse.transform.localPosition = Vector2.zero;
             corpse.GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Kinematic;
             corpse.GetComponent<Rigidbody2D>().excludeLayers = LayerMask.GetMask("Player");
-            attachedObject = corpse;
-            return true;
+            
         }
-        return false;
     }
 
     public void HideAttachedObject()
