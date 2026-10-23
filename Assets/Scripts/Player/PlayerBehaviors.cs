@@ -219,7 +219,10 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             if(sc.HasCorpseAttached)
             {
                 sc.DetachObject(pc.MovementDirection, out float damage, true);
+                float temp = sc.HitDamage;
+                sc.HitDamage = damage;
                 await AnimationUtility.PlayAndAwaitAnimation(_attackWithCorpseAnim, _anim, destroyCancellationToken);
+                sc.HitDamage = temp;
             }
             else
             {
