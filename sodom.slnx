@@ -7,8 +7,8 @@
   <Project Path="FMODUnityResonanceEditor.csproj" />
   <Project Path="FMODUnityEditor.csproj" />
   <Project Path="FMODUnity.csproj" />
+  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="FMODUnityHaptics.csproj" />
   <Project Path="XNode.csproj" />
-  <Project Path="Assembly-CSharp-Editor.csproj" />
   <Project Path="FMODUnityResonance.csproj" />
 </Solution>
