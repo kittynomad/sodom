@@ -208,7 +208,8 @@ MonoBehaviour:
   _poundStrength: 40
   _poundDamage: 1
   _poundPushStrength: 15
-  _dashStrength: 24.41
+  _dashStrength: 40
+  _airDashDuration: 0.5
   _solidLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -710,6 +711,10 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+    - rid: 218223752384872561
+      type: {class: 'Provider2DCache`1[[UnityEngine.Rendering.Universal.Light2DProvider, Unity.RenderPipelines.Universal.2D.Runtime]]', ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
+      data:
+        m_Cache: []
     - rid: 7917713015841226849
       type: {class: Light2DProviderSources, ns: UnityEngine.Rendering.Universal, asm: Unity.RenderPipelines.Universal.2D.Runtime}
       data:
@@ -717,7 +722,7 @@ MonoBehaviour:
         m_SelectedSource:
           rid: -2
         m_Provider2DCache:
-          rid: -2
+          rid: 218223752384872561
 --- !u!1 &7303200592818483586
 GameObject:
   m_ObjectHideFlags: 0
