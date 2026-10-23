@@ -37,6 +37,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _poundDamage;
     [SerializeField] private float _poundPushStrength;
     [SerializeField] private float _dashStrength;
+    [SerializeField] private float _airDashDuration;
 
     [Header("References")]
     [SerializeField] private LayerMask _solidLayer;
@@ -46,9 +47,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private SwordController sc;
     [SerializeField] private Transform _bulletSpawn;
     [SerializeField] private GameObject _projectile;
+    [Header("Animation References :)")]
     [SerializeField] private string _eatCorpseAnim;
     [SerializeField] private string _ammoCorpseAnim;
     [SerializeField] private string _shootGunAnim;
+    [SerializeField] private string _attachCorpseAnim;
+    [SerializeField] private string _attackWithCorpseAnim;
     
  
     //components
@@ -208,15 +212,25 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             rb.linearVelocityY = 0;
     }
 
-    public void AttackBehavior()
+    public async Awaitable AttackBehavior()
     {
         if(UseStamina(_attackStaminaCost))
         {
-            //can't start attack if already attacking
-            //if(!IsAttacking)
-            StartCoroutine(AttackCoroutine());
-            //launch attached corpse on attack 
-            if (sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+            if(sc.HasCorpseAttached)
+            {
+                sc.DetachObject(pc.MovementDirection, out float damage, true);
+                float temp = sc.HitDamage;
+                sc.HitDamage = damage;
+                await AnimationUtility.PlayAndAwaitAnimation(_attackWithCorpseAnim, _anim, destroyCancellationToken);
+                sc.HitDamage = temp;
+            }
+            else
+            {
+                //can't start attack if already attacking
+                //if(!IsAttacking)
+                StartCoroutine(AttackCoroutine());
+            }
+            
         }
         
     }
@@ -232,7 +246,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             await AnimationUtility.PlayAndAwaitAnimation(_eatCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
-            sc.DetachObject(pc.MovementDirection, true);
+            sc.DetachObject(pc.MovementDirection, out float damage, true);
         }
         //broadcast interactAction if it has subscribers
         else if (interactAction != null)
@@ -241,6 +255,11 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         }
         
             
+    }
+
+    public async Awaitable CorpseAttachAnimator()
+    {
+        await AnimationUtility.PlayAndAwaitAnimation(_attachCorpseAnim, _anim, destroyCancellationToken);
     }
 
     public float FacingDirection()
@@ -257,7 +276,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             await AnimationUtility.PlayAndAwaitAnimation(_ammoCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
             currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
-            sc.DetachObject(pc.MovementDirection, true);
+            sc.DetachObject(pc.MovementDirection, out float damage, true);
         }
         //fire projectile otherwise
         else if (CanFire)
@@ -293,10 +312,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public void PoundBehavior()
     {
         //if not grounded, do a vertical ground pound
-        if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
+        /*if(pl.PoundUnlocked && !IsGrounded() && !moveLocked)
         {
             pounding = true;
             rb.linearVelocity = Vector2.down * _poundStrength;
+        }*/
+        if(pl.DashUnlocked && !IsGrounded() && !moveLocked)
+        {
+            StartCoroutine(AirDashCoroutine(pc.MovementDirection.x < 0 ? _dashStrength * -1f : _dashStrength));
         }
         //if grounded, do a horizontal dash
         else if(pl.DashUnlocked && IsGrounded() && !moveLocked)
@@ -304,12 +327,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             //dash in input direction if there is current directional input
             if(pc.MovementDirection.x != 0)
             {
-                rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                //rb.AddForce(Vector2.left * (pc.MovementDirection.x < 0 ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                StartCoroutine(AirDashCoroutine(pc.MovementDirection.x < 0 ? _dashStrength * -1f : _dashStrength));
             }
             //if no directional input, dash in direction player is facing
             else
             {
-                rb.AddForce(Vector2.left * (IsFacingRight() ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
+                StartCoroutine(AirDashCoroutine(IsFacingRight() ? _dashStrength : _dashStrength * -1f));
+                //rb.AddForce(Vector2.left * (IsFacingRight() ? _dashStrength : _dashStrength * -1), ForceMode2D.Impulse);
             }
         }
         
@@ -457,6 +482,23 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             currentStamina = 0;
         }
         return true;
+    }
+
+    public IEnumerator AirDashCoroutine(float dashStr)
+    {
+        moveLocked = true;
+        float dur = 0f;
+        float veloc;
+        while (dur < _airDashDuration)
+        {
+            veloc = Mathf.Lerp(dashStr, 0f, (dur) / _airDashDuration);
+            Debug.Log(veloc);
+            rb.linearVelocityX = veloc;
+            rb.linearVelocityY = 0f;
+            dur += Time.deltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        moveLocked = false;
     }
 
     public IEnumerator AttackCoroutine()
