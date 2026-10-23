@@ -47,10 +47,12 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     private SwordController sc;
     [SerializeField] private Transform _bulletSpawn;
     [SerializeField] private GameObject _projectile;
+    [Header("Animation References :)")]
     [SerializeField] private string _eatCorpseAnim;
     [SerializeField] private string _ammoCorpseAnim;
     [SerializeField] private string _shootGunAnim;
     [SerializeField] private string _attachCorpseAnim;
+    [SerializeField] private string _attackWithCorpseAnim;
     
  
     //components
@@ -210,15 +212,25 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             rb.linearVelocityY = 0;
     }
 
-    public void AttackBehavior()
+    public async Awaitable AttackBehavior()
     {
         if(UseStamina(_attackStaminaCost))
         {
-            //can't start attack if already attacking
-            //if(!IsAttacking)
-            StartCoroutine(AttackCoroutine());
-            //launch attached corpse on attack 
-            if (sc.HasCorpseAttached) sc.DetachObject(pc.MovementDirection);
+            if(sc.HasCorpseAttached)
+            {
+                sc.DetachObject(pc.MovementDirection, out float damage, true);
+                float temp = sc.HitDamage;
+                sc.HitDamage = damage;
+                await AnimationUtility.PlayAndAwaitAnimation(_attackWithCorpseAnim, _anim, destroyCancellationToken);
+                sc.HitDamage = temp;
+            }
+            else
+            {
+                //can't start attack if already attacking
+                //if(!IsAttacking)
+                StartCoroutine(AttackCoroutine());
+            }
+            
         }
         
     }
@@ -234,7 +246,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             await AnimationUtility.PlayAndAwaitAnimation(_eatCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_eatCorpseAnim);
             currentHealth += sc.AttachedObject.GetComponent<CorpseController>().HealthValue;
-            sc.DetachObject(pc.MovementDirection, true);
+            sc.DetachObject(pc.MovementDirection, out float damage, true);
         }
         //broadcast interactAction if it has subscribers
         else if (interactAction != null)
@@ -264,7 +276,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
             await AnimationUtility.PlayAndAwaitAnimation(_ammoCorpseAnim, _anim, destroyCancellationToken);
             //await PlayAndAwaitPlayerAnimation(_ammoCorpseAnim);
             currentAmmo += sc.AttachedObject.GetComponent<CorpseController>().AmmoValue;
-            sc.DetachObject(pc.MovementDirection, true);
+            sc.DetachObject(pc.MovementDirection, out float damage, true);
         }
         //fire projectile otherwise
         else if (CanFire)
