@@ -18,13 +18,9 @@ public class PlayerController : MonoBehaviour
 
     public Vector2 MovementDirection { get => movementDirection; set => movementDirection = value; }
 
-    private static PlayerController instance;
-    public static PlayerController Instance => instance;
-
 
     private void Start()
     {
-        SingletonUtility.SetSingleton(ref instance, this);
         pb = gameObject.GetComponent<PlayerBehaviors>();
     }
 

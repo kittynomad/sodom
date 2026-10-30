@@ -12,6 +12,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using TFOOL;
 using Unity.VisualScripting;
+using TFOOL.ManagersAndServices;
 
 public class PlayerBehaviors : MonoBehaviour, IKillable
 {
@@ -103,6 +104,8 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
 
     private void Start()
     {
+        SingletonUtility.SetSingleton(ref PlayerManager.playerInstance, this);
+
         SetComponentReferences();
 
         //set health and ammo
@@ -114,6 +117,14 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
         if(SpawnPointHolder.instance != null && SpawnPointHolder.instance.GetRelevantSpawnPoint(out Vector2 pos))
         {
             transform.position = pos;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        if (PlayerManager.playerInstance == this)
+        {
+            PlayerManager.playerInstance = null;
         }
     }
 
