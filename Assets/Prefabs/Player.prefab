@@ -221,6 +221,7 @@ MonoBehaviour:
   _eatCorpseAnim: PlayerDevour
   _ammoCorpseAnim: PlayerHarvest
   _shootGunAnim: PlayerShootStraightStatic
+  _attachCorpseAnim: PlayerCorpseSkewerBasic
   facingDirection: 0
   _jumpStaticVFX: {fileID: 4719207145571531207, guid: f73a413d6ade82345a4ab89f399390f2, type: 3}
 --- !u!114 &1427404586909964195
