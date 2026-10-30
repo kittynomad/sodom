@@ -16,6 +16,8 @@ namespace AriUtils
     {
         [SerializeField] private string _sceneName;
 
+        public string SceneName => _sceneName;
+
         public static implicit operator string(SceneField sceneField)
         {
             return sceneField._sceneName;

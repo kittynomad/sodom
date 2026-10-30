@@ -6,10 +6,11 @@
 //
 // Brief Description : 
 *****************************************************************************/
-using NaughtyAttributes;
+using AriUtils;
 using System;
 using System.Threading;
 using TFOOL.ManagersAndServices;
+using TFOOL.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -17,8 +18,9 @@ namespace TFOOL.World
 {
     public class WorldManager : Manager
     {
-        [SerializeField, Scene] private string persistentObjectsScene;
-        [SerializeField] private RoomData defaultRoom;
+        [SerializeField] private SceneField persistentObjectsScene;
+        [SerializeField] private SceneField defaultRoom;
+        [SerializeField] private Color loadFadeColor;
 
         private static WorldManager instance;
 
@@ -26,19 +28,11 @@ namespace TFOOL.World
 
         public override async Awaitable Initialize()
         {
-            if (instance != null && instance != this)
+            if (SingletonUtility.SetSingleton(ref instance, this))
             {
-                Debug.LogError("Duplicate WorldManager Found");
-                Destroy(gameObject);
-                return;
-            }
-            else
-            {
-                instance = this;
                 DontDestroyOnLoad(this);
+                await base.Initialize();
             }
-
-            await base.Initialize();
         }
 
         public override void DeInitialize()
@@ -58,17 +52,15 @@ namespace TFOOL.World
             }
             try
             {
-                // Queue any transitions.
+                // Fade to Black.
+                await ScreenFadeService.FadeScreenTo(instance.loadFadeColor);
 
                 // Load the persistent data (Non-additively)
-                AsyncOperation persistentOp = SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
-                // Wait until the scene is loaded.
-                await persistentOp;
+                await SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
+                // Disable the player.
 
-                // Delegate to the LevelStreamingService.
+                // Delegate to the LevelStreamingService to load the starting room.
                 await LevelStreamingService.SetRoom(GetStartingRoom());
-                // Move the player to the right spot.
-
             }
             catch (Exception e)
             {
@@ -90,7 +82,7 @@ namespace TFOOL.World
         private static RoomData GetStartingRoom()
         {
             // This should query the SaveDataManager in the future.
-            return instance.defaultRoom;
+            return new RoomData(instance.defaultRoom, -1);
         }
     }
 }

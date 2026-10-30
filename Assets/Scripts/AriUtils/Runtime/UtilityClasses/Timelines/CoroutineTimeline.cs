@@ -13,7 +13,7 @@ using UnityEngine;
 namespace AriUtils
 {
     [System.Serializable]
-    public class CoroutineTimeline
+    public class CoroutineTimeline : ITimeline
     {
         [SerializeField] private float duration;
         [SerializeField] private bool useUnscaledTime;
@@ -29,6 +29,14 @@ namespace AriUtils
         public event Action<float> OnUpdateEvent;
         public event Action OnFinishedEvent;
         #endregion
+
+        public float Duration
+        {
+            get { return duration; }
+            set { duration = value; }
+        }
+
+        public bool IsPlaying => timelineRoutine != null;
 
         /// <summary>
         /// Plays the timeline from the current playhead position.

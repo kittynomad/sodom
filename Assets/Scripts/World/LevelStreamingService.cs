@@ -6,12 +6,10 @@
 //
 // Brief Description : Controls loading and unloading levels based on player location.
 *****************************************************************************/
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
-using System.Threading.Tasks;
 using TFOOL.ManagersAndServices;
-using Unity.Scripting.LifecycleManagement;
+using TFOOL.UI;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -19,15 +17,19 @@ namespace TFOOL.World
 {
     public class LevelStreamingService : Service
     {
-        private static RoomData currentRoom;
+        [SerializeField] private Color fadeColor;
+
+        private static string currentRoom;
 
         private static CancellationTokenSource _mainCts;
 
         private static CancellationToken mainCt => _mainCts.Token;
+        private static LevelStreamingService instance;
 
         public override async Awaitable Initialize()
         {
             _mainCts = new CancellationTokenSource();
+            SingletonUtility.SetSingleton(ref instance, this);
         }
 
         public override void DeInitialize()
@@ -40,7 +42,7 @@ namespace TFOOL.World
         /// </summary>
         /// <param name="toCompare"></param>
         /// <returns></returns>
-        public static bool IsCurrent(RoomData toCompare)
+        public static bool IsCurrent(string toCompare)
         {
             return toCompare == currentRoom;
         }
@@ -52,15 +54,15 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         /// <param name="entryDoor"></param>
         /// <returns></returns>
-        public static void EnterNewRoom(RoomData toRoom, byte entryDoor)
+        public static void EnterNewRoom(RoomData toRoom)
         {
-            if (toRoom != currentRoom)
+            if (toRoom.Scene != currentRoom)
             {
-                EnterRoom(toRoom, entryDoor);
+                EnterRoom(toRoom);
             }
         }
 
-        private static async void EnterRoom(RoomData toRoom, byte entryDoor)
+        private static async void EnterRoom(RoomData toRoom)
         {
             await SetRoom(toRoom);
         }
@@ -72,25 +74,59 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         public static async Awaitable SetRoom(RoomData toRoom)
         {
-            Awaitable unloadScenesOp = null;
-            // Unload rooms asssociated with the previous room (Unless it is also listed in new room).
-            if (currentRoom != null)
+            if (instance != null)
             {
-                string[] validUnloadRooms = currentRoom.AllScenes.Except(toRoom.AllScenes).ToArray();
-                unloadScenesOp = UnloadScenes(validUnloadRooms);
+                // Fade the screen to black.
+                await ScreenFadeService.FadeScreenTo(instance.fadeColor);
             }
 
-            // Load rooms associated with the to room.
-            string[] validLoadRooms = currentRoom == null ? toRoom.AllScenes : toRoom.AllScenes.Except(currentRoom.AllScenes).ToArray();
+            //Awaitable unloadScenesOp = null;
+            //// Unload rooms asssociated with the previous room (Unless it is also listed in new room).
+            //if (currentRoom != null)
+            //{
+            //    string[] validUnloadRooms = currentRoom.AllScenes.Except(toRoom.AllScenes).ToArray();
+            //    unloadScenesOp = UnloadScenes(validUnloadRooms);
+            //}
 
-            // Await until all scenes are loaded.
-            await LoadScenes(validLoadRooms);
-            if (unloadScenesOp != null)
+            //// Load rooms associated with the to room.
+            //string[] validLoadRooms = currentRoom == null ? toRoom.AllScenes : toRoom.AllScenes.Except(currentRoom.AllScenes).ToArray();
+
+            //// Await until all scenes are loaded.
+            //await LoadScenes(validLoadRooms);
+            //if (unloadScenesOp != null)
+            //{
+            //    await unloadScenesOp;
+            //}
+            //currentRoom = toRoom;
+
+            // Start loading the new room.
+            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom.Scene, LoadSceneMode.Additive);
+
+            // Unload the current room.
+            if (currentRoom != null && currentRoom != "")
             {
-                await unloadScenesOp;
+                await SceneManager.UnloadSceneAsync(currentRoom);
             }
-            currentRoom = toRoom;
+
+            // Wait until the scene is loaded.
+            await loadScenesOp;
+
+            currentRoom = toRoom.Scene;
+
             Debug.Log("Current room is now: " + currentRoom);
+
+            // Move the player to the correct position.
+            while (TransitionZone.DoorPositions[toRoom.EntryIndex] != null)
+            {
+                await Awaitable.NextFrameAsync(mainCt);
+            }
+
+
+            if (instance != null)
+            {
+                // Fade back in.
+                await ScreenFadeService.FadeScreenOut();
+            }
         }
 
         private static async Awaitable UnloadScenes(string[] scenes)

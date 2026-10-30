@@ -7,6 +7,7 @@
 // Brief Description : Triggers transitions between rooms and prompts the LevelStreamingService to load the 
 // appropriate levels.
 *****************************************************************************/
+using AriUtils;
 using NaughtyAttributes;
 using UnityEngine;
 
@@ -14,19 +15,21 @@ namespace TFOOL.World
 {
     public class TransitionZone : MonoBehaviour
     {
+        private const short MAX_DOOR_INDICIES = 10;
+
         [SerializeField, Tooltip("Information about the room that this transition zone connects to.")] 
-        private RoomData _destinationRoom;
+        private SceneField _destinationRoom;
         [SerializeField, Tooltip("What direction of the room this transition zone lies at.")]
         private TransitionDirection _direction;
-        [SerializeField, Range(0, 10), Tooltip("The index of this transition zone.")] 
-        private byte _doorIndex;
-        [SerializeField, Range(0, 10), Tooltip("The index of the transition zone that the player should spawn at in the next scene.")] 
-        private byte _destinationIndex;
+        [SerializeField, Range(0, MAX_DOOR_INDICIES - 1), Tooltip("The index of this transition zone.")] 
+        private short _doorIndex;
 
         private bool currentLoadingZone;
         private static bool canTransition = true;
 
-        public byte DoorIndex => _doorIndex;
+        public short DoorIndex => _doorIndex;
+
+        public static Vector3?[] DoorPositions { get; private set; } = new Vector3?[MAX_DOOR_INDICIES];
 
         #region Nested
         private enum TransitionDirection
@@ -38,9 +41,20 @@ namespace TFOOL.World
         }
         #endregion
 
+        // Make this door's position statically available to the LevelStreamingService.
+        private void Awake()
+        {
+            DoorPositions[_doorIndex] = transform.position;
+        }
+        private void OnDestroy()
+        {
+            DoorPositions[_doorIndex] = null;
+        }
+
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") && canTransition && !LevelStreamingService.IsCurrent(_destinationRoom))
+            if (canTransition && !LevelStreamingService.IsCurrent(_destinationRoom) && 
+                collision.gameObject.TryGetComponent(out PlayerController pc))
             {
                 // Transition to the destination room if the player is currently in this room.
                 currentLoadingZone = true;
@@ -50,7 +64,7 @@ namespace TFOOL.World
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.gameObject.CompareTag("Player") && currentLoadingZone)
+            if (currentLoadingZone && collision.gameObject.TryGetComponent(out PlayerController pc))
             {
                 // Only allow a room transition to happen again once the player has left the loading zone.
                 currentLoadingZone = false;
@@ -59,7 +73,7 @@ namespace TFOOL.World
                 // Check the direction the player exited the zone from.  if they exited in the direction of the next room, load the next room.
                 if (CompareExitPosition(_direction, collision.GetComponent<Rigidbody2D>().linearVelocity))
                 {
-                    LevelStreamingService.EnterNewRoom(_destinationRoom, _destinationIndex);
+                    LevelStreamingService.EnterNewRoom(new RoomData(_destinationRoom, _doorIndex));
                 }
 
             }

@@ -19,14 +19,21 @@ namespace AriUtils.Editor
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
+            SerializedInterface serializedInterface = property.boxedValue as SerializedInterface;
+
+            if (serializedInterface.InterfaceType.HasElementType)
+            {
+                // Prevent serialized interfaces being declared with element types.
+
+
+            }
+
             //Debug.Log("GUI");
             EditorGUI.BeginProperty(position, label, property);
             Rect fullRect = position;
             SerializedProperty _referenceType = property.FindPropertyRelative(nameof(_referenceType));
             SerializedProperty _objectReferenceValue = property.FindPropertyRelative(nameof(_objectReferenceValue));
             SerializedProperty _managedReferenceValue = property.FindPropertyRelative(nameof(_managedReferenceValue));
-
-            SerializedInterface serializedInterface = property.boxedValue as SerializedInterface;
 
             position = EditorGUI.PrefixLabel(position, label);
 
@@ -83,9 +90,15 @@ namespace AriUtils.Editor
 
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
+            SerializedInterface serializedInterface = property.boxedValue as SerializedInterface;
+
             SerializedProperty _referenceType = property.FindPropertyRelative(nameof(_referenceType));
             SerializedProperty _managedReferenceValue = property.FindPropertyRelative(nameof(_managedReferenceValue));
-            if (_referenceType.boolValue)
+            if (serializedInterface.InterfaceType.HasElementType)
+            {
+                return base.GetPropertyHeight(property, label) * 2;
+            }
+            else if (_referenceType.boolValue)
             {
                 // If managed reference, then the height should depend on if the property is expanded.
                 return EditorUtils.GetDynamicPropertyHeight(_managedReferenceValue);

@@ -6,34 +6,20 @@
 //
 // Brief Description : Stores data needed to load a room and unload it's corresponding rooms.
 *****************************************************************************/
-using NaughtyAttributes;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace TFOOL.World
 {
-    [CreateAssetMenu(fileName = "RoomData", menuName = "Scriptable Objects/Room Data")]
-    public class RoomData : ScriptableObject
+    [System.Serializable]
+    public struct RoomData
     {
-        [SerializeField, Scene] private string _thisScene;
-        [SerializeField, Scene] private string[] _adjacentScenes;
+        [field: SerializeField] public string Scene { get; private set; }
+        [field: SerializeField] public short EntryIndex { get; private set;  }
 
-        private string[] _allScenes;
-
-        public string ThisScene => _thisScene;
-        public string[] AdjacentScenes => _adjacentScenes;
-        public string[] AllScenes
+        public RoomData(string scene, short entryIndex)
         {
-            get
-            {
-                if (_allScenes == null || _allScenes.Length == 0)
-                {
-                    List<string> scenes = new() { _thisScene };
-                    scenes.AddRange(_adjacentScenes);
-                    _allScenes = scenes.ToArray();
-                }
-                return _allScenes;
-            }
+            Scene = scene;
+            EntryIndex = entryIndex;
         }
     }
 
