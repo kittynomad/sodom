@@ -708,7 +708,9 @@ MonoBehaviour:
   MasterBanks:
   - Master
   Banks:
-  - SoundEffects
+  - SoundEffectsBera
+  - SoundEffectsPaint
+  - SoundEffectsPainter
   BanksToLoad: []
   LiveUpdatePort: 9264
   EnableMemoryTracking: 0
