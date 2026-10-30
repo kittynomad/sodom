@@ -17,6 +17,8 @@ namespace TFOOL.World
 {
     public class LevelStreamingService : Service
     {
+        private const float DOOR_BUFFER_TIME = 0.1f;
+
         [SerializeField] private Color fadeColor;
 
         private static string currentRoom;
@@ -48,23 +50,46 @@ namespace TFOOL.World
         }
 
         /// <summary>
-        /// Loads a new room from a given current room.
+        /// Loads a new room from a given current room with player management, checking, and screen fades.
         /// </summary>
-        /// <param name="fromRoom"></param>
-        /// <param name="toRoom"></param>
-        /// <param name="entryDoor"></param>
+        /// <param name="toRoom">The room to load</param>
         /// <returns></returns>
-        public static void EnterNewRoom(RoomData toRoom)
+        public static async void EnterRoom(RoomData toRoom)
         {
             if (toRoom.Scene != currentRoom)
             {
-                EnterRoom(toRoom);
-            }
-        }
+                PlayerManager.TogglePlayerActions(false);
 
-        private static async void EnterRoom(RoomData toRoom)
-        {
-            await SetRoom(toRoom);
+                if (instance != null)
+                {
+                    // Fade the screen to black.
+                    await ScreenFadeService.FadeScreenTo(instance.fadeColor);
+                }
+
+                await SetRoom(toRoom);
+
+                // Move the player to the correct position.
+                if (toRoom.EntryIndex >= 0)
+                {
+                    float timer = DOOR_BUFFER_TIME;
+                    while (TransitionZone.DoorPositions[toRoom.EntryIndex] == null && timer > 0)
+                    {
+                        timer -= Time.deltaTime;
+                        await Awaitable.NextFrameAsync(mainCt);
+                    }
+                    if (TransitionZone.DoorPositions[toRoom.EntryIndex] != null)
+                    {
+                        PlayerManager.MovePlayerTo((Vector2)TransitionZone.DoorPositions[toRoom.EntryIndex]);
+                    }
+                }
+                PlayerManager.TogglePlayerActions(true);
+
+                if (instance != null)
+                {
+                    // Fade back in.
+                    await ScreenFadeService.FadeScreenOut();
+                }
+            }
         }
 
         /// <summary>
@@ -74,12 +99,6 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         public static async Awaitable SetRoom(RoomData toRoom)
         {
-            if (instance != null)
-            {
-                // Fade the screen to black.
-                await ScreenFadeService.FadeScreenTo(instance.fadeColor);
-            }
-
             //Awaitable unloadScenesOp = null;
             //// Unload rooms asssociated with the previous room (Unless it is also listed in new room).
             //if (currentRoom != null)
@@ -114,19 +133,6 @@ namespace TFOOL.World
             currentRoom = toRoom.Scene;
 
             Debug.Log("Current room is now: " + currentRoom);
-
-            // Move the player to the correct position.
-            while (TransitionZone.DoorPositions[toRoom.EntryIndex] != null)
-            {
-                await Awaitable.NextFrameAsync(mainCt);
-            }
-
-
-            if (instance != null)
-            {
-                // Fade back in.
-                await ScreenFadeService.FadeScreenOut();
-            }
         }
 
         private static async Awaitable UnloadScenes(string[] scenes)

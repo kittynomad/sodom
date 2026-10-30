@@ -9,6 +9,7 @@
 using AriUtils;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using TFOOL.ManagersAndServices;
 using TFOOL.UI;
 using UnityEngine;
@@ -52,15 +53,17 @@ namespace TFOOL.World
             }
             try
             {
-                // Fade to Black.
-                await ScreenFadeService.FadeScreenTo(instance.loadFadeColor);
-
-                // Load the persistent data (Non-additively)
-                await SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
-                // Disable the player.
+                await ScreenFadeService.FadeScreenTo(instance.loadFadeColor); // Fade to Black.
+                await SceneManager.LoadSceneAsync(instance.persistentObjectsScene); // Load the persistent data (Non-additively)
+                PlayerManager.TogglePlayerActions(false); // Disable the player.
 
                 // Delegate to the LevelStreamingService to load the starting room.
                 await LevelStreamingService.SetRoom(GetStartingRoom());
+
+                // Move the player to the correct save point.
+
+                PlayerManager.TogglePlayerActions(true);
+                await ScreenFadeService.FadeScreenOut();
             }
             catch (Exception e)
             {

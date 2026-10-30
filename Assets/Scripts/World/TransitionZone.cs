@@ -73,7 +73,7 @@ namespace TFOOL.World
                 // Check the direction the player exited the zone from.  if they exited in the direction of the next room, load the next room.
                 if (CompareExitPosition(_direction, collision.GetComponent<Rigidbody2D>().linearVelocity))
                 {
-                    LevelStreamingService.EnterNewRoom(new RoomData(_destinationRoom, _doorIndex));
+                    LevelStreamingService.EnterRoom(new RoomData(_destinationRoom, _doorIndex));
                 }
 
             }

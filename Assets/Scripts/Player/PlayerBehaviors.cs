@@ -102,10 +102,15 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public float CurrentStamina { get => currentStamina; set => currentStamina = value; }
     public float MaxStamina { get => _maxStamina; set => _maxStamina = value; }
 
-    private void Start()
+    public Rigidbody2D Rigidbody => rb;
+
+    private void Awake()
     {
         SingletonUtility.SetSingleton(ref PlayerManager.playerInstance, this);
+    }
 
+    private void Start()
+    {
         SetComponentReferences();
 
         //set health and ammo

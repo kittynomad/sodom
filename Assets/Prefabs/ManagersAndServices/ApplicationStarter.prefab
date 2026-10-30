@@ -46,5 +46,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ApplicationStarter
   ManagerReferences:
   - {fileID: 5488099352138092401, guid: f677ff78bb5ae19458a051a70411de66, type: 3}
+  - {fileID: 6272182833293184098, guid: b6ad05a995a39f74d8331488290c21bc, type: 3}
   - {fileID: 6202860980197969061, guid: 0620b6b38e9cec440ae5b3b744807042, type: 3}
   ManagerInstances: []

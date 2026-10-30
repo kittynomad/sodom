@@ -10,13 +10,23 @@ using UnityEngine;
 
 namespace TFOOL.ManagersAndServices
 {
-    public class PlayerManager : MonoBehaviour
+    public class PlayerManager : Manager
     {
         internal static PlayerBehaviors playerInstance;
 
-        public void TogglePlayer(bool isActive)
+        public static bool IsSpawned => playerInstance != null;
+        public static Vector2 PlayerPosition => playerInstance == null ? Vector2.zero : playerInstance.Rigidbody.position;
+
+        public static void TogglePlayerActions(bool isActive)
         {
-            playerInstance.gameObject.SetActive(isActive);
+            if (playerInstance == null) { return; }
+            
+        }
+
+        public static void MovePlayerTo(Vector2 position)
+        {
+            if (playerInstance == null) { return; }
+            playerInstance.Rigidbody.MovePosition(position);
         }
     }
 }
