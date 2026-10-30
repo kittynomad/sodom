@@ -30,7 +30,6 @@ namespace TFOOL.World
         {
             _mainCts = new CancellationTokenSource();
             SingletonUtility.SetSingleton(ref instance, this);
-
         }
 
         public override void DeInitialize()
@@ -55,15 +54,15 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         /// <param name="entryDoor"></param>
         /// <returns></returns>
-        public static void EnterNewRoom(string toRoom, byte entryDoor)
+        public static void EnterNewRoom(RoomData toRoom)
         {
-            if (toRoom != currentRoom)
+            if (toRoom.Scene != currentRoom)
             {
-                EnterRoom(toRoom, entryDoor);
+                EnterRoom(toRoom);
             }
         }
 
-        private static async void EnterRoom(string toRoom, byte entryDoor)
+        private static async void EnterRoom(RoomData toRoom)
         {
             await SetRoom(toRoom);
         }
@@ -73,7 +72,7 @@ namespace TFOOL.World
         /// </summary>
         /// <remarks>Does NOT check the current room.</remarks>
         /// <param name="toRoom"></param>
-        public static async Awaitable SetRoom(string toRoom)
+        public static async Awaitable SetRoom(RoomData toRoom)
         {
             if (instance != null)
             {
@@ -101,7 +100,7 @@ namespace TFOOL.World
             //currentRoom = toRoom;
 
             // Start loading the new room.
-            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom, LoadSceneMode.Additive);
+            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom.Scene, LoadSceneMode.Additive);
 
             // Unload the current room.
             if (currentRoom != null && currentRoom != "")
@@ -112,9 +111,16 @@ namespace TFOOL.World
             // Wait until the scene is loaded.
             await loadScenesOp;
 
-            currentRoom = toRoom;
+            currentRoom = toRoom.Scene;
 
             Debug.Log("Current room is now: " + currentRoom);
+
+            // Move the player to the correct position.
+            while (TransitionZone.DoorPositions[toRoom.EntryIndex] != null)
+            {
+                await Awaitable.NextFrameAsync(mainCt);
+            }
+
 
             if (instance != null)
             {

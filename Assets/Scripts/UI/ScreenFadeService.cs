@@ -53,14 +53,16 @@ namespace TFOOL.UI
         {
             if (!isTransitioning)
             {
-                isTransitioning = true;
+
                 Color baseColor = fadeImage.color;
+                if (baseColor == targetColor) { return; }
 
                 void UpdateColor(float val)
                 {
                     fadeImage.color = Color.Lerp(baseColor, targetColor, val);
                 }
 
+                isTransitioning = true;
                 fadeTimeline.OnUpdateEvent += UpdateColor;
                 await fadeTimeline.PlayFromStartAsync();
                 fadeTimeline.OnUpdateEvent -= UpdateColor;

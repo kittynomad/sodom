@@ -19,7 +19,7 @@ namespace TFOOL.World
     public class WorldManager : Manager
     {
         [SerializeField] private SceneField persistentObjectsScene;
-        [SerializeField] private RoomData defaultRoom;
+        [SerializeField] private SceneField defaultRoom;
         [SerializeField] private Color loadFadeColor;
 
         private static WorldManager instance;
@@ -55,13 +55,12 @@ namespace TFOOL.World
                 // Fade to Black.
                 await ScreenFadeService.FadeScreenTo(instance.loadFadeColor);
 
-
                 // Load the persistent data (Non-additively)
                 await SceneManager.LoadSceneAsync(instance.persistentObjectsScene);
-                // Delegate to the LevelStreamingService.
-                await LevelStreamingService.SetRoom(GetStartingRoom());
+                // Disable the player.
 
-                // Move the player to the right spot.
+                // Delegate to the LevelStreamingService to load the starting room.
+                await LevelStreamingService.SetRoom(GetStartingRoom());
             }
             catch (Exception e)
             {
@@ -83,7 +82,7 @@ namespace TFOOL.World
         private static RoomData GetStartingRoom()
         {
             // This should query the SaveDataManager in the future.
-            return instance.defaultRoom;
+            return new RoomData(instance.defaultRoom, -1);
         }
     }
 }
