@@ -19,7 +19,7 @@ namespace TFOOL.World
     {
         [SerializeField] private Color fadeColor;
 
-        private static RoomData currentRoom;
+        private static string currentRoom;
 
         private static CancellationTokenSource _mainCts;
 
@@ -43,7 +43,7 @@ namespace TFOOL.World
         /// </summary>
         /// <param name="toCompare"></param>
         /// <returns></returns>
-        public static bool IsCurrent(RoomData toCompare)
+        public static bool IsCurrent(string toCompare)
         {
             return toCompare == currentRoom;
         }
@@ -55,7 +55,7 @@ namespace TFOOL.World
         /// <param name="toRoom"></param>
         /// <param name="entryDoor"></param>
         /// <returns></returns>
-        public static void EnterNewRoom(RoomData toRoom, byte entryDoor)
+        public static void EnterNewRoom(string toRoom, byte entryDoor)
         {
             if (toRoom != currentRoom)
             {
@@ -63,7 +63,7 @@ namespace TFOOL.World
             }
         }
 
-        private static async void EnterRoom(RoomData toRoom, byte entryDoor)
+        private static async void EnterRoom(string toRoom, byte entryDoor)
         {
             await SetRoom(toRoom);
         }
@@ -73,7 +73,7 @@ namespace TFOOL.World
         /// </summary>
         /// <remarks>Does NOT check the current room.</remarks>
         /// <param name="toRoom"></param>
-        public static async Awaitable SetRoom(RoomData toRoom)
+        public static async Awaitable SetRoom(string toRoom)
         {
             if (instance != null)
             {
@@ -81,24 +81,39 @@ namespace TFOOL.World
                 await ScreenFadeService.FadeScreenTo(instance.fadeColor);
             }
 
-            Awaitable unloadScenesOp = null;
-            // Unload rooms asssociated with the previous room (Unless it is also listed in new room).
-            if (currentRoom != null)
+            //Awaitable unloadScenesOp = null;
+            //// Unload rooms asssociated with the previous room (Unless it is also listed in new room).
+            //if (currentRoom != null)
+            //{
+            //    string[] validUnloadRooms = currentRoom.AllScenes.Except(toRoom.AllScenes).ToArray();
+            //    unloadScenesOp = UnloadScenes(validUnloadRooms);
+            //}
+
+            //// Load rooms associated with the to room.
+            //string[] validLoadRooms = currentRoom == null ? toRoom.AllScenes : toRoom.AllScenes.Except(currentRoom.AllScenes).ToArray();
+
+            //// Await until all scenes are loaded.
+            //await LoadScenes(validLoadRooms);
+            //if (unloadScenesOp != null)
+            //{
+            //    await unloadScenesOp;
+            //}
+            //currentRoom = toRoom;
+
+            // Start loading the new room.
+            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom, LoadSceneMode.Additive);
+
+            // Unload the current room.
+            if (currentRoom != null && currentRoom != "")
             {
-                string[] validUnloadRooms = currentRoom.AllScenes.Except(toRoom.AllScenes).ToArray();
-                unloadScenesOp = UnloadScenes(validUnloadRooms);
+                await SceneManager.UnloadSceneAsync(currentRoom);
             }
 
-            // Load rooms associated with the to room.
-            string[] validLoadRooms = currentRoom == null ? toRoom.AllScenes : toRoom.AllScenes.Except(currentRoom.AllScenes).ToArray();
+            // Wait until the scene is loaded.
+            await loadScenesOp;
 
-            // Await until all scenes are loaded.
-            await LoadScenes(validLoadRooms);
-            if (unloadScenesOp != null)
-            {
-                await unloadScenesOp;
-            }
             currentRoom = toRoom;
+
             Debug.Log("Current room is now: " + currentRoom);
 
             if (instance != null)
