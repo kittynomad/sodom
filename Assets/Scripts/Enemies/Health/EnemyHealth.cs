@@ -3,6 +3,7 @@ using TFOOL.Enemies.AI;
 using System;
 using System.Collections;
 using UnityEngine;
+using TFOOL.Audio;
 
 public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
 {
@@ -25,6 +26,8 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
 
     private float currentHealth;
     private bool isStunCooldown;
+
+    [SerializeField] FMODAudioPlayer _fMODAudio;
 
     public event Action<GameObject, SenseType, bool> EntitySenseEvent;
 
@@ -79,6 +82,10 @@ public class EnemyHealth : MonoBehaviour, IKillable, IEnemySensor
 
     public void OnKill(GameObject damageSource = null)
     {
+        if (_fMODAudio  != null)
+        {
+            _fMODAudio.PlayOneShot("Death");
+        }
         GameObject corpse = Instantiate(_corpseObject, transform.position, transform.rotation);
         if(damageSource != null)
         {

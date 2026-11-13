@@ -222,6 +222,7 @@ MonoBehaviour:
   _ammoCorpseAnim: PlayerHarvest
   _shootGunAnim: PlayerShootStraightStatic
   _attachCorpseAnim: PlayerCorpseSkewerBasic
+  _attackWithCorpseAnim: 
   facingDirection: 0
   _jumpStaticVFX: {fileID: 4719207145571531207, guid: f73a413d6ade82345a4ab89f399390f2, type: 3}
 --- !u!114 &1427404586909964195
@@ -446,20 +447,47 @@ MonoBehaviour:
     soundType: 0
     eventReference:
       Guid:
-        Data1: 1923602911
-        Data2: 1196811872
-        Data3: 1953366453
-        Data4: 1406910610
-      Path: event:/Clink
+        Data1: 1766481349
+        Data2: 1181226674
+        Data3: -819930219
+        Data4: 128039753
+      Path: event:/BeraWalkClink
   - soundName: LegScrape
     soundType: 0
     eventReference:
       Guid:
-        Data1: 1719485026
-        Data2: 1138853310
-        Data3: 1662032775
-        Data4: 1109486803
-      Path: event:/Scrape
+        Data1: -2035202978
+        Data2: 1147943517
+        Data3: 2054464669
+        Data4: 1747446408
+      Path: event:/BeraScrape
+  - soundName: BeraSword1
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: -233471437
+        Data2: 1282829286
+        Data3: -869192039
+        Data4: 1264297840
+      Path: event:/BeraSwordSwingA
+  - soundName: BeraSword2
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 256420779
+        Data2: 1143030339
+        Data3: 1743691658
+        Data4: 626327972
+      Path: event:/BeraSwordSwingB
+  - soundName: BeraGunShoot
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 223755423
+        Data2: 1215706103
+        Data3: 1185201082
+        Data4: 205017396
+      Path: event:/BeraGunShoot
 --- !u!1 &3862160118748894185
 GameObject:
   m_ObjectHideFlags: 0

@@ -36,7 +36,7 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &4257788210288376016
 SpriteRenderer:
-  serializedVersion: 2
+  serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -93,6 +93,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+  m_BlendShapeWeights: []
 --- !u!61 &7678370226068217589
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -459,7 +460,64 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3192103440435443517, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4374632182366876505}
+    - targetCorrespondingSourceObject: {fileID: 6368272424022937040, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8925279720527107423}
   m_SourcePrefab: {fileID: 100100000, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+--- !u!1 &1215154090675568886 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6368272424022937040, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
+  m_PrefabInstance: {fileID: 5241554664911605030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8925279720527107423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1215154090675568886}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9dfdc935fae8b9649bb3314fc6a97718, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::TFOOL.Audio.FMODAudioPlayer
+  sounds:
+  - soundName: Melee
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 709941132
+        Data2: 1160342953
+        Data3: -270075713
+        Data4: -647204134
+      Path: event:/PaintMelee
+  - soundName: Jump
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: -336208103
+        Data2: 1143994896
+        Data3: 1337698731
+        Data4: -1134606024
+      Path: event:/PaintJump
+  - soundName: Death
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: 1245792969
+        Data2: 1142241653
+        Data3: 1515221392
+        Data4: 895367207
+      Path: event:/PaintDeath
+  - soundName: Alert
+    soundType: 0
+    eventReference:
+      Guid:
+        Data1: -1794332158
+        Data2: 1149967906
+        Data3: 1163589297
+        Data4: -1584292882
+      Path: event:/PaintAlertWheeze
 --- !u!114 &2076988561367919351 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6084165347596527569, guid: d832be74c41050e4f99281e01c7fa443, type: 3}
