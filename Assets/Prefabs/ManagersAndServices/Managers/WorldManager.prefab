@@ -51,6 +51,6 @@ MonoBehaviour:
     _sceneName: WorldPersistentData
     _sceneAsset: {fileID: 102900000, guid: d40b351bdf0a31f41b778f7183a0bb42, type: 3}
   defaultRoom:
-    _sceneName: Room1
-    _sceneAsset: {fileID: 102900000, guid: d05496d9def6f3d46be5d657a965930b, type: 3}
+    _sceneName: RR_A1
+    _sceneAsset: {fileID: 102900000, guid: ed384ffa43c03e04b8c6a78eb608a38c, type: 3}
   loadFadeColor: {r: 0, g: 0, b: 0, a: 1}
