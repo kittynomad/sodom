@@ -18,7 +18,7 @@ namespace TFOOL.Enemies.AI
     {
         // Serialized Fields
         [SerializeField] private Animator enemyAnimator;
-        [SerializeField, Expandable] private EnemyAI ai;
+        [SerializeField] private EnemyAI ai;
 
         private EnemyState currentState;
         private CancellationTokenSource stateCanceller;

@@ -65,4 +65,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log("interact key");
         pb.InteractBehavior();
     }
+
+    public void ResetInput()
+    {
+        movementDirection = Vector2.zero;
+        aimDirection = Vector2.zero;
+    }
 }

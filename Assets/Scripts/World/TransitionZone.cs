@@ -13,6 +13,7 @@ using UnityEngine;
 
 namespace TFOOL.World
 {
+    [RequireComponent(typeof(BoxCollider2D))]
     public class TransitionZone : MonoBehaviour
     {
         private const short MAX_DOOR_INDICIES = 10;
@@ -24,12 +25,15 @@ namespace TFOOL.World
         [SerializeField, Range(0, MAX_DOOR_INDICIES - 1), Tooltip("The index of this transition zone.")] 
         private short _doorIndex;
 
+        [SerializeField, ComponentReference] private BoxCollider2D _collider;
+
         private bool currentLoadingZone;
         private static bool canTransition = true;
 
         public short DoorIndex => _doorIndex;
+        public Vector3 SpawnPosition => transform.position + Vector3.down * (_collider.bounds.size.y) / 2;
 
-        public static Vector3?[] DoorPositions { get; private set; } = new Vector3?[MAX_DOOR_INDICIES];
+        public static TransitionZone[] AllZones { get; private set; } = new TransitionZone[MAX_DOOR_INDICIES];
 
         #region Nested
         private enum TransitionDirection
@@ -44,11 +48,14 @@ namespace TFOOL.World
         // Make this door's position statically available to the LevelStreamingService.
         private void Awake()
         {
-            DoorPositions[_doorIndex] = transform.position;
+            AllZones[_doorIndex] = this;
         }
         private void OnDestroy()
         {
-            DoorPositions[_doorIndex] = null;
+            if (AllZones[_doorIndex] == this)
+            {
+                AllZones[_doorIndex] = null;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -73,7 +80,7 @@ namespace TFOOL.World
                 // Check the direction the player exited the zone from.  if they exited in the direction of the next room, load the next room.
                 if (CompareExitPosition(_direction, collision.GetComponent<Rigidbody2D>().linearVelocity))
                 {
-                    LevelStreamingService.EnterNewRoom(new RoomData(_destinationRoom, _doorIndex));
+                    LevelStreamingService.EnterRoom(new RoomData(_destinationRoom, _doorIndex));
                 }
 
             }
@@ -83,7 +90,6 @@ namespace TFOOL.World
         {
             float exitAngle = MathUtil.VectorToDegAngle(playerVelocity);
             int exitDirection = MathUtil.Mod(Mathf.RoundToInt(exitAngle / 90), 4);
-            Debug.Log(exitDirection);
             return direction == (TransitionDirection)exitDirection;
             
         }
