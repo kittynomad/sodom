@@ -227,6 +227,7 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: c0d47b812c2dd5a4fab6781c124ae7ac, type: 3}
   _direction: 0
   _doorIndex: 0
+  _collider: {fileID: 458447822}
 --- !u!61 &458447822
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -1722,6 +1722,7 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: d05496d9def6f3d46be5d657a965930b, type: 3}
   _direction: 2
   _doorIndex: 0
+  _collider: {fileID: 503369204}
 --- !u!61 &503369204
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1818,6 +1819,7 @@ MonoBehaviour:
     _sceneAsset: {fileID: 102900000, guid: 21b9a425632ea7d44b4b351865f24336, type: 3}
   _direction: 0
   _doorIndex: 1
+  _collider: {fileID: 852567490}
 --- !u!61 &852567490
 BoxCollider2D:
   m_ObjectHideFlags: 0

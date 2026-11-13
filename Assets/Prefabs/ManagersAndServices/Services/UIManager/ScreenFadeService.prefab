@@ -51,7 +51,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::TFOOL.UI.ScreenFadeService
   fadeImage: {fileID: 453002213298100867}
   fadeTimeline:
-    duration: 0.5
+    duration: 0.2
     useUnscaledTime: 1
     curve:
       serializedVersion: 2

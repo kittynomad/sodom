@@ -103,6 +103,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     public float MaxStamina { get => _maxStamina; set => _maxStamina = value; }
 
     public Rigidbody2D Rigidbody => rb;
+    public PlayerController Controller => pc;
 
     private void Awake()
     {

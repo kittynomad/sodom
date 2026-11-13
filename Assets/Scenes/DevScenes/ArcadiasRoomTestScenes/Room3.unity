@@ -1438,10 +1438,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RoomTransition
   _destinationRoom:
-    _sceneName: Room3
-    _sceneAsset: {fileID: 102900000, guid: 21b9a425632ea7d44b4b351865f24336, type: 3}
+    _sceneName: Room2
+    _sceneAsset: {fileID: 102900000, guid: c0d47b812c2dd5a4fab6781c124ae7ac, type: 3}
   _direction: 2
   _doorIndex: 1
+  _collider: {fileID: 852567490}
 --- !u!61 &852567490
 BoxCollider2D:
   m_ObjectHideFlags: 0

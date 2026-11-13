@@ -72,23 +72,24 @@ namespace TFOOL.World
                 if (toRoom.EntryIndex >= 0)
                 {
                     float timer = DOOR_BUFFER_TIME;
-                    while (TransitionZone.DoorPositions[toRoom.EntryIndex] == null && timer > 0)
+                    while (TransitionZone.AllZones[toRoom.EntryIndex] == null && timer > 0)
                     {
                         timer -= Time.deltaTime;
                         await Awaitable.NextFrameAsync(mainCt);
                     }
-                    if (TransitionZone.DoorPositions[toRoom.EntryIndex] != null)
+                    if (TransitionZone.AllZones[toRoom.EntryIndex] != null)
                     {
-                        PlayerManager.MovePlayerTo((Vector2)TransitionZone.DoorPositions[toRoom.EntryIndex]);
+                        PlayerManager.MovePlayerFeetTo((Vector2)TransitionZone.AllZones[toRoom.EntryIndex].SpawnPosition);
                     }
                 }
-                PlayerManager.TogglePlayerActions(true);
 
                 if (instance != null)
                 {
                     // Fade back in.
                     await ScreenFadeService.FadeScreenOut();
                 }
+                PlayerManager.TogglePlayerActions(true);
+                PlayerManager.ClearInput();
             }
         }
 
@@ -118,15 +119,14 @@ namespace TFOOL.World
             //}
             //currentRoom = toRoom;
 
-            // Start loading the new room.
-            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom.Scene, LoadSceneMode.Additive);
-
             // Unload the current room.
             if (currentRoom != null && currentRoom != "")
             {
                 await SceneManager.UnloadSceneAsync(currentRoom);
             }
 
+            // Start loading the new room.
+            AsyncOperation loadScenesOp = SceneManager.LoadSceneAsync(toRoom.Scene, LoadSceneMode.Additive);
             // Wait until the scene is loaded.
             await loadScenesOp;
 
