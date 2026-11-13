@@ -20,6 +20,8 @@ namespace TFOOL.Enemies.AI
         [SerializeField] private Animator enemyAnimator;
         [SerializeField] private EnemyAI ai;
 
+        [SerializeField, HideInInspector] private string _guid;
+
         private EnemyState currentState;
         private CancellationTokenSource stateCanceller;
         private IEnemySensor[] sensors;
@@ -82,6 +84,7 @@ namespace TFOOL.Enemies.AI
         // Set to the first state by default.
         private void Start()
         {
+            // Check if the enemy is already dead according to the EnemyService.
             SetState(ai.GetState(0));
         }
 
@@ -104,6 +107,32 @@ namespace TFOOL.Enemies.AI
                 }
             }
         }
+
+        #region GUID
+        /// <summary>
+        /// Creates a unique GUID for this enemy to be used for save data.
+        /// </summary>
+        [ContextMenu("GUID/Generate GUID")]
+        public void GenerateGUID()
+        {
+#if UNITY_EDITOR
+            if (!UnityEditor.EditorApplication.isPlaying)
+            {
+                _guid = Guid.NewGuid().ToString();
+            }
+            else
+            {
+                Debug.LogError("Cannot generate a GUID for an enemy at runtime.");
+            }
+#endif
+        }
+
+        [ContextMenu("GUID/Print GUID")]
+        private void PrintGUID()
+        {
+            Debug.Log(_guid);
+        }
+        #endregion
 
         #region Decision Engine
 

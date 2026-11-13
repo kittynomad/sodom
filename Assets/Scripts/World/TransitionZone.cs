@@ -93,6 +93,13 @@ namespace TFOOL.World
             return direction == (TransitionDirection)exitDirection;
             
         }
+
+#if UNITY_EDITOR
+        private void OnDrawGizmos()
+        {
+            UnityEditor.Handles.Label(transform.position, _doorIndex.ToString());
+        }
+#endif
     }
 
 }
