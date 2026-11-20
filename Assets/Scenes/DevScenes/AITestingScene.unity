@@ -11609,6 +11609,34 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.size
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].soundName
+      value: BeraCorpseSlam
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].eventReference.Path
+      value: event:/CorpseImpact
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].eventReference.Guid.Data1
+      value: 545976512
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].eventReference.Guid.Data2
+      value: 1247891061
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].eventReference.Guid.Data3
+      value: 793012117
+      objectReference: {fileID: 0}
+    - target: {fileID: 5637066946977478772, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
+      propertyPath: sounds.Array.data[5].eventReference.Guid.Data4
+      value: -1841555083
+      objectReference: {fileID: 0}
     - target: {fileID: 7497974442560162974, guid: fced8e9e38b334b498c5038ca47f1ab7, type: 3}
       propertyPath: m_ExcludeLayers.m_Bits
       value: 64
