@@ -8,7 +8,14 @@ public class SpawnPointSetter : MonoBehaviour
         SpawnPointHolder.instance.UpdateSpawnPoint(transform.position);
         if(openCheckpointMenu)
         {
-            FindAnyObjectByType<CheckpointMenuHandler>().ToggleCheckpoint(true);
+            try
+            {
+                FindAnyObjectByType<CheckpointMenuHandler>().ToggleCheckpoint(true);
+            }
+            catch
+            {
+                Debug.LogWarning("Unable to open checkpoint menu, may not exist in scene??");
+            }
         }
     }
 }
