@@ -11,16 +11,15 @@ using NaughtyAttributes;
 using System;
 using System.Threading;
 using UnityEngine;
+using TFOOL.Enemies.AI;
 
-namespace TFOOL.Enemies.AI
+namespace TFOOL.Enemies
 {
-    public class EnemyController : MonoBehaviour
+    public partial class EnemyController : MonoBehaviour
     {
         // Serialized Fields
         [SerializeField] private Animator enemyAnimator;
         [SerializeField] private EnemyAI ai;
-
-        [SerializeField, HideInInspector] private string _guid;
 
         private EnemyState currentState;
         private CancellationTokenSource stateCanceller;
@@ -109,23 +108,6 @@ namespace TFOOL.Enemies.AI
         }
 
         #region GUID
-        /// <summary>
-        /// Creates a unique GUID for this enemy to be used for save data.
-        /// </summary>
-        [ContextMenu("GUID/Generate GUID")]
-        public void GenerateGUID()
-        {
-#if UNITY_EDITOR
-            if (!UnityEditor.EditorApplication.isPlaying)
-            {
-                _guid = Guid.NewGuid().ToString();
-            }
-            else
-            {
-                Debug.LogError("Cannot generate a GUID for an enemy at runtime.");
-            }
-#endif
-        }
 
         [ContextMenu("GUID/Print GUID")]
         private void PrintGUID()

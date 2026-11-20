@@ -6,10 +6,8 @@
 //
 // Brief Description : Automatically creates GUIDs for enemies placed in the scene
 *****************************************************************************/
-using TFOOL.Enemies.AI;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace TFOOL.Enemies.Editor
 {
@@ -23,7 +21,10 @@ namespace TFOOL.Enemies.Editor
 
         private static void UpdateEnemyGUID()
         {
-            if (Selection.activeObject is GameObject go && go.TryGetComponent(out EnemyController enemy))
+            if (Selection.activeObject is GameObject go 
+                && go.TryGetComponent(out EnemyController enemy) 
+                && !PrefabUtility.IsPartOfPrefabAsset(go) // Only assign a GUID if the GameObject is a part of a prefab instance, not an asset.
+                && !enemy.IsGUIDAssigned)
             {
                 enemy.GenerateGUID();
                 EditorUtility.SetDirty(enemy);
