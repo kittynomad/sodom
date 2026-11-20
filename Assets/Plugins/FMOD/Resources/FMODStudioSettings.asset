@@ -709,6 +709,7 @@ MonoBehaviour:
   - Master
   Banks:
   - SoundEffectsBera
+  - SoundEffectsGeneral
   - SoundEffectsPaint
   - SoundEffectsPainter
   BanksToLoad: []
