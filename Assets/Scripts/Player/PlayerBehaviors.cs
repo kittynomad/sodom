@@ -25,6 +25,7 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     [SerializeField] private float _projectileSpeed;
     [SerializeField] private float _hurtRecoveryPeriod;
     [SerializeField] [Range(0, 1)] private float _customVelocityFalloffRate = 0f;
+    [SerializeField] [Range(0, 1)] private float _customSlideVelocityFalloffRate = 0f;
 
     [Header("Stamina")]
     [SerializeField] private float _maxStamina;
@@ -146,13 +147,18 @@ public class PlayerBehaviors : MonoBehaviour, IKillable
     }
     public void FixedUpdate()
     {
-        //taper off player velocity when not moving
-        if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0 && !meleeChaining)
-            rb.linearVelocityX *= 1 - _customVelocityFalloffRate;
         //flip player based on movement direction
         if (pc.MovementDirection.x != 0 && meleeTurnWindow)
             transform.localScale = new Vector3(pc.MovementDirection.x, 1f, 1f);
 
+        //taper off player velocity when not moving
+        if ((pc.MovementDirection.x == 0 || moveLocked) && rb.linearVelocityX != 0 && !meleeChaining)
+            rb.linearVelocityX *= 1 - (pc.MovementDirection.y < -0.25f ? _customSlideVelocityFalloffRate : _customVelocityFalloffRate);
+        else if(pc.MovementDirection.y < -0.25f && !moveLocked)
+        {
+            //crouch behavior
+
+        }
         //player walks in input direction IF not past max speed and not anchored
         else if (!anchored && (Mathf.Abs(rb.linearVelocityX) < _playerWalkSpeedLimit || pc.MovementDirection.x != transform.localScale.x) && !moveLocked)
         {

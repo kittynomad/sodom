@@ -200,6 +200,7 @@ MonoBehaviour:
   _projectileSpeed: 200
   _hurtRecoveryPeriod: 1
   _customVelocityFalloffRate: 0.128
+  _customSlideVelocityFalloffRate: 0
   _maxStamina: 100
   _staminaRegenCooldown: 0.5
   _staminaRegenRate: 25
